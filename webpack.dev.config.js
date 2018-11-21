@@ -6,11 +6,12 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/index.js'
+    app: './src/index.tsx'
   },
   devtool: 'inline-source-map',
+  // dev server outputs bundled file in contentBase directory, but where you define in output property
   devServer: {
-    contentBase: './dist',
+    contentBase: __dirname,
     hot: true
   },
   plugins: [
@@ -30,7 +31,7 @@ module.exports = {
   resolve: {
     mainFiles: ['index'],
     modules: ['node_modules'],
-    extensions: ['.js', '.jsx']
+    extensions: [".ts", ".tsx", ".js", ".json"] 
   },
   module: {
     rules: [
@@ -44,7 +45,10 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
         }
-      }/*,
+      },
+      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+      /*,
       {
         test: /\.css$/,
         exclude: /node_modules/,
@@ -95,5 +99,15 @@ module.exports = {
         ]
       }*/
     ]
+  },
+  // exclude those library from bundling and use those as global variables for following reasons:
+  // 1. reduce compilation time
+  // 2. make those libaraies cachable in browser
+  // caveat: when using this externals with dev server, don't specify contentBase to "dist" because
+  // external's script tag like <script src=".node_modules/... can be found by dev server. instead,
+  // define contentBase to root directory of your project 
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM"
   }
 };
