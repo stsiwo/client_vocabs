@@ -1,11 +1,12 @@
 # dev dep
+# webpack-merge: webpack.common.config
 npm install -D \
 webpack webpack-cli \
-clean-webpack-plugin html-webpack-plugin webpack-dev-server \
+clean-webpack-plugin html-webpack-plugin webpack-dev-server webpack-merge\
 babel-loader \
 @babel/core @babel/preset-env @babel/preset-react \
 awesome-typescript-loader source-map-loader \
-typescript ts-node \
+typescript ts-node tslint\
 
 # dev
 npm install react react-dom @types/react @types/react-dom
