@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 
 class MyComponent extends React.Component {
   render() {
-    return <div>Hello World</div>;
+    return <div>Welcome to Client React Vocabs App</div>;
   }
 }
  
