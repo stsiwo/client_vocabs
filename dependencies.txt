@@ -1,12 +1,18 @@
 # dev dep
 # webpack-merge: webpack.common.config
+# tslint-config-prettier: stop fighting each other tslint and prettier. rather, prettier is in charge of formatting and tslint is others
 npm install -D \
 webpack webpack-cli \
 clean-webpack-plugin html-webpack-plugin webpack-dev-server webpack-merge\
 babel-loader \
 @babel/core @babel/preset-env @babel/preset-react \
 awesome-typescript-loader source-map-loader \
-typescript ts-node tslint\
+typescript ts-node \
+prettier tslint-config-prettier\
 
-# dev
+# dep
 npm install react react-dom @types/react @types/react-dom
+
+# global 
+# tslint: must be global because of vim Syntastic, so if you don't use Syntastic it can be in dev dep
+npm i -g tslint
