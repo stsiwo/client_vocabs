@@ -30,13 +30,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+             plugins: [
+              '@babel/plugin-proposal-object-rest-spread',
+              '@babel/plugin-transform-regenerator',
+            ]
           }
         }
       },
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
-      /*,
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.css$/,
         exclude: /node_modules/,
@@ -49,12 +52,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
             }
-          },
-          {
-            loader: 'postcss-loader'
           }
         ]
       },
@@ -71,21 +69,22 @@ module.exports = {
         use: [
           'file-loader'
         ]
-      },
-      {
-        test: /\.(csv|tsv)$/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          'csv-loader'
-        ]
-      },
-      {
-        test: /\.xml$/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          'xml-loader'
-        ]
-      }*/
+      }
+    //]
+      //{
+        //test: /\.(csv|tsv)$/,
+        //include: path.resolve(__dirname, 'src'),
+        //use: [
+          //'csv-loader'
+        //]
+      //},
+      //{
+        //test: /\.xml$/,
+        //include: path.resolve(__dirname, 'src'),
+        //use: [
+          //'xml-loader'
+        //]
+      //}
     ]
   }
   // exclude those library from bundling and use those as global variables for following reasons:
