@@ -32,7 +32,7 @@ const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
 const store = createStore(counter, { count: 0 }, composeEnhancers( 
   applyMiddleware(...middlewares)
 ));
-
+ 
 interface Props {
   count: number;
   incrementClick?: (count: number) => void;
