@@ -71,6 +71,7 @@ const Pos: posItem = {
 }
 
 interface IWord {
+  id: number;
   name: string;
   defs: IDef[];
 }
@@ -84,18 +85,27 @@ interface IDef {
 
 export type State = IWord[];
 
-export interface normalizedState {
-  entities: {
-    word: IWord,
-    def: IDef,
-  },
-  result: {
-    words: IWord[],
-  }
+interface IEntityDef {
+  [id: number]: IDef;
+}
+
+interface IEntityWord {
+  [id: number]: IWord;
+}
+
+export interface IEntity {
+  word: IEntityWord,
+  def: IEntityDef,
+}
+
+export interface INormalizedState {
+  entities: IEntity,
+  words: IWord[],
 }
 
 export const initialState: State = [
   {
+    id: 0,
     name: "address",
     defs: [
       {
@@ -123,15 +133,43 @@ export const initialState: State = [
         image: "image1",
       },
     ],
+  },
+  {
+    id: 1,
+    name: "test",
+    defs: [
+      {
+        id: 4,
+        pos: Pos[PosEnum.NOUN],
+        def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
+        image: "image1",
+      },
+      {
+        id: 5,
+        pos: Pos[PosEnum.NOUN],
+        def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
+        image: "image1",
+      },
+      {
+        id: 6,
+        pos: Pos[PosEnum.NOUN],
+        def: "a formal speech:",
+        image: "image1",
+      },
+      {
+        id: 7,
+        pos: Pos[PosEnum.VERB],
+        def: "to speak or write to someone:",
+        image: "image1",
+      },
+    ],
   }
 ];
 
-let normalizedData = normalize(initialState, wordListSchema);
-normalizedData = { 
+const normalizedData = normalize(initialState, wordListSchema);
+export const normalizedState: INormalizedState = {
   entities: normalizedData.entities,
-  words: normalizedData.result.words,
+  words: normalizedData.result,
 }
 
-export const normalizedInitialState: normalizedState = normalizedData; 
 
-console.log(normalizedData);

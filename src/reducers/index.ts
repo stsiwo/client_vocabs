@@ -1,5 +1,5 @@
 import { combineReducers, AnyAction } from "redux";
-import { State } from '../state';
+import { State, INormalizedState, IEntity } from '../state';
 import { IWordsActionType, WordsActionType } from '../actions/type';
 import merge from 'lodash/merge';
 
@@ -33,7 +33,7 @@ const wordsHandler: Handler = {
   [WordsActionType.ADD_NEW_WORD]: addNewWordReducer,
 }   
 
-const entityReducer = (state: State, action: AnyAction) => {
+const entityReducer = (state: IEntity, action: AnyAction) => {
   if (action.entities) {
     return merge({}, state, action.entities)
   } 
@@ -46,7 +46,7 @@ const wordsReducer = createReducer([], wordsHandler );
 
  //root reducer
  
-export const rootReducer = combineReducers({
+export const rootReducer = combineReducers<INormalizedState, AnyAction>({
     entities: entityReducer,
     words: wordsReducer,
 });
