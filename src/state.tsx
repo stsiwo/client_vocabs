@@ -37,24 +37,28 @@ export const initialState: State = [
         pos: Pos[PosEnum.NOUN],
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
+        _wordId: 0,
       },
       {
         id: 1,
         pos: Pos[PosEnum.NOUN],
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
+        _wordId: 0,
       },
       {
         id: 2,
         pos: Pos[PosEnum.NOUN],
         def: "a formal speech:",
         image: "image1",
+        _wordId: 0,
       },
       {
         id: 3,
         pos: Pos[PosEnum.VERB],
         def: "to speak or write to someone:",
         image: "image1",
+        _wordId: 0,
       },
     ],
   },
@@ -67,30 +71,34 @@ export const initialState: State = [
         pos: Pos[PosEnum.NOUN],
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
+        _wordId: 1,
       },
       {
         id: 5,
         pos: Pos[PosEnum.NOUN],
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
+        _wordId: 1,
       },
       {
         id: 6,
         pos: Pos[PosEnum.NOUN],
         def: "a formal speech:",
         image: "image1",
+        _wordId: 1,
       },
       {
         id: 7,
         pos: Pos[PosEnum.VERB],
         def: "to speak or write to someone:",
         image: "image1",
+        _wordId: 1,
       },
     ],
   }
 ];
 
-const normalizeWordsArray: (words: State) => INormalizedState = (words) => {
+export const normalizeWordsArray: (words: State) => INormalizedState = (words) => {
 
   const normalizedWords = normalize(words, wordListSchema);
   return {

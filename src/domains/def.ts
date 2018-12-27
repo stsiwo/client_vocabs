@@ -3,6 +3,7 @@ export interface IDef {
   pos: IPos;
   def: string;
   image: string;
+  _wordId: number;
 }
 
 

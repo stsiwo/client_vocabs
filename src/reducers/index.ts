@@ -32,17 +32,44 @@ const addNewDefsReducer: caseReducer<IEntityDef> = (defs, action) => ({
   ...action.entities.defs,
 });
 
-const addNewWordsReducer: caseReducer<IEntityWord> = (words, action) => ({
+const removeDefsReducer: caseReducer<IEntityDef> = (defs, action) => {
+  const copy = { ...defs };
+  // find properties whose _wordId is action.id and put those into array
+  Object.keys(copy).map(( key ) => { 
+    copy[key]._wordId === action.id ? delete copy[key] : ''; 
+  });
+  return copy;
+}
+
+const updateDefsReducer: caseReducer<IEntityDef> = (defs, action) => {
+  return Object.assign({}, defs, action.entities.defs);
+};
+
+const addNewWordReducer: caseReducer<IEntityWord> = (words, action) => ({
   ...words,
   ...action.entities.words,
 });
 
+const removeWordReducer: caseReducer<IEntityWord> = (words, action) => {
+  const copy = { ...words };
+  delete copy[action.id];
+  return copy;
+}
+
+const updateWordReducer: caseReducer<IEntityWord> = (words, action) => {
+  return Object.assign({}, words, action.entities.words);
+};
+
 const defsHandler: Handler<IEntityDef> = {
   [WordsActionType.ADD_NEW_WORD]: addNewDefsReducer,
+  [WordsActionType.REMOVE_WORD]: removeDefsReducer,
+  [WordsActionType.UPDATE_WORD]: updateDefsReducer,
 }   
 
 const wordsHandler: Handler<IEntityWord> = {
-  [WordsActionType.ADD_NEW_WORD]: addNewWordsReducer,
+  [WordsActionType.ADD_NEW_WORD]: addNewWordReducer,
+  [WordsActionType.REMOVE_WORD]: removeWordReducer,
+  [WordsActionType.UPDATE_WORD]: updateWordReducer,
 }   
 
 const defsReducer = createReducer<IEntityDef>(normalizedState.entities.defs, defsHandler);

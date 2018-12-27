@@ -23,10 +23,14 @@ import { IWord } from '../domains/word';
 //
 export interface IWordsActionType {
   ADD_NEW_WORD: string;
+  REMOVE_WORD: string;
+  UPDATE_WORD: string;
 }
 
 export const WordsActionType: IWordsActionType = {
   ADD_NEW_WORD: "ADD_NEW_WORD",
+  REMOVE_WORD: "REMOVE_WORD",
+  UPDATE_WORD: "UPDATE_WORD",
 }
 
 export const addNewWordAction = (input: IWord) => {
@@ -34,5 +38,20 @@ export const addNewWordAction = (input: IWord) => {
   return {
     type: WordsActionType.ADD_NEW_WORD,
     entities: normalizedNewWord.entities,
+  }
+};
+
+export const removeWordAction = (id: number) => {
+  return {
+    type: WordsActionType.REMOVE_WORD,
+    id,
+  }
+};
+
+export const updateWordAction = (updateWord: IWord) => {
+  const normalizedUpdateWord = normalizeWordObject(updateWord);
+  return {
+    type: WordsActionType.UPDATE_WORD,
+    entities: normalizedUpdateWord.entities,
   }
 };
