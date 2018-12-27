@@ -1,106 +1,30 @@
 import { normalize, schema } from 'normalizr';
+import { PosEnum, Pos } from './domains/pos';
+import { IWord } from './domains/word';
+import { IDef } from './domains/def';
 
-const defSchema = new schema.Entity('def');
-const wordSchema = new schema.Entity('word', { defs: [defSchema] }, { idAttribute: 'name' });
+const defSchema = new schema.Entity('defs');
+const wordSchema = new schema.Entity('words', { defs: [defSchema] });
    
-const wordListSchema = new schema.Array(wordSchema);
-  
-enum PosEnum {
-  NOUN = 'noun',
-  VERB = 'verb',
-  ADJUCTIVE = 'adjuctive',
-  ADVERB = 'adverb',
-  PREPOSITION = 'preposition',
-  PRONOUN = 'pronoun',
-  CONJUNCTION = 'conjunction',
-  INTERJECTION = 'interjection',
-  IDIOM = 'idiom',
-  ELSE = 'else',
-}
-
-interface IPos {
-  pos: PosEnum;
-  value: number;
-}
-
-interface posItem {
-  [x: string]: IPos;
-}
-
-const Pos: posItem = {
-  [PosEnum.NOUN]: {
-    pos: PosEnum.NOUN,
-    value: 0,
-  },
-  [PosEnum.VERB]: {
-    pos: PosEnum.VERB,
-    value: 1,
-  },
-  [PosEnum.ADJUCTIVE]: {
-    pos: PosEnum.ADJUCTIVE,
-    value: 2,
-  },
-  [PosEnum.ADVERB]: {
-    pos: PosEnum.ADVERB,
-    value: 3,
-  },
-  [PosEnum.PREPOSITION]: {
-    pos: PosEnum.PREPOSITION,
-    value: 4,
-  },
-  [PosEnum.PRONOUN]: {
-    pos: PosEnum.PRONOUN,
-    value: 5,
-  },
-  [PosEnum.CONJUNCTION]: {
-    pos: PosEnum.CONJUNCTION,
-    value: 6,
-  },
-  [PosEnum.INTERJECTION]: {
-    pos: PosEnum.INTERJECTION,
-    value: 7,
-  },
-  [PosEnum.IDIOM]: {
-    pos: PosEnum.IDIOM,
-    value: 8,
-  },
-  [PosEnum.ELSE]: {
-    pos: PosEnum.ELSE,
-    value: 9,
-  },
-}
-
-interface IWord {
-  id: number;
-  name: string;
-  defs: IDef[];
-}
-
-interface IDef {
-  id: number;
-  pos: IPos;
-  def: string;
-  image: string;
-}
+export const wordListSchema = new schema.Array(wordSchema);
 
 export type State = IWord[];
 
-interface IEntityDef {
+export interface IEntityDef {
   [id: number]: IDef;
 }
 
-interface IEntityWord {
+export interface IEntityWord {
   [id: number]: IWord;
 }
 
 export interface IEntity {
-  word: IEntityWord,
-  def: IEntityDef,
+  words: IEntityWord,
+  defs: IEntityDef,
 }
 
 export interface INormalizedState {
   entities: IEntity,
-  words: IWord[],
 }
 
 export const initialState: State = [
@@ -166,10 +90,20 @@ export const initialState: State = [
   }
 ];
 
-const normalizedData = normalize(initialState, wordListSchema);
-export const normalizedState: INormalizedState = {
-  entities: normalizedData.entities,
-  words: normalizedData.result,
+const normalizeWordsArray: (words: State) => INormalizedState = (words) => {
+
+  const normalizedWords = normalize(words, wordListSchema);
+  return {
+    entities: normalizedWords.entities,
+  }
 }
 
+export const normalizeWordObject: (word: IWord) => INormalizedState = (word) => {
+  const normalizedWord = normalize(word, wordSchema);
+  return {
+    entities: normalizedWord.entities,
+  }
+}
+
+export const normalizedState: INormalizedState = normalizeWordsArray(initialState); 
 

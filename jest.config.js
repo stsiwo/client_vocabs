@@ -5,7 +5,7 @@ module.exports = {
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },
-  "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.tsx?$",
+  "testRegex": "\\.(spec|test)\\.tsx?$",
   "moduleFileExtensions": [
     "ts",
     "tsx",
