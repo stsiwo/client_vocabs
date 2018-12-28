@@ -4,8 +4,8 @@ import { IWord } from './domains/word';
 import { IDef } from './domains/def';
 
 const defSchema = new schema.Entity('defs');
+const defListSchema = new schema.Array(defSchema);
 const wordSchema = new schema.Entity('words', { defs: [defSchema] });
-   
 export const wordListSchema = new schema.Array(wordSchema);
 
 export type State = IWord[];
@@ -110,6 +110,21 @@ export const normalizeWordObject: (word: IWord) => INormalizedState = (word) => 
   const normalizedWord = normalize(word, wordSchema);
   return {
     entities: normalizedWord.entities,
+  }
+}
+
+export const normalizeDefsArray: (defs: IDef[]) => INormalizedState = (defs) => {
+
+  const normalizedDefs = normalize(defs, defListSchema);
+  return {
+    entities: normalizedDefs.entities,
+  }
+}
+
+export const normalizeDefObject: (def: IDef) => INormalizedState = (def) => {
+  const normalizedDef = normalize(def, defSchema);
+  return {
+    entities: normalizedDef.entities,
   }
 }
 

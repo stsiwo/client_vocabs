@@ -1,6 +1,6 @@
 import { combineReducers, AnyAction } from "redux";
 import { INormalizedState, normalizedState, IEntity, IEntityDef, IEntityWord } from '../state';
-import { IWordsActionType, WordsActionType } from '../actions/type';
+import { IWordActionType, WordActionType, DefActionType } from '../actions/type';
 
 type caseReducer<T> = (state: T, action: AnyAction) => T;
 
@@ -8,7 +8,7 @@ type caseReducer<T> = (state: T, action: AnyAction) => T;
  //and value name with the name of the slice reducer function
  
 type Handler<T> = {
-  [P in keyof IWordsActionType]?: caseReducer<T>;
+  [P in keyof IWordActionType]?: caseReducer<T>;
 }
 
 function createReducer<T>( initialState: T, handlers: Handler<T> ) {
@@ -23,17 +23,17 @@ function createReducer<T>( initialState: T, handlers: Handler<T> ) {
 
 //case reducer
 
-//const addNewWordReducer: caseReducer = (wordsState, action) => {
+//const addNewWordByWordActionReducer: caseReducer = (wordsState, action) => {
   //return Object.assign({}, wordsState);
 //}
 
-const addNewDefsReducer: caseReducer<IEntityDef> = (defs, action) => ({
+const addNewDefsByWordActionReducer: caseReducer<IEntityDef> = (defs, action) => ({
   ...defs,
   ...action.entities.defs,
 });
 
-const removeDefsReducer: caseReducer<IEntityDef> = (defs, action) => {
-  const copy = { ...defs };
+const removeDefsByWordActionReducer: caseReducer<IEntityDef> = (defs, action) => {
+  const copy = JSON.parse(JSON.stringify(defs)); 
   // find properties whose _wordId is action.id and put those into array
   Object.keys(copy).map(( key ) => { 
     copy[key]._wordId === action.id ? delete copy[key] : ''; 
@@ -41,35 +41,64 @@ const removeDefsReducer: caseReducer<IEntityDef> = (defs, action) => {
   return copy;
 }
 
-const updateDefsReducer: caseReducer<IEntityDef> = (defs, action) => {
+const updateDefsByWordActionReducer: caseReducer<IEntityDef> = (defs, action) => {
   return Object.assign({}, defs, action.entities.defs);
 };
 
-const addNewWordReducer: caseReducer<IEntityWord> = (words, action) => ({
-  ...words,
-  ...action.entities.words,
-});
-
-const removeWordReducer: caseReducer<IEntityWord> = (words, action) => {
-  const copy = { ...words };
+const removeDefsByDefActionReducer: caseReducer<IEntityDef> = (defs, action) => {
+  const copy = JSON.parse(JSON.stringify(defs)); 
   delete copy[action.id];
   return copy;
 }
 
-const updateWordReducer: caseReducer<IEntityWord> = (words, action) => {
+const addNewWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => ({
+  ...words,
+  ...action.entities.words,
+});
+
+const removeWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => {
+  const copy = JSON.parse(JSON.stringify(words)); 
+  delete copy[action.id];
+  return copy;
+}
+
+const updateWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => {
   return Object.assign({}, words, action.entities.words);
 };
 
+const appendNewDefsToWordByDefActionReducer: caseReducer<IEntityWord> = (words, action) => {
+  const copy = JSON.parse(JSON.stringify(words));
+  const targetWordId = action.entities.defs[Object.getOwnPropertyNames(action.entities.defs)[0]]._wordId;
+  // object keys function return string element of array so need to use map(Number) to convert those to number
+  copy[targetWordId].defs = copy[targetWordId].defs.concat(Object.keys(action.entities.defs).map(Number));
+  return copy;
+}
+
+const removeDefsFromWordByDefActionReducer: caseReducer<IEntityWord> = (words, action) => {
+  const copy = JSON.parse(JSON.stringify(words));
+  const targetIndex = copy[action._wordId].defs.indexOf(action.id);
+  copy[action._wordId].defs.splice(targetIndex, 1);
+  return copy;
+}
+
+
 const defsHandler: Handler<IEntityDef> = {
-  [WordsActionType.ADD_NEW_WORD]: addNewDefsReducer,
-  [WordsActionType.REMOVE_WORD]: removeDefsReducer,
-  [WordsActionType.UPDATE_WORD]: updateDefsReducer,
+  [WordActionType.ADD_NEW_WORD]: addNewDefsByWordActionReducer,
+  [WordActionType.REMOVE_WORD]: removeDefsByWordActionReducer,
+  [WordActionType.UPDATE_WORD]: updateDefsByWordActionReducer,
+  [DefActionType.ADD_NEW_DEF]: addNewDefsByWordActionReducer,
+  [DefActionType.REMOVE_DEF]: removeDefsByDefActionReducer, // can't use removeDefsByWordActionReducer
+  [DefActionType.UPDATE_DEF]: updateDefsByWordActionReducer,
 }   
 
 const wordsHandler: Handler<IEntityWord> = {
-  [WordsActionType.ADD_NEW_WORD]: addNewWordReducer,
-  [WordsActionType.REMOVE_WORD]: removeWordReducer,
-  [WordsActionType.UPDATE_WORD]: updateWordReducer,
+  [WordActionType.ADD_NEW_WORD]: addNewWordByWordActionReducer,
+  [WordActionType.REMOVE_WORD]: removeWordByWordActionReducer,
+  [WordActionType.UPDATE_WORD]: updateWordByWordActionReducer,
+  [DefActionType.ADD_NEW_DEF]: appendNewDefsToWordByDefActionReducer,
+  [DefActionType.REMOVE_DEF]: removeDefsFromWordByDefActionReducer,
+  // update does not relating word entity since id hasn't change at all
+  //[DefActionType.UPDATE_DEF]: updateDefsOfWordByDefActionReducer,
 }   
 
 const defsReducer = createReducer<IEntityDef>(normalizedState.entities.defs, defsHandler);

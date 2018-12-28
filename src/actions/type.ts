@@ -1,5 +1,6 @@
-import { normalizeWordObject } from '../state';
+import { normalizeWordObject, normalizeDefsArray } from '../state';
 import { IWord } from '../domains/word';
+import { IDef } from '../domains/def';
 //export interface IType {
   //DOMAIN_ONE_TYPE_A: string;
   //DOMAIN_ONE_TYPE_B: string; 
@@ -20,30 +21,41 @@ import { IWord } from '../domains/word';
 
 
 //export default Type;
-//
-export interface IWordsActionType {
+export interface IWordActionType {
   ADD_NEW_WORD: string;
   REMOVE_WORD: string;
   UPDATE_WORD: string;
 }
 
-export const WordsActionType: IWordsActionType = {
+export interface IDefActionType {
+  ADD_NEW_DEF: string;
+  REMOVE_DEF: string;
+  UPDATE_DEF: string;
+}
+
+export const WordActionType: IWordActionType = {
   ADD_NEW_WORD: "ADD_NEW_WORD",
   REMOVE_WORD: "REMOVE_WORD",
   UPDATE_WORD: "UPDATE_WORD",
 }
 
+export const DefActionType: IDefActionType = {
+  ADD_NEW_DEF: "ADD_NEW_DEF",
+  REMOVE_DEF: "REMOVE_DEF",
+  UPDATE_DEF: "UPDATE_DEF",
+}
+
 export const addNewWordAction = (input: IWord) => {
   const normalizedNewWord = normalizeWordObject(input);
   return {
-    type: WordsActionType.ADD_NEW_WORD,
+    type: WordActionType.ADD_NEW_WORD,
     entities: normalizedNewWord.entities,
   }
 };
 
 export const removeWordAction = (id: number) => {
   return {
-    type: WordsActionType.REMOVE_WORD,
+    type: WordActionType.REMOVE_WORD,
     id,
   }
 };
@@ -51,7 +63,31 @@ export const removeWordAction = (id: number) => {
 export const updateWordAction = (updateWord: IWord) => {
   const normalizedUpdateWord = normalizeWordObject(updateWord);
   return {
-    type: WordsActionType.UPDATE_WORD,
+    type: WordActionType.UPDATE_WORD,
     entities: normalizedUpdateWord.entities,
+  }
+};
+
+export const addNewDefAction = (def: IDef[]) => {
+  const normalizedNewDef = normalizeDefsArray(def);
+  return {
+    type: DefActionType.ADD_NEW_DEF,
+    entities: normalizedNewDef.entities,
+  }
+};
+
+export const removeDefAction = (id: number, _wordId: number) => {
+  return {
+    type: DefActionType.REMOVE_DEF,
+    id,
+    _wordId,
+  }
+};
+
+export const updateDefAction = (updateDef: IDef[]) => {
+  const normalizedUpdateDef = normalizeDefsArray(updateDef);
+  return {
+    type: DefActionType.UPDATE_DEF,
+    entities: normalizedUpdateDef.entities,
   }
 };
