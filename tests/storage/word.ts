@@ -4,6 +4,7 @@ import { initialState } from '../../src/state';
 export const newWord: IWord = {
   id: 100,
   name: "test-sample-word",
+  createDate: "2002-12-17T03:24:00",
   defs: [
     {
       id: 100,

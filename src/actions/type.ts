@@ -1,4 +1,4 @@
-import { normalizeWordObject, normalizeDefsArray } from '../state';
+import { normalizeWordObject, normalizeDefsArray, ISortedWordList } from '../state';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 //export interface IType {
@@ -19,6 +19,17 @@ import { IDef } from '../domains/def';
   //DOMAIN_TWO_TYPE_C: "DOMAIN_TWO_TYPE_C", 
 //}
 
+export enum SORT_ORDER {
+  ALPHA_ASC  = 1,
+  ALPHA_DESC = 2,
+  DATE_NEWER = 3,
+  DATE_OLDER = 4,
+}
+
+interface ISortActionType {
+  CHANGE_SORT: string,
+}
+
 
 //export default Type;
 export interface IWordActionType {
@@ -32,6 +43,18 @@ export interface IDefActionType {
   REMOVE_DEF: string;
   UPDATE_DEF: string;
 }
+
+export const SortActionType: ISortActionType = {
+  CHANGE_SORT: "CHANGE_SORT",
+}
+
+export const changeSortAction = (sortedWordList: ISortedWordList, nextSort: SORT_ORDER) => ({
+  type: SortActionType.CHANGE_SORT,
+  sortedWordList,
+  currentSort: nextSort,
+});
+
+
 
 export const WordActionType: IWordActionType = {
   ADD_NEW_WORD: "ADD_NEW_WORD",

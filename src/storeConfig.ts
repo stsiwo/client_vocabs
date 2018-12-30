@@ -1,10 +1,11 @@
-import { createStore, compose, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { createStore, compose, applyMiddleware, AnyAction } from "redux";
+import thunk, { ThunkMiddleware } from "redux-thunk";
 import { rootReducer } from './reducers';
-import { normalizedState  } from './state';
+import { normalizedState, INormalizedState } from './state';
 
 
-const middlewares = [ thunk ];
+
+const middlewares = [ thunk as ThunkMiddleware<INormalizedState, AnyAction> ];
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /**

@@ -1,6 +1,7 @@
 import { combineReducers, AnyAction } from "redux";
-import { INormalizedState, normalizedState, IEntity, IEntityDef, IEntityWord } from '../state';
-import { IWordActionType, WordActionType, DefActionType } from '../actions/type';
+//import { ThunkAction } from "redux-thunk";
+import { INormalizedState, normalizedState, IEntity, IEntityDef, IEntityWord, ICurrentSort, ISortedWordList } from '../state';
+import { IWordActionType, WordActionType, DefActionType, SortActionType } from '../actions/type';
 
 type caseReducer<T> = (state: T, action: AnyAction) => T;
 
@@ -81,6 +82,8 @@ const removeDefsFromWordByDefActionReducer: caseReducer<IEntityWord> = (words, a
   return copy;
 }
 
+const currentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, action) => action.currentSort;
+const sortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => action.sortedWordList;
 
 const defsHandler: Handler<IEntityDef> = {
   [WordActionType.ADD_NEW_WORD]: addNewDefsByWordActionReducer,
@@ -101,20 +104,31 @@ const wordsHandler: Handler<IEntityWord> = {
   //[DefActionType.UPDATE_DEF]: updateDefsOfWordByDefActionReducer,
 }   
 
+const currentSortHandler: Handler<ICurrentSort> = {
+  [SortActionType.CHANGE_SORT]: currentSortCaseReducer,
+}
+
+const sortedWordListHandler: Handler<ISortedWordList> = {
+  [SortActionType.CHANGE_SORT]: sortedWordListCaseReducer,
+}
+
 const defsReducer = createReducer<IEntityDef>(normalizedState.entities.defs, defsHandler);
 const wordsReducer = createReducer<IEntityWord>(normalizedState.entities.words, wordsHandler);
+const currentSortReducer = createReducer<ICurrentSort>(normalizedState.currentSort, currentSortHandler);
+const sortedWordListReducer = createReducer<ISortedWordList>(normalizedState.sortedWordList, sortedWordListHandler);
   
 export const entityReducer = combineReducers<IEntity, AnyAction>({
   defs: defsReducer,
   words: wordsReducer, 
 })
- //slice reducer
 
-//const wordsReducer = createReducer(normalizedState.words, wordsHandler );
+//type IActionOrThunk = AnyAction | ThunkAction<void, INormalizedState, undefined, AnyAction>;
 
  //root reducer
  
 export const rootReducer = combineReducers<INormalizedState, AnyAction>({
     entities: entityReducer,
+    sortedWordList: sortedWordListReducer,
+    currentSort: currentSortReducer,
 });
 
