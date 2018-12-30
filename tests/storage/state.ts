@@ -5,7 +5,7 @@ import { newWord, removedWord, updateWord } from './word';
 import { newDef, removedDef, updateDef } from './def'; 
 import { normalizeWordObject, normalizeWordsArray, initialState, normalizeDefsArray } from '../../src/state'; 
 import { Pos, PosEnum } from '../../src/domains/pos'; 
-import { SORT_ORDER } from '../../src/actions/type';
+import { SORT_ORDER } from '../../src/enums';
 
 const normalizedNewWord = normalizeWordObject(newWord);
 

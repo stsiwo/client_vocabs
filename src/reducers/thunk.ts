@@ -1,4 +1,4 @@
-import { SORT_ORDER } from '../actions/type';
+import { SORT_ORDER } from '../enums';
 import { AnyAction } from 'redux';
 import { INormalizedState } from "../state"; 
 import { changeSortAction } from "../actions/type";

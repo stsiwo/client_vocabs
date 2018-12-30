@@ -1,5 +1,5 @@
 import { sortHandlers } from "../../src/reducers/thunk";
-import { SORT_ORDER } from "../../src/actions/type"; 
+import { SORT_ORDER } from "../../src/enums/"; 
 import { wordListAsc, wordListDesc, wordListDateNewer, wordListDateOlder } from '../storage/sort';
 describe('sortHandlers', () => {
   it('sort words array in the way of ascending', () => {

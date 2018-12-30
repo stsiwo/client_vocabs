@@ -1,14 +1,15 @@
-import { addNewWordAction } from '../../src/actions';
-import { WordActionType } from '../../src/actions/type'; 
-import { newWord } from '../storage/word';
+import { WordActionType, addNewWordAction } from '../../src/actions/type'; 
+import { newWord, normalizedNewWord } from '../storage/word';
 
 describe('addNewWordAction', () => {
   it('should create an action to add a todo', () => {
     
     const expectedAction = {
       type: WordActionType.ADD_NEW_WORD,
-      input: newWord,
+      entities: normalizedNewWord.entities,      
     }
     expect(addNewWordAction(newWord)).toEqual(expectedAction)
   })
+
+  // dismiss the rest of action test
 })

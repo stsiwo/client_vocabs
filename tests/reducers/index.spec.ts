@@ -3,7 +3,8 @@ import { normalizedState } from '../../src/state';
 import { AnyAction } from 'redux';
 import { newWord, updateWord } from '../storage/word';
 import { newDef, updateDef } from '../storage/def'; 
-import { addNewWordAction, removeWordAction, updateWordAction, addNewDefAction, removeDefAction, updateDefAction, SORT_ORDER } from '../../src/actions/type'; 
+import { addNewWordAction, removeWordAction, updateWordAction, addNewDefAction, removeDefAction, updateDefAction } from '../../src/actions/type'; 
+import { SORT_ORDER } from '../../src/enums';
 import { newWordAddedNormState, wordRemovedNormState, wordUpdateNormState, newDefAddedNormState, defRemovedNormState, defUpdateNormState, normalizedSortAscState } from '../storage/state';
 import { changeSortWrapperThunk } from '../../src/reducers/thunk';
 import store from '../../src/storeConfig';
@@ -52,7 +53,7 @@ describe('rootReducer', () => {
     // 2. then get updated state from stor
     // 3. compared with test data
     store.dispatch<any>(changeSortWrapperThunk(SORT_ORDER.ALPHA_ASC))
- console.log(JSON.stringify(store.getState(),null,2));   
+ //console.log(JSON.stringify(store.getState(),null,2));   
     // should work fine without <any> since I defined ThunkAction but does not work, so use as last resort
     expect(store.getState()).toEqual(normalizedSortAscState);
   })

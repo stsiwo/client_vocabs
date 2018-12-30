@@ -2,7 +2,7 @@ import { normalize, schema } from 'normalizr';
 import { PosEnum, Pos } from './domains/pos';
 import { IWord } from './domains/word';
 import { IDef } from './domains/def';
-import { SORT_ORDER } from './actions/type';
+import { SORT_ORDER } from './enums';
 
 /**
  * normalized state
