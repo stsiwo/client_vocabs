@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware, AnyAction } from "redux";
 import thunk, { ThunkMiddleware } from "redux-thunk";
-import { rootReducer } from './reducers';
+import { rootReducer } from './reducers/rootReducer';
 import { normalizedState, INormalizedState } from './state';
 
 

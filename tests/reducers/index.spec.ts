@@ -1,4 +1,4 @@
-import { rootReducer } from '../../src/reducers'; 
+import { rootReducer } from '../../src/reducers/rootReducer'; 
 import { normalizedState } from '../../src/state';
 import { AnyAction } from 'redux';
 import { newWord, updateWord } from '../storage/word';
