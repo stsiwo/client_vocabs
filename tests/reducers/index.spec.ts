@@ -3,7 +3,7 @@ import { normalizedState } from '../../src/state';
 import { AnyAction } from 'redux';
 import { newWord, updateWord } from '../storage/word';
 import { newDef, updateDef } from '../storage/def'; 
-import { addNewWordAction, removeWordAction, updateWordAction, addNewDefAction, removeDefAction, updateDefAction } from '../../src/actions/type'; 
+import { addNewWordAction, removeWordAction, updateWordAction, addNewDefAction, removeDefAction, updateDefAction } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { newWordAddedNormState, wordRemovedNormState, wordUpdateNormState, newDefAddedNormState, defRemovedNormState, defUpdateNormState, normalizedSortAscState } from '../storage/state';
 import { changeSortWrapperThunk } from '../../src/reducers/thunk';

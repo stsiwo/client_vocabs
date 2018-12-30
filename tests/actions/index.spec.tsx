@@ -1,4 +1,5 @@
-import { WordActionType, addNewWordAction } from '../../src/actions/type'; 
+import { WordActionType } from '../../src/actions/type'; 
+import { addNewWordAction } from '../../src/actions'; 
 import { newWord, normalizedNewWord } from '../storage/word';
 
 describe('addNewWordAction', () => {
