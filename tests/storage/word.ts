@@ -1,5 +1,5 @@
 import { IWord } from '../../src/domains/word';
-import { initialState } from '../../src/state';
+import { initialWordList } from '../../src/state/index';
 
 export const newWord: IWord = {
   id: 100,
@@ -87,9 +87,9 @@ export const normalizedNewWord = {
 
 
 
-export const removedWord: IWord[] = initialState.filter(( word ) => word.id !== 1 );
+export const removedWord: IWord[] = initialWordList.filter(( word ) => word.id !== 1 );
 // need to copy defs array inside word object. above code just do shallow copy; array is still refers to original array
-const updateWordsCopy = JSON.parse(JSON.stringify(initialState[0]));
+const updateWordsCopy = JSON.parse(JSON.stringify(initialWordList[0]));
 updateWordsCopy.name = "update";
 updateWordsCopy.defs[0].def = "update";
 

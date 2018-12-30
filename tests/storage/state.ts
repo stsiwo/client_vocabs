@@ -1,9 +1,8 @@
 import { normalize } from 'normalizr';
-import { wordListSchema } from '../../src/state';
-import { normalizedState, INormalizedState, initialNormalizedState } from '../../src/state';
+import { normalizedState, initialNormalizedState, initialWordList, wordListSchema, normalizeWordObject, normalizeWordsArray, normalizeDefsArray } from '../../src/state/index';
+import { INormalizedState } from '../../src/state/type'; 
 import { newWord, removedWord, updateWord } from './word'; 
 import { newDef, removedDef, updateDef } from './def'; 
-import { normalizeWordObject, normalizeWordsArray, initialState, normalizeDefsArray } from '../../src/state'; 
 import { Pos, PosEnum } from '../../src/domains/pos'; 
 import { SORT_ORDER } from '../../src/enums';
 
@@ -39,7 +38,7 @@ export const wordUpdateNormState = Object.assign({}, initialNormalizedState, {
   },
 });
 
-const copy = JSON.parse(JSON.stringify(initialState));
+const copy = JSON.parse(JSON.stringify(initialWordList));
 copy[0].defs = copy[0].defs.concat(newDef);
 export const newDefAddedNormState = normalizeWordsArray(copy);
 

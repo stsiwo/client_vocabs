@@ -1,10 +1,10 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
 import Button from '../representationals/base/Button/Button';
-import { State } from '../state';
+import { IWord } from '../domains/word';
 import { addNewWordAction } from '../actions'; 
 
-const mapStateToProps = (state: State, ownProps: {}) => ({
+const mapStateToProps = (state: IWord[], ownProps: {}) => ({
   prop: "prop",
 });
 

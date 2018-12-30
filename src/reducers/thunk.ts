@@ -1,6 +1,6 @@
 import { SORT_ORDER } from '../enums';
 import { AnyAction } from 'redux';
-import { INormalizedState } from "../state"; 
+import { INormalizedState } from "../state/type"; 
 import { changeSortAction } from "../actions";
 import { IWord } from "../domains/word";
 import { ThunkAction } from 'redux-thunk';

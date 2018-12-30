@@ -1,8 +1,9 @@
-import { normalizeWordObject, normalizeDefsArray, ISortedWordList } from '../state';
+import { ISortedWordList } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
 import { WordActionType, DefActionType, SortActionType } from './type'; 
+import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
  * action 

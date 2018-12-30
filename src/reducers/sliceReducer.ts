@@ -1,4 +1,5 @@
-import { normalizedState, IEntity, IEntityDef, IEntityWord, ICurrentSort, ISortedWordList } from '../state';
+import { IEntity, IEntityDef, IEntityWord, ICurrentSort, ISortedWordList } from '../state/type';
+import { normalizedState } from '../state/index';
 import { Handler, defsHandler, wordsHandler, currentSortHandler, sortedWordListHandler } from './handler';  
 import { AnyAction, combineReducers } from 'redux';
 

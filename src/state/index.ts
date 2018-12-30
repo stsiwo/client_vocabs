@@ -1,8 +1,8 @@
 import { normalize, schema } from 'normalizr';
-import { PosEnum, Pos } from './domains/pos';
-import { IWord } from './domains/word';
-import { IDef } from './domains/def';
-import { SORT_ORDER } from './enums';
+import { IDef } from '../domains/def';
+import { PosEnum, Pos } from '../domains/pos';
+import { IWord } from '../domains/word';
+import { INormalizedState } from './type';
 
 /**
  * normalized state
@@ -14,46 +14,8 @@ import { SORT_ORDER } from './enums';
  *  
  **/
 
-const defSchema = new schema.Entity('defs');
-const defListSchema = new schema.Array(defSchema);
-export const wordSchema = new schema.Entity('words', { defs: [defSchema] });
-export const wordListSchema = new schema.Array(wordSchema);
 
-export type State = IWord[];
-
-export interface IEntityDef {
-  [id: number]: IDef;
-}
-
-export interface IEntityWord {
-  [id: number]: IWord;
-}
-
-export interface IEntity {
-  words: IEntityWord,
-  defs: IEntityDef,
-}
-
-export type ICurrentSort = SORT_ORDER; 
-
-export type ISortedWordList = number[]; 
-
-export interface INormalizedState { 
-  entities: IEntity,
-  sortedWordList: ISortedWordList,
-  currentSort: ICurrentSort,
-}
-
-export const initialNormalizedState: INormalizedState = {
-  entities: {
-    defs: {},
-    words: {},
-  },
-  currentSort: 1, 
-  sortedWordList: [],
-}
-
-export const initialState: State = [
+export const initialWordList: IWord[] = [
   {
     id: 0,
     name: "sport",
@@ -252,8 +214,31 @@ export const initialState: State = [
   },
 ];
 
-export const normalizeWordsArray: (words: State) => INormalizedState = (words) => {
+/**
+ * normalized initial State
+ **/
+export const initialNormalizedState: INormalizedState = {
+  entities: {
+    defs: {},
+    words: {},
+  },
+  currentSort: 1, 
+  sortedWordList: [],
+}
 
+
+/**
+ * normalizr schame definition 
+ **/
+const defSchema = new schema.Entity('defs');
+const defListSchema = new schema.Array(defSchema);
+export const wordSchema = new schema.Entity('words', { defs: [defSchema] });
+export const wordListSchema = new schema.Array(wordSchema);
+
+/**
+ * normalizr helper function 
+ **/
+export const normalizeWordsArray: (words: IWord[]) => INormalizedState = (words) => {
   const normalizedWords = normalize(words, wordListSchema);
   return Object.assign({}, initialNormalizedState, { entities: normalizedWords.entities });
 }
@@ -274,5 +259,7 @@ export const normalizeDefObject: (def: IDef) => INormalizedState = (def) => {
   return Object.assign({}, initialNormalizedState, { entities: normalizedDef.entities });
 }
 
-export const normalizedState: INormalizedState = normalizeWordsArray(initialState); 
-
+/**
+ * normalized initialWordList with words array schema
+ **/
+export const normalizedState: INormalizedState = normalizeWordsArray(initialWordList); 

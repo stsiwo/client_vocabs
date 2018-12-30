@@ -4,7 +4,7 @@ import { newWord, normalizedNewWord } from '../storage/word';
 
 describe('addNewWordAction', () => {
   it('should create an action to add a todo', () => {
-    
+
     const expectedAction = {
       type: WordActionType.ADD_NEW_WORD,
       entities: normalizedNewWord.entities,      
