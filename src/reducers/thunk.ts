@@ -1,9 +1,12 @@
 import { SORT_ORDER } from '../enums';
 import { AnyAction } from 'redux';
 import { INormalizedState } from "../state/type"; 
-import { changeSortAction } from "../actions";
+import { changeSortAction, changeFilterAction } from "../actions";
 import { IWord } from "../domains/word";
+import { IDef } from '../domains/def';
 import { ThunkAction } from 'redux-thunk';
+import { PosEnum } from '../../src/domains/pos';
+const uniq = require('lodash/uniq');
 //: ThunkAction<void, INormalizedState, undefined, AnyAction> 
 
 type changeSortWrapperThunkType = (newSort: SORT_ORDER) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
@@ -64,4 +67,21 @@ export const sortHandlers: ISortHandler = {
   },
 }
     
+type changeFilterWrapperThunkType = (newFilter: PosEnum[]) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
 
+export const changeFilterWrapperThunk: changeFilterWrapperThunkType = ( newFilter ) => ( dispatch, getState ) => {
+
+  // get defs state
+  const defList = Object.values(getState().entities.defs);
+  // filter with handler
+  const filteredDef = defList.filter(( def ) => newFilter.includes(def.pos));
+  // extract only id 
+  const wordIdList = filteredDef.map(( def: IDef ) => def._wordId );
+  // remove duplicate word id 
+  const duplFreeWordIdList = uniq(wordIdList);
+  // dispatch change sort action
+  dispatch(changeFilterAction(duplFreeWordIdList, newFilter));
+}
+
+
+  

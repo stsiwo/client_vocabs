@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { caseReducer } from './caseReducer';
-import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort } from '../state'; 
+import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter } from '../state/type'; 
 /**
  *  case reducer type
  **/
@@ -67,3 +67,4 @@ export const currentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, a
 
 export const sortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => action.sortedWordList;
 
+export const currentFilterCaseReducer: caseReducer<ICurrentFilter> = (currentFilter, action) => action.currentFilter;

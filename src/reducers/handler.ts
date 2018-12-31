@@ -1,4 +1,4 @@
-import { IWordActionType, WordActionType, DefActionType, SortActionType } from '../actions/type';
+import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType } from '../actions/type';
 import { caseReducer } from './caseReducer';
 import { 
   addNewDefsByWordActionReducer, 
@@ -11,9 +11,10 @@ import {
   appendNewDefsToWordByDefActionReducer, 
   removeDefsFromWordByDefActionReducer, 
   currentSortCaseReducer, 
-  sortedWordListCaseReducer 
+  sortedWordListCaseReducer, 
+  currentFilterCaseReducer,
 } from './caseReducer';
-import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList } from '../state';
+import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter } from '../state/type';
 /**
  * Hander type
  * must match property name with action type of a domain
@@ -46,6 +47,11 @@ export const currentSortHandler: Handler<ICurrentSort> = {
   [SortActionType.CHANGE_SORT]: currentSortCaseReducer,
 }
 
+export const currentFilterHandler: Handler<ICurrentFilter> = {
+  [FilterActionType.CHANGE_FILTER]: currentFilterCaseReducer,
+}
+
 export const sortedWordListHandler: Handler<ISortedWordList> = {
   [SortActionType.CHANGE_SORT]: sortedWordListCaseReducer,
+  [FilterActionType.CHANGE_FILTER]: sortedWordListCaseReducer,
 }

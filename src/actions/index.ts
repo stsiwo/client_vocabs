@@ -1,8 +1,8 @@
-import { ISortedWordList } from '../state/type';
+import { ISortedWordList, ICurrentFilter } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
-import { WordActionType, DefActionType, SortActionType } from './type'; 
+import { WordActionType, DefActionType, SortActionType, FilterActionType } from './type'; 
 import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
@@ -61,5 +61,8 @@ export const changeSortAction = (sortedWordList: ISortedWordList, nextSort: SORT
   currentSort: nextSort,
 });
 
-
-
+export const changeFilterAction = (sortedWordList: ISortedWordList, nextFilter: ICurrentFilter ) => ({
+  type: FilterActionType.CHANGE_FILTER, 
+  sortedWordList,
+  currentFilter: nextFilter,
+});

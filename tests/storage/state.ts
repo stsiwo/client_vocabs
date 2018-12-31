@@ -3,7 +3,7 @@ import { normalizedState, initialNormalizedState, initialWordList, wordListSchem
 import { INormalizedState } from '../../src/state/type'; 
 import { newWord, removedWord, updateWord } from './word'; 
 import { newDef, removedDef, updateDef } from './def'; 
-import { Pos, PosEnum } from '../../src/domains/pos'; 
+import { PosEnum } from '../../src/domains/pos'; 
 import { SORT_ORDER } from '../../src/enums';
 
 const normalizedNewWord = normalizeWordObject(newWord);
@@ -68,7 +68,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 8,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADJUCTIVE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 2,
@@ -82,7 +82,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 110,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 10,
@@ -96,7 +96,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 14,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PRONOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 4,
@@ -110,7 +110,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 17,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.INTERJECTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 7,
@@ -124,7 +124,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 15,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PREPOSITION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 5,
@@ -138,28 +138,28 @@ const sortAscTestData = [
     defs: [
       {
         id: 4,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 5,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 6,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a formal speech:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 7,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.VERB,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 1,
@@ -173,7 +173,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 13,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADVERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 3,
@@ -187,7 +187,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 18,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ELSE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 8,
@@ -201,28 +201,28 @@ const sortAscTestData = [
     defs: [
       {
         id: 0,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 1,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 2,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a formal speech:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 3,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.NOUN,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 0,
@@ -236,7 +236,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 19,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.IDIOM,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 9,
@@ -250,7 +250,7 @@ const sortAscTestData = [
     defs: [
       {
         id: 16,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.CONJUNCTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 6,
@@ -259,9 +259,10 @@ const sortAscTestData = [
   },
 ];
 const normalizedSortAscTestData = normalize(sortAscTestData, wordListSchema);
-export const normalizedSortAscState = {
+export const normalizedSortAscState: INormalizedState = {
   entities: normalizedSortAscTestData.entities,
   sortedWordList: normalizedSortAscTestData.result,
+  currentFilter: [],
   currentSort: SORT_ORDER.ALPHA_ASC,
 }
 
@@ -275,7 +276,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 16,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.CONJUNCTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 6,
@@ -289,7 +290,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 19,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.IDIOM,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 9,
@@ -303,28 +304,28 @@ const sortDescTestData = [
     defs: [
       {
         id: 0,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 1,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 2,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a formal speech:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 3,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.NOUN,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 0,
@@ -338,7 +339,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 18,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ELSE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 8,
@@ -352,7 +353,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 13,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADVERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 3,
@@ -366,28 +367,28 @@ const sortDescTestData = [
     defs: [
       {
         id: 4,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 5,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 6,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a formal speech:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 7,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.VERB,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 1,
@@ -401,7 +402,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 15,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PREPOSITION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 5,
@@ -415,7 +416,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 17,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.INTERJECTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 7,
@@ -429,7 +430,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 14,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PRONOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 4,
@@ -443,7 +444,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 110,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 10,
@@ -457,7 +458,7 @@ const sortDescTestData = [
     defs: [
       {
         id: 8,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADJUCTIVE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 2,
@@ -466,10 +467,11 @@ const sortDescTestData = [
   },
 ];
 const normalizedSortDescTestData = normalize(sortDescTestData, wordListSchema);
-export const normalizedSortDescState = {
+export const normalizedSortDescState: INormalizedState = {
   entities: normalizedSortDescTestData.entities,
   sortedWordList: normalizedSortDescTestData.result,
   currentSort: SORT_ORDER.ALPHA_DESC,
+  currentFilter: [],
 }
 
 // sort date newer test data  
@@ -481,7 +483,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 110,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 10,
@@ -495,7 +497,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 19,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.IDIOM,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 9,
@@ -509,7 +511,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 18,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ELSE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 8,
@@ -523,7 +525,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 17,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.INTERJECTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 7,
@@ -537,7 +539,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 16,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.CONJUNCTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 6,
@@ -551,7 +553,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 15,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PREPOSITION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 5,
@@ -565,7 +567,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 14,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PRONOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 4,
@@ -579,7 +581,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 13,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADVERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 3,
@@ -593,7 +595,7 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 8,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADJUCTIVE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 2,
@@ -607,28 +609,28 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 4,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 5,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 6,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a formal speech:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 7,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.VERB,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 1,
@@ -642,28 +644,28 @@ const sortDateNewerTestData = [
     defs: [
       {
         id: 0,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 1,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 2,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a formal speech:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 3,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.NOUN,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 0,
@@ -672,10 +674,11 @@ const sortDateNewerTestData = [
   },
 ];
 const normalizedSortDateNewerTestData = normalize(sortDateNewerTestData, wordListSchema);
-export const normalizedSortDateNewerState = {
+export const normalizedSortDateNewerState: INormalizedState = {
   entities: normalizedSortDateNewerTestData.entities,
   sortedWordList: normalizedSortDateNewerTestData.result,
   currentSort: SORT_ORDER.DATE_NEWER,
+  currentFilter: [],
 }
 
 // sort date newer test data  
@@ -687,28 +690,28 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 0,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 1,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 2,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a formal speech:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 3,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.NOUN,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 0,
@@ -722,28 +725,28 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 4,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 5,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 6,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a formal speech:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 7,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.VERB,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 1,
@@ -757,7 +760,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 8,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADJUCTIVE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 2,
@@ -771,7 +774,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 13,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADVERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 3,
@@ -785,7 +788,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 14,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PRONOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 4,
@@ -799,7 +802,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 15,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PREPOSITION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 5,
@@ -813,7 +816,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 16,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.CONJUNCTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 6,
@@ -827,7 +830,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 17,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.INTERJECTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 7,
@@ -841,7 +844,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 18,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ELSE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 8,
@@ -855,7 +858,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 19,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.IDIOM,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 9,
@@ -869,7 +872,7 @@ const sortDateOlderTestData = [
     defs: [
       {
         id: 110,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 10,
@@ -878,8 +881,9 @@ const sortDateOlderTestData = [
   },
 ];
 const normalizedSortDateOlderTestData = normalize(sortDateOlderTestData, wordListSchema);
-export const normalizedSortDateOlderState = {
+export const normalizedSortDateOlderState: INormalizedState = {
   entities: normalizedSortDateOlderTestData.entities,
   sortedWordList: normalizedSortDateOlderTestData.result,
   currentSort: SORT_ORDER.DATE_OLDER,
+  currentFilter: [],
 }

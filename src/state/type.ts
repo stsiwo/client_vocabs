@@ -1,6 +1,7 @@
 import { IDef } from '../domains/def';
 import { IWord } from '../domains/word';
 import { SORT_ORDER } from './enums';
+import { PosEnum } from '
 
 // entities.defs
 export interface IEntityDef {
@@ -24,6 +25,9 @@ export type ICurrentSort = SORT_ORDER;
 // sortedWordList 
 export type ISortedWordList = number[]; 
 
+// currentFilter
+export type ICurrentFilter = PosEnum[];
+
 /**
  * normalized state shape interface 
  **/
@@ -31,5 +35,6 @@ export interface INormalizedState {
   entities: IEntity,
   sortedWordList: ISortedWordList,
   currentSort: ICurrentSort,
+  currentFilter: ICurrentFilter,  
 }
 

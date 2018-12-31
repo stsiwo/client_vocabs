@@ -5,6 +5,10 @@ interface ISortActionType {
   CHANGE_SORT: string,
 }
 
+interface IFilterActionType {
+  CHANGE_FILTER: string,
+}
+
 export interface IWordActionType {
   ADD_NEW_WORD: string;
   REMOVE_WORD: string;
@@ -22,6 +26,10 @@ export interface IDefActionType {
  **/
 export const SortActionType: ISortActionType = {
   CHANGE_SORT: "CHANGE_SORT",
+}
+
+export const FilterActionType: IFilterActionType = {
+  CHANGE_FILTER: "CHANGE_FILTER",
 }
 
 export const WordActionType: IWordActionType = {

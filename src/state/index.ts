@@ -1,6 +1,6 @@
 import { normalize, schema } from 'normalizr';
 import { IDef } from '../domains/def';
-import { PosEnum, Pos } from '../domains/pos';
+import { PosEnum } from '../domains/pos';
 import { IWord } from '../domains/word';
 import { INormalizedState } from './type';
 
@@ -23,28 +23,28 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 0,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN, 
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 1,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 2,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "a formal speech:",
         image: "image1",
         _wordId: 0,
       },
       {
         id: 3,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.NOUN,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 0,
@@ -58,28 +58,28 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 4,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 5,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a series of letters and symbols that tell you where to find something on the internet or show where an email is sent to:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 6,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.VERB,
         def: "a formal speech:",
         image: "image1",
         _wordId: 1,
       },
       {
         id: 7,
-        pos: Pos[PosEnum.VERB],
+        pos: PosEnum.VERB,
         def: "to speak or write to someone:",
         image: "image1",
         _wordId: 1,
@@ -93,7 +93,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 8,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADJUCTIVE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 2,
@@ -107,7 +107,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 13,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ADVERB,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 3,
@@ -121,7 +121,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 14,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PRONOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 4,
@@ -135,7 +135,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 15,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.PREPOSITION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 5,
@@ -149,7 +149,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 16,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.CONJUNCTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 6,
@@ -163,7 +163,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 17,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.INTERJECTION,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 7,
@@ -177,7 +177,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 18,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.ELSE,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 8,
@@ -191,7 +191,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 19,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.IDIOM,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 9,
@@ -205,7 +205,7 @@ export const initialWordList: IWord[] = [
     defs: [
       {
         id: 110,
-        pos: Pos[PosEnum.NOUN],
+        pos: PosEnum.NOUN,
         def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: 10,
@@ -224,6 +224,7 @@ export const initialNormalizedState: INormalizedState = {
   },
   currentSort: 1, 
   sortedWordList: [],
+  currentFilter: [],
 }
 
 

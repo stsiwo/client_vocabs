@@ -1,7 +1,6 @@
 import { normalizedState } from './state';
 
 
-console.log(JSON.stringify(normalizedState, null, 2));
 //import * as React from 'react';
 //import * as ReactDOM from 'react-dom';
 //import { Provider, connect } from 'react-redux';

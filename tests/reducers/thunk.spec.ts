@@ -27,3 +27,10 @@ describe('sortHandlers', () => {
   })
 })
 
+describe('sortHandlers', () => {
+  it('sort words array in the way of ascending', () => {
+    const copyWLDesc = JSON.parse(JSON.stringify(wordListDesc));
+    copyWLDesc.sort(sortHandlers[SORT_ORDER.ALPHA_ASC]);
+    expect(copyWLDesc).toEqual(wordListAsc)
+  })
+})

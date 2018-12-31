@@ -6,8 +6,10 @@ import { newDef, updateDef } from '../storage/def';
 import { addNewWordAction, removeWordAction, updateWordAction, addNewDefAction, removeDefAction, updateDefAction } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { newWordAddedNormState, wordRemovedNormState, wordUpdateNormState, newDefAddedNormState, defRemovedNormState, defUpdateNormState, normalizedSortAscState, normalizedSortDescState, normalizedSortDateNewerState, normalizedSortDateOlderState} from '../storage/state';
-import { changeSortWrapperThunk } from '../../src/reducers/thunk';
+import { normalizedFilterNounState } from '../storage/filter';
+import { changeSortWrapperThunk, changeFilterWrapperThunk } from '../../src/reducers/thunk';
 import store from '../../src/storeConfig';
+import { PosEnum } from '../../src/domains/pos';
 
 //const log = (input: any) => console.log(JSON.stringify(input, null, 2));
 
@@ -73,7 +75,15 @@ describe('rootReducer', () => {
     expect(store.getState()).toEqual(normalizedSortDateOlderState);
   })
 
-  // thunk -- filter -- 
-  //
+  /**
+   * thunk -- filter -- 
+   * currentSort state come from previous test case so it should be 4 but this does not matter because it shouldn't affect change of sort to change of filter vice versa so just leave it alone
+   **/
+  it('should return new state (changed filter of wordlist to only noun)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.NOUN ]))
+    expect(store.getState()).toEqual(normalizedFilterNounState);
+  })
+  
+
 })
 
