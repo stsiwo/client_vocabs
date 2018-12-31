@@ -6,7 +6,7 @@ import { newDef, updateDef } from '../storage/def';
 import { addNewWordAction, removeWordAction, updateWordAction, addNewDefAction, removeDefAction, updateDefAction } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { newWordAddedNormState, wordRemovedNormState, wordUpdateNormState, newDefAddedNormState, defRemovedNormState, defUpdateNormState, normalizedSortAscState, normalizedSortDescState, normalizedSortDateNewerState, normalizedSortDateOlderState} from '../storage/state';
-import { normalizedFilterNounState } from '../storage/filter';
+import { normalizedFilterNounState, normalizedFilterVerbState, normalizedFilterAdjuctiveState, normalizedFilterAdverbState, normalizedFilterPronounState, normalizedFilterPrepositionState, normalizedFilterInterjectionState, normalizedFilterConjunctionState, normalizedFilterElseState, normalizedFilterIdiomState } from '../storage/filter';
 import { changeSortWrapperThunk, changeFilterWrapperThunk } from '../../src/reducers/thunk';
 import store from '../../src/storeConfig';
 import { PosEnum } from '../../src/domains/pos';
@@ -84,6 +84,49 @@ describe('rootReducer', () => {
     expect(store.getState()).toEqual(normalizedFilterNounState);
   })
   
+  it('should return new state (changed filter of wordlist to only verb)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.VERB ]))
+    expect(store.getState()).toEqual(normalizedFilterVerbState);
+  })
 
+  it('should return new state (changed filter of wordlist to only adjuctive)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.ADJUCTIVE ]))
+    expect(store.getState()).toEqual(normalizedFilterAdjuctiveState);
+  })
+  
+  it('should return new state (changed filter of wordlist to only advrb)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.ADVERB ]))
+    expect(store.getState()).toEqual(normalizedFilterAdverbState);
+  })
+
+  it('should return new state (changed filter of wordlist to only pronoun)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.PRONOUN ]))
+    expect(store.getState()).toEqual(normalizedFilterPronounState);
+  })
+  
+  it('should return new state (changed filter of wordlist to only conjunction)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.CONJUNCTION ]))
+    expect(store.getState()).toEqual(normalizedFilterConjunctionState);
+  })
+
+  it('should return new state (changed filter of wordlist to only interjection)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.INTERJECTION ]))
+    expect(store.getState()).toEqual(normalizedFilterInterjectionState);
+  })
+  
+  it('should return new state (changed filter of wordlist to only preposition)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.PREPOSITION ]))
+    expect(store.getState()).toEqual(normalizedFilterPrepositionState);
+  })
+
+  it('should return new state (changed filter of wordlist to only else)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.ELSE ]))
+    expect(store.getState()).toEqual(normalizedFilterElseState);
+  })
+  
+  it('should return new state (changed filter of wordlist to only idiom)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.IDIOM ]))
+    expect(store.getState()).toEqual(normalizedFilterIdiomState);
+  })
 })
 
