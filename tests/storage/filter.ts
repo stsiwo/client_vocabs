@@ -134,3 +134,15 @@ export const normalizedFilterIdiomState = {
   currentFilter: [ PosEnum.IDIOM ], 
 }
 
+/**
+ * filter test data 
+ * idiom
+ **/
+const normalizedFilterNounElseInterjectionTestData = normalize(initialWordList, wordListSchema);
+export const normalizedFilterNounElseInterjectionState = {
+  entities: normalizedFilterNounElseInterjectionTestData.entities,
+  sortedWordList: [ 0, 7, 8, 10 ],
+  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
+  currentSort: SORT_ORDER.DATE_OLDER,
+  currentFilter: [ PosEnum.NOUN, PosEnum.ELSE, PosEnum.INTERJECTION ], 
+}

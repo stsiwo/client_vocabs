@@ -5,8 +5,8 @@ import { newWord, updateWord } from '../storage/word';
 import { newDef, updateDef } from '../storage/def'; 
 import { addNewWordAction, removeWordAction, updateWordAction, addNewDefAction, removeDefAction, updateDefAction } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
-import { newWordAddedNormState, wordRemovedNormState, wordUpdateNormState, newDefAddedNormState, defRemovedNormState, defUpdateNormState, normalizedSortAscState, normalizedSortDescState, normalizedSortDateNewerState, normalizedSortDateOlderState} from '../storage/state';
-import { normalizedFilterNounState, normalizedFilterVerbState, normalizedFilterAdjuctiveState, normalizedFilterAdverbState, normalizedFilterPronounState, normalizedFilterPrepositionState, normalizedFilterInterjectionState, normalizedFilterConjunctionState, normalizedFilterElseState, normalizedFilterIdiomState } from '../storage/filter';
+import { newWordAddedNormState, wordRemovedNormState, wordUpdateNormState, newDefAddedNormState, defRemovedNormState, defUpdateNormState, normalizedSortAscState, normalizedSortDescState, normalizedSortDateNewerState, normalizedSortDateOlderState } from '../storage/state';
+import { normalizedFilterNounState, normalizedFilterVerbState, normalizedFilterAdjuctiveState, normalizedFilterAdverbState, normalizedFilterPronounState, normalizedFilterPrepositionState, normalizedFilterInterjectionState, normalizedFilterConjunctionState, normalizedFilterElseState, normalizedFilterIdiomState, normalizedFilterNounElseInterjectionState } from '../storage/filter';
 import { changeSortWrapperThunk, changeFilterWrapperThunk } from '../../src/reducers/thunk';
 import store from '../../src/storeConfig';
 import { PosEnum } from '../../src/domains/pos';
@@ -127,6 +127,12 @@ describe('rootReducer', () => {
   it('should return new state (changed filter of wordlist to only idiom)', () => {
     store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.IDIOM ]))
     expect(store.getState()).toEqual(normalizedFilterIdiomState);
+  })
+
+  // filter some combination (random)
+  it('should return new state (changed filter of wordlist to noun, else, interjection)', () => {
+    store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.NOUN, PosEnum.ELSE, PosEnum.INTERJECTION ]))
+    expect(store.getState()).toEqual(normalizedFilterNounElseInterjectionState);
   })
 })
 
