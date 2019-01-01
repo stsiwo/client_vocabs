@@ -1,9 +1,8 @@
 import { createStore, compose, applyMiddleware, AnyAction } from "redux";
 import thunk, { ThunkMiddleware } from "redux-thunk";
 import { rootReducer } from './reducers/rootReducer';
-import { normalizedState, INormalizedState } from './state';
-
-
+import { normalizedState } from './state/index';
+import { INormalizedState } from './state/type';
 
 const middlewares = [ thunk as ThunkMiddleware<INormalizedState, AnyAction> ];
 

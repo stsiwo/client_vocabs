@@ -9,7 +9,7 @@ const mapStateToProps = (state: IWord[], ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  incrementClick: (input: string) => { dispatch( addNewWordAction(input) )},
+  incrementClick: (input: IWord) => { dispatch( addNewWordAction(input) )},
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( Button );

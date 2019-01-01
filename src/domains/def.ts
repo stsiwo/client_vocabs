@@ -1,8 +1,8 @@
-import { posEnum } from './pos';
+import { PosEnum } from './pos';
 
 export interface IDef {
   id: number;
-  pos: posEnum;
+  pos: PosEnum;
   def: string;
   image: string;
   _wordId: number;

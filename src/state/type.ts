@@ -1,7 +1,7 @@
 import { IDef } from '../domains/def';
 import { IWord } from '../domains/word';
-import { SORT_ORDER } from './enums';
-import { PosEnum } from '
+import { SORT_ORDER } from '../enums';
+import { PosEnum } from '../domains/pos';
 
 // entities.defs
 export interface IEntityDef {

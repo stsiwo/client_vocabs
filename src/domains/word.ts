@@ -1,3 +1,5 @@
+import { IDef } from './def';
+
 export interface IWord {
   id: number;
   name: string;
