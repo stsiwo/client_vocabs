@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../Icon/Icon';
 import NavBar from './NavBar';
+import { media } from '../common/media';
 const settingIcon = require('./assets/setting.svg');
 
 interface Props {
@@ -57,6 +58,7 @@ const StyledHeader = styled(Header)`
   }
 
   & > h2 {
+    ${ media.mobileL`display: none;`}
   }
 
   & > div:last-child {

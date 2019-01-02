@@ -1,3 +1,23 @@
+interface IScreenSizeType {
+  mobileS: number;
+  mobileM: number;
+  mobileL: number;
+  tablet: number;
+  laptop: number;
+  laptopL: number;
+  fourk: number;
+}
+
+const ScreenSize: IScreenSizeType = {
+  mobileS: 356,
+  mobileM: 400,
+  mobileL: 520,
+  tablet: 768,
+  laptop: 1024,
+  laptopL: 1440,
+  fourk: 2560,
+}
+
 // theme.ts
 export default interface ThemeInterface {
   primaryColor: string;
@@ -10,13 +30,7 @@ export default interface ThemeInterface {
 
   primaryFontFamily: string;
 
-  mobileS: string;
-  mobileM: string;
-  mobileL: string;
-  tablet: string;
-  laptop: string;
-  laptopL: string;
-  fourk: string;
+  sizes: IScreenSizeType;
 
   headerHeight: string;
   navBarWidth: string;
@@ -34,13 +48,7 @@ export const theme: ThemeInterface = {
 
   primaryFontFamily: "'Cabin', sans-seif",
 
-  mobileS: '356px',
-  mobileM: '400px',
-  mobileL: '520px',
-  tablet: '768px',
-  laptop: '1024px',
-  laptopL: '1440px',
-  fourk: '2560px',
+  sizes: ScreenSize,  
 
   headerHeight: '50px',
   navBarWidth: '100px',
