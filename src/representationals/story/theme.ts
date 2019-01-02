@@ -9,9 +9,9 @@ interface IScreenSizeType {
 }
 
 const ScreenSize: IScreenSizeType = {
-  mobileS: 356,
-  mobileM: 400,
-  mobileL: 520,
+  mobileS: 320,
+  mobileM: 375,
+  mobileL: 425,
   tablet: 768,
   laptop: 1024,
   laptopL: 1440,
@@ -19,7 +19,7 @@ const ScreenSize: IScreenSizeType = {
 }
 
 // theme.ts
-export default interface ThemeInterface {
+export interface ThemeInterface {
   primaryColor: string;
   secondaryColor: string;
   thirdColor: string;

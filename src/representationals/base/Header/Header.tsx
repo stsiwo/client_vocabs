@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../Icon/Icon';
 import NavBar from './NavBar';
-import { media } from '../common/media';
 const settingIcon = require('./assets/setting.svg');
 
 interface Props {
@@ -31,7 +30,6 @@ class Header extends React.Component<Props, State> {
     return (
       <header className={ this.props.className }>
         <Icon svgSrc={ settingIcon }></Icon>
-        <h2>Title</h2>
         <NavBar isOpen={ this.state.isNavBarOpen }/>
         <Icon svgSrc={ settingIcon } onClick={ this.handleClick }></Icon>
       </header>
@@ -57,12 +55,17 @@ const StyledHeader = styled(Header)`
     flex-basis: 50px;
   }
 
-  & > h2 {
-    ${ media.mobileL`display: none;`}
-  }
-
   & > div:last-child {
     flex-basis: 50px;
+
+    @media (max-width: ${( props ) => props.theme.sizes.mobileL}px) {
+      display: block;
+    }
+
+    @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+      display: none;
+    }
+
   }
 `;
 

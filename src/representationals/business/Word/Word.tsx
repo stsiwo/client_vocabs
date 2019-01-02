@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from './story/styledComponents';
+import styled from '../../story/styledComponents';
 
 interface Props {
   className?: string;
@@ -24,6 +24,7 @@ const StyledWord = styled(Word)`
 
 
 export default StyledWord;
+
 
 
 

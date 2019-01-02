@@ -1,11 +1,11 @@
 import * as React from 'react';
-import styled from './story/styledComponents';
+import styled from '../../story/styledComponents';
 
 interface Props {
   className?: string;
 }
 
-class About extends React.Component<Props, {}> {
+class Home extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
@@ -13,16 +13,16 @@ class About extends React.Component<Props, {}> {
   render() {
     return (
       <div>
-        here is about page
+        here is home page
       </div>
     );
   }
 }
 
-const StyledAbout = styled(About)`
+const StyledHome = styled(Home)`
 `;
 
 
-export default StyledAbout;
+export default StyledHome;
 
 
