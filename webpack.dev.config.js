@@ -9,11 +9,13 @@ module.exports = merge(common, {
   // dev server outputs bundled file in contentBase directory, but where you define in output property
   devServer: {
     contentBase: __dirname,
-    hot: true
+    hot: true,
+    historyApiFallback: true,
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
