@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import { NavLink } from 'react-router-dom';
 import WordListItem from '../WordListItem/WordListItem';
 //import * as qs from 'query-string';
 import { RouteComponentProps } from 'react-router-dom';
@@ -33,9 +32,7 @@ class WordList extends React.Component<Props, State> {
     return (
       this.state.words.map(( word ) => { 
         return (
-          <NavLink key={ word.id } to={ "/word/detail"}>
-            <WordListItem>{ word.name }</WordListItem>
-          </NavLink>
+          <WordListItem key={ word.id }>{ word.name }</WordListItem>
         );
       })
     );
