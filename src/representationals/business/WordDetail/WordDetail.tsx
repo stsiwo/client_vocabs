@@ -7,11 +7,7 @@ interface IWordTypeTest {
   name: string;
 }
 
-interface MatchParams {
-  id: string;
-}
-
-interface Props extends RouteComponentProps<MatchParams> {
+interface Props extends RouteComponentProps<{}> {
   className?: string;
   words: IWordTypeTest[]; 
 }
@@ -22,11 +18,9 @@ class WordDetail extends React.Component<Props, {}> {
   }
 
   render() {
-    const { words } = this.props;
-    const id: number = parseInt(this.props.match.params.id) -1;
     return (
       <div className={ this.props.className }>
-        word { words[id].id } and its name { words[id].name } 
+      details
      </div>
     );
   }

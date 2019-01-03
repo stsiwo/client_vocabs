@@ -2,13 +2,16 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import { NavLink } from 'react-router-dom';
 import WordListItem from '../WordListItem/WordListItem';
+//import * as qs from 'query-string';
+import { RouteComponentProps } from 'react-router-dom';
+
 
 interface IWordTypeTest {
   id: number;
   name: string;
 }
 
-interface Props {
+interface Props extends RouteComponentProps<{}> {
   className?: string;
   words: IWordTypeTest[]; 
 }
@@ -30,7 +33,7 @@ class WordList extends React.Component<Props, State> {
     return (
       this.state.words.map(( word ) => { 
         return (
-          <NavLink key={ word.id } to={ "/word/" + word.id }>
+          <NavLink key={ word.id } to={ "/word/detail"}>
             <WordListItem>{ word.name }</WordListItem>
           </NavLink>
         );

@@ -49,11 +49,11 @@ class Word extends React.Component<Props, State> {
       <div className={ this.props.className }>
         <MediaQuery maxWidth={ 425 }>
           <Route exact path="/word" render={(props) => <WordList {...props} words={this.state.words} />} />
-          <Route path="/word/:id" render={(props) => <WordDetail {...props} words={this.state.words} />} />
+          <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
         </MediaQuery>
         <MediaQuery minWidth={ 426 }>
           <Route path="/word" render={(props) => <WordList {...props} words={this.state.words} />} /> 
-          <Route path="/word/:id" render={(props) => <WordDetail {...props} words={this.state.words} />} />
+          <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
         </MediaQuery>
           
       </div>

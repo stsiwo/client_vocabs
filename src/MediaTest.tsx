@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from './representationals/story/styledComponents';
-import MediaQuery from 'react-responsive';
+import { Route } from 'react-router-dom';
+import * as qs from 'query-string';
 
 interface Props {
   className?: string;
@@ -14,12 +15,7 @@ class MediaTest extends React.Component<Props, {}> {
   render() {
     return (
       <div>
-        <MediaQuery maxWidth={ 500 }>
-          <div> max width is 500 </div>
-        </MediaQuery>
-        <MediaQuery minWidth={ 501 }>
-          <div> min width is 501 </div>
-        </MediaQuery>
+        <Route path="/test" render={(props) => {console.log(qs.parse(props.location.search)); return (<div>you got it</div>); }} />
       </div>
     );
   }
