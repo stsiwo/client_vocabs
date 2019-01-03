@@ -34,6 +34,7 @@ export interface ThemeInterface {
 
   headerHeight: string;
   navBarWidth: string;
+  sideBarWidth: string;
 
   primaryOverlayColor: string;
 }
@@ -52,6 +53,7 @@ export const theme: ThemeInterface = {
 
   headerHeight: '50px',
   navBarWidth: '100px',
+  sideBarWidth: '100px',
 
   primaryOverlayColor: 'rgba(89, 233, 22, 0.4)',
 }

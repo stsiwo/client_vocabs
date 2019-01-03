@@ -1,37 +1,27 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import { NavLink } from 'react-router-dom';
+import WordListItem from '../WordListItem/WordListItem';
+
+interface IWordTypeTest {
+  id: number;
+  name: string;
+}
 
 interface Props {
   className?: string;
+  words: IWordTypeTest[]; 
 }
 
 interface State {
-  words: { id: number; name: string; }[];
+  words: IWordTypeTest[];
 }
 
 class WordList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      words: [
-        {
-          id: 1,
-          name: "name1",
-        },
-        { 
-          id: 2,
-          name: "name2",
-        },
-        {
-          id: 3,
-          name: "name3",
-        },
-        { 
-          id: 4,
-          name: "name4",
-        },
-      ],
+      words: this.props.words,
     }
     this.renderWordItem = this.renderWordItem.bind(this);
   }
@@ -41,7 +31,7 @@ class WordList extends React.Component<Props, State> {
       this.state.words.map(( word ) => { 
         return (
           <NavLink key={ word.id } to={ "/word/" + word.id }>
-            <li>{ word.name }</li>
+            <WordListItem>{ word.name }</WordListItem>
           </NavLink>
         );
       })
@@ -50,14 +40,28 @@ class WordList extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className={ this.props.className }>
+      <ul className={ this.props.className }>
         { this.renderWordItem() }  
-      </div>
+      </ul>
     );
   }
 }
 
 const StyledWordList = styled(WordList)`
+  list-style-type: none; 
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+
+  @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+    position: fixed;
+    left: 0;
+    top: ${( props ) => props.theme.headerHeight };
+    width: ${( props ) => props.theme.sideBarWidth };
+    border-right: 2px solid ${( props ) => props.theme.secondaryColor };
+    box-sizing: border-box;
+  }
+
 `;
 
 
