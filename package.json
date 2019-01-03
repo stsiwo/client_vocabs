@@ -25,6 +25,7 @@
   "homepage": "https://github.com/stsiwo/client_vocabs#readme",
   "dependencies": {
     "@types/lodash": "^4.14.119",
+    "@types/query-string": "^6.1.1",
     "@types/react": "^16.7.6",
     "@types/react-dom": "^16.0.9",
     "@types/react-redux": "^6.0.11",
