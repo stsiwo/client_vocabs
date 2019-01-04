@@ -3,22 +3,17 @@ import styled from '../../story/styledComponents';
 import WordListItem from '../WordListItem/WordListItem';
 //import * as qs from 'query-string';
 import { RouteComponentProps } from 'react-router-dom';
+import { IWord } from '../../../domains/word';
 
-
-interface IWordTypeTest {
-  id: number;
-  name: string;
-}
 
 interface Props extends RouteComponentProps<{}> {
   className?: string;
-  words: IWordTypeTest[]; 
+  words: IWord[]; 
 }
 
 interface State {
-  words: IWordTypeTest[];
+  words: IWord[];
 }
-
 class WordList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -58,6 +53,8 @@ const StyledWordList = styled(WordList)`
     left: 0;
     top: ${( props ) => props.theme.headerHeight };
     width: ${( props ) => props.theme.sideBarWidth };
+    bottom: 0;
+    overflow-y: scroll;
     border-right: 2px solid ${( props ) => props.theme.secondaryColor };
     box-sizing: border-box;
   }

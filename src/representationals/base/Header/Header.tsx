@@ -43,6 +43,7 @@ const StyledHeader = styled(Header)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 4;
 
   height: ${( props ) => props.theme.headerHeight };
   width: 100%;

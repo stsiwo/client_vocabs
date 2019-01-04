@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import Checkbox from '../../base/Input/Checkbox';
+import CheckBox from '../../base/Input/CheckBox';
 
 interface Props {
   className?: string;
@@ -28,15 +28,16 @@ class WordListItem extends React.Component<Props, State> {
   render() {
     return (
       <li className={ this.props.className }>
-        <Checkbox labelName={this.props.children} checked={ this.state.isChecked } onChange={ this.onCheckChange }>
+        <CheckBox labelName={this.props.children} checked={ this.state.isChecked } onChange={ this.onCheckChange }>
           { this.props.children }
-        </Checkbox>
+        </CheckBox>
       </li>
     );
   }
 }
 
 const StyledWordListItem = styled(WordListItem)`
+  display: inline-block;
 `;
 
 

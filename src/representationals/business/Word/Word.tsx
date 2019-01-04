@@ -4,44 +4,34 @@ import WordList from '../WordList/WordList';
 import MediaQuery from 'react-responsive';
 import { Route } from 'react-router-dom';
 import WordDetail from '../WordDetail/WordDetail';
-
-interface IWordTypeTest {
-  id: number;
-  name: string;
-}
+import MobileController from '../Controller/MobileController';
+import Controller from '../Controller/Controller';
+import { IWord } from '../../../domains/word';
+import { initialWordList } from '../../../state/index';
+//import SelectModal from '../SelectModal/SelectModal';
+//import DeleteModal from '../DeleteModal/DeleteModal';
+//import SortFilterModal from '../SortFilterModal/SortFilterModal';
+//import SearchModal from '../SearchModal/SearchModal';
 
 interface Props {
   className?: string;
 }
 
 interface State {
-  words: IWordTypeTest[];
+  words: IWord[];
+  currentWords: IWord[];
+  isSelectModalOpen: boolean;
 }
 
 class Word extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      words: [
-        {
-          id: 1,
-          name: "name1",
-        },
-        { 
-          id: 2,
-          name: "name2",
-        },
-        {
-          id: 3,
-          name: "name3",
-        },
-        { 
-          id: 4,
-          name: "name4",
-        },
+      words: initialWordList, 
+      currentWords: [
       ],
+      isSelectModalOpen: false,
     }
-
   }
 
   render() {
@@ -50,12 +40,19 @@ class Word extends React.Component<Props, State> {
         <MediaQuery maxWidth={ 425 }>
           <Route exact path="/word" render={(props) => <WordList {...props} words={this.state.words} />} />
           <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
+          <MobileController />
         </MediaQuery>
         <MediaQuery minWidth={ 426 }>
           <Route path="/word" render={(props) => <WordList {...props} words={this.state.words} />} /> 
           <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
+          <Controller />
         </MediaQuery>
-          
+      {/* uncomment when implementing with redux 
+        <SelectModal />
+        <DeleteModal />
+      <SortFilterModal />
+        <SearchModal />
+        */}
       </div>
     );
   }
