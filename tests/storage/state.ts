@@ -259,12 +259,12 @@ const sortAscTestData = [
   },
 ];
 const normalizedSortAscTestData = normalize(sortAscTestData, wordListSchema);
-export const normalizedSortAscState: INormalizedState = {
+export const normalizedSortAscState: INormalizedState = Object.assign({}, initialNormalizedState,  {
   entities: normalizedSortAscTestData.entities,
   sortedWordList: normalizedSortAscTestData.result,
   currentFilter: [],
   currentSort: SORT_ORDER.ALPHA_ASC,
-}
+});
 
 
 // sort desc test data  
@@ -467,12 +467,12 @@ const sortDescTestData = [
   },
 ];
 const normalizedSortDescTestData = normalize(sortDescTestData, wordListSchema);
-export const normalizedSortDescState: INormalizedState = {
+export const normalizedSortDescState: INormalizedState = Object.assign({}, initialNormalizedState,  {
   entities: normalizedSortDescTestData.entities,
   sortedWordList: normalizedSortDescTestData.result,
   currentSort: SORT_ORDER.ALPHA_DESC,
   currentFilter: [],
-}
+});
 
 // sort date newer test data  
 const sortDateNewerTestData = [
@@ -674,12 +674,12 @@ const sortDateNewerTestData = [
   },
 ];
 const normalizedSortDateNewerTestData = normalize(sortDateNewerTestData, wordListSchema);
-export const normalizedSortDateNewerState: INormalizedState = {
+export const normalizedSortDateNewerState: INormalizedState = Object.assign({}, initialNormalizedState, {
   entities: normalizedSortDateNewerTestData.entities,
   sortedWordList: normalizedSortDateNewerTestData.result,
   currentSort: SORT_ORDER.DATE_NEWER,
   currentFilter: [],
-}
+})
 
 // sort date newer test data  
 const sortDateOlderTestData = [
@@ -881,9 +881,9 @@ const sortDateOlderTestData = [
   },
 ];
 const normalizedSortDateOlderTestData = normalize(sortDateOlderTestData, wordListSchema);
-export const normalizedSortDateOlderState: INormalizedState = {
+export const normalizedSortDateOlderState: INormalizedState = Object.assign({}, initialNormalizedState, {
   entities: normalizedSortDateOlderTestData.entities,
   sortedWordList: normalizedSortDateOlderTestData.result,
   currentSort: SORT_ORDER.DATE_OLDER,
   currentFilter: [],
-}
+});

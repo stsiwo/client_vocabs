@@ -3,10 +3,44 @@ import { normalizedState } from '../../src/state';
 import { AnyAction } from 'redux';
 import { newWord, updateWord } from '../storage/word';
 import { newDef, updateDef } from '../storage/def'; 
-import { addNewWordAction, removeWordAction, updateWordAction, addNewDefAction, removeDefAction, updateDefAction } from '../../src/actions'; 
+import { 
+  addNewWordAction, 
+  removeWordAction, 
+  updateWordAction, 
+  addNewDefAction, 
+  removeDefAction, 
+  updateDefAction, 
+  toggleSelectWarningModalAction 
+} from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
-import { newWordAddedNormState, wordRemovedNormState, wordUpdateNormState, newDefAddedNormState, defRemovedNormState, defUpdateNormState, normalizedSortAscState, normalizedSortDescState, normalizedSortDateNewerState, normalizedSortDateOlderState } from '../storage/state';
-import { normalizedFilterNounState, normalizedFilterVerbState, normalizedFilterAdjuctiveState, normalizedFilterAdverbState, normalizedFilterPronounState, normalizedFilterPrepositionState, normalizedFilterInterjectionState, normalizedFilterConjunctionState, normalizedFilterElseState, normalizedFilterIdiomState, normalizedFilterNounElseInterjectionState } from '../storage/filter';
+import { 
+  newWordAddedNormState, 
+  wordRemovedNormState, 
+  wordUpdateNormState, 
+  newDefAddedNormState, 
+  defRemovedNormState, 
+  defUpdateNormState, 
+  normalizedSortAscState, 
+  normalizedSortDescState, 
+  normalizedSortDateNewerState, 
+  normalizedSortDateOlderState 
+} from '../storage/state';
+import { 
+  normalizedFilterNounState, 
+  normalizedFilterVerbState, 
+  normalizedFilterAdjuctiveState, 
+  normalizedFilterAdverbState, 
+  normalizedFilterPronounState, 
+  normalizedFilterPrepositionState, 
+  normalizedFilterInterjectionState, 
+  normalizedFilterConjunctionState, 
+  normalizedFilterElseState, 
+  normalizedFilterIdiomState, 
+  normalizedFilterNounElseInterjectionState 
+} from '../storage/filter';
+import {
+  normalizedToggleSelectWarningModalState
+} from '../storage/ui';
 import { changeSortWrapperThunk, changeFilterWrapperThunk } from '../../src/reducers/thunk';
 import store from '../../src/storeConfig';
 import { PosEnum } from '../../src/domains/pos';
@@ -133,6 +167,14 @@ describe('rootReducer', () => {
   it('should return new state (changed filter of wordlist to noun, else, interjection)', () => {
     store.dispatch<any>(changeFilterWrapperThunk([ PosEnum.NOUN, PosEnum.ELSE, PosEnum.INTERJECTION ]))
     expect(store.getState()).toEqual(normalizedFilterNounElseInterjectionState);
+  })
+
+})
+
+describe('rootReducer UI state test', () => {
+  // ui toggle modal
+  it('should return new state (changed ui.isSelectWarningModalOpen to true', () => {
+    expect(rootReducer(undefined, toggleSelectWarningModalAction(true))).toEqual(normalizedToggleSelectWarningModalState)
   })
 })
 

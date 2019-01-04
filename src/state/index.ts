@@ -11,6 +11,11 @@ import { INormalizedState } from './type';
  *    - words: 
  *  - sortedWordList:
  *  - currentSort: 
+ *  - ui
+ *    - isSelectWarningModalOpen:
+ *    - isDeleteConfirmModalOpen:
+ *    - isSortFilterModalOpen:
+ *    - isSearchWordModalOpen:
  *  
  **/
 
@@ -225,6 +230,12 @@ export const initialNormalizedState: INormalizedState = {
   currentSort: 1, 
   sortedWordList: [],
   currentFilter: [],
+  ui: {
+    isSelectWarningModalOpen: false,
+    isDeleteConfirmModalOpen: false,
+    isSortFilterModalOpen: false,
+    isSearchWordModalOpen: false,
+  },
 }
 
 

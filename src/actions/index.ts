@@ -2,7 +2,7 @@ import { ISortedWordList, ICurrentFilter } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
-import { WordActionType, DefActionType, SortActionType, FilterActionType } from './type'; 
+import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType } from './type'; 
 import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
@@ -66,3 +66,23 @@ export const changeFilterAction = (sortedWordList: ISortedWordList, nextFilter: 
   sortedWordList,
   currentFilter: nextFilter,
 });
+
+export const toggleSelectWarningModalAction = (isSelectWarningModalOpen: boolean) => ({
+  type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,
+  isSelectWarningModalOpen: isSelectWarningModalOpen,
+})
+
+export const toggleDeleteConfirmModalAction = (isDeleteConfirmModalOpen: boolean) => ({
+  type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,
+  isDeleteConfirmModalOpen: isDeleteConfirmModalOpen,
+})
+
+export const toggleSortFilterModalAction = (isSortFilterModalOpen: boolean) => ({
+  type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,
+  isSortFilterModalOpen: isSortFilterModalOpen,
+})
+
+export const toggleSearchWordModalAction = (isSearchWordModalOpen: boolean) => ({
+  type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,
+  isSearchWordModalOpen: isSearchWordModalOpen,
+})

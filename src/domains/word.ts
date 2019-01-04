@@ -7,3 +7,9 @@ export interface IWord {
   createDate: string;
 }
 
+export interface INormalizedWord {
+  id: number;
+  name: string;
+  defs: number[];
+  createDate: string;
+}

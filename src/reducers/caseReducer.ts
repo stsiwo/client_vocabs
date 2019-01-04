@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { caseReducer } from './caseReducer';
-import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter } from '../state/type'; 
+import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter, IUi } from '../state/type'; 
 /**
  *  case reducer type
  **/
@@ -68,3 +68,11 @@ export const currentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, a
 export const sortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => action.sortedWordList;
 
 export const currentFilterCaseReducer: caseReducer<ICurrentFilter> = (currentFilter, action) => action.currentFilter;
+
+export const toggleSelectWarningModalReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, { isSelectWarningModalOpen: action.isSelectWarningModalOpen });;
+
+export const toggleDeleteConfirmModalReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, { isDeleteConfirmModalOpen: action.isDeleteConfirmModalOpen });
+
+export const toggleSortFilterModalReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, { isSortFilterModalOpen: action.isSortFilterModalOpen });
+
+export const toggleSearchWordModalReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, { isSearchWordModalOpen: action.isSearchWordModalOpen });

@@ -21,6 +21,12 @@ export interface IDefActionType {
   UPDATE_DEF: string;
 }
 
+interface IUiActionType {
+  TOGGLE_SELECT_WARNING_MODAL: string;
+  TOGGLE_DELETE_CONFIRM_MODAL: string;
+  TOGGLE_SORT_FILTER_MODAL: string;
+  TOGGLE_SEARCH_WORD_MODAL: string;
+}
 /**
  * action type
  **/
@@ -42,5 +48,12 @@ export const DefActionType: IDefActionType = {
   ADD_NEW_DEF: "ADD_NEW_DEF",
   REMOVE_DEF: "REMOVE_DEF",
   UPDATE_DEF: "UPDATE_DEF",
+}
+
+export const UiActionType: IUiActionType = {
+  TOGGLE_SELECT_WARNING_MODAL: "TOGGLE_SELECT_WARNING_MODAL",
+  TOGGLE_DELETE_CONFIRM_MODAL: "TOGGLE_DELETE_CONFIRM_MODAL",
+  TOGGLE_SORT_FILTER_MODAL: "TOGGLE_SORT_FILTER_MODAL",
+  TOGGLE_SEARCH_WORD_MODAL: "TOGGLE_SEARCH_WORD_MODAL",
 }
 

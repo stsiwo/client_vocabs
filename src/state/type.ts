@@ -19,6 +19,13 @@ export interface IEntity {
   defs: IEntityDef,
 }
 
+export interface IUi {
+  isSelectWarningModalOpen: boolean;
+  isDeleteConfirmModalOpen: boolean;
+  isSortFilterModalOpen: boolean;
+  isSearchWordModalOpen: boolean;
+}
+
 // currentSort
 export type ICurrentSort = SORT_ORDER; 
 
@@ -28,13 +35,15 @@ export type ISortedWordList = number[];
 // currentFilter
 export type ICurrentFilter = PosEnum[];
 
+
 /**
  * normalized state shape interface 
  **/
 export interface INormalizedState { 
-  entities: IEntity,
-  sortedWordList: ISortedWordList,
-  currentSort: ICurrentSort,
-  currentFilter: ICurrentFilter,  
+  entities: IEntity;
+  sortedWordList: ISortedWordList;
+  currentSort: ICurrentSort;
+  currentFilter: ICurrentFilter;  
+  ui: IUi;
 }
 

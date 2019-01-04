@@ -1,4 +1,4 @@
-import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType } from '../actions/type';
+import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType } from '../actions/type';
 import { caseReducer } from './caseReducer';
 import { 
   addNewDefsByWordActionReducer, 
@@ -13,8 +13,12 @@ import {
   currentSortCaseReducer, 
   sortedWordListCaseReducer, 
   currentFilterCaseReducer,
+  toggleSelectWarningModalReducer,
+  toggleDeleteConfirmModalReducer,
+  toggleSortFilterModalReducer,
+  toggleSearchWordModalReducer,
 } from './caseReducer';
-import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter } from '../state/type';
+import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi } from '../state/type';
 /**
  * Hander type
  * must match property name with action type of a domain
@@ -55,3 +59,11 @@ export const sortedWordListHandler: Handler<ISortedWordList> = {
   [SortActionType.CHANGE_SORT]: sortedWordListCaseReducer,
   [FilterActionType.CHANGE_FILTER]: sortedWordListCaseReducer,
 }
+
+export const uiHandler: Handler<IUi> = {
+  [UiActionType.TOGGLE_SELECT_WARNING_MODAL]: toggleSelectWarningModalReducer,
+  [UiActionType.TOGGLE_DELETE_CONFIRM_MODAL]: toggleDeleteConfirmModalReducer,
+  [UiActionType.TOGGLE_SORT_FILTER_MODAL]: toggleSortFilterModalReducer,
+  [UiActionType.TOGGLE_SEARCH_WORD_MODAL]: toggleSearchWordModalReducer,
+}
+

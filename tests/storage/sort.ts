@@ -1,6 +1,6 @@
-import { IWord } from '../../src/domains/word';
+import { INormalizedWord } from '../../src/domains/word';
 
-export const wordListAsc: IWord[] = [
+export const wordListAsc: INormalizedWord[] = [
   { id: 2,
     name: 'address',
     createDate: '1997-12-17T03:24:00',
@@ -23,7 +23,7 @@ export const wordListAsc: IWord[] = [
   }, 
 ];
 
-export const wordListDesc: IWord[] = [
+export const wordListDesc: INormalizedWord[] = [
   { id: 5,
     name: 'divide',
     createDate: '1997-12-17T03:24:00',
@@ -46,7 +46,7 @@ export const wordListDesc: IWord[] = [
   }, 
 ];
 
-export const wordListDateOlder: IWord[] = [
+export const wordListDateOlder: INormalizedWord[] = [
   { id: 2,
     name: 'address',
     createDate: '1993-12-17T03:24:00',
@@ -69,7 +69,7 @@ export const wordListDateOlder: IWord[] = [
   }, 
 ];
 
-export const wordListDateNewer: IWord[] = [
+export const wordListDateNewer: INormalizedWord[] = [
   { id: 5,
     name: 'divide',
     createDate: '1996-12-17T03:24:00',
