@@ -19,7 +19,8 @@ const formElement = css`
   // input element except select
   & input {
     margin: 0 10px 0 0;
-    min-width: 250px;
+
+
   }
   // input element for select
   & select {

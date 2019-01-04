@@ -3,6 +3,8 @@ import styled from '../../story/styledComponents';
 import { RouteComponentProps } from 'react-router-dom';
 import WordForm from '../Form/WordForm';
 import { IWord } from '../../../domains/word';
+import MediaQuery from 'react-responsive';
+import MobileDetailController from '../Controller/MobileDetailController';
 
 interface Props extends RouteComponentProps<{}> {
   className?: string;
@@ -27,8 +29,13 @@ class WordDetail extends React.Component<Props, {}> {
 
   render() {
     return (
-      <div className={ this.props.className }>
+      <div>
+        <div className={ this.props.className }>
         { this.renderSelectedWords() }
+        </div>
+        <MediaQuery maxWidth={ 425 }>
+          <MobileDetailController />
+        </MediaQuery>
       </div>
     );
   }

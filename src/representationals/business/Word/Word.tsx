@@ -2,9 +2,8 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import WordList from '../WordList/WordList';
 import MediaQuery from 'react-responsive';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import WordDetail from '../WordDetail/WordDetail';
-import MobileController from '../Controller/MobileController';
 import Controller from '../Controller/Controller';
 import { IWord } from '../../../domains/word';
 import { initialWordList } from '../../../state/index';
@@ -40,11 +39,11 @@ class Word extends React.Component<Props, State> {
         <MediaQuery maxWidth={ 425 }>
           <Route exact path="/word" render={(props) => <WordList {...props} words={this.state.words} />} />
           <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
-          <MobileController />
         </MediaQuery>
         <MediaQuery minWidth={ 426 }>
           <Route path="/word" render={(props) => <WordList {...props} words={this.state.words} />} /> 
           <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
+          <Redirect from="/word" to="/word/detail" />
           <Controller />
         </MediaQuery>
       {/* uncomment when implementing with redux 

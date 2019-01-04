@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import WordListItem from '../WordListItem/WordListItem';
+import MobileController from '../Controller/MobileController';
+import MediaQuery from 'react-responsive'
 //import * as qs from 'query-string';
 import { RouteComponentProps } from 'react-router-dom';
 import { IWord } from '../../../domains/word';
@@ -35,9 +37,14 @@ class WordList extends React.Component<Props, State> {
 
   render() {
     return (
-      <ul className={ this.props.className }>
-        { this.renderWordItem() }  
-      </ul>
+      <div>
+        <ul className={ this.props.className }>
+          { this.renderWordItem() }  
+        </ul>
+        <MediaQuery maxWidth={ 425 }>
+          <MobileController />
+        </MediaQuery>
+      </div>
     );
   }
 }

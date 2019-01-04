@@ -31,7 +31,6 @@ class ControllerItem extends React.Component<Props, {}> {
 
 const StyleControllerItem = styled(ControllerItem)`
   text-align: center;
-  width: 16%; 
   height: 50px;
   padding: 3px;
   box-sizing: border-box;

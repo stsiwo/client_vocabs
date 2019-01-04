@@ -9,6 +9,8 @@ const searchIcon = require('./assets/search.svg');
 const sortIcon = require('./assets/sort.svg');
 const deleteIcon = require('./assets/delete.svg');
 const selectAllIcon = require('./assets/selectAll.svg');
+const saveIcon = require('./assets/save.svg');
+
 
 interface Props extends RouteComponentProps<{}> {
   className?: string;
@@ -29,6 +31,7 @@ class MobileController extends React.Component<Props, {}> {
     // hard coding now, need to fix later
     // guide users to create new word page 
     // should url be "word/detail" or "word/new"??
+    // in large screen, when users click "new" icon, append new wordform tree in bottom
   }
 
   onDeleteClick(e: React.MouseEvent<HTMLElement>) {
@@ -76,6 +79,10 @@ class MobileController extends React.Component<Props, {}> {
     // if "select all" icon clicked after the first click, means unselect all word id (emptify currentSelectedWords array)
   }
 
+  onSaveClick(e: React.MouseEvent<HTMLElement>) {
+    // save current detail and where should I go ?
+  }
+
   render() {
     return (
       <div className={ this.props.className }>
@@ -88,6 +95,8 @@ class MobileController extends React.Component<Props, {}> {
         <ControllerItem svgSrc={ searchIcon }>Search</ControllerItem>
         <Vl />
         <ControllerItem svgSrc={ selectAllIcon }>Select All</ControllerItem>
+        <Vl />
+        <ControllerItem svgSrc={ saveIcon }>Save</ControllerItem>
       </div>
     );
   }
