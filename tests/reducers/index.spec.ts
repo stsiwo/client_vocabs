@@ -10,7 +10,10 @@ import {
   addNewDefAction, 
   removeDefAction, 
   updateDefAction, 
-  toggleSelectWarningModalAction 
+  toggleSelectWarningModalAction, 
+  toggleDeleteConfirmModalAction,
+  toggleSortFilterModalAction, 
+  toggleSearchWordModalAction
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
@@ -39,7 +42,10 @@ import {
   normalizedFilterNounElseInterjectionState 
 } from '../storage/filter';
 import {
-  normalizedToggleSelectWarningModalState
+  normalizedToggleSelectWarningModalState,
+  normalizedToggleDeleteConfirmModalState,
+  normalizedToggleSortFilterModalState,
+  normalizedToggleSearchWordModalState
 } from '../storage/ui';
 import { changeSortWrapperThunk, changeFilterWrapperThunk } from '../../src/reducers/thunk';
 import store from '../../src/storeConfig';
@@ -175,6 +181,18 @@ describe('rootReducer UI state test', () => {
   // ui toggle modal
   it('should return new state (changed ui.isSelectWarningModalOpen to true', () => {
     expect(rootReducer(undefined, toggleSelectWarningModalAction(true))).toEqual(normalizedToggleSelectWarningModalState)
+  })
+
+  it('should return new state (changed ui.isDeleteConfirmModalOpen to true', () => {
+    expect(rootReducer(undefined, toggleDeleteConfirmModalAction(true))).toEqual(normalizedToggleDeleteConfirmModalState)
+  })
+
+  it('should return new state (changed ui.isSortFilterModalOpen to true', () => {
+    expect(rootReducer(undefined, toggleSortFilterModalAction(true))).toEqual(normalizedToggleSortFilterModalState)
+  })
+
+  it('should return new state (changed ui.isSearchWordModalOpen to true', () => {
+    expect(rootReducer(undefined, toggleSearchWordModalAction(true))).toEqual(normalizedToggleSearchWordModalState)
   })
 })
 

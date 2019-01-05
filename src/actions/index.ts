@@ -73,16 +73,16 @@ export const toggleSelectWarningModalAction = (isSelectWarningModalOpen: boolean
 })
 
 export const toggleDeleteConfirmModalAction = (isDeleteConfirmModalOpen: boolean) => ({
-  type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,
+  type: UiActionType.TOGGLE_DELETE_CONFIRM_MODAL,
   isDeleteConfirmModalOpen: isDeleteConfirmModalOpen,
 })
 
 export const toggleSortFilterModalAction = (isSortFilterModalOpen: boolean) => ({
-  type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,
+  type: UiActionType.TOGGLE_SORT_FILTER_MODAL,
   isSortFilterModalOpen: isSortFilterModalOpen,
 })
 
 export const toggleSearchWordModalAction = (isSearchWordModalOpen: boolean) => ({
-  type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,
+  type: UiActionType.TOGGLE_SEARCH_WORD_MODAL,
   isSearchWordModalOpen: isSearchWordModalOpen,
 })
