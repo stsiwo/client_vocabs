@@ -28,9 +28,9 @@ class SortFilterModal extends React.Component<Props, {}> {
         <Modal 
           title={ title } 
           detail={ detail } 
-          closeButton={ CloseButton } 
-          confirmButton={ ConfirmButton } 
-          resetButton={ ResetButton } 
+          closeButton={ <CloseButton />} 
+          confirmButton={ <ConfirmButton /> } 
+          resetButton={ <ResetButton /> } 
           onClose={ this.props.toggleSortFilterModalClick }
           isOpen={ this.props.isSortFilterModalOpen }>
           <SortFilter />

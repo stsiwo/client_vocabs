@@ -20,8 +20,14 @@ class DeleteModal extends React.Component<Props, {}> {
     const title = 'Are you sure you want to delete these itmes?'; 
     const detail = 'Once you delete these words, you can NOT restore them permanentaly, so please make sure it before deleting. ';
     return (
-        <Modal title={ title } detail={ detail } closeButton={ <CloseButton /> } confirmButton={ <ConfirmButton /> } onClose={ this.props.toggleDeleteConfirmModalClick } isOpen={ this.props.isDeleteConfirmModalOpen }></Modal>
-
+        <Modal 
+          title={ title } 
+          detail={ detail } 
+          closeButton={ <CloseButton /> } 
+          confirmButton={ <ConfirmButton /> } 
+          onClose={ this.props.toggleDeleteConfirmModalClick } 
+          isOpen={ this.props.isDeleteConfirmModalOpen }>
+        </Modal>
     );
   }
 }

@@ -4,6 +4,7 @@ import ControllerItem from '../../base/Controller/ControllerItem';
 import { Vl } from '../../base/common/Line';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router-dom';
+import { toggleClickType } from '../../../containers/type';
 const newIcon = require('./assets/new.svg');
 const searchIcon = require('./assets/search.svg');
 const editIcon = require('./assets/edit.svg');
@@ -13,6 +14,8 @@ const selectAllIcon = require('./assets/selectAll.svg');
 
 interface Props extends RouteComponentProps<{}> {
   className?: string;
+  isSortFilterModalOpen: boolean;
+  toggleSortFilterModalClick: toggleClickType; 
 }
 
 
@@ -22,6 +25,7 @@ class MobileController extends React.Component<Props, {}> {
     this.onNewClick = this.onNewClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.onEditClick = this.onEditClick.bind(this);
+    this.onSortFilterClick = this.onSortFilterClick.bind(this);
     this.onSearchClick = this.onSearchClick.bind(this);
     this.onSelectAllClick = this.onSelectAllClick.bind(this);
   }
@@ -65,6 +69,12 @@ class MobileController extends React.Component<Props, {}> {
     }
   }
 
+  onSortFilterClick(e: React.MouseEvent<HTMLElement>) {
+    // check redux store's ui.isSortFilterModalOpen (default: false)
+    // make it true to open sort filter modal open
+    this.props.toggleSortFilterModalClick(!this.props.isSortFilterModalOpen)
+  }
+
   onSearchClick(e: React.MouseEvent<HTMLElement>) {
     // check redux store's currentSearchModal (false) 
     // to open search bar, make it true.
@@ -86,7 +96,7 @@ class MobileController extends React.Component<Props, {}> {
         <Vl />
         <ControllerItem svgSrc={ editIcon }>Edit</ControllerItem>
         <Vl />
-        <ControllerItem svgSrc={ sortIcon }>Sort</ControllerItem>
+        <ControllerItem svgSrc={ sortIcon } onClick={ this.onSortFilterClick }>Sort</ControllerItem>
         <Vl />
         <ControllerItem svgSrc={ searchIcon }>Search</ControllerItem>
         <Vl />
