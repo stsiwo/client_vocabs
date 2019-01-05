@@ -1,72 +1,33 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import CheckBox from '../../base/Input/CheckBox';
-
-enum FilterEnum {
-  NOUN = 1,
-  VERB = 2,
-  ADJUCTIVE = 3,
-  ADVERB = 4,
-  PREPOSITION = 5,
-  PRONOUN = 6, 
-  CONJUNCTION = 7, 
-  INTERJECTION = 8,
-  IDIOM = 9,
-  ELSE = 10,
-}
-
-interface IFilter {
-  noun: boolean;
-  verb: boolean;
-  adjuctive: boolean;
-  adverb: boolean;
-  preposition: boolean;
-  pronoun: boolean;
-  conjunction: boolean;
-  interjection: boolean;
-  idiom: boolean;
-  other: boolean;
-}
+import { PosEnum } from '../../../domains/pos';
+import { IFilter } from '../../../domains/filter';
+import { changeFilterDispatchType } from '../../../containers/type';
 
 interface Props {
   className?: string;
-  onFilterChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; 
+  currentFilter: IFilter;
+  changeFilter: changeFilterDispatchType; 
 }
 
-interface State {
-  filter: IFilter; 
-}
-
-class Filter extends React.Component<Props, State> {
+class Filter extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      filter: {
-        noun: true,
-        verb: true,
-        adjuctive: true,
-        adverb: true,
-        preposition: true,
-        pronoun: true,
-        conjunction: true,
-        interjection: true,
-        idiom: true,
-        other: true,
-      }
-    }
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const id = e.target.id;
+    const value = e.target.value;
     const isChecked = e.target.checked;
+    // change filter state when a specific filter icon is clicked and assign in new object
+    const nextFilterObject = Object.assign({}, this.props.currentFilter, { [value]: isChecked });
+    // make the object array but each element is string since it came from porperty name 
+    const nextFilterStringArray: string[] = Object.keys(nextFilterObject).filter(( key ) => nextFilterObject[key] === true); 
+    // make the string array to PosEnum array to match the type with thunk input
+    const nextFilterNumberArray: PosEnum[] = nextFilterStringArray.map(( key ) => parseInt(key));
 
-    this.setState({ 
-      filter: {
-        ...this.state.filter,
-        [id]: isChecked,
-      }
-    });
+    this.props.changeFilter(nextFilterNumberArray);
   }
 
   render() {
@@ -74,16 +35,16 @@ class Filter extends React.Component<Props, State> {
       <div className={ this.props.className }>
         <h3>Filter:</h3>
         <div>
-          <CheckBox labelName="noun" value={ FilterEnum.NOUN } onChange={ this.handleChange } checked={ this.state.filter.noun }>n.</CheckBox>  
-          <CheckBox labelName="verb" value={ FilterEnum.VERB } onChange={ this.handleChange } checked={ this.state.filter.verb }>v.</CheckBox>  
-          <CheckBox labelName="adjuctive" value={ FilterEnum.ADJUCTIVE } onChange={ this.handleChange } checked={ this.state.filter.adjuctive }>adj.</CheckBox>  
-          <CheckBox labelName="adverb" value={ FilterEnum.ADVERB } onChange={ this.handleChange } checked={ this.state.filter.adverb }>adv.</CheckBox>  
-          <CheckBox labelName="preposition" value={ FilterEnum.PREPOSITION } onChange={ this.handleChange } checked={ this.state.filter.preposition }>prep.</CheckBox>  
-          <CheckBox labelName="pronoun" value={ FilterEnum.PRONOUN } onChange={ this.handleChange } checked={ this.state.filter.pronoun }>pron.</CheckBox>  
-          <CheckBox labelName="conjunction" value={ FilterEnum.CONJUNCTION } onChange={ this.handleChange } checked={ this.state.filter.conjunction }>conj.</CheckBox>  
-          <CheckBox labelName="interjection" value={ FilterEnum.INTERJECTION } onChange={ this.handleChange } checked={ this.state.filter.interjection }>interj.</CheckBox>  
-          <CheckBox labelName="idiom" value={ FilterEnum.IDIOM } onChange={ this.handleChange } checked={ this.state.filter.idiom }>idiom</CheckBox>  
-          <CheckBox labelName="other" value={ FilterEnum.ELSE } onChange={ this.handleChange } checked={ this.state.filter.other }>else</CheckBox>  
+          <CheckBox labelName="noun" value={ PosEnum.NOUN } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.NOUN] }>n.</CheckBox>  
+          <CheckBox labelName="verb" value={ PosEnum.VERB } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.VERB] }>v.</CheckBox>  
+          <CheckBox labelName="adjuctive" value={ PosEnum.ADJUCTIVE } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.ADJUCTIVE] }>adj.</CheckBox>  
+          <CheckBox labelName="adverb" value={ PosEnum.ADVERB } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.ADVERB] }>adv.</CheckBox>  
+          <CheckBox labelName="preposition" value={ PosEnum.PREPOSITION } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.PREPOSITION] }>prep.</CheckBox>  
+          <CheckBox labelName="pronoun" value={ PosEnum.PRONOUN } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.PRONOUN] }>pron.</CheckBox>  
+          <CheckBox labelName="conjunction" value={ PosEnum.CONJUNCTION } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.CONJUNCTION] }>conj.</CheckBox>  
+          <CheckBox labelName="interjection" value={ PosEnum.INTERJECTION } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.INTERJECTION] }>interj.</CheckBox>  
+          <CheckBox labelName="idiom" value={ PosEnum.IDIOM } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.IDIOM] }>idiom</CheckBox>  
+          <CheckBox labelName="other" value={ PosEnum.ELSE } onChange={ this.handleChange } checked={ this.props.currentFilter[PosEnum.ELSE] }>else</CheckBox>  
         </div>
       </div>
     );
