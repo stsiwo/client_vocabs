@@ -3,8 +3,9 @@ import thunk, { ThunkMiddleware } from "redux-thunk";
 import { rootReducer } from './reducers/rootReducer';
 import { normalizedState } from './state/index';
 import { INormalizedState } from './state/type';
+import { logger } from 'redux-logger';
 
-const middlewares = [ thunk as ThunkMiddleware<INormalizedState, AnyAction> ];
+const middlewares = [ thunk as ThunkMiddleware<INormalizedState, AnyAction>, logger];
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /**
