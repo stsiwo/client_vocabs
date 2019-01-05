@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import Sort from './Sort';
+import SortCont from '../../../containers/SortCont';
 import Filter from './Filter';
 
 
@@ -23,7 +23,7 @@ class SortFilter extends React.Component<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-        <Sort onSortChange={ this.props.onSortChange } />
+        <SortCont />
         <Filter onFilterChange={ this.props.onFilterChange } />
       </div>
     );

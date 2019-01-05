@@ -2,68 +2,29 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Input from '../../base/Input/Input';
 import Icon from '../../base/Icon/Icon';
+import { ISort } from '../../../domains/sort';
+import { SORT_ORDER } from '../../../enums/index';
+import { changeSortDispatchType } from '../../../containers/type';
 
 const alphaAscIcon = require('./assets/alphaAsc.svg');
 const alphaDescIcon = require('./assets/alphaDesc.svg');
 const calNewIcon = require('./assets/calNew.svg');
 const calOldIcon = require('./assets/calOld.svg');
 
-enum SortEnum {
-  ALPHA_ASC = 1,
-  ALPHA_DESC = 2,
-  DATE_NEWER = 3,
-  DATE_OLDER = 4,
-}
-
-interface ISort {
-  alphAsc: boolean;
-  alphDesc: boolean;
-  dateNewer: boolean;
-  dateOlder: boolean;
-}
-
 interface Props {
   className?: string;
-  onSortChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; 
+  currentSort: ISort;
+  changeSort: changeSortDispatchType; 
 }
 
-interface State {
-  sort: ISort;
-}
-
-class Sort extends React.Component<Props, State> {
+class Sort extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      sort: {
-        alphAsc: true,
-        alphDesc: false,
-        dateNewer: false,
-        dateOlder: false,
-      }
-    }
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const id = e.target.id;
-    // radio button is checked or unchecked
-    const isChecked = e.target.checked;
-    // rest of radio status
-    const currentSort = this.state.sort;
-    // get current checked radio to make it false
-    const currentChecked = Object.keys(currentSort).find(( key ) => currentSort[key] === true);
-    // id: clicked one to make it true, and currentChecked is currently checked but [id] is now clicked, so make it false
-    this.setState({ 
-      sort: {
-        ...currentSort,
-        [id]: isChecked,
-        [currentChecked]: false,
-      }
-    });
-    // call parent onChange event to dispatch sort action
-    // uncomment this when implement
-    //this.props.onSortChange(e);
+    this.props.changeSort(parseInt(e.target.value));
   }
 
   render() {
@@ -71,30 +32,30 @@ class Sort extends React.Component<Props, State> {
       <div className={ this.props.className }>
         <h3>Sort:</h3>
         <div>
-          <Input type="radio" id="alphAsc" name="sort" value={ SortEnum.ALPHA_ASC } checked={ this.state.sort.alphAsc } onChange={ this.handleChange }></Input>
+          <Input type="radio" id="alphAsc" name="sort" value={ SORT_ORDER.ALPHA_ASC } checked={ this.props.currentSort[SORT_ORDER.ALPHA_ASC] } onChange={ this.handleChange }></Input>
           <label htmlFor="alphAsc">
-            <Icon svgSrc={ alphaAscIcon } unchecked={ !this.state.sort.alphAsc }/>
+            <Icon svgSrc={ alphaAscIcon } unchecked={ !this.props.currentSort[SORT_ORDER.ALPHA_ASC] }/>
             alph asc
           </label>
         </div>
         <div>
-          <Input type="radio" id="alphDesc" name="sort" value={ SortEnum.ALPHA_DESC } checked={ this.state.sort.alphDesc } onChange={ this.handleChange }></Input>
+          <Input type="radio" id="alphDesc" name="sort" value={ SORT_ORDER.ALPHA_DESC } checked={ this.props.currentSort[SORT_ORDER.ALPHA_DESC] } onChange={ this.handleChange }></Input>
           <label htmlFor="alphDesc">
-            <Icon svgSrc={ alphaDescIcon } unchecked={ !this.state.sort.alphDesc }/>
+            <Icon svgSrc={ alphaDescIcon } unchecked={ !this.props.currentSort[SORT_ORDER.ALPHA_DESC] }/>
             alph desc
           </label>
         </div>
         <div>
-          <Input type="radio" id="dateNewer" name="sort" value={ SortEnum.DATE_NEWER } checked={ this.state.sort.dateNewer } onChange={ this.handleChange }></Input>
+          <Input type="radio" id="dateNewer" name="sort" value={ SORT_ORDER.DATE_NEWER } checked={ this.props.currentSort[SORT_ORDER.DATE_NEWER] } onChange={ this.handleChange }></Input>
           <label htmlFor="dateNewer">
-            <Icon svgSrc={ calNewIcon } unchecked={ !this.state.sort.dateNewer }/>
+            <Icon svgSrc={ calNewIcon } unchecked={ !this.props.currentSort[SORT_ORDER.DATE_NEWER] }/>
             date newer
           </label>
         </div>
         <div>
-          <Input type="radio" id="dateOlder" name="sort" value={ SortEnum.DATE_OLDER } checked={ this.state.sort.dateOlder } onChange={ this.handleChange }></Input>
+          <Input type="radio" id="dateOlder" name="sort" value={ SORT_ORDER.DATE_OLDER } checked={ this.props.currentSort[SORT_ORDER.DATE_OLDER] } onChange={ this.handleChange }></Input>
           <label htmlFor="dateOlder">
-            <Icon svgSrc={ calOldIcon } unchecked={ !this.state.sort.dateOlder }/>
+            <Icon svgSrc={ calOldIcon } unchecked={ !this.props.currentSort[SORT_ORDER.DATE_OLDER] }/>
             date older
           </label>
         </div>
