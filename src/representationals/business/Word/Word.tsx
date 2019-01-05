@@ -7,19 +7,23 @@ import WordDetail from '../WordDetail/WordDetail';
 import Controller from '../Controller/Controller';
 import { IWord } from '../../../domains/word';
 import { initialWordList } from '../../../state/index';
-//import SelectModal from '../SelectModal/SelectModal';
-//import DeleteModal from '../DeleteModal/DeleteModal';
-//import SortFilterModal from '../SortFilterModal/SortFilterModal';
-//import SearchModal from '../SearchModal/SearchModal';
+import SelectModalCont from '../../../containers/SelectModalCont';
+import DeleteModalCont from '../../../containers/DeleteModalCont';
+import SortFilterModalCont from '../../../containers/SortFilterModalCont';
+import SearchWordModalCont from '../../../containers/SearchWordModalCont';
 
 interface Props {
   className?: string;
+  isSelectWarningModalOpen: boolean;
+  isDeleteConfirmModalOpen: boolean;
+  isSortFilterModalOpen: boolean;
+  isSearchWordModalOpen: boolean;
 }
 
 interface State {
   words: IWord[];
   currentWords: IWord[];
-  isSelectModalOpen: boolean;
+  isSelectModalContOpen: boolean;
 }
 
 class Word extends React.Component<Props, State> {
@@ -29,7 +33,7 @@ class Word extends React.Component<Props, State> {
       words: initialWordList, 
       currentWords: [
       ],
-      isSelectModalOpen: false,
+      isSelectModalContOpen: false,
     }
   }
 
@@ -46,12 +50,10 @@ class Word extends React.Component<Props, State> {
           <Redirect from="/word" to="/word/detail" />
           <Controller />
         </MediaQuery>
-      {/* uncomment when implementing with redux 
-        <SelectModal />
-        <DeleteModal />
-      <SortFilterModal />
-        <SearchModal />
-        */}
+        { this.props.isSelectWarningModalOpen && <SelectModalCont /> }
+        { this.props.isDeleteConfirmModalOpen && <DeleteModalCont /> }
+        { this.props.isSortFilterModalOpen && <SortFilterModalCont /> }
+        { this.props.isSearchWordModalOpen && <SearchWordModalCont /> }
       </div>
     );
   }

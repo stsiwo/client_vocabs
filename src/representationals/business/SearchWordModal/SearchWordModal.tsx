@@ -2,13 +2,16 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 //import { ThemeInterface } from '../../story/theme'; 
 import Search from '../../base/Input/Search';
+import { toggleClickType } from '../../../containers/type';
 
 interface Props {
   className?: string;
+  isSearchWordModalOpen: boolean;
+  toggleSearchWordModalClick: toggleClickType; 
 }
 
 // when Search Icon in Controoler clicked, toggle this Component with animation from bottom to above controller
-class SearchModal extends React.Component<Props, {}> {
+class SearchWordModal extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -31,7 +34,7 @@ class SearchModal extends React.Component<Props, {}> {
   //theme: ThemeInterface;
 //}
 
-const StyledSearchModal = styled(SearchModal)`
+const StyledSearchWordModal = styled(SearchWordModal)`
   position: fixed;
   bottom: ${( props ) => props.theme.bottomBarHeight };
   width: 100%;
@@ -39,6 +42,6 @@ const StyledSearchModal = styled(SearchModal)`
 `;
 
 
-export default StyledSearchModal;
+export default StyledSearchWordModal;
 
 

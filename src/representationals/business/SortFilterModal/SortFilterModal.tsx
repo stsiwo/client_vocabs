@@ -2,13 +2,19 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Modal from '../../base/Modal/Modal';
 import SortFilter from './SortFilterContent';
+import { toggleClickType } from '../../../containers/type';
+import CloseButton from '../Button/CloseButton';
+import ResetButton from '../Button/ResetButton';
+import ConfirmButton from '../Button/ConfirmButton';
 
 interface Props {
   className?: string;
+  isSortFilterModalOpen: boolean;
+  toggleSortFilterModalClick: toggleClickType;
 }
 
 
-class SortFilterModalTest extends React.Component<Props, {}> {
+class SortFilterModal extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
@@ -17,34 +23,28 @@ class SortFilterModalTest extends React.Component<Props, {}> {
     const title = 'Sort and/or filter your words.'; 
     const detail = 'please check sort/filter items you want to display. You can also check multiple items.'; 
  
-    const selectCloseBtn = {
-      name: "Close",
-      onClick: (e: React.MouseEvent<HTMLElement>) => {},
-    }
-    const confirmBtn = {
-      name: "Confirm",
-      onClick: (e: React.MouseEvent<HTMLElement>) => {},
-    }
-    const resetBtn = {
-      name: "Reset",
-      onClick: (e: React.MouseEvent<HTMLElement>) => {},
-    }
-
     return (
       <div>
-        <Modal title={ title } detail={ detail } closeButton={ selectCloseBtn } confirmButton={ confirmBtn } resetButton={ resetBtn } isOpen={ true }>
-        <SortFilter />
-      </Modal>
+        <Modal 
+          title={ title } 
+          detail={ detail } 
+          closeButton={ CloseButton } 
+          confirmButton={ ConfirmButton } 
+          resetButton={ ResetButton } 
+          onClose={ this.props.toggleSortFilterModalClick }
+          isOpen={ this.props.isSortFilterModalOpen }>
+          <SortFilter />
+        </Modal>
       </div>
     );
   }
 }
 
-const StyledSortFilterModalTest = styled(SortFilterModalTest)`
+const StyledSortFilterModal = styled(SortFilterModal)`
 `;
 
 
-export default StyledSortFilterModalTest;
+export default StyledSortFilterModal;
 
 
 

@@ -1,14 +1,13 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Modal from '../../base/Modal/Modal';
+import CloseButton from '../Button/CloseButton';
+import { toggleSelectWarningModalClickType } from '../../../containers/type';
 
 interface Props {
   className?: string;
-}
-
-interface button {
-  name: string;
-  onClick: (e: React.MouseEvent<HTMLElement>) => void;
+  isSelectWarningModalOpen: boolean;
+  toggleSelectWarningModalClick: toggleSelectWarningModalClickType; 
 }
 
 class SelectModal extends React.Component<Props, {}> {
@@ -19,12 +18,8 @@ class SelectModal extends React.Component<Props, {}> {
   render() {
     const title = 'Please select your word items before action.';
     const detail = 'you must select at leat one word to perform delete or edit action. Just tap or click words in order to select those.';
-    const selectCloseBtn: button = {
-      name: "Close",
-      onClick: (e: React.MouseEvent<HTMLElement>) => {},
-    }
     return (
-        <Modal title={ title } detail={ detail } closeButton={ selectCloseBtn} isOpen={ true }></Modal>
+        <Modal title={ title } detail={ detail } closeButton={ <CloseButton /> } onClose={ this.props.toggleSelectWarningModalClick } isOpen={ this.props.isSelectWarningModalOpen }></Modal>
     );
   }
 }

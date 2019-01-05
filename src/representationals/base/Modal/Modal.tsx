@@ -1,37 +1,39 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import Button from '../Button/Button';
+import { toggleClickType } from '../../../containers/type';
 
-interface button {
-  name: string;
-  onClick: (e: React.MouseEvent<HTMLElement>) => void;
-}
 
 interface Props {
   className?: string;
   title: string;
   detail: string;
   children?: React.ReactNode;
+  closeButton: React.ReactNode;
+  confirmButton?: React.ReactNode;
+  resetButton?: React.ReactNode;
+  onClose: toggleClickType; 
   isOpen: boolean;
-  closeButton: button;
-  confirmButton?: button;
-  resetButton?: button;
 }
 
 class Modal extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.stopEventBubblingUp = this.stopEventBubblingUp.bind(this);
+    this.handleCloseOutsideClick = this.handleCloseOutsideClick.bind(this);
   }
 
-  handleClick(e: React.MouseEvent<HTMLElement>) {
+  stopEventBubblingUp(e: React.MouseEvent<HTMLElement>) {
     e.stopPropagation();
+  }
+
+  handleCloseOutsideClick(e: React.MouseEvent<HTMLElement>) {
+    this.props.onClose(!this.props.isOpen)
   }
 
   render() {
     return (
-      <div className={ this.props.className } onClick={ this.props.closeButton.onClick }>
-        <div onClick={ this.handleClick }>
+      <div className={ this.props.className } onClick={ this.handleCloseOutsideClick }>
+        <div onClick={ this.stopEventBubblingUp }>
           <form method="dialog">
             <h3>{ this.props.title }</h3>
             <hr />
@@ -39,11 +41,9 @@ class Modal extends React.Component<Props, {}> {
             { this.props.children }
             <hr />
             <menu>
-              <Button onClick={ this.props.closeButton.onClick }>{ this.props.closeButton.name }</Button>
-              {(this.props.confirmButton) && 
-              <Button onClick={ this.props.confirmButton.onClick }>{ this.props.confirmButton.name }</Button> }
-              {(this.props.resetButton) && 
-              <Button onClick={ this.props.resetButton.onClick }>{ this.props.resetButton.name }</Button> }
+        { this.props.closeButton }
+        {(this.props.confirmButton) && this.props.confirmButton }
+        {(this.props.resetButton) && this.props.resetButton } 
             </menu>
           </form>
         </div>
@@ -63,7 +63,6 @@ const StyledModal = styled(Modal)`
   top: 0;
   left: 0;
 
-  display: ${( props ) => props.isOpen ? 'flex' : 'none' };
   align-items: center;
   justify-content: center;
 
