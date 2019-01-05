@@ -17,7 +17,7 @@ class ConfirmButton extends React.Component<Props, {}> {
 
   render() {
     return (
-      <Button onClick={ this.handleClick }>Confirm</Button>
+      <Button onClick={ this.handleClick }>Reset</Button>
     );
   }
 }

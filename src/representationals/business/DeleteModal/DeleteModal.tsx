@@ -23,7 +23,7 @@ class DeleteModal extends React.Component<Props, {}> {
         <Modal 
           title={ title } 
           detail={ detail } 
-          closeButton={ <CloseButton /> } 
+          closeButton={ <CloseButton onClose={ this.props.toggleDeleteConfirmModalClick } /> } 
           confirmButton={ <ConfirmButton /> } 
           onClose={ this.props.toggleDeleteConfirmModalClick } 
           isOpen={ this.props.isDeleteConfirmModalOpen }>

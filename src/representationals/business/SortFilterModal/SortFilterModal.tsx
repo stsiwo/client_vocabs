@@ -13,7 +13,6 @@ interface Props {
   toggleSortFilterModalClick: toggleClickType;
 }
 
-
 class SortFilterModal extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
@@ -28,7 +27,7 @@ class SortFilterModal extends React.Component<Props, {}> {
         <Modal 
           title={ title } 
           detail={ detail } 
-          closeButton={ <CloseButton />} 
+          closeButton={ <CloseButton onClose={ this.props.toggleSortFilterModalClick } />} 
           confirmButton={ <ConfirmButton /> } 
           resetButton={ <ResetButton /> } 
           onClose={ this.props.toggleSortFilterModalClick }

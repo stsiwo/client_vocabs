@@ -19,7 +19,13 @@ class SelectModal extends React.Component<Props, {}> {
     const title = 'Please select your word items before action.';
     const detail = 'you must select at leat one word to perform delete or edit action. Just tap or click words in order to select those.';
     return (
-        <Modal title={ title } detail={ detail } closeButton={ <CloseButton /> } onClose={ this.props.toggleSelectWarningModalClick } isOpen={ this.props.isSelectWarningModalOpen }></Modal>
+        <Modal 
+          title={ title } 
+          detail={ detail } 
+          closeButton={ <CloseButton onClose={ this.props.toggleSelectWarningModalClick }/> } 
+          onClose={ this.props.toggleSelectWarningModalClick } 
+          isOpen={ this.props.isSelectWarningModalOpen }>
+        </Modal>
     );
   }
 }

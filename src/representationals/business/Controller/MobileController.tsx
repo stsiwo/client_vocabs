@@ -16,6 +16,8 @@ interface Props extends RouteComponentProps<{}> {
   className?: string;
   isSortFilterModalOpen: boolean;
   toggleSortFilterModalClick: toggleClickType; 
+  isSearchWordModalOpen: boolean;
+  toggleSearchWordModalClick: toggleClickType;
 }
 
 
@@ -80,6 +82,7 @@ class MobileController extends React.Component<Props, {}> {
     // to open search bar, make it true.
     // user can search a particular search in word list
     // refer to SearchModal component 
+    this.props.toggleSearchWordModalClick(!this.props.isSearchWordModalOpen)
   }
 
   onSelectAllClick(e: React.MouseEvent<HTMLElement>) {
@@ -98,7 +101,7 @@ class MobileController extends React.Component<Props, {}> {
         <Vl />
         <ControllerItem svgSrc={ sortIcon } onClick={ this.onSortFilterClick }>Sort</ControllerItem>
         <Vl />
-        <ControllerItem svgSrc={ searchIcon }>Search</ControllerItem>
+        <ControllerItem svgSrc={ searchIcon } onClick={ this.onSearchClick }>Search</ControllerItem>
         <Vl />
         <ControllerItem svgSrc={ selectAllIcon }>Select All</ControllerItem>
       </div>
