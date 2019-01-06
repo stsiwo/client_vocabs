@@ -2,6 +2,7 @@ import * as React from 'react';
 
 interface Props {
   className?: string;
+  children?: React.ReactNode;
 }
 
 class MediaTest extends React.Component<Props, {}> {
@@ -12,7 +13,7 @@ class MediaTest extends React.Component<Props, {}> {
   render() {
     return (
       <div>
-        test
+        { this.props.children }
       </div>
     );
   }
