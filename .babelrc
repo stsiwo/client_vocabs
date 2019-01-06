@@ -1,0 +1,8 @@
+{
+  "presets": ['env', 'react'],
+  "plugins": [
+    'plugin-proposal-object-rest-spread',
+    'plugin-transform-regenerator',
+  ]
+}
+

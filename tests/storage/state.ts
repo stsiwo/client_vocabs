@@ -262,7 +262,6 @@ const normalizedSortAscTestData = normalize(sortAscTestData, wordListSchema);
 export const normalizedSortAscState: INormalizedState = Object.assign({}, initialNormalizedState,  {
   entities: normalizedSortAscTestData.entities,
   sortedWordList: normalizedSortAscTestData.result,
-  currentFilter: [],
   currentSort: SORT_ORDER.ALPHA_ASC,
 });
 
@@ -471,7 +470,6 @@ export const normalizedSortDescState: INormalizedState = Object.assign({}, initi
   entities: normalizedSortDescTestData.entities,
   sortedWordList: normalizedSortDescTestData.result,
   currentSort: SORT_ORDER.ALPHA_DESC,
-  currentFilter: [],
 });
 
 // sort date newer test data  
@@ -678,7 +676,6 @@ export const normalizedSortDateNewerState: INormalizedState = Object.assign({}, 
   entities: normalizedSortDateNewerTestData.entities,
   sortedWordList: normalizedSortDateNewerTestData.result,
   currentSort: SORT_ORDER.DATE_NEWER,
-  currentFilter: [],
 })
 
 // sort date newer test data  
@@ -885,5 +882,4 @@ export const normalizedSortDateOlderState: INormalizedState = Object.assign({}, 
   entities: normalizedSortDateOlderTestData.entities,
   sortedWordList: normalizedSortDateOlderTestData.result,
   currentSort: SORT_ORDER.DATE_OLDER,
-  currentFilter: [],
 });

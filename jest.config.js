@@ -2,6 +2,7 @@ module.exports = {
   "roots": [
     "<rootDir>/tests/"
   ],
+  "setupTestFrameworkScriptFile": "<rootDir>enzyme-react-setup.ts",
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },

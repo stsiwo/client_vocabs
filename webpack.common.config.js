@@ -29,13 +29,6 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: [
-              '@babel/plugin-proposal-object-rest-spread',
-              '@babel/plugin-transform-regenerator',
-            ]
-          }
         }
       },
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
