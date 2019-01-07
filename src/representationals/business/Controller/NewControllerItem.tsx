@@ -26,7 +26,7 @@ class NewControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-        <ControllerItem id="new-controller-item" svgSrc={ newIcon } onClick={ this.onNewClick }>New</ControllerItem>
+        <ControllerItem svgSrc={ newIcon } onClick={ this.onNewClick }>New</ControllerItem>
     );
   }
 }

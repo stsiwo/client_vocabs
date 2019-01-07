@@ -33,7 +33,7 @@ class DeleteControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-        <ControllerItem id="delete-controller-item" svgSrc={ deleteIcon } onClick={ this.onDeleteClick }>Delete</ControllerItem>
+        <ControllerItem svgSrc={ deleteIcon } onClick={ this.onDeleteClick }>Delete</ControllerItem>
     );
   }
 }

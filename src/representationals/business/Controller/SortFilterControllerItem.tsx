@@ -29,7 +29,7 @@ class SortFilterControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-        <ControllerItem id="sort-filter-controller-item" svgSrc={ sortIcon } onClick={ this.onSortFilterClick }>Sort & Filter</ControllerItem>
+        <ControllerItem svgSrc={ sortIcon } onClick={ this.onSortFilterClick }>Sort & Filter</ControllerItem>
     );
   }
 }

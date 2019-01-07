@@ -21,7 +21,7 @@ class SelectAllControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-        <ControllerItem id="selectall-controller-item" svgSrc={ selectAllIcon } onClick={ this.onSelectAllClick }>SelectAll</ControllerItem>
+        <ControllerItem svgSrc={ selectAllIcon } onClick={ this.onSelectAllClick }>SelectAll</ControllerItem>
     );
   }
 }

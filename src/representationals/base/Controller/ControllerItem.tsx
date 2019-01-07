@@ -6,7 +6,6 @@ interface Props {
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   children?: string;
-  id: string;
   svgSrc: string;
 }
 
@@ -22,7 +21,7 @@ export class ControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-      <div id={ this.props.id } className={ this.props.className } onClick={ this.handleClick }>
+      <div className={ this.props.className } onClick={ this.handleClick }>
         <Icon svgSrc={ this.props.svgSrc }></Icon>
         <h4>{ this.props.children }</h4>
       </div>

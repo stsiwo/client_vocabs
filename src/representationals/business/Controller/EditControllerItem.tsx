@@ -35,7 +35,7 @@ class EditControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-        <ControllerItem id="edit-controller-item" svgSrc={ editIcon } onClick={ this.onEditClick }>Edit</ControllerItem>
+        <ControllerItem svgSrc={ editIcon } onClick={ this.onEditClick }>Edit</ControllerItem>
     );
   }
 }

@@ -3,6 +3,7 @@
   "plugins": [
     'plugin-proposal-object-rest-spread',
     'plugin-transform-regenerator',
+    'babel-plugin-styled-components',
   ]
 }
 

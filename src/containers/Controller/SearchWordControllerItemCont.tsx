@@ -1,18 +1,18 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch/*, compose*/ } from 'redux';
-import SearchControllerItem from '../../representationals/business/Controller/SearchControllerItem';
+import SearchWordControllerItem from '../../representationals/business/Controller/SearchWordControllerItem';
 import { INormalizedState } from '../../state/type';
-import { toggleSearchWordModalAction } from '../../actions/index';
+import { toggleSearchWordWordModalAction } from '../../actions/index';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
-  isSearchWordModalOpen: state.ui.isSearchWordModalOpen,
+  isSearchWordWordModalOpen: state.ui.isSearchWordWordModalOpen,
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   toggleSearchWordModalClick: ( isOpen: boolean ) => { dispatch( toggleSearchWordModalAction( isOpen ))}, 
 });
 
-export default connect( mapStateToProps, mapDispatchToProps )( SearchControllerItem );
+export default connect( mapStateToProps, mapDispatchToProps )( SearchWordControllerItem );
 
 
 

@@ -11,7 +11,7 @@ interface Props {
 }
 
 
-class SearchControllerItem extends React.Component<Props, {}> {
+class SearchWordControllerItem extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onSearchClick = this.onSearchClick.bind(this);
@@ -27,12 +27,12 @@ class SearchControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-        <ControllerItem id="search-controller-item" svgSrc={ searchIcon } onClick={ this.onSearchClick }>Search</ControllerItem>
+        <ControllerItem svgSrc={ searchIcon } onClick={ this.onSearchClick }>Search</ControllerItem>
     );
   }
 }
 
-export default SearchControllerItem;
+export default SearchWordControllerItem;
 
 
 

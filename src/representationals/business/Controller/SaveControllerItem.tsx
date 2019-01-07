@@ -17,7 +17,7 @@ class SaveControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-        <ControllerItem id="save-controller-item" svgSrc={ saveIcon } onClick={ this.onSaveClick }>Save</ControllerItem>
+        <ControllerItem svgSrc={ saveIcon } onClick={ this.onSaveClick }>Save</ControllerItem>
     );
   }
 }

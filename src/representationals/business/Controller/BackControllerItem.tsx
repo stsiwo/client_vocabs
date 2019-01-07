@@ -20,7 +20,7 @@ class BackControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-        <ControllerItem id="back-controller-item" svgSrc={ backIcon } onClick={ this.onBackClick }>Back</ControllerItem>
+        <ControllerItem svgSrc={ backIcon } onClick={ this.onBackClick }>Back</ControllerItem>
     );
   }
 }

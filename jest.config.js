@@ -4,6 +4,7 @@ module.exports = {
   ],
   "setupTestFrameworkScriptFile": "<rootDir>enzyme-react-setup.ts",
   "transform": {
+    //"^.+\\.jsx?$": "babel-jest",
     "^.+\\.tsx?$": "ts-jest"
   },
   "moduleNameMapper": {
