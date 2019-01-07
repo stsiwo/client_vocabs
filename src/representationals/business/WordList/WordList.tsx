@@ -1,35 +1,26 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import WordListItem from '../WordListItem/WordListItem';
+import WordListItemCont from '../../../containers/Word/WordListItemCont';
 import MobileWordController from '../Controller/MobileWordController';
 import MediaQuery from 'react-responsive'
-//import * as qs from 'query-string';
-import { RouteComponentProps } from 'react-router-dom';
-import { IWord } from '../../../domains/word';
+import { IWordListItem } from '../../../domains/word';
 
-
-interface Props extends RouteComponentProps<{}> {
+interface Props {
   className?: string;
-  words: IWord[]; 
+  wordListItem: IWordListItem[];
 }
 
-interface State {
-  words: IWord[];
-}
-class WordList extends React.Component<Props, State> {
+class WordList extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      words: this.props.words,
-    }
     this.renderWordItem = this.renderWordItem.bind(this);
   }
 
   renderWordItem() {
     return (
-      this.state.words.map(( word ) => { 
+      this.props.wordListItem.map(( word: IWordListItem ) => { 
         return (
-          <WordListItem key={ word.id }>{ word.name }</WordListItem>
+          <WordListItemCont key={ word.id } word={ word } />
         );
       })
     );

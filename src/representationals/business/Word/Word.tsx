@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import WordList from '../WordList/WordList';
+import WordListCont from '../../../containers/Word/WordListCont';
 import MediaQuery from 'react-responsive';
 import { Route, Redirect } from 'react-router-dom';
 import WordDetail from '../WordDetail/WordDetail';
@@ -41,11 +41,11 @@ class Word extends React.Component<Props, State> {
     return (
       <div className={ this.props.className }>
         <MediaQuery maxWidth={ 425 }>
-          <Route exact path="/word" render={(props) => <WordList {...props} words={this.state.words} />} />
+          <Route exact path="/word" component={WordListCont} />
           <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
         </MediaQuery>
         <MediaQuery minWidth={ 426 }>
-          <Route path="/word" render={(props) => <WordList {...props} words={this.state.words} />} /> 
+          <Route path="/word" component={WordListCont} />} /> 
           <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
           <Redirect from="/word" to="/word/detail" />
           <Controller />

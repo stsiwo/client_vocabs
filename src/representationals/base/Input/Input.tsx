@@ -45,6 +45,8 @@ const StyledInput = styled(Input)`
   border: none;
   color: ${( props ) => props.theme.primaryFontColor };
 `;
+// testing purpose
+StyledInput.displayName = "InputSelector";
 
 
 export default StyledInput;
