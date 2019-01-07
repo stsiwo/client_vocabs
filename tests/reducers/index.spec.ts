@@ -13,7 +13,8 @@ import {
   toggleSelectWarningModalAction, 
   toggleDeleteConfirmModalAction,
   toggleSortFilterModalAction, 
-  toggleSearchWordModalAction
+  toggleSearchWordModalAction,
+  toggleSelectWord
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
@@ -47,6 +48,10 @@ import {
   normalizedToggleSortFilterModalState,
   normalizedToggleSearchWordModalState
 } from '../storage/ui';
+import {
+  normalizedToggleSelectWordState,
+  normalizedToggleSelectWordRandomState
+} from '../storage/selectedWordList';
 import { changeSortWrapperThunk, changeFilterWrapperThunk } from '../../src/reducers/thunk';
 import store from '../../src/storeConfig';
 import { PosEnum } from '../../src/domains/pos';
@@ -196,3 +201,14 @@ describe('rootReducer UI state test', () => {
   })
 })
 
+describe('selectedWordList state', () => {
+
+  it('should return new state (added word id (=1) to selectedWordList state)', () => {
+    expect(rootReducer(undefined, toggleSelectWord([1]))).toEqual(normalizedToggleSelectWordState)
+  })
+
+  it('should return new state (added word ids (random) to selectedWordList state)', () => {
+    expect(rootReducer(undefined, toggleSelectWord([1, 3, 5, 7]))).toEqual(normalizedToggleSelectWordRandomState)
+  })
+
+})

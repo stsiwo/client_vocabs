@@ -32,6 +32,9 @@ export type ICurrentSort = SORT_ORDER;
 // sortedWordList 
 export type ISortedWordList = number[]; 
 
+// selectedWordList 
+export type ISelectedWordList = number[]; 
+
 // currentFilter
 export type ICurrentFilter = PosEnum[];
 
@@ -42,6 +45,7 @@ export type ICurrentFilter = PosEnum[];
 export interface INormalizedState { 
   entities: IEntity;
   sortedWordList: ISortedWordList;
+  selectedWordList: ISortedWordList;
   currentSort: ICurrentSort;
   currentFilter: ICurrentFilter;  
   ui: IUi;

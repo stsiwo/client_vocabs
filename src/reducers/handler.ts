@@ -1,4 +1,4 @@
-import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType } from '../actions/type';
+import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType } from '../actions/type';
 import { caseReducer } from './caseReducer';
 import { 
   addNewDefsByWordActionReducer, 
@@ -17,8 +17,9 @@ import {
   toggleDeleteConfirmModalReducer,
   toggleSortFilterModalReducer,
   toggleSearchWordModalReducer,
+  toggleSelectedWordListCaseReducer
 } from './caseReducer';
-import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi } from '../state/type';
+import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList } from '../state/type';
 /**
  * Hander type
  * must match property name with action type of a domain
@@ -58,6 +59,10 @@ export const currentFilterHandler: Handler<ICurrentFilter> = {
 export const sortedWordListHandler: Handler<ISortedWordList> = {
   [SortActionType.CHANGE_SORT]: sortedWordListCaseReducer,
   [FilterActionType.CHANGE_FILTER]: sortedWordListCaseReducer,
+}
+
+export const selectedWordListHandler: Handler<ISelectedWordList> = {
+  [SelectedWordListActionType.TOGGLE_SELECT_WORD]: toggleSelectedWordListCaseReducer,
 }
 
 export const uiHandler: Handler<IUi> = {

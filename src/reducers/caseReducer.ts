@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import { caseReducer } from './caseReducer';
-import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter, IUi } from '../state/type'; 
+import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter, IUi, ISelectedWordList } from '../state/type'; 
+const xor = require('lodash/xor');
 /**
  *  case reducer type
  **/
@@ -66,6 +67,12 @@ export const removeDefsFromWordByDefActionReducer: caseReducer<IEntityWord> = (w
 export const currentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, action) => action.currentSort;
 
 export const sortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => action.sortedWordList;
+
+// this include select all icon click event
+export const toggleSelectedWordListCaseReducer: caseReducer<ISelectedWordList> = (selectedWordList, action) => {
+  // if action.selectedWordId exist in state, remove otherwise add it
+  return xor(selectedWordList, action.nextSelectedWordList);
+};
 
 export const currentFilterCaseReducer: caseReducer<ICurrentFilter> = (currentFilter, action) => action.currentFilter;
 

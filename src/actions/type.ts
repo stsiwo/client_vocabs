@@ -27,6 +27,10 @@ interface IUiActionType {
   TOGGLE_SORT_FILTER_MODAL: string;
   TOGGLE_SEARCH_WORD_MODAL: string;
 }
+
+interface ISelectedWordListActionType {
+  TOGGLE_SELECT_WORD: string;
+}
 /**
  * action type
  **/
@@ -55,5 +59,9 @@ export const UiActionType: IUiActionType = {
   TOGGLE_DELETE_CONFIRM_MODAL: "TOGGLE_DELETE_CONFIRM_MODAL",
   TOGGLE_SORT_FILTER_MODAL: "TOGGLE_SORT_FILTER_MODAL",
   TOGGLE_SEARCH_WORD_MODAL: "TOGGLE_SEARCH_WORD_MODAL",
+}
+
+export const SelectedWordListActionType: ISelectedWordListActionType = {
+  TOGGLE_SELECT_WORD: "TOGGLE_SELECT_WORD",
 }
 

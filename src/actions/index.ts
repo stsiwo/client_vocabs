@@ -2,7 +2,7 @@ import { ISortedWordList, ICurrentFilter } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
-import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType } from './type'; 
+import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType } from './type'; 
 import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
@@ -86,3 +86,9 @@ export const toggleSearchWordModalAction = (isSearchWordModalOpen: boolean) => (
   type: UiActionType.TOGGLE_SEARCH_WORD_MODAL,
   isSearchWordModalOpen: isSearchWordModalOpen,
 })
+
+export const toggleSelectWord = (nextSelectedWordList: number[]) => ({
+  type: SelectedWordListActionType.TOGGLE_SELECT_WORD,
+  nextSelectedWordList: nextSelectedWordList,
+});
+
