@@ -1,19 +1,21 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import { Vl } from '../../base/common/Line';
 import NewControllerItem from './NewControllerItem';
 import DeleteControllerItemCont from '../../../containers/Controller/DeleteControllerItemCont';
+import EditControllerItemCont from '../../../containers/Controller/EditControllerItemCont';
 import SortFilterControllerItemCont from '../../../containers/Controller/SortFilterControllerItemCont';
 import SearchControllerItemCont from '../../../containers/Controller/SearchControllerItemCont';
 import SelectAllControllerItemCont from '../../../containers/Controller/SelectAllControllerItemCont';
-import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
+import { Vl } from '../../base/common/Line';
+import { withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 
-interface Props {
+interface Props extends RouteComponentProps<{}> {
   className?: string;
 }
 
 
-class MobileController extends React.Component<Props, {}> {
+class MobileWordController extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
@@ -25,37 +27,32 @@ class MobileController extends React.Component<Props, {}> {
         <Vl />
         <DeleteControllerItemCont />
         <Vl />
+        <EditControllerItemCont />
+        <Vl />
         <SortFilterControllerItemCont />
         <Vl />
         <SearchControllerItemCont />
         <Vl />
         <SelectAllControllerItemCont />
-        <Vl />
-        <SaveControllerItemCont />
       </div>
     );
   }
 }
 
-const StyleMobileController = styled(MobileController)`
+const StyleMobileWordController = styled(MobileWordController)`
   position: fixed;
-  bottom: ${( props ) => props.theme.bottomBarHeightMargin };
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-radius: 35px;
-  box-shadow: 1px 1px 1px;
-  padding: 3px 15px;
-  background-color: ${( props ) => props.theme.secondaryColor };
 
   width: ${ (props) => props.theme.sizes.mobileS };
   height: ${( props ) => props.theme.bottomBarHeight };
+
 `;
 
-export default StyleMobileController;
-
+export default withRouter(StyleMobileWordController);
 
 
 

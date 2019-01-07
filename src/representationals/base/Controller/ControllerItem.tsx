@@ -6,10 +6,11 @@ interface Props {
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   children?: string;
+  id: string;
   svgSrc: string;
 }
 
-class ControllerItem extends React.Component<Props, {}> {
+export class ControllerItem extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -21,7 +22,7 @@ class ControllerItem extends React.Component<Props, {}> {
 
   render() {
     return (
-      <div className={ this.props.className } onClick={ this.handleClick }>
+      <div id={ this.props.id } className={ this.props.className } onClick={ this.handleClick }>
         <Icon svgSrc={ this.props.svgSrc }></Icon>
         <h4>{ this.props.children }</h4>
       </div>
@@ -47,7 +48,7 @@ const StyleControllerItem = styled(ControllerItem)`
     transition: opacity 0.5s;
   }
 `;
-
+// default export is styled with styled-component
 export default StyleControllerItem;
 
 

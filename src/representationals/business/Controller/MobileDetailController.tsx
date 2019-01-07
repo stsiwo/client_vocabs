@@ -1,39 +1,24 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import ControllerItem from '../../base/Controller/ControllerItem';
 import { Vl } from '../../base/common/Line';
-import { withRouter } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router-dom';
-const saveIcon = require('./assets/save.svg');
-const backIcon = require('./assets/back.svg');
+import BackControllerItem from './BackControllerItem';
+import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
 
-
-interface Props extends RouteComponentProps<{}> {
+interface Props {
   className?: string;
 }
-
 
 class MobileController extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.onSaveClick = this.onSaveClick.bind(this);
-    this.onBackClick = this.onBackClick.bind(this);
-  }
-
-  onSaveClick(e: React.MouseEvent<HTMLElement>) {
-    // save current detail and where should I go ?
-  }
-
-  onBackClick(e: React.MouseEvent<HTMLElement>) {
-    this.props.history.push("/word");
   }
 
   render() {
     return (
       <div className={ this.props.className }>
-        <ControllerItem svgSrc={ backIcon }>Back</ControllerItem>
+        <BackControllerItem />
         <Vl />
-        <ControllerItem svgSrc={ saveIcon }>Save</ControllerItem>
+        <SaveControllerItemCont />
       </div>
     );
   }
@@ -56,7 +41,7 @@ const StyleMobileController = styled(MobileController)`
   height: ${( props ) => props.theme.bottomBarHeight };
 `;
 
-export default withRouter(StyleMobileController);
+export default StyleMobileController;
 
 
 

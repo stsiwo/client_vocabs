@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import WordListItem from '../WordListItem/WordListItem';
-import MobileControllerCont from '../../../containers/MobileControllerCont';
+import MobileWordController from '../Controller/MobileWordController';
 import MediaQuery from 'react-responsive'
 //import * as qs from 'query-string';
 import { RouteComponentProps } from 'react-router-dom';
@@ -42,7 +42,7 @@ class WordList extends React.Component<Props, State> {
           { this.renderWordItem() }  
         </ul>
         <MediaQuery maxWidth={ 425 }>
-          <MobileControllerCont />
+          <MobileWordController />
         </MediaQuery>
       </div>
     );
