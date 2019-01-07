@@ -4,7 +4,7 @@ import NewControllerItem from './NewControllerItem';
 import DeleteControllerItemCont from '../../../containers/Controller/DeleteControllerItemCont';
 import EditControllerItemCont from '../../../containers/Controller/EditControllerItemCont';
 import SortFilterControllerItemCont from '../../../containers/Controller/SortFilterControllerItemCont';
-import SearchControllerItemCont from '../../../containers/Controller/SearchControllerItemCont';
+import SearchWordControllerItemCont from '../../../containers/Controller/SearchWordControllerItemCont';
 import SelectAllControllerItemCont from '../../../containers/Controller/SelectAllControllerItemCont';
 import { Vl } from '../../base/common/Line';
 import { withRouter } from 'react-router-dom';
@@ -31,7 +31,7 @@ class MobileWordController extends React.Component<Props, {}> {
         <Vl />
         <SortFilterControllerItemCont />
         <Vl />
-        <SearchControllerItemCont />
+        <SearchWordControllerItemCont />
         <Vl />
         <SelectAllControllerItemCont />
       </div>

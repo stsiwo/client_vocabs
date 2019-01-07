@@ -4,7 +4,7 @@ import { Vl } from '../../base/common/Line';
 import NewControllerItem from './NewControllerItem';
 import DeleteControllerItemCont from '../../../containers/Controller/DeleteControllerItemCont';
 import SortFilterControllerItemCont from '../../../containers/Controller/SortFilterControllerItemCont';
-import SearchControllerItemCont from '../../../containers/Controller/SearchControllerItemCont';
+import SearchWordControllerItemCont from '../../../containers/Controller/SearchWordControllerItemCont';
 import SelectAllControllerItemCont from '../../../containers/Controller/SelectAllControllerItemCont';
 import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
 
@@ -27,7 +27,7 @@ class MobileController extends React.Component<Props, {}> {
         <Vl />
         <SortFilterControllerItemCont />
         <Vl />
-        <SearchControllerItemCont />
+        <SearchWordControllerItemCont />
         <Vl />
         <SelectAllControllerItemCont />
         <Vl />
