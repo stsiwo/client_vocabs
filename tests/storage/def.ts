@@ -42,7 +42,9 @@ export const newDef: IDef[] = [
 
 // remove def whose id = 1 of word id = 0
 const copyInitialState = JSON.parse(JSON.stringify(initialWordList));
-copyInitialState[0].defs.splice(1,1);
+// find word whose id = 0
+const wordId0Index = copyInitialState.findIndex(( word: IWord ) => word.id === 0);
+copyInitialState[wordId0Index].defs.splice(1,1);
 export const removedDef: IWord[] = copyInitialState;
 // need to copy defs array inside def object. above code just do shallow copy; array is still refers to original array
 const updateWordCopy = JSON.parse(JSON.stringify(initialWordList[0]));

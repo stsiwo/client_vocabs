@@ -5,12 +5,12 @@ const normalizedToggleSelectWordTestData = normalize(initialWordList, wordListSc
 
 export const normalizedToggleSelectWordState = Object.assign({}, initialNormalizedState,  {
   entities: normalizedToggleSelectWordTestData.entities,
-  selectedWordList: [1],
+  selectedWordList: [0,2,3],
 });
 
 const normalizedToggleSelectWordRandomTestData = normalize(initialWordList, wordListSchema);
 
 export const normalizedToggleSelectWordRandomState = Object.assign({}, initialNormalizedState,  {
   entities: normalizedToggleSelectWordRandomTestData.entities,
-  selectedWordList: [1,3,5,7],
+  selectedWordList: [0,2,5,7],
 });

@@ -5,6 +5,7 @@ import { newWord, removedWord, updateWord } from './word';
 import { newDef, removedDef, updateDef } from './def'; 
 import { PosEnum } from '../../src/domains/pos'; 
 import { SORT_ORDER } from '../../src/enums';
+import { IWord } from '../../src/domains/word';
 
 const normalizedNewWord = normalizeWordObject(newWord);
 
@@ -37,9 +38,12 @@ export const wordUpdateNormState = Object.assign({}, initialNormalizedState, {
     },
   },
 });
-
+// construct test data 
+// added new def to word id = 0
 const copy = JSON.parse(JSON.stringify(initialWordList));
-copy[0].defs = copy[0].defs.concat(newDef);
+// find word id = 0 from initial word array
+const wordId0Index = copy.findIndex(( word: IWord ) => word.id === 0);
+copy[wordId0Index].defs = copy[wordId0Index].defs.concat(newDef);
 export const newDefAddedNormState = normalizeWordsArray(copy);
 
 

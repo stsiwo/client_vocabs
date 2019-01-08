@@ -200,8 +200,25 @@ describe('rootReducer UI state test', () => {
     expect(rootReducer(undefined, toggleSearchWordModalAction(true))).toEqual(normalizedToggleSearchWordModalState)
   })
 })
+// initial normalized state
+//{
+  //entities: {
+    //defs: normalizedEntities.entities.defs,
+    //words: normalizedEntities.entities.words,
+  //},
+  //currentSort: 1, 
+  //sortedWordList: [0,1,2,3,4,5,6,7,8,9,10],
+  //selectedWordList: [0,1,2,3],
+  //currentFilter: [0,1,2,3,4,5,6,7,8,9],
+  //ui: {
+    //isSelectWarningModalOpen: false,
+    //isDeleteConfirmModalOpen: false,
+    //isSortFilterModalOpen: false,
+    //isSearchWordModalOpen: false,
+  //},
+//}
 
-describe('selectedWordList state', () => {
+describe('selectedWordList state (single word)', () => {
 
   it('should return new state (added word id (=1) to selectedWordList state)', () => {
     expect(rootReducer(undefined, toggleSelectWord([1]))).toEqual(normalizedToggleSelectWordState)
@@ -212,3 +229,4 @@ describe('selectedWordList state', () => {
   })
 
 })
+
