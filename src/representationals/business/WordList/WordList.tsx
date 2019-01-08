@@ -10,7 +10,7 @@ interface Props {
   wordListItem: IWordListItem[];
 }
 
-class WordList extends React.Component<Props, {}> {
+export class WordList extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.renderWordItem = this.renderWordItem.bind(this);
@@ -28,8 +28,8 @@ class WordList extends React.Component<Props, {}> {
 
   render() {
     return (
-      <div>
-        <ul className={ this.props.className }>
+      <div className={ this.props.className }>
+        <ul>
           { this.renderWordItem() }  
         </ul>
         <MediaQuery maxWidth={ 425 }>
@@ -41,20 +41,22 @@ class WordList extends React.Component<Props, {}> {
 }
 
 const StyledWordList = styled(WordList)`
-  list-style-type: none; 
-  margin-block-start: 0;
-  margin-block-end: 0;
-  padding-inline-start: 0;
+  & > ul {
+    list-style-type: none; 
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
 
-  @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
-    position: fixed;
-    left: 0;
-    top: ${( props ) => props.theme.headerHeight };
-    width: ${( props ) => props.theme.sideBarWidth };
-    bottom: 0;
-    overflow-y: scroll;
-    border-right: 2px solid ${( props ) => props.theme.secondaryColor };
-    box-sizing: border-box;
+    @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+      position: fixed;
+      left: 0;
+      top: ${( props ) => props.theme.headerHeight };
+      width: ${( props ) => props.theme.sideBarWidth };
+      bottom: 0;
+      overflow-y: scroll;
+      border-right: 2px solid ${( props ) => props.theme.secondaryColor };
+      box-sizing: border-box;
+    }
   }
 
 `;
