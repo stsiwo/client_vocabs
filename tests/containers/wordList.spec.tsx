@@ -1,38 +1,22 @@
 import * as React from 'react';
 import { mount/*, shallow */ } from 'enzyme';
-//import * as sinon from 'sinon';
-//import { SinonSpy } from 'sinon';
+import { ProviderAndThemeWrapperHOC } from './helper';
 import WordListCont from '../../src/containers/Word/WordListCont';
-//import { MemoryRouter } from 'react-router-dom';
 import { initialNormalizedState } from '../../src/state/index';
 import { wordListItemModel } from '../storage/containers/wordListCont';
-//import { IWordListItem } from '../../src/domains/word';
-import { MockStoreEnhanced } from 'redux-mock-store'
-import { Provider } from 'react-redux'
-import { ThemeProvider } from '../../src/representationals/story/styledComponents';
-import { theme } from '../../src/representationals/story/theme';
-//import store from '../../src/storeConfig';
-
 import configureMockStore from 'redux-mock-store';
-const mockStore = configureMockStore();
+import { toggleSelectWord } from '../../src/actions/index';
+import { toggleSelectWordDispatchType } from '../../src/containers/type';
+import { MockStoreEnhanced } from 'redux-mock-store';
 
-const ProviderAndThemeWrapperHOC = (Component: React.ComponentType, store: MockStoreEnhanced ) => {
-  return () => (
-    <Provider store={ store }>
-      <ThemeProvider theme={ theme }>
-        <Component />
-      </ThemeProvider>
-    </Provider>
-  );
-}
-    
+const mockStore = configureMockStore();
 
 describe('WordListCont', function() {
   //let store: MockStoreEnhanced;
+  let store: MockStoreEnhanced;
 
   beforeEach(() => {
-    //store = mockStore(initialNormalizedState)
-    //console.log(wrapper.instance());
+    store = mockStore(initialNormalizedState);
   });
 
   it('should include IWordListItem[] props ( MSTP function )', function() {
@@ -40,12 +24,29 @@ describe('WordListCont', function() {
      * sortedWordList: [0,1,2,3,4,5,6,7,8,9,10],
      * selectedWordList: [0,1,2,3],
      **/
-    const store = mockStore(initialNormalizedState);
     const ContextHOC = ProviderAndThemeWrapperHOC(WordListCont, store);
     const wrapper = mount(
       <ContextHOC />
     );
     // model date: storage/containers/wordListCont.ts
     expect(wrapper.find("WordList").prop('wordListItem')).toEqual(wordListItemModel); 
+  })
+
+  // this mdtp is defined in "WordListItemCont" not "WordListCont" container component
+  it('should invoke dispatch function with toggleSelectWord action (MDTP function)', function() {
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordListCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+    
+    const toggleSelectWordChange: toggleSelectWordDispatchType = wrapper.find("WordListItem").first().prop('toggleSelectWordChange');
+
+    // programmarically call dispatch wrapper function since react event is tested in another test
+    toggleSelectWordChange([1]);
+
+    // get dispatched action in mock store
+    const actions = store.getActions();
+    
+    expect(actions[0]).toEqual(toggleSelectWord([1])); 
   })
 })
