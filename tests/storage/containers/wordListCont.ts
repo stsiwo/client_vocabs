@@ -1,4 +1,4 @@
-import { IWordListItem } from '../../src/domains/word';
+import { IWordListItem } from '../../../src/domains/word';
 
 export const wordListItemModel: IWordListItem[] = [
   {

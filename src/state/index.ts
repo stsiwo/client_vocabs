@@ -4,6 +4,7 @@ import { PosEnum } from '../domains/pos';
 import { IWord } from '../domains/word';
 import { INormalizedState } from './type';
 
+
 /**
  * normalized state
  *  - entities
@@ -220,13 +221,23 @@ export const initialWordList: IWord[] = [
   },
 ];
 
+
+/**
+ * normalizr schame definition 
+ **/
+const defSchema = new schema.Entity('defs');
+const defListSchema = new schema.Array(defSchema);
+export const wordSchema = new schema.Entity('words', { defs: [defSchema] });
+export const wordListSchema = new schema.Array(wordSchema);
+
 /**
  * normalized initial State
  **/
+const normalizedEntities = normalize(initialWordList, wordListSchema);
 export const initialNormalizedState: INormalizedState = {
   entities: {
-    defs: {},
-    words: {},
+    defs: normalizedEntities.entities.defs,
+    words: normalizedEntities.entities.words,
   },
   currentSort: 1, 
   sortedWordList: [0,1,2,3,4,5,6,7,8,9,10],
@@ -239,15 +250,6 @@ export const initialNormalizedState: INormalizedState = {
     isSearchWordModalOpen: false,
   },
 }
-
-
-/**
- * normalizr schame definition 
- **/
-const defSchema = new schema.Entity('defs');
-const defListSchema = new schema.Array(defSchema);
-export const wordSchema = new schema.Entity('words', { defs: [defSchema] });
-export const wordListSchema = new schema.Array(wordSchema);
 
 /**
  * normalizr helper function 
