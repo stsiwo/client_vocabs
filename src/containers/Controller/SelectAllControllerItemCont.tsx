@@ -2,13 +2,14 @@ import { connect } from 'react-redux'
 import { AnyAction, Dispatch/*, compose */} from 'redux';
 import SelectAllControllerItem from '../../representationals/business/Controller/SelectAllControllerItem';
 import { INormalizedState } from '../../state/type';
+import { toggleSelectWordAction } from '../../actions/index';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
-  //isSearchWordModalOpen: state.ui.isSearchWordModalOpen,
+  sortedWordList: state.sortedWordList,
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  //toggleSearchWordModalClick: ( isOpen: boolean ) => { dispatch( toggleSearchWordModalAction( isOpen ))}, 
+  selectAllWordClick: ( nextSelectedWordList: number[] ) => { dispatch( toggleSelectWordAction( nextSelectedWordList ))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( SelectAllControllerItem );

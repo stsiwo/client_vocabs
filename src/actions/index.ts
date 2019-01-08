@@ -87,7 +87,7 @@ export const toggleSearchWordModalAction = (isSearchWordModalOpen: boolean) => (
   isSearchWordModalOpen: isSearchWordModalOpen,
 })
 
-export const toggleSelectWord = (nextSelectedWordList: number[]) => ({
+export const toggleSelectWordAction = (nextSelectedWordList: number[]) => ({
   type: SelectedWordListActionType.TOGGLE_SELECT_WORD,
   nextSelectedWordList: nextSelectedWordList,
 });

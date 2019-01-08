@@ -14,7 +14,7 @@ import {
   toggleDeleteConfirmModalAction,
   toggleSortFilterModalAction, 
   toggleSearchWordModalAction,
-  toggleSelectWord
+  toggleSelectWordAction
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
@@ -221,11 +221,11 @@ describe('rootReducer UI state test', () => {
 describe('selectedWordList state (single word)', () => {
 
   it('should return new state (added word id (=1) to selectedWordList state)', () => {
-    expect(rootReducer(undefined, toggleSelectWord([1]))).toEqual(normalizedToggleSelectWordState)
+    expect(rootReducer(undefined, toggleSelectWordAction([1]))).toEqual(normalizedToggleSelectWordState)
   })
 
   it('should return new state (added word ids (random) to selectedWordList state)', () => {
-    expect(rootReducer(undefined, toggleSelectWord([1, 3, 5, 7]))).toEqual(normalizedToggleSelectWordRandomState)
+    expect(rootReducer(undefined, toggleSelectWordAction([1, 3, 5, 7]))).toEqual(normalizedToggleSelectWordRandomState)
   })
 
 })
