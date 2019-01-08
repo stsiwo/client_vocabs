@@ -23,7 +23,7 @@ class WordListItem extends React.Component<Props, {}> {
   render() {
     return (
       <li className={ this.props.className }>
-        <CheckBox labelName={this.props.word.name} checked={ this.props.word.isChecked } onChange={ this.onCheckChange } value={ this.props.word.id } />
+        <CheckBox labelName={this.props.word.name} checked={ this.props.word.isChecked } onChange={ this.onCheckChange } value={ this.props.word.id } >{ this.props.word.name }</CheckBox>
       </li>
     );
   }
