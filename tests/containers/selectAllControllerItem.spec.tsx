@@ -5,7 +5,7 @@ import SelectAllControllerItemCont from '../../src/containers/Controller/SelectA
 import { initialNormalizedState } from '../../src/state/index';
 //import { wordListItemModel } from '../storage/containers/wordListCont';
 import configureMockStore from 'redux-mock-store';
-import { toggleSelectWordAction } from '../../src/actions/index';
+import { selectAllWordAction } from '../../src/actions/index';
 import { toggleSelectWordDispatchType } from '../../src/containers/type';
 import { MockStoreEnhanced } from 'redux-mock-store';
 
@@ -47,7 +47,7 @@ describe('SelectAllControllerItemCont', function() {
     // get dispatched action in mock store
     const actions = store.getActions();
     
-    expect(actions[0]).toEqual(toggleSelectWordAction([0,1,2,3,4,5,6,7,8,9,10])); 
+    expect(actions[0]).toEqual(selectAllWordAction([0,1,2,3,4,5,6,7,8,9,10])); 
   })
 })
 

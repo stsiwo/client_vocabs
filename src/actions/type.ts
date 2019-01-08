@@ -30,7 +30,13 @@ interface IUiActionType {
 
 interface ISelectedWordListActionType {
   TOGGLE_SELECT_WORD: string;
+  SELECT_ALL_WORD: string;
 }
+
+interface IResetActionType {
+  RESET_STATE: string;
+}
+
 /**
  * action type
  **/
@@ -63,5 +69,17 @@ export const UiActionType: IUiActionType = {
 
 export const SelectedWordListActionType: ISelectedWordListActionType = {
   TOGGLE_SELECT_WORD: "TOGGLE_SELECT_WORD",
+  SELECT_ALL_WORD: "SELECT_ALL_WORD",
 }
 
+export const ResetActionType: IResetActionType = {
+  RESET_STATE: "RESET_STATE",
+}
+
+/**
+ * each action type 
+ **/
+export interface ISelectAllWordActionType {
+  type: string;
+  nextSelectedWordList: number[];
+}

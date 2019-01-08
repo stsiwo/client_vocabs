@@ -12,8 +12,7 @@ const normalizedFilterNounTestData = normalize(initialWordList, wordListSchema);
 export const normalizedFilterNounState = Object.assign({}, initialNormalizedState , {
   entities: normalizedFilterNounTestData.entities,
   sortedWordList: [ 0, 10 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.NOUN ], 
 });
 
@@ -25,8 +24,7 @@ const normalizedFilterVerbTestData = normalize(initialWordList, wordListSchema);
 export const normalizedFilterVerbState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterVerbTestData.entities,
   sortedWordList: [ 1 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.VERB ], 
 });
 
@@ -38,8 +36,7 @@ const normalizedFilterAdjuctiveTestData = normalize(initialWordList, wordListSch
 export const normalizedFilterAdjuctiveState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterAdjuctiveTestData.entities,
   sortedWordList: [ 2 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.ADJUCTIVE ], 
 });
 
@@ -51,8 +48,7 @@ const normalizedFilterAdverbTestData = normalize(initialWordList, wordListSchema
 export const normalizedFilterAdverbState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterAdverbTestData.entities,
   sortedWordList: [ 3 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.ADVERB ], 
 });
 
@@ -64,8 +60,7 @@ const normalizedFilterPronounTestData = normalize(initialWordList, wordListSchem
 export const normalizedFilterPronounState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterPronounTestData.entities,
   sortedWordList: [ 4 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.PRONOUN ], 
 });
 
@@ -77,8 +72,7 @@ const normalizedFilterPrepositionTestData = normalize(initialWordList, wordListS
 export const normalizedFilterPrepositionState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterPrepositionTestData.entities,
   sortedWordList: [ 5 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.PREPOSITION ], 
 });
 
@@ -90,8 +84,7 @@ const normalizedFilterConjunctionTestData = normalize(initialWordList, wordListS
 export const normalizedFilterConjunctionState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterConjunctionTestData.entities,
   sortedWordList: [ 6 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.CONJUNCTION ], 
 });
 
@@ -103,8 +96,7 @@ const normalizedFilterInterjectionTestData = normalize(initialWordList, wordList
 export const normalizedFilterInterjectionState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterInterjectionTestData.entities,
   sortedWordList: [ 7 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.INTERJECTION ], 
 });
 
@@ -116,8 +108,7 @@ const normalizedFilterElseTestData = normalize(initialWordList, wordListSchema);
 export const normalizedFilterElseState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterElseTestData.entities,
   sortedWordList: [ 8 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.ELSE ], 
 });
 
@@ -129,8 +120,7 @@ const normalizedFilterIdiomTestData = normalize(initialWordList, wordListSchema)
 export const normalizedFilterIdiomState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterIdiomTestData.entities,
   sortedWordList: [ 9 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.IDIOM ], 
 });
 
@@ -142,7 +132,6 @@ const normalizedFilterNounElseInterjectionTestData = normalize(initialWordList, 
 export const normalizedFilterNounElseInterjectionState = Object.assign({}, initialNormalizedState, {
   entities: normalizedFilterNounElseInterjectionTestData.entities,
   sortedWordList: [ 0, 7, 8, 10 ],
-  // current Sort value comes from previous test but does not matter because filter change should not affect sort change
-  currentSort: SORT_ORDER.DATE_OLDER,
+  currentSort: SORT_ORDER.ALPHA_ASC,
   currentFilter: [ PosEnum.NOUN, PosEnum.ELSE, PosEnum.INTERJECTION ], 
 });

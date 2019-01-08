@@ -2,7 +2,7 @@ import { ISortedWordList, ICurrentFilter } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
-import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType } from './type'; 
+import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType } from './type'; 
 import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
@@ -92,3 +92,11 @@ export const toggleSelectWordAction = (nextSelectedWordList: number[]) => ({
   nextSelectedWordList: nextSelectedWordList,
 });
 
+export const selectAllWordAction = (nextSelectedWordList: number[]) => ({
+  type: SelectedWordListActionType.SELECT_ALL_WORD,
+  nextSelectedWordList: nextSelectedWordList,
+});
+
+export const resetStateAction = () => ({
+  type: ResetActionType.RESET_STATE,
+});

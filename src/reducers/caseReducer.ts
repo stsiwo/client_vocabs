@@ -1,11 +1,15 @@
 import { AnyAction } from 'redux';
 import { caseReducer } from './caseReducer';
 import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter, IUi, ISelectedWordList } from '../state/type'; 
+import { ISelectAllWordActionType } from '../actions/type';
+import { initialNormalizedState } from '../state/index';
 const xor = require('lodash/xor');
+const isEqual = require('lodash/isEqual');
+const sortBy = require('lodash/sortBy');
 /**
  *  case reducer type
  **/
-export type caseReducer<T> = (state: T, action: AnyAction) => T;
+export type caseReducer<T, A = AnyAction> = (state: T, action: A) => T;
 
 /**
  * case reducers
@@ -33,6 +37,8 @@ export const removeDefsByDefActionReducer: caseReducer<IEntityDef> = (defs, acti
   delete copy[action.id];
   return copy;
 }
+
+export const resetDefsCaseReducer: caseReducer<IEntityDef> = (defs, action) => Object.assign({}, defs, initialNormalizedState.entities.defs); 
 
 export const addNewWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => ({
   ...words,
@@ -64,17 +70,44 @@ export const removeDefsFromWordByDefActionReducer: caseReducer<IEntityWord> = (w
   return copy;
 }
 
+export const resetWordsCaseReducer: caseReducer<IEntityWord> = (words, action) => Object.assign({}, words, initialNormalizedState.entities.words); 
+
 export const currentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, action) => action.currentSort;
+
+export const resetCurrentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, action) => initialNormalizedState.currentSort;
 
 export const sortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => action.sortedWordList;
 
-// this include select all icon click event
+export const resetSortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => initialNormalizedState.sortedWordList;
+
+// inidividual click event of word name
 export const toggleSelectedWordListCaseReducer: caseReducer<ISelectedWordList> = (selectedWordList, action) => {
   // if action.selectedWordId exist in state, remove otherwise add it
   return xor(selectedWordList, action.nextSelectedWordList);
 };
 
+// select all icon click event
+export const selectAllSelectedWordListCaseReducer: caseReducer<ISelectedWordList, ISelectAllWordActionType> = (selectedWordList, action) => {
+  // there are 3 cases to consider (action.nextSelectedWordList is always return sortedWordList array):
+  // 1. state.selectedWordList is empty
+  // 2. state.selectedWordList contains some value
+  // 3. state.selectedWordList is selected all ( = action.nextSelectedWordList)
+  // case A: 1.) and 2.) => must return action.nextSelectedWordList as it is
+  // case B: 3.) => must return empty array
+  if (!isEqual(sortBy(selectedWordList), sortBy(action.nextSelectedWordList))) {
+    // case A:
+    return [ ...action.nextSelectedWordList ];
+  } else {
+    // case B:
+    return []; 
+  }
+}
+
+export const resetSelectedWordListCaseReducer: caseReducer<ISelectedWordList> = (selectedWordList, action) => initialNormalizedState.selectedWordList; 
+
 export const currentFilterCaseReducer: caseReducer<ICurrentFilter> = (currentFilter, action) => action.currentFilter;
+
+export const resetCurrentFilterCaseReducer: caseReducer<ICurrentFilter> = (currentFilter, action) => initialNormalizedState.currentFilter;
 
 export const toggleSelectWarningModalReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, { isSelectWarningModalOpen: action.isSelectWarningModalOpen });;
 
@@ -83,3 +116,6 @@ export const toggleDeleteConfirmModalReducer: caseReducer<IUi> = (ui, action) =>
 export const toggleSortFilterModalReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, { isSortFilterModalOpen: action.isSortFilterModalOpen });
 
 export const toggleSearchWordModalReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, { isSearchWordModalOpen: action.isSearchWordModalOpen });
+
+export const resetUiCaseReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, initialNormalizedState.ui);
+

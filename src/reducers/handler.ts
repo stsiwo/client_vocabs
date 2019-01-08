@@ -1,4 +1,4 @@
-import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType } from '../actions/type';
+import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType } from '../actions/type';
 import { caseReducer } from './caseReducer';
 import { 
   addNewDefsByWordActionReducer, 
@@ -17,7 +17,15 @@ import {
   toggleDeleteConfirmModalReducer,
   toggleSortFilterModalReducer,
   toggleSearchWordModalReducer,
-  toggleSelectedWordListCaseReducer
+  toggleSelectedWordListCaseReducer,
+  selectAllSelectedWordListCaseReducer,
+  resetDefsCaseReducer,
+  resetWordsCaseReducer,
+  resetCurrentSortCaseReducer,
+  resetCurrentFilterCaseReducer,
+  resetSortedWordListCaseReducer,
+  resetSelectedWordListCaseReducer,
+  resetUiCaseReducer
 } from './caseReducer';
 import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList } from '../state/type';
 /**
@@ -36,6 +44,7 @@ export const defsHandler: Handler<IEntityDef> = {
   [DefActionType.ADD_NEW_DEF]: addNewDefsByWordActionReducer,
   [DefActionType.REMOVE_DEF]: removeDefsByDefActionReducer, // can't use removeDefsByWordActionReducer
   [DefActionType.UPDATE_DEF]: updateDefsByWordActionReducer,
+  [ResetActionType.RESET_STATE]: resetDefsCaseReducer,
 }   
 
 export const wordsHandler: Handler<IEntityWord> = {
@@ -46,23 +55,29 @@ export const wordsHandler: Handler<IEntityWord> = {
   [DefActionType.REMOVE_DEF]: removeDefsFromWordByDefActionReducer,
   // update does not relating word entity since id hasn't change at all
   //[DefActionType.UPDATE_DEF]: updateDefsOfWordByDefActionReducer,
+  [ResetActionType.RESET_STATE]: resetWordsCaseReducer,
 }   
 
 export const currentSortHandler: Handler<ICurrentSort> = {
   [SortActionType.CHANGE_SORT]: currentSortCaseReducer,
+  [ResetActionType.RESET_STATE]: resetCurrentSortCaseReducer,
 }
 
 export const currentFilterHandler: Handler<ICurrentFilter> = {
   [FilterActionType.CHANGE_FILTER]: currentFilterCaseReducer,
+  [ResetActionType.RESET_STATE]: resetCurrentFilterCaseReducer,
 }
 
 export const sortedWordListHandler: Handler<ISortedWordList> = {
   [SortActionType.CHANGE_SORT]: sortedWordListCaseReducer,
   [FilterActionType.CHANGE_FILTER]: sortedWordListCaseReducer,
+  [ResetActionType.RESET_STATE]: resetSortedWordListCaseReducer,
 }
 
 export const selectedWordListHandler: Handler<ISelectedWordList> = {
   [SelectedWordListActionType.TOGGLE_SELECT_WORD]: toggleSelectedWordListCaseReducer,
+  [SelectedWordListActionType.SELECT_ALL_WORD]: selectAllSelectedWordListCaseReducer,
+  [ResetActionType.RESET_STATE]: resetSelectedWordListCaseReducer,
 }
 
 export const uiHandler: Handler<IUi> = {
@@ -70,5 +85,6 @@ export const uiHandler: Handler<IUi> = {
   [UiActionType.TOGGLE_DELETE_CONFIRM_MODAL]: toggleDeleteConfirmModalReducer,
   [UiActionType.TOGGLE_SORT_FILTER_MODAL]: toggleSortFilterModalReducer,
   [UiActionType.TOGGLE_SEARCH_WORD_MODAL]: toggleSearchWordModalReducer,
+  [ResetActionType.RESET_STATE]: resetUiCaseReducer,
 }
 

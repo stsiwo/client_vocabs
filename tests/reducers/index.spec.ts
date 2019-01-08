@@ -14,7 +14,9 @@ import {
   toggleDeleteConfirmModalAction,
   toggleSortFilterModalAction, 
   toggleSearchWordModalAction,
-  toggleSelectWordAction
+  toggleSelectWordAction,
+  selectAllWordAction,
+  resetStateAction
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
@@ -50,15 +52,23 @@ import {
 } from '../storage/ui';
 import {
   normalizedToggleSelectWordState,
-  normalizedToggleSelectWordRandomState
+  normalizedToggleSelectWordRandomState,
+  normalizedSelectAllWordState,
+  normalizedEmptifyWordState
 } from '../storage/selectedWordList';
 import { changeSortWrapperThunk, changeFilterWrapperThunk } from '../../src/reducers/thunk';
 import store from '../../src/storeConfig';
 import { PosEnum } from '../../src/domains/pos';
+import { initialNormalizedState } from '../../src/state/index';
 
 //const log = (input: any) => console.log(JSON.stringify(input, null, 2));
 
 describe('rootReducer', () => {
+
+  beforeEach(() => {
+    store.dispatch(resetStateAction());
+  })
+
   it('should return initial state', () => {
     const emptyAction: AnyAction = {
       type: "empty_action", 
@@ -183,6 +193,9 @@ describe('rootReducer', () => {
 })
 
 describe('rootReducer UI state test', () => {
+  beforeEach(() => {
+    store.dispatch(resetStateAction());
+  })
   // ui toggle modal
   it('should return new state (changed ui.isSelectWarningModalOpen to true', () => {
     expect(rootReducer(undefined, toggleSelectWarningModalAction(true))).toEqual(normalizedToggleSelectWarningModalState)
@@ -219,6 +232,9 @@ describe('rootReducer UI state test', () => {
 //}
 
 describe('selectedWordList state (single word)', () => {
+  beforeEach(() => {
+    store.dispatch(resetStateAction());
+  })
 
   it('should return new state (added word id (=1) to selectedWordList state)', () => {
     expect(rootReducer(undefined, toggleSelectWordAction([1]))).toEqual(normalizedToggleSelectWordState)
@@ -228,5 +244,32 @@ describe('selectedWordList state (single word)', () => {
     expect(rootReducer(undefined, toggleSelectWordAction([1, 3, 5, 7]))).toEqual(normalizedToggleSelectWordRandomState)
   })
 
+  it('should return new state (case A: select all of sortedWordList to selectedWordList state)', () => {
+    // since initial selectedWordList includes some values ( 0,1,2,3 ) so normalizedSelelctAllWordState's selectedWordList must return all values of sortedWordList 
+    expect(rootReducer(undefined, selectAllWordAction([0,1,2,3,4,5,6,7,8,9,10]))).toEqual(normalizedSelectAllWordState)
+  })
+
+  it('should return new state (case B: emptify selectedWordList state)', () => {
+
+    // select all word item first 
+    store.dispatch(selectAllWordAction([0,1,2,3,4,5,6,7,8,9,10]));
+
+    // emptify selectedWordList 
+    store.dispatch(selectAllWordAction([0,1,2,3,4,5,6,7,8,9,10]));
+    
+    // dispatch -> action -> reducer -> store 
+    // rootReducer just return new state so it means does not affect store.getState() 
+    expect(store.getState().selectedWordList).toEqual(normalizedEmptifyWordState.selectedWordList)
+  })
 })
 
+describe('reset state to initial state ', () => {
+  beforeEach(() => {
+    store.dispatch(resetStateAction());
+  })
+
+  it('should return new state (initial state)', () => {
+    expect(rootReducer(undefined, resetStateAction())).toEqual(initialNormalizedState)
+  })
+
+})
