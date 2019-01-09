@@ -33,6 +33,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/redux-logger": "^3.0.6",
     "@types/styled-components": "^4.1.2",
+    "fuzzysort": "^1.1.4",
     "lodash": "^4.17.11",
     "normalizr": "^3.3.0",
     "query-string": "^6.2.0",
