@@ -1,7 +1,7 @@
 import { SORT_ORDER } from '../enums';
 import { AnyAction } from 'redux';
 import { INormalizedState } from "../state/type"; 
-import { changeSortAction, changeFilterAction, searchKeyWordAction, changeSearchedWordListAction } from "../actions";
+import { changeSortAction, changeFilterAction, searchKeyWordAction, changeSearchedWordListAction, changeSortedWordListAction, changeDisplayedWordListAction } from "../actions";
 import { IWord } from "../domains/word";
 import { IDef } from '../domains/def';
 import { ThunkAction } from 'redux-thunk';
@@ -21,7 +21,9 @@ export const changeSortWrapperThunk: changeSortWrapperThunkType = ( newSort ) =>
   // extract only id 
   const wordIdList = wordList.map(( word ) => word.id );
   // dispatch change sort action
-  dispatch(changeSortAction(wordIdList, newSort));
+  dispatch(changeSortedWordListAction(wordIdList));
+  dispatch(changeDisplayedWordListAction(wordIdList));
+  dispatch(changeSortAction(newSort));
 }
 
 type CompareFunctionType = (a: IWord, b: IWord) => number;
@@ -82,24 +84,36 @@ export const changeFilterWrapperThunk: changeFilterWrapperThunkType = ( newFilte
   // remove duplicate word id 
   const duplFreeWordIdList = uniq(wordIdList);
   // dispatch change sort action
-  dispatch(changeFilterAction(duplFreeWordIdList, newFilter));
+  dispatch(changeSortedWordListAction(duplFreeWordIdList));
+  dispatch(changeDisplayedWordListAction(duplFreeWordIdList));
+  dispatch(changeFilterAction(newFilter));
 }
 
 type changeSearchKeyWordWrapperThunkType = (nextSearchKey: string) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
 
 export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkType = ( nextSearchKey ) => ( dispatch, getState ) => {
   // should i use sync or async? (async is better?)
-  // get sortedWordList 
-  const { sortedWordList, selectedWordList, entities } = getState();
-  // convert into IWordListItem 
-  const wordListItem = getWordListItem(sortedWordList, selectedWordList, entities);
-  // fuzzy string matching using newSearchKey and sortedWordList
-  const fuzzyResult = fuzzysort.go(nextSearchKey, wordListItem, { key: 'name' });
+  // if nextSearchKey is empty, list default words (sortedWordList)
+  if (!nextSearchKey) {
+    const { sortedWordList } = getState();
+    // change displayedWordList to sortedWordList
+    dispatch(changeDisplayedWordListAction(sortedWordList));
+    dispatch(searchKeyWordAction(nextSearchKey));
+  } else {
+    // get sortedWordList 
+    const { displayedWordList ,selectedWordList, entities } = getState();
+    // convert into IWordListItem 
+    const wordListItem = getWordListItem(displayedWordList, selectedWordList, entities);
+    // fuzzy string matching using newSearchKey and sortedWordList
+    const fuzzyResult = fuzzysort.go(nextSearchKey, wordListItem, { key: 'name' });
 
-  // get result ( list of matching word name ) and put them into sortedWordList 
-  const nextSortedWordList = fuzzyResult.map(( result ) => result.obj.id );
-  // dispatch action for sortedWordList and action for searchKeyWord
-  dispatch(changeSearchedWordListAction(nextSortedWordList));
-  dispatch(searchKeyWordAction(nextSearchKey));
-
+    // get result ( list of matching word name ) and put them into sortedWordList 
+    const nextSearchedWordList = fuzzyResult.map(( result ) => result.obj.id );
+    // dispatch action for sortedWordList and action for searchKeyWord
+    dispatch(changeSearchedWordListAction(nextSearchedWordList));
+    dispatch(changeDisplayedWordListAction(nextSearchedWordList));
+    dispatch(searchKeyWordAction(nextSearchKey));
+  }
 }
+
+

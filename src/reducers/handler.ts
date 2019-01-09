@@ -72,8 +72,6 @@ export const currentFilterHandler: Handler<ICurrentFilter> = {
 }
 
 export const sortedWordListHandler: Handler<ISortedWordList> = {
-  [SortActionType.CHANGE_SORT]: sortedWordListCaseReducer,
-  [FilterActionType.CHANGE_FILTER]: sortedWordListCaseReducer,
   [ResetActionType.RESET_STATE]: resetSortedWordListCaseReducer,
   [SortedWordListActionType.CHANGE_SORTED_WORD_LIST]: sortedWordListCaseReducer,
 }

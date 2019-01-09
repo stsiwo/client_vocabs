@@ -55,15 +55,13 @@ export const updateDefAction = (updateDef: IDef[]) => {
   }
 };
 
-export const changeSortAction = (nextSortedWordList: ISortedWordList, nextSort: SORT_ORDER) => ({
+export const changeSortAction = ( nextSort: SORT_ORDER ) => ({
   type: SortActionType.CHANGE_SORT,
-  nextSortedWordList,
   currentSort: nextSort,
 });
 
-export const changeFilterAction = (nextSortedWordList: ISortedWordList, nextFilter: ICurrentFilter ) => ({
+export const changeFilterAction = ( nextFilter: ICurrentFilter ) => ({
   type: FilterActionType.CHANGE_FILTER, 
-  nextSortedWordList,
   currentFilter: nextFilter,
 });
 

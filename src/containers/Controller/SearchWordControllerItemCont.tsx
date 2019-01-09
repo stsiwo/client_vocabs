@@ -9,7 +9,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleSearchWordModalClick: ( isOpen: boolean ) => { dispatch( toggleSearchWordModalAction( isOpen ))}, 
+  toggleSearchWordModalClick: ( isOpen: boolean ) => { dispatch(toggleSearchWordModalAction( isOpen ))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( SearchWordControllerItem );

@@ -266,6 +266,7 @@ const normalizedSortAscTestData = normalize(sortAscTestData, wordListSchema);
 export const normalizedSortAscState: INormalizedState = Object.assign({}, initialNormalizedState,  {
   entities: normalizedSortAscTestData.entities,
   sortedWordList: normalizedSortAscTestData.result,
+  displayedWordList: normalizedSortAscTestData.result,
   currentSort: SORT_ORDER.ALPHA_ASC,
 });
 
@@ -473,6 +474,7 @@ const normalizedSortDescTestData = normalize(sortDescTestData, wordListSchema);
 export const normalizedSortDescState: INormalizedState = Object.assign({}, initialNormalizedState,  {
   entities: normalizedSortDescTestData.entities,
   sortedWordList: normalizedSortDescTestData.result,
+  displayedWordList: normalizedSortDescTestData.result,
   currentSort: SORT_ORDER.ALPHA_DESC,
 });
 
@@ -679,6 +681,7 @@ const normalizedSortDateNewerTestData = normalize(sortDateNewerTestData, wordLis
 export const normalizedSortDateNewerState: INormalizedState = Object.assign({}, initialNormalizedState, {
   entities: normalizedSortDateNewerTestData.entities,
   sortedWordList: normalizedSortDateNewerTestData.result,
+  displayedWordList: normalizedSortDateNewerTestData.result,
   currentSort: SORT_ORDER.DATE_NEWER,
 })
 
@@ -885,5 +888,6 @@ const normalizedSortDateOlderTestData = normalize(sortDateOlderTestData, wordLis
 export const normalizedSortDateOlderState: INormalizedState = Object.assign({}, initialNormalizedState, {
   entities: normalizedSortDateOlderTestData.entities,
   sortedWordList: normalizedSortDateOlderTestData.result,
+  displayedWordList: normalizedSortDateOlderTestData.result,
   currentSort: SORT_ORDER.DATE_OLDER,
 });
