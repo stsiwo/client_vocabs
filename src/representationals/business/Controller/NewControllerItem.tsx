@@ -22,6 +22,7 @@ class NewControllerItem extends React.Component<Props, {}> {
     // guide users to create new word page 
     // should url be "word/detail" or "word/new"??
     // in large screen, when users click "new" icon, append new wordform tree in bottom
+    this.props.history.push('/word/detail');
   }
 
   render() {
