@@ -32,6 +32,12 @@ export type ICurrentSort = SORT_ORDER;
 // sortedWordList 
 export type ISortedWordList = number[]; 
 
+// searchedWordList 
+export type ISearchedWordList = number[]; 
+
+// displayedWordList 
+export type IDisplayedWordList = number[]; 
+
 // selectedWordList 
 export type ISelectedWordList = number[]; 
 
@@ -46,6 +52,8 @@ export interface INormalizedState {
   entities: IEntity;
   sortedWordList: ISortedWordList;
   selectedWordList: ISortedWordList;
+  searchedWordList: ISearchedWordList;
+  displayedWordList: IDisplayedWordList;
   currentSort: ICurrentSort;
   currentFilter: ICurrentFilter;  
   searchKeyWord: ISearchKeyWord;

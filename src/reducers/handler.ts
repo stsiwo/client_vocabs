@@ -1,4 +1,4 @@
-import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType } from '../actions/type';
+import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType, SearchedWordListActionType, DisplayedWordListActionType } from '../actions/type';
 import { caseReducer } from './caseReducer';
 import { 
   addNewDefsByWordActionReducer, 
@@ -26,9 +26,11 @@ import {
   resetSortedWordListCaseReducer,
   resetSelectedWordListCaseReducer,
   resetUiCaseReducer,
-  searchKeyWordCaseReducer
+  searchKeyWordCaseReducer,
+  searchedWordListCaseReducer,
+  displayedWordListCaseReducer
 } from './caseReducer';
-import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord } from '../state/type';
+import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord, ISearchedWordList, IDisplayedWordList } from '../state/type';
 /**
  * Hander type
  * must match property name with action type of a domain
@@ -74,6 +76,14 @@ export const sortedWordListHandler: Handler<ISortedWordList> = {
   [FilterActionType.CHANGE_FILTER]: sortedWordListCaseReducer,
   [ResetActionType.RESET_STATE]: resetSortedWordListCaseReducer,
   [SortedWordListActionType.CHANGE_SORTED_WORD_LIST]: sortedWordListCaseReducer,
+}
+
+export const searchedWordListHandler: Handler<ISearchedWordList> = {
+  [SearchedWordListActionType.CHANGE_SEARCHED_WORD_LIST]: searchedWordListCaseReducer,
+}
+
+export const displayedWordListHandler: Handler<IDisplayedWordList> = {
+  [DisplayedWordListActionType.CHANGE_DISPLAYED_WORD_LIST]: displayedWordListCaseReducer,
 }
 
 export const selectedWordListHandler: Handler<ISelectedWordList> = {

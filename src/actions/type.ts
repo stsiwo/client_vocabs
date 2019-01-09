@@ -33,6 +33,10 @@ interface ISelectedWordListActionType {
   SELECT_ALL_WORD: string;
 }
 
+interface ISearchedWordListActionType {
+  CHANGE_SEARCHED_WORD_LIST: string;
+}
+
 interface IResetActionType {
   RESET_STATE: string;
 }
@@ -45,6 +49,9 @@ interface ISortedWordListActionType {
   CHANGE_SORTED_WORD_LIST: string;
 }
 
+interface IDisplayedWordListActionType {
+  CHANGE_DISPLAYED_WORD_LIST: string;
+}
 /**
  * action type
  **/
@@ -90,6 +97,15 @@ export const ResetActionType: IResetActionType = {
 
 export const SearchKeyWordActionType: ISearchKeyWordActionType = {
   CHANGE_SEARCH_TEXT: "CHANGE_SEARCH_TEXT",
+}
+
+export const SearchedWordListActionType: ISearchedWordListActionType = {
+  CHANGE_SEARCHED_WORD_LIST: 'CHANGE_SEARCHED_WORD_LIST',
+}
+
+
+export const DisplayedWordListActionType: IDisplayedWordListActionType = {
+  CHANGE_DISPLAYED_WORD_LIST: 'CHANGE_DISPLAYED_WORD_LIST',
 }
 
 /**

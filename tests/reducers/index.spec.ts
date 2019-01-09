@@ -18,7 +18,9 @@ import {
   selectAllWordAction,
   resetStateAction,
   searchKeyWordAction,
-  changeSortedWordListAction
+  changeSortedWordListAction,
+  changeSearchedWordListAction,
+  changeDisplayedWordListAction
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
@@ -265,7 +267,7 @@ describe('selectedWordList state (single word)', () => {
   })
 })
 
-describe('searchKeyWord state', () => {
+describe('sortedWordList state', () => {
   beforeEach(() => {
     store.dispatch(resetStateAction());
   })
@@ -274,6 +276,34 @@ describe('searchKeyWord state', () => {
     expect(rootReducer(undefined, changeSortedWordListAction([])).sortedWordList).toEqual([])
   })
 
+})
+
+describe('searchedWordList state', () => {
+  beforeEach(() => {
+    store.dispatch(resetStateAction());
+  })
+
+  it('should return new state ( change searchedWordList to empty array', () => {
+    expect(rootReducer(undefined, changeSearchedWordListAction([])).searchedWordList).toEqual([])
+  })
+
+  it('should return new state ( change searchedWordList to ramdom values array', () => {
+    expect(rootReducer(undefined, changeSearchedWordListAction([1,2,3,4])).searchedWordList).toEqual([1,2,3,4])
+  })
+})
+
+describe('displayedWordList state', () => {
+  beforeEach(() => {
+    store.dispatch(resetStateAction());
+  })
+
+  it('should return new state ( change displayedWordList to empty array', () => {
+    expect(rootReducer(undefined, changeDisplayedWordListAction([])).displayedWordList).toEqual([])
+  })
+
+  it('should return new state ( change displayedWordList to ramdom values array', () => {
+    expect(rootReducer(undefined, changeDisplayedWordListAction([1,2,3,4])).displayedWordList).toEqual([1,2,3,4])
+  })
 })
 
 describe('searchKeyWord state', () => {

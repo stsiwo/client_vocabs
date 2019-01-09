@@ -242,7 +242,9 @@ export const initialNormalizedState: INormalizedState = {
   },
   currentSort: 1, 
   sortedWordList: [0,1,2,3,4,5,6,7,8,9,10],
+  searchedWordList: [],
   selectedWordList: [0,1,2,3],
+  displayedWordList: [0,1,2,3,4,5,6,7,8,9,10], 
   searchKeyWord: '',
   currentFilter: [0,1,2,3,4,5,6,7,8,9],
   ui: {

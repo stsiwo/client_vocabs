@@ -1,6 +1,6 @@
-import { IEntity, IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord } from '../state/type';
+import { IEntity, IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord, ISearchedWordList, IDisplayedWordList } from '../state/type';
 import { normalizedState } from '../state/index';
-import { Handler, defsHandler, wordsHandler, currentSortHandler, sortedWordListHandler, currentFilterHandler, uiHandler, selectedWordListHandler , searchKeyWordHandler } from './handler';  
+import { Handler, defsHandler, wordsHandler, currentSortHandler, sortedWordListHandler, currentFilterHandler, uiHandler, selectedWordListHandler , searchKeyWordHandler, searchedWordListHandler, displayedWordListHandler } from './handler';  
 import { AnyAction, combineReducers } from 'redux';
 
 // higher order reducer to make customized slice reducer 
@@ -24,6 +24,10 @@ const wordsReducer = createReducer<IEntityWord>(normalizedState.entities.words, 
 export const currentSortReducer = createReducer<ICurrentSort>(normalizedState.currentSort, currentSortHandler);
 
 export const sortedWordListReducer = createReducer<ISortedWordList>(normalizedState.sortedWordList, sortedWordListHandler);
+
+export const searchedWordListReducer = createReducer<ISearchedWordList>(normalizedState.searchedWordList, searchedWordListHandler);
+
+export const displayedWordListReducer = createReducer<IDisplayedWordList>(normalizedState.displayedWordList, displayedWordListHandler);
 
 export const selectedWordListReducer = createReducer<ISelectedWordList>(normalizedState.selectedWordList, selectedWordListHandler);
 

@@ -1,8 +1,8 @@
-import { ISortedWordList, ICurrentFilter } from '../state/type';
+import { ISortedWordList, ICurrentFilter, ISearchedWordList, IDisplayedWordList } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
-import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType } from './type'; 
+import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType, SearchedWordListActionType, DisplayedWordListActionType } from './type'; 
 import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
@@ -70,6 +70,16 @@ export const changeFilterAction = (nextSortedWordList: ISortedWordList, nextFilt
 export const changeSortedWordListAction = (nextSortedWordList: ISortedWordList) => ({
   type: SortedWordListActionType.CHANGE_SORTED_WORD_LIST,
   nextSortedWordList: nextSortedWordList,
+})
+
+export const changeSearchedWordListAction = (nextSearchedWordList: ISearchedWordList) => ({
+  type: SearchedWordListActionType.CHANGE_SEARCHED_WORD_LIST,
+  nextSearchedWordList: nextSearchedWordList,
+})
+
+export const changeDisplayedWordListAction = (nextDisplayedWordList: IDisplayedWordList) => ({
+  type: DisplayedWordListActionType.CHANGE_DISPLAYED_WORD_LIST,
+  nextDisplayedWordList: nextDisplayedWordList,
 })
 
 export const toggleSelectWarningModalAction = (isSelectWarningModalOpen: boolean) => ({

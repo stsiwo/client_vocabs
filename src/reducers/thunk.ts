@@ -1,7 +1,7 @@
 import { SORT_ORDER } from '../enums';
 import { AnyAction } from 'redux';
 import { INormalizedState } from "../state/type"; 
-import { changeSortAction, changeFilterAction, searchKeyWordAction, changeSortedWordListAction  } from "../actions";
+import { changeSortAction, changeFilterAction, searchKeyWordAction, changeSearchedWordListAction } from "../actions";
 import { IWord } from "../domains/word";
 import { IDef } from '../domains/def';
 import { ThunkAction } from 'redux-thunk';
@@ -99,7 +99,7 @@ export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkTyp
   // get result ( list of matching word name ) and put them into sortedWordList 
   const nextSortedWordList = fuzzyResult.map(( result ) => result.obj.id );
   // dispatch action for sortedWordList and action for searchKeyWord
-  dispatch(changeSortedWordListAction(nextSortedWordList));
+  dispatch(changeSearchedWordListAction(nextSortedWordList));
   dispatch(searchKeyWordAction(nextSearchKey));
 
 }

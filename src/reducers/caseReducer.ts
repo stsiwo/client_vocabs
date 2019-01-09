@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { caseReducer } from './caseReducer';
-import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord } from '../state/type'; 
+import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord, ISearchedWordList, IDisplayedWordList } from '../state/type'; 
 import { ISelectAllWordActionType } from '../actions/type';
 import { initialNormalizedState } from '../state/index';
 const xor = require('lodash/xor');
@@ -77,6 +77,10 @@ export const currentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, a
 export const resetCurrentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, action) => initialNormalizedState.currentSort;
 
 export const sortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => action.nextSortedWordList;
+
+export const searchedWordListCaseReducer: caseReducer<ISearchedWordList> = (searchedWordList, action) => action.nextSearchedWordList;
+
+export const displayedWordListCaseReducer: caseReducer<IDisplayedWordList> = (displayedWordList, action) => action.nextDisplayedWordList;
 
 export const resetSortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => initialNormalizedState.sortedWordList;
 
