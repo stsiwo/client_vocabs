@@ -3,14 +3,14 @@ import { AnyAction, Dispatch, compose } from 'redux';
 import SearchWordModal from '../representationals/business/SearchWordModal/SearchWordModal';
 import { INormalizedState } from '../state/type';
 import { withRouter } from 'react-router-dom';
-import { toggleSearchWordModalAction } from '../actions/index';
+import { searchKeyWordAction } from '../actions/index';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
-  isSearchWordModalOpen: state.ui.isSearchWordModalOpen,
+  searchKeyWord: state.searchKeyWord,
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleSearchWordModalClick: ( isOpen: boolean ) => { dispatch( toggleSearchWordModalAction( isOpen ))}, 
+  changeSearchKeyWord: ( nextSearchKey: string ) => { dispatch( searchKeyWordAction( nextSearchKey ))}, 
 });
 
 export default compose(

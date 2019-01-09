@@ -11,4 +11,6 @@ export type changeFilterDispatchType = (nextFilter: PosEnum[]) => void;
 
 export type toggleSelectWordDispatchType = (nextSelectedWordList: number[]) => void;
 
+export type changeSearchKeyWordDispatchType = (nextSearchKey: string) => void;
+
 

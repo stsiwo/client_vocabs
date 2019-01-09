@@ -37,6 +37,10 @@ interface IResetActionType {
   RESET_STATE: string;
 }
 
+interface ISearchKeyWordActionType {
+  CHANGE_SEARCH_TEXT: string;
+}
+
 /**
  * action type
  **/
@@ -74,6 +78,10 @@ export const SelectedWordListActionType: ISelectedWordListActionType = {
 
 export const ResetActionType: IResetActionType = {
   RESET_STATE: "RESET_STATE",
+}
+
+export const SearchKeyWordActionType: ISearchKeyWordActionType = {
+  CHANGE_SEARCH_TEXT: "CHANGE_SEARCH_TEXT",
 }
 
 /**

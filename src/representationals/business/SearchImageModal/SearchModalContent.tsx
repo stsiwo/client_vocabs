@@ -40,7 +40,7 @@ class SearchModalContent extends React.Component<Props, State> {
   render() {
     return (
       <div className={ this.props.className }>
-        <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } initialValue={ this.props.initialSearchInput }/>
+        <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } value={ this.props.initialSearchInput }/>
         <SearchResults items={ this.state.items } />
       </div>
     );

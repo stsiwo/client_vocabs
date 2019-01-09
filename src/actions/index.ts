@@ -2,7 +2,7 @@ import { ISortedWordList, ICurrentFilter } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
-import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType } from './type'; 
+import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType } from './type'; 
 import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
@@ -99,4 +99,9 @@ export const selectAllWordAction = (nextSelectedWordList: number[]) => ({
 
 export const resetStateAction = () => ({
   type: ResetActionType.RESET_STATE,
+});
+
+export const searchKeyWordAction = (nextSearchKey: string) => ({
+  type: SearchKeyWordActionType.CHANGE_SEARCH_TEXT,
+  nextSearchKey: nextSearchKey,
 });

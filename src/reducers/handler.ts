@@ -1,4 +1,4 @@
-import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType } from '../actions/type';
+import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType } from '../actions/type';
 import { caseReducer } from './caseReducer';
 import { 
   addNewDefsByWordActionReducer, 
@@ -25,9 +25,10 @@ import {
   resetCurrentFilterCaseReducer,
   resetSortedWordListCaseReducer,
   resetSelectedWordListCaseReducer,
-  resetUiCaseReducer
+  resetUiCaseReducer,
+  searchKeyWordCaseReducer
 } from './caseReducer';
-import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList } from '../state/type';
+import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord } from '../state/type';
 /**
  * Hander type
  * must match property name with action type of a domain
@@ -88,3 +89,6 @@ export const uiHandler: Handler<IUi> = {
   [ResetActionType.RESET_STATE]: resetUiCaseReducer,
 }
 
+export const searchKeyWordHandler: Handler<ISearchKeyWord> = {
+  [SearchKeyWordActionType.CHANGE_SEARCH_TEXT]: searchKeyWordCaseReducer,
+}

@@ -38,7 +38,7 @@ export type ISelectedWordList = number[];
 // currentFilter
 export type ICurrentFilter = PosEnum[];
 
-
+export type ISearchKeyWord = string;
 /**
  * normalized state shape interface 
  **/
@@ -48,6 +48,7 @@ export interface INormalizedState {
   selectedWordList: ISortedWordList;
   currentSort: ICurrentSort;
   currentFilter: ICurrentFilter;  
+  searchKeyWord: ISearchKeyWord;
   ui: IUi;
 }
 

@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { caseReducer } from './caseReducer';
-import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter, IUi, ISelectedWordList } from '../state/type'; 
+import { IEntityWord, IEntityDef, ISortedWordList, ICurrentSort, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord } from '../state/type'; 
 import { ISelectAllWordActionType } from '../actions/type';
 import { initialNormalizedState } from '../state/index';
 const xor = require('lodash/xor');
@@ -119,3 +119,4 @@ export const toggleSearchWordModalReducer: caseReducer<IUi> = (ui, action) => Ob
 
 export const resetUiCaseReducer: caseReducer<IUi> = (ui, action) => Object.assign({}, ui, initialNormalizedState.ui);
 
+export const searchKeyWordCaseReducer: caseReducer<ISearchKeyWord> = (searchKeyWord, action) => action.nextSearchKey; 

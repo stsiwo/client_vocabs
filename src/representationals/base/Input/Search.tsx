@@ -11,23 +11,19 @@ interface Props {
   labelName?: string;
   placeholder?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-  initialValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 
 class Search extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e: React.MouseEvent<HTMLElement>) {
-    this.props.onClick(e);
   }
 
   render() {
     return (
       <div className={ this.props.className }>
-        <Input type="search" id={ this.props.labelName } name={ this.props.labelName } placeholder={ this.props.placeholder } value={ this.props.initialValue }></Input>
+        <Input type="search" id={ this.props.labelName } name={ this.props.labelName } placeholder={ this.props.placeholder } value={ this.props.value } onChange={ this.props.onChange }></Input>
         <label htmlFor={ this.props.labelName }>
           <Icon svgSrc={ searchIcon } hoverEffect={ true } />
         </label>
