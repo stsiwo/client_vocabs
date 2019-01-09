@@ -41,6 +41,10 @@ interface ISearchKeyWordActionType {
   CHANGE_SEARCH_TEXT: string;
 }
 
+interface ISortedWordListActionType {
+  CHANGE_SORTED_WORD_LIST: string;
+}
+
 /**
  * action type
  **/
@@ -71,6 +75,10 @@ export const UiActionType: IUiActionType = {
   TOGGLE_SEARCH_WORD_MODAL: "TOGGLE_SEARCH_WORD_MODAL",
 }
 
+export const SortedWordListActionType: ISortedWordListActionType = {
+  CHANGE_SORTED_WORD_LIST: 'CHANGE_SORTED_WORD_LIST',
+}
+
 export const SelectedWordListActionType: ISelectedWordListActionType = {
   TOGGLE_SELECT_WORD: "TOGGLE_SELECT_WORD",
   SELECT_ALL_WORD: "SELECT_ALL_WORD",
@@ -90,4 +98,9 @@ export const SearchKeyWordActionType: ISearchKeyWordActionType = {
 export interface ISelectAllWordActionType {
   type: string;
   nextSelectedWordList: number[];
+}
+
+export interface IChangeSortedWordListAction {
+  type: string;
+  nextSortedWordList: number[];
 }

@@ -17,7 +17,8 @@ import {
   toggleSelectWordAction,
   selectAllWordAction,
   resetStateAction,
-  searchKeyWordAction
+  searchKeyWordAction,
+  changeSortedWordListAction
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
@@ -262,6 +263,17 @@ describe('selectedWordList state (single word)', () => {
     // rootReducer just return new state so it means does not affect store.getState() 
     expect(store.getState().selectedWordList).toEqual(normalizedEmptifyWordState.selectedWordList)
   })
+})
+
+describe('searchKeyWord state', () => {
+  beforeEach(() => {
+    store.dispatch(resetStateAction());
+  })
+
+  it('should return new state ( change sortedWordList to empty array', () => {
+    expect(rootReducer(undefined, changeSortedWordListAction([])).sortedWordList).toEqual([])
+  })
+
 })
 
 describe('searchKeyWord state', () => {

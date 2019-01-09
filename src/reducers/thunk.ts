@@ -1,11 +1,13 @@
 import { SORT_ORDER } from '../enums';
 import { AnyAction } from 'redux';
 import { INormalizedState } from "../state/type"; 
-import { changeSortAction, changeFilterAction } from "../actions";
+import { changeSortAction, changeFilterAction, searchKeyWordAction, changeSortedWordListAction  } from "../actions";
 import { IWord } from "../domains/word";
 import { IDef } from '../domains/def';
 import { ThunkAction } from 'redux-thunk';
 import { PosEnum } from '../../src/domains/pos';
+import { getWordListItem } from './helper';
+import * as fuzzysort from 'fuzzysort';
 const uniq = require('lodash/uniq');
 //: ThunkAction<void, INormalizedState, undefined, AnyAction> 
 
@@ -83,5 +85,21 @@ export const changeFilterWrapperThunk: changeFilterWrapperThunkType = ( newFilte
   dispatch(changeFilterAction(duplFreeWordIdList, newFilter));
 }
 
+type changeSearchKeyWordWrapperThunkType = (nextSearchKey: string) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
 
-  
+export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkType = ( nextSearchKey ) => ( dispatch, getState ) => {
+  // should i use sync or async? (async is better?)
+  // get sortedWordList 
+  const { sortedWordList, selectedWordList, entities } = getState();
+  // convert into IWordListItem 
+  const wordListItem = getWordListItem(sortedWordList, selectedWordList, entities);
+  // fuzzy string matching using newSearchKey and sortedWordList
+  const fuzzyResult = fuzzysort.go(nextSearchKey, wordListItem, { key: 'name' });
+
+  // get result ( list of matching word name ) and put them into sortedWordList 
+  const nextSortedWordList = fuzzyResult.map(( result ) => result.obj.id );
+  // dispatch action for sortedWordList and action for searchKeyWord
+  dispatch(changeSortedWordListAction(nextSortedWordList));
+  dispatch(searchKeyWordAction(nextSearchKey));
+
+}

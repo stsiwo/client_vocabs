@@ -76,7 +76,7 @@ export const currentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, a
 
 export const resetCurrentSortCaseReducer: caseReducer<ICurrentSort> = (currentSort, action) => initialNormalizedState.currentSort;
 
-export const sortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => action.sortedWordList;
+export const sortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => action.nextSortedWordList;
 
 export const resetSortedWordListCaseReducer: caseReducer<ISortedWordList> = (sortedWordList, action) => initialNormalizedState.sortedWordList;
 

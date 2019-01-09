@@ -1,4 +1,4 @@
-import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType } from '../actions/type';
+import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType } from '../actions/type';
 import { caseReducer } from './caseReducer';
 import { 
   addNewDefsByWordActionReducer, 
@@ -73,6 +73,7 @@ export const sortedWordListHandler: Handler<ISortedWordList> = {
   [SortActionType.CHANGE_SORT]: sortedWordListCaseReducer,
   [FilterActionType.CHANGE_FILTER]: sortedWordListCaseReducer,
   [ResetActionType.RESET_STATE]: resetSortedWordListCaseReducer,
+  [SortedWordListActionType.CHANGE_SORTED_WORD_LIST]: sortedWordListCaseReducer,
 }
 
 export const selectedWordListHandler: Handler<ISelectedWordList> = {

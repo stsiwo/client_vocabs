@@ -2,18 +2,13 @@ import { connect } from 'react-redux'
 import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import WordList from '../../representationals/business/WordList/WordList';
 import { INormalizedState } from '../../state/type';
-import { IWordListItem } from '../../domains/word';
+import { getWordListItem } from '../../reducers/helper';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
   // get state (sortedWordList and selectedWordList)
   const { sortedWordList, selectedWordList, entities } = state;
   // convert sortedWordList to [IWordListItem] see word.ts in domains
-  const wordListItem: IWordListItem[] = sortedWordList.map(( wordId ) => ({
-    id: wordId,
-    name: entities.words[wordId].name,
-    isChecked: selectedWordList.includes(wordId),
-  }))
-    
+  const wordListItem = getWordListItem(sortedWordList, selectedWordList, entities);  
   // send that IWordListItem[] as props
   return {
     wordListItem: wordListItem,

@@ -2,7 +2,7 @@ import { ISortedWordList, ICurrentFilter } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
-import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType } from './type'; 
+import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType } from './type'; 
 import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
@@ -55,17 +55,22 @@ export const updateDefAction = (updateDef: IDef[]) => {
   }
 };
 
-export const changeSortAction = (sortedWordList: ISortedWordList, nextSort: SORT_ORDER) => ({
+export const changeSortAction = (nextSortedWordList: ISortedWordList, nextSort: SORT_ORDER) => ({
   type: SortActionType.CHANGE_SORT,
-  sortedWordList,
+  nextSortedWordList,
   currentSort: nextSort,
 });
 
-export const changeFilterAction = (sortedWordList: ISortedWordList, nextFilter: ICurrentFilter ) => ({
+export const changeFilterAction = (nextSortedWordList: ISortedWordList, nextFilter: ICurrentFilter ) => ({
   type: FilterActionType.CHANGE_FILTER, 
-  sortedWordList,
+  nextSortedWordList,
   currentFilter: nextFilter,
 });
+
+export const changeSortedWordListAction = (nextSortedWordList: ISortedWordList) => ({
+  type: SortedWordListActionType.CHANGE_SORTED_WORD_LIST,
+  nextSortedWordList: nextSortedWordList,
+})
 
 export const toggleSelectWarningModalAction = (isSelectWarningModalOpen: boolean) => ({
   type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,

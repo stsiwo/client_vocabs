@@ -5,11 +5,12 @@ import SearchWordModalCont from '../../src/containers/SearchWordModalCont';
 import { initialNormalizedState } from '../../src/state/index';
 //import { wordListItemModel } from '../storage/containers/wordListCont';
 import configureMockStore from 'redux-mock-store';
-import { searchKeyWordAction } from '../../src/actions/index';
+import { searchKeyWordAction, changeSortedWordListAction } from '../../src/actions/index';
 import { changeSearchKeyWordDispatchType } from '../../src/containers/type';
 import { MockStoreEnhanced } from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore([thunk]);
 
 describe('SearchWordModalCont', function() {
   //let store: MockStoreEnhanced;
@@ -45,7 +46,8 @@ describe('SearchWordModalCont', function() {
     // get dispatched action in mock store
     const actions = store.getActions();
     
-    expect(actions[0]).toEqual(searchKeyWordAction('test')); 
+    expect(actions[0]).toEqual(changeSortedWordListAction([])); 
+    expect(actions[1]).toEqual(searchKeyWordAction('test')); 
   })
 })
 
