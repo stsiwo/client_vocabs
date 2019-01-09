@@ -3,13 +3,15 @@ import * as React from 'react';
 import ControllerItem from '../../base/Controller/ControllerItem';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router-dom';
+import { toggleClickType } from '../../../containers/type';
 const editIcon = require('./assets/edit.svg');
 
 
 interface Props extends RouteComponentProps<{}> {
   className?: string;
+  isSelectedWordListEmpty: boolean;
+  toggleSelectWarningModalClick: toggleClickType;
 }
-
 
 class EditControllerItem extends React.Component<Props, {}> {
   constructor(props: Props) {
@@ -19,17 +21,16 @@ class EditControllerItem extends React.Component<Props, {}> {
 
   onEditClick(e: React.MouseEvent<HTMLElement>) {
     // check redux store's currentSelectedWords is empty or not
-    const isEmpty = true;
     // if empty, show modal warning to make users select at least one word
-    if (isEmpty) {
+    if (this.props.isSelectedWordListEmpty) {
       // check redux store's ui.isSelectModalOpen
       // it must be false; then change to true to open
       // then close button inside the modal is clicked return the value to false;
+      this.props.toggleSelectWarningModalClick(true);
     } else {
       // pick currentSelectedWords array 
       // parse to query string then send to "/word/detail?id=1&..." using below
-      this.props.history.push('/word/detail?id=1&id=2&id=3'); 
-
+      this.props.history.push('/word/detail'); 
     }
   }
 

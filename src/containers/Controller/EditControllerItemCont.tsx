@@ -5,9 +5,13 @@ import { INormalizedState } from '../../state/type';
 //import { withRouter } from 'react-router-dom';
 import { toggleSelectWarningModalAction } from '../../actions/index';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
-  isSelectWarningModalOpen: state.ui.isSelectWarningModalOpen,
-});
+const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
+  
+  const isSelectedWordListEmpty = (state.selectedWordList.length === 0) ? true : false;
+  return {
+    isSelectedWordListEmpty: isSelectedWordListEmpty,
+  }
+};
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   toggleSelectWarningModalClick: ( isOpen: boolean ) => { dispatch( toggleSelectWarningModalAction( isOpen ))}, 
