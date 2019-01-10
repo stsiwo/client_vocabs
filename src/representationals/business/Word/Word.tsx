@@ -3,7 +3,7 @@ import styled from '../../story/styledComponents';
 import WordListCont from '../../../containers/Word/WordListCont';
 import MediaQuery from 'react-responsive';
 import { Route, Redirect } from 'react-router-dom';
-import WordDetail from '../WordDetail/WordDetail';
+import WordDetailCont from '../../../containers/Word/WordDetailCont';
 import Controller from '../Controller/Controller';
 import { IWord } from '../../../domains/word';
 import { initialWordList } from '../../../state/index';
@@ -41,12 +41,12 @@ class Word extends React.Component<Props, State> {
     return (
       <div className={ this.props.className }>
         <MediaQuery maxWidth={ 425 }>
-          <Route exact path="/word" component={WordListCont} />
-          <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
+          <Route exact path="/word" component={ WordListCont } />
+          <Route path="/word/detail" component={ WordDetailCont }/>} />
         </MediaQuery>
         <MediaQuery minWidth={ 426 }>
-          <Route path="/word" component={WordListCont} />} /> 
-          <Route path="/word/detail" render={(props) => <WordDetail {...props} words={this.state.words} />} />
+          <Route path="/word" component={ WordListCont } />} /> 
+          <Route path="/word/detail" component={ WordDetailCont } />} />
           <Redirect from="/word" to="/word/detail" />
           <Controller />
         </MediaQuery>

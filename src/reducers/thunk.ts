@@ -17,10 +17,10 @@ type changeSortWrapperThunkType = (newSort: SORT_ORDER) => ThunkAction<void, INo
 
 export const changeSortWrapperThunk: changeSortWrapperThunkType = ( newSort ) => ( dispatch, getState ) => {
   // get sortedWordList and denormalized to sort
-  const { sortedWordList } = getState();
-  const wordList = denormalizeWordList(sortedWordList); 
+  const { sortedWordList, entities } = getState();
+  const wordList = denormalizeWordList( sortedWordList, entities ); 
   // sort with handler
-  wordList.sort(sortHandlers[newSort]); 
+  wordList.sort( sortHandlers[newSort] ); 
   // extract only id 
   const wordIdList = wordList.map(( word ) => word.id );
   // dispatch change sort action

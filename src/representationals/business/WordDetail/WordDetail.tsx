@@ -12,8 +12,7 @@ interface Props extends RouteComponentProps<{}> {
 }
 /**
  * display selected word items' details 
- * - selected items are defined in redux store's currentSelectedWords (or query string?)
- * - temporarily using test words list from props, so need to fix later when implementing redux
+ * - selected items are defined in redux store's currentSelectedWords 
  **/
 class WordDetail extends React.Component<Props, {}> {
   constructor(props: Props) {
