@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import { Vl } from '../../base/common/Line';
-import NewControllerItem from './NewControllerItem';
+import NewControllerItemCont from '../../../containers/Controller/NewControllerItemCont';
 import DeleteControllerItemCont from '../../../containers/Controller/DeleteControllerItemCont';
 import SortFilterControllerItemCont from '../../../containers/Controller/SortFilterControllerItemCont';
 import SearchWordControllerItemCont from '../../../containers/Controller/SearchWordControllerItemCont';
@@ -21,7 +21,7 @@ class MobileController extends React.Component<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-        <NewControllerItem />
+        <NewControllerItemCont />
         <Vl />
         <DeleteControllerItemCont />
         <Vl />
