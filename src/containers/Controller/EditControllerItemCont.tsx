@@ -4,6 +4,7 @@ import EditControllerItem from '../../representationals/business/Controller/Edit
 import { INormalizedState } from '../../state/type';
 //import { withRouter } from 'react-router-dom';
 import { toggleSelectWarningModalAction } from '../../actions/index';
+import openModalWrapperThunk from '../../thunk/openModal';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
   
@@ -14,7 +15,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleSelectWarningModalClick: ( isOpen: boolean ) => { dispatch( toggleSelectWarningModalAction( isOpen ))}, 
+  toggleSelectWarningModalClick: () => { dispatch<any>( openModalWrapperThunk(toggleSelectWarningModalAction))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( EditControllerItem );

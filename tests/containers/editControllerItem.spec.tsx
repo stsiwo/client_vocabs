@@ -5,9 +5,13 @@ import EditControllerItemCont from '../../src/containers/Controller/EditControll
 import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
 import { toggleClickType } from '../../src/containers/type';
-import { toggleSelectWarningModalAction } from '../../src/actions/index';
+import * as openModalWrapperThunk from '../../src/thunk/openModal'; 
+import { openModalWrapperThunkDummyFunc } from '../storage/thunk/openModal';
+import * as sinon from 'sinon';
+import { SinonSpy } from 'sinon';
+import thunk from 'redux-thunk';
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore([ thunk ]);
 
 describe('EditControllerItemCont', function() {
 
@@ -50,13 +54,22 @@ describe('EditControllerItemCont', function() {
     
     const toggleSelectWarningModalClick: toggleClickType = wrapper.find("EditControllerItem").first().prop('toggleSelectWarningModalClick');
 
+    //  stub
+    /**
+     * WHEN SPY, MOCK, STUB imported function or object, use like below
+     * if using ES6, you have to import as default and assign object and its method as default like below and import as object ( like import * as ... )
+     **/
+    const openModalWrapperThunkStub: SinonSpy = sinon.stub(openModalWrapperThunk, 'default').callsFake(openModalWrapperThunkDummyFunc)
+
     // programmarically call dispatch wrapper function since react event is tested in another test
     toggleSelectWarningModalClick(true);
 
     // get dispatched action in mock store
     const actions = store.getActions();
+
+    sinon.assert.calledOnce(openModalWrapperThunkStub);
     
-    expect(actions[0]).toEqual(toggleSelectWarningModalAction(true)); 
+    expect(actions[0]).toEqual({ type: "dummy_thunk_action" }); 
   })
 })
 

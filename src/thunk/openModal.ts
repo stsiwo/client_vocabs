@@ -7,9 +7,9 @@ import toggleSearchWordModalWrapperThunk from './toggleSearchWordModal';
  * this thunk for close SearchWordModal when users open another modal
  * while SearchWordModal is open
  **/
-type openModalWrapperThunkType = (modalActionCreator: (isOpen: boolean) => AnyAction) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
+export type openModalWrapperThunkType = (modalActionCreator: (isOpen: boolean) => AnyAction) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
 
-export const openModalWrapperThunk: openModalWrapperThunkType = ( modalActionCreator ) => ( dispatch, getState ) => {
+const openModalWrapperThunk: openModalWrapperThunkType = ( modalActionCreator ) => ( dispatch, getState ) => {
   // get isSearchWordModalOpen to check it's open or not
   const { isSearchWordModalOpen } = getState().ui;
   // if open, close SearchWordModal and open the modal that users want to open
@@ -20,5 +20,5 @@ export const openModalWrapperThunk: openModalWrapperThunkType = ( modalActionCre
   // if not, just open the modal  
   dispatch(modalActionCreator(true));
 }
-
+export default openModalWrapperThunk;
 
