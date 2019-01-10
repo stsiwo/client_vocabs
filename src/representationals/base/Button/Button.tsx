@@ -46,6 +46,8 @@ const StyledButton = styled(Button)`
   box-shadow: 1px 1px 2px ${( props ) => props.theme.primaryColor };
   ${ripple}
 `;
+StyledButton.displayName = "ButtonSelector";
+
 
 
 export default StyledButton;

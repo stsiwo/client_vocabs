@@ -7,15 +7,18 @@ import { IDef } from '../domains/def';
 import { ThunkAction } from 'redux-thunk';
 import { PosEnum } from '../../src/domains/pos';
 import { getWordListItem } from './helper';
+import { denormalizeWordList } from '../state/index';
 import * as fuzzysort from 'fuzzysort';
 const uniq = require('lodash/uniq');
+//const flatten = require('lodash/flatten');
 //: ThunkAction<void, INormalizedState, undefined, AnyAction> 
 
 type changeSortWrapperThunkType = (newSort: SORT_ORDER) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
 
 export const changeSortWrapperThunk: changeSortWrapperThunkType = ( newSort ) => ( dispatch, getState ) => {
-  // get words state
-  const wordList = Object.values(getState().entities.words);
+  // get sortedWordList and denormalized to sort
+  const { sortedWordList } = getState();
+  const wordList = denormalizeWordList(sortedWordList); 
   // sort with handler
   wordList.sort(sortHandlers[newSort]); 
   // extract only id 
@@ -75,10 +78,14 @@ type changeFilterWrapperThunkType = (newFilter: PosEnum[]) => ThunkAction<void, 
 
 export const changeFilterWrapperThunk: changeFilterWrapperThunkType = ( newFilter ) => ( dispatch, getState ) => {
 
-  // get defs state
+  // get sortedWordList and denormalized to sort
+  //const { sortedWordList } = getState();
+  //const wordList = denormalizeWordList(sortedWordList); 
+  // extract IDef[] and flatten to single dimensional array 
+  //const defList = flatten(wordList.map(( word: IWord ) => word.defs));
   const defList = Object.values(getState().entities.defs);
   // filter with handler
-  const filteredDef = defList.filter(( def ) => newFilter.includes(def.pos));
+  const filteredDef = defList.filter(( def: IDef ) => newFilter.includes(def.pos));
   // extract only id 
   const wordIdList = filteredDef.map(( def: IDef ) => def._wordId );
   // remove duplicate word id 

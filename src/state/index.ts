@@ -1,4 +1,4 @@
-import { normalize, schema } from 'normalizr';
+import { normalize, schema, denormalize } from 'normalizr';
 import { IDef } from '../domains/def';
 import { PosEnum } from '../domains/pos';
 import { IWord } from '../domains/word';
@@ -253,6 +253,12 @@ export const initialNormalizedState: INormalizedState = {
     isSortFilterModalOpen: false,
     isSearchWordModalOpen: false,
   },
+}
+/**
+ * denormalize normalizr helper
+ **/
+export const denormalizeWordList: (words: number[]) => IWord[] = (words) => {
+  return denormalize(words, wordListSchema, initialNormalizedState.entities)
 }
 
 /**

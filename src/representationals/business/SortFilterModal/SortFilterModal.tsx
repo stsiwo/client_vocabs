@@ -4,8 +4,7 @@ import Modal from '../../base/Modal/Modal';
 import SortFilter from './SortFilterContent';
 import { toggleClickType } from '../../../containers/type';
 import CloseButton from '../Button/CloseButton';
-import ResetButton from '../Button/ResetButton';
-import ConfirmButton from '../Button/ConfirmButton';
+import ResetButtonCont from '../../../containers/Button/ResetButtonCont';
 
 interface Props {
   className?: string;
@@ -28,8 +27,7 @@ class SortFilterModal extends React.Component<Props, {}> {
           title={ title } 
           detail={ detail } 
           closeButton={ <CloseButton onClose={ this.props.toggleSortFilterModalClick } />} 
-          confirmButton={ <ConfirmButton /> } 
-          resetButton={ <ResetButton /> } 
+          resetButton={ <ResetButtonCont /> } 
           onClose={ this.props.toggleSortFilterModalClick }
           isOpen={ this.props.isSortFilterModalOpen }>
           <SortFilter />

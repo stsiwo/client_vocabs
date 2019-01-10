@@ -14,3 +14,5 @@ export type toggleSelectWordDispatchType = (nextSelectedWordList: number[]) => v
 export type changeSearchKeyWordDispatchType = (nextSearchKey: string) => void;
 
 export type selectAllWordDispatchType = () => void;
+
+export type resetSortFilterDispatchType = () => void;

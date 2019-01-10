@@ -1,9 +1,11 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Button from '../../base/Button/Button';
+import { resetSortFilterDispatchType } from '../../../containers/type';
 
 interface Props {
   className?: string;
+  resetSortFilterClick: resetSortFilterDispatchType; 
 }
 
 class ResetButton extends React.Component<Props, {}> {
@@ -13,11 +15,12 @@ class ResetButton extends React.Component<Props, {}> {
   }
 
   handleClick(e: React.MouseEvent<HTMLElement>) {
+    this.props.resetSortFilterClick();
   }
 
   render() {
     return (
-      <Button onClick={ this.handleClick }>Confirm</Button>
+      <Button onClick={ this.handleClick }>Reset</Button>
     );
   }
 }
