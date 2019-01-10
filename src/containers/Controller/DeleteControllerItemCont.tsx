@@ -4,6 +4,7 @@ import DeleteControllerItem from '../../representationals/business/Controller/De
 import { INormalizedState } from '../../state/type';
 //import { withRouter } from 'react-router-dom';
 import { toggleDeleteConfirmModalAction, toggleSelectWarningModalAction } from '../../actions/index';
+import openModalWrapperThunk from '../../thunk/openModal';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
   const isSelectedWordListEmpty = (state.selectedWordList.length === 0) ? true : false;
@@ -13,8 +14,8 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleDeleteConfirmModalClick: ( isOpen: boolean ) => { dispatch( toggleDeleteConfirmModalAction( isOpen ))}, 
-  toggleSelectWarningModalClick: ( isOpen: boolean ) => { dispatch( toggleSelectWarningModalAction( isOpen ))}, 
+  toggleDeleteConfirmModalClick: ( isOpen: boolean ) => { dispatch<any>( openModalWrapperThunk( toggleDeleteConfirmModalAction ))}, 
+  toggleSelectWarningModalClick: ( isOpen: boolean ) => { dispatch<any>( openModalWrapperThunk( toggleSelectWarningModalAction ))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( DeleteControllerItem );

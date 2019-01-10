@@ -3,7 +3,7 @@ import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import SortFilterControllerItem from '../../representationals/business/Controller/SortFilterControllerItem';
 import { INormalizedState } from '../../state/type';
 import { toggleSortFilterModalAction } from '../../actions/index';
-import { openModalWrapperThunk } from '../../thunk/openModal';
+import openModalWrapperThunk from '../../thunk/openModal';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
   isSortFilterModalOpen: state.ui.isSortFilterModalOpen,

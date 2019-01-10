@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { openModalWrapperThunk } from '../../src/thunk/openModal';
+import  openModalWrapperThunk  from '../../src/thunk/openModal';
 import { initialNormalizedState } from '../../src/state/index';
 import { INormalizedState } from '../../src/state/type';
 import { AnyAction } from 'redux';

@@ -5,11 +5,22 @@ import DeleteControllerItemCont from '../../src/containers/Controller/DeleteCont
 import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
 import { toggleClickType } from '../../src/containers/type';
-import { toggleSelectWarningModalAction, toggleDeleteConfirmModalAction } from '../../src/actions/index';
+import { openModalWrapperThunkDummyFunc } from '../storage/thunk/openModal';
+import * as sinon from 'sinon';
+import { SinonSpy } from 'sinon';
+import * as openModalWrapperThunk from '../../src/thunk/openModal';
+import thunk from 'redux-thunk';
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore([ thunk ]);
 
 describe('DeleteControllerItemCont', function() {
+      //  stub
+    /**
+     * WHEN SPY, MOCK, STUB imported function or object, use like below
+     * if using ES6, you have to import as default and assign object and its method as default like below and import as object ( like import * as ... )
+     **/
+   let openModalWrapperThunkStub: SinonSpy = sinon.stub(openModalWrapperThunk, 'default').callsFake(openModalWrapperThunkDummyFunc)
+;
 
   it('should send isSelectedWordListEmpty props with false value ( MSTP function )', function() {
     let store = mockStore(initialNormalizedState);
@@ -41,7 +52,7 @@ describe('DeleteControllerItemCont', function() {
   })
 
   // this mdtp is defined in "WordListItemCont" not "DeleteControllerItemCont" container component
-  it('should invoke dispatch function with toggleSelectWarningModalAction action (MDTP function) ', function() {
+  it('should invoke openModalWrapperThunk  (MDTP function) ', function() {
     let store = mockStore(Object.assign({}, initialNormalizedState, { selectedWordList: [] }));
     const ContextHOC = ProviderAndThemeWrapperHOC(DeleteControllerItemCont, store);
     const wrapper = mount(
@@ -55,11 +66,13 @@ describe('DeleteControllerItemCont', function() {
 
     // get dispatched action in mock store
     const actions = store.getActions();
+
+    sinon.assert.called(openModalWrapperThunkStub);
     
-    expect(actions[0]).toEqual(toggleSelectWarningModalAction(true)); 
+    expect(actions[0]).toEqual({ type: "dummy_thunk_action" }); 
   })
 
-  it('should invoke dispatch function with toggleDeleteConfirmModalClick action (MDTP function) ', function() {
+  it('should invoke openModalWrapperThunk (MDTP function) ', function() {
     let store = mockStore(initialNormalizedState);
     const ContextHOC = ProviderAndThemeWrapperHOC(DeleteControllerItemCont, store);
     const wrapper = mount(
@@ -74,7 +87,9 @@ describe('DeleteControllerItemCont', function() {
     // get dispatched action in mock store
     const actions = store.getActions();
     
-    expect(actions[0]).toEqual(toggleDeleteConfirmModalAction(true)); 
+    sinon.assert.called(openModalWrapperThunkStub);
+
+    expect(actions[0]).toEqual({ type: "dummy_thunk_action" }); 
   })
 })
 
