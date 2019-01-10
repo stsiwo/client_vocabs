@@ -120,3 +120,9 @@ export interface IChangeSortedWordListAction {
   type: string;
   nextSortedWordList: number[];
 }
+
+/**
+ * action creator type
+ **/
+//export type IModalActionCreatorType = (isOpen: boolean) => AnyAction;
+
