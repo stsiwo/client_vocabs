@@ -16,6 +16,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   toggleSelectWarningModalClick: () => { dispatch<any>( openModalWrapperThunk(toggleSelectWarningModalAction))}, 
+  closeSearchWordModalClick: () => { dispatch<any>( openModalWrapperThunk(undefined))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( EditControllerItem );

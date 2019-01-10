@@ -11,6 +11,7 @@ interface Props extends RouteComponentProps<{}> {
   className?: string;
   isSelectedWordListEmpty: boolean;
   toggleSelectWarningModalClick: toggleClickType;
+  closeSearchWordModalClick: () => void; 
 }
 
 class EditControllerItem extends React.Component<Props, {}> {
@@ -20,6 +21,8 @@ class EditControllerItem extends React.Component<Props, {}> {
   }
 
   onEditClick(e: React.MouseEvent<HTMLElement>) {
+    // if search word modal is opened, close it
+    this.props.closeSearchWordModalClick();
     // check redux store's currentSelectedWords is empty or not
     // if empty, show modal warning to make users select at least one word
     if (this.props.isSelectedWordListEmpty) {

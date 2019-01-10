@@ -15,6 +15,13 @@ const mockStore = configureMockStore([ thunk ]);
 
 describe('EditControllerItemCont', function() {
 
+    //  stub
+    /**
+     * WHEN SPY, MOCK, STUB imported function or object, use like below
+     * if using ES6, you have to import as default and assign object and its method as default like below and import as object ( like import * as ... )
+     **/
+    const openModalWrapperThunkStub: SinonSpy = sinon.stub(openModalWrapperThunk, 'default').callsFake(openModalWrapperThunkDummyFunc)
+
   it('should send isSelectedWordListEmpty props with false value ( MSTP function )', function() {
     let store = mockStore(initialNormalizedState);
     /**
@@ -45,7 +52,7 @@ describe('EditControllerItemCont', function() {
   })
 
   // this mdtp is defined in "WordListItemCont" not "EditControllerItemCont" container component
-  it('should invoke dispatch function with toggleSelectWarningModalAction action (MDTP function)', function() {
+  it('should invoke openModalWrapperThunk with toggleSelectWarningModalAction action (MDTP function)', function() {
     let store = mockStore(initialNormalizedState);
     const ContextHOC = ProviderAndThemeWrapperHOC(EditControllerItemCont, store);
     const wrapper = mount(
@@ -54,20 +61,34 @@ describe('EditControllerItemCont', function() {
     
     const toggleSelectWarningModalClick: toggleClickType = wrapper.find("EditControllerItem").first().prop('toggleSelectWarningModalClick');
 
-    //  stub
-    /**
-     * WHEN SPY, MOCK, STUB imported function or object, use like below
-     * if using ES6, you have to import as default and assign object and its method as default like below and import as object ( like import * as ... )
-     **/
-    const openModalWrapperThunkStub: SinonSpy = sinon.stub(openModalWrapperThunk, 'default').callsFake(openModalWrapperThunkDummyFunc)
-
     // programmarically call dispatch wrapper function since react event is tested in another test
     toggleSelectWarningModalClick(true);
 
     // get dispatched action in mock store
     const actions = store.getActions();
 
-    sinon.assert.calledOnce(openModalWrapperThunkStub);
+    sinon.assert.called(openModalWrapperThunkStub);
+    
+    expect(actions[0]).toEqual({ type: "dummy_thunk_action" }); 
+  })
+
+  it('should invoke openModalWrapperThunk with undefined arg (MDTP function)', function() {
+    let store = mockStore(initialNormalizedState);
+    const ContextHOC = ProviderAndThemeWrapperHOC(EditControllerItemCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+    
+    const closeSearchWordModalClick: toggleClickType = wrapper.find("EditControllerItem").first().prop('closeSearchWordModalClick');
+
+
+    // programmarically call dispatch wrapper function since react event is tested in another test
+    closeSearchWordModalClick(true);
+
+    // get dispatched action in mock store
+    const actions = store.getActions();
+
+    sinon.assert.called(openModalWrapperThunkStub);
     
     expect(actions[0]).toEqual({ type: "dummy_thunk_action" }); 
   })
