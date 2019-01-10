@@ -2,14 +2,13 @@ import { connect } from 'react-redux'
 import { AnyAction, Dispatch/*, compose */} from 'redux';
 import SelectAllControllerItem from '../../representationals/business/Controller/SelectAllControllerItem';
 import { INormalizedState } from '../../state/type';
-import { selectAllWordAction } from '../../actions/index';
+import selectAllIconClickWrapperThunk from '../../thunk/selectAllIconClick';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
-  sortedWordList: state.sortedWordList,
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  selectAllWordClick: ( nextSelectedWordList: number[] ) => { dispatch( selectAllWordAction( nextSelectedWordList ))}, 
+  selectAllWordClick: () => { dispatch<any>(selectAllIconClickWrapperThunk())}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( SelectAllControllerItem );

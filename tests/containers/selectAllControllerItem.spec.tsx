@@ -3,13 +3,16 @@ import { mount/*, shallow */ } from 'enzyme';
 import { ProviderAndThemeWrapperHOC } from './helper';
 import SelectAllControllerItemCont from '../../src/containers/Controller/SelectAllControllerItemCont';
 import { initialNormalizedState } from '../../src/state/index';
-//import { wordListItemModel } from '../storage/containers/wordListCont';
+import * as sinon from 'sinon';
+import { SinonSpy } from 'sinon';
 import configureMockStore from 'redux-mock-store';
-import { selectAllWordAction } from '../../src/actions/index';
-import { toggleSelectWordDispatchType } from '../../src/containers/type';
+import { selectAllWordDispatchType } from '../../src/containers/type';
 import { MockStoreEnhanced } from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { selectAllIconClickWrapperThunkDummyFunc } from '../storage/containers/selectAllControllerItem'; 
+import * as selectAllIconClickWrapperThunk from '../../src/thunk/selectAllIconClick';
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore([ thunk ]);
 
 describe('SelectAllControllerItemCont', function() {
   //let store: MockStoreEnhanced;
@@ -19,35 +22,32 @@ describe('SelectAllControllerItemCont', function() {
     store = mockStore(initialNormalizedState);
   });
 
-  it('should include sortedWordList props ( MSTP function )', function() {
-    /**
-     * sortedWordList: [0,1,2,3,4,5,6,7,8,9,10],
-     * selectedWordList: [0,1,2,3],
-     **/
-    const ContextHOC = ProviderAndThemeWrapperHOC(SelectAllControllerItemCont, store);
-    const wrapper = mount(
-      <ContextHOC />
-    );
-    // model date: storage/containers/wordListCont.ts
-    expect(wrapper.find("SelectAllControllerItem").prop('sortedWordList')).toEqual([0,1,2,3,4,5,6,7,8,9,10]); 
-  })
-
   // this mdtp is defined in "WordListItemCont" not "SelectAllControllerItemCont" container component
-  it('should invoke dispatch function with toggleSelectWordAction action (MDTP function)', function() {
+  it('should invoke dispatch thunk (MDTP function)', function() {
     const ContextHOC = ProviderAndThemeWrapperHOC(SelectAllControllerItemCont, store);
     const wrapper = mount(
       <ContextHOC />
     );
     
-    const toggleSelectWordChange: toggleSelectWordDispatchType = wrapper.find("SelectAllControllerItem").first().prop('selectAllWordClick');
+    const toggleSelectWordChange: selectAllWordDispatchType = wrapper.find("SelectAllControllerItem").first().prop('selectAllWordClick');
+
+    //  stub
+    /**
+     * WHEN SPY, MOCK, STUB imported function or object, use like below
+     * if using ES6, you have to import as default and assign object and its method as default like below and import as object ( like import * as ... )
+     **/
+    const selectAllIconClickWrapperThunkStub: SinonSpy = sinon.stub(selectAllIconClickWrapperThunk, 'default').callsFake(selectAllIconClickWrapperThunkDummyFunc)
 
     // programmarically call dispatch wrapper function since react event is tested in another test
-    toggleSelectWordChange([0,1,2,3,4,5,6,7,8,9,10]);
+    toggleSelectWordChange();
 
     // get dispatched action in mock store
     const actions = store.getActions();
+
+    // verify spy is calld
+    sinon.assert.calledOnce(selectAllIconClickWrapperThunkStub);
     
-    expect(actions[0]).toEqual(selectAllWordAction([0,1,2,3,4,5,6,7,8,9,10])); 
+    expect(actions[0]).toEqual({ type: "dummy_thunk_action", }); 
   })
 })
 
