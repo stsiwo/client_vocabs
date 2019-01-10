@@ -12,7 +12,7 @@ import { theme } from '../../src/representationals/story/theme';
 
 
 describe('ControllerItem', function() {
-  it('should dispatch function is called when sort icon is clicked( SortFilterControllerItem )', function() {
+  it('should event handler is called when sort icon is clicked( SortFilterControllerItem )', function() {
     // props dummy
     const isSortFilterModalOpenDummy: boolean = false;
 
@@ -32,7 +32,7 @@ describe('ControllerItem', function() {
      sinon.assert.calledOnce(toggleSortFilterModalClickSpy);
   })
 
-  it('should dispatch function is called when searchword icon is clicked( ', function() {
+  it('should invoke event handler is called when searchword icon is clicked( ', function() {
     // props dummy
     const isSearchWordModalOpenDummy: boolean = false;
 

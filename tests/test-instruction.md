@@ -21,6 +21,8 @@ conduct testing following functionalities:
 2.1. mapStateToProps: check the container send appropriate props to the Rep Component
 2.2. mapDispatchToProps: check the props (which holds dispatch function) dispatch the proper actions or thunks
 
+* don't mixing up with React just test mstp and mdtp functionality
+
 ## 3. thunk 
 
 conduct testing following functionalities:

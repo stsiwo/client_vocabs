@@ -8,7 +8,7 @@ import { SORT_ORDER } from '../../src/enums/index';
 
 describe('Sort Component', function() {
 
-  it('should dispatch functon is called when radio(value=1:ALPHA_ASC) is changed', function() {
+  it('should invoke the event handler is called when radio(value=1:ALPHA_ASC) is changed', function() {
      // 1. setup
      // check SORT_ORDER.ALPHA_DESC for testing SORT_ORDER.ALPHA_ASC
      const currentSortDummy: ISort = Object.assign({}, sort, { [SORT_ORDER.ALPHA_DESC]: true }) 
@@ -25,7 +25,7 @@ describe('Sort Component', function() {
      sinon.assert.calledOnce(changeSortSpy);
   });
 
-  it('should dispatch functon is called when radio(value=2:ALPHA_DESC) is changed', function() {
+  it('should invoke the event handler is called when radio(value=2:ALPHA_DESC) is changed', function() {
      // 2. setup
      // check SORT_ORDER.ALPHA_ASC as default 
      const currentSortDummy: ISort = Object.assign({}, sort, { [SORT_ORDER.ALPHA_ASC]: true }) 
@@ -42,7 +42,7 @@ describe('Sort Component', function() {
      sinon.assert.calledOnce(changeSortSpy);
   });
 
-  it('should dispatch functon is called when radio(value=3:DATE_NEWER) is changed', function() {
+  it('should invoke the event handler is called when radio(value=3:DATE_NEWER) is changed', function() {
      // 3. setup
      // check SORT_ORDER.ALPHA_ASC as default 
      const currentSortDummy: ISort = Object.assign({}, sort, { [SORT_ORDER.ALPHA_ASC]: true }) 
@@ -59,7 +59,7 @@ describe('Sort Component', function() {
      sinon.assert.calledOnce(changeSortSpy);
   });
 
-  it('should dispatch functon is called when radio(value=4:DATE_OLDER) is changed', function() {
+  it('should invoke the event handler is called when radio(value=4:DATE_OLDER) is changed', function() {
      // 4. setup
      // check SORT_ORDER.ALPHA_ASC as default 
      const currentSortDummy: ISort = Object.assign({}, sort, { [SORT_ORDER.ALPHA_ASC]: true }) 

@@ -6,7 +6,7 @@ import { SinonSpy } from 'sinon';
 
 describe('SearchWordModal component', function() {
 
-  it('should dispatch functon is called when search keyword text is changed', function() {
+  it('should invoke handleChangeSearchKeyWord handler is called when search keyword text is changed', function() {
      // 1. setup
      // check SORT_ORDER.ALPHA_DESC for testing SORT_ORDER.ALPHA_ASC
      const searchKeyWordDummy: string = 'test';

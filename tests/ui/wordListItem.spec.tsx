@@ -9,7 +9,7 @@ import { theme } from '../../src/representationals/story/theme';
 import { IWordListItem } from '../../src/domains/word';
 
 describe('WordListItem', function() {
-  it('should dispatch function is called when word item is clicked( WordListItem )', function() {
+  it('should invoke the event handler is called when word item is clicked( WordListItem )', function() {
     // props dummy
     const wordDummy: IWordListItem = {
       id: 111,
