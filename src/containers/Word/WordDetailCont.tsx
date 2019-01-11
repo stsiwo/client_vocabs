@@ -10,6 +10,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
   const { selectedWordList, entities } = state;
   // denormalized selectedWordList 
   const words: IWord[] = denormalizeWordList(selectedWordList, entities);
+   
   return {
     words: words,
   }

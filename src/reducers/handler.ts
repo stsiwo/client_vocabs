@@ -1,15 +1,12 @@
 import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType, SearchedWordListActionType, DisplayedWordListActionType } from '../actions/type';
 import { caseReducer } from './caseReducer';
 import { 
-  addNewDefsByWordActionReducer, 
-  removeDefsByWordActionReducer, 
-  updateDefsByWordActionReducer, 
-  removeDefsByDefActionReducer, 
-  addNewWordByWordActionReducer, 
-  removeWordByWordActionReducer, 
-  updateWordByWordActionReducer, 
-  appendNewDefsToWordByDefActionReducer, 
-  removeDefsFromWordByDefActionReducer, 
+  addDefEntityCaseReducer, 
+  removeDefEntityCaseReducer, 
+  updateDefEntityCaseReducer, 
+  addWordEntityCaseReducer, 
+  removeWordEntityCaseReducer,
+  updateWordEntityCaseReducer, 
   currentSortCaseReducer, 
   sortedWordListCaseReducer, 
   currentFilterCaseReducer,
@@ -18,6 +15,7 @@ import {
   toggleSortFilterModalReducer,
   toggleSearchWordModalReducer,
   toggleSelectedWordListCaseReducer,
+  addSelectedWordListCaseReducer,
   selectAllSelectedWordListCaseReducer,
   resetDefsCaseReducer,
   resetWordsCaseReducer,
@@ -41,23 +39,16 @@ export type Handler<T> = {
 }
 
 export const defsHandler: Handler<IEntityDef> = {
-  [WordActionType.ADD_NEW_WORD]: addNewDefsByWordActionReducer,
-  [WordActionType.REMOVE_WORD]: removeDefsByWordActionReducer,
-  [WordActionType.UPDATE_WORD]: updateDefsByWordActionReducer,
-  [DefActionType.ADD_NEW_DEF]: addNewDefsByWordActionReducer,
-  [DefActionType.REMOVE_DEF]: removeDefsByDefActionReducer, // can't use removeDefsByWordActionReducer
-  [DefActionType.UPDATE_DEF]: updateDefsByWordActionReducer,
+  [DefActionType.ADD_NEW_DEF]: addDefEntityCaseReducer,
+  [DefActionType.REMOVE_DEF]: removeDefEntityCaseReducer, 
+  [DefActionType.UPDATE_DEF]: updateDefEntityCaseReducer,
   [ResetActionType.RESET_STATE]: resetDefsCaseReducer,
 }   
 
 export const wordsHandler: Handler<IEntityWord> = {
-  [WordActionType.ADD_NEW_WORD]: addNewWordByWordActionReducer,
-  [WordActionType.REMOVE_WORD]: removeWordByWordActionReducer,
-  [WordActionType.UPDATE_WORD]: updateWordByWordActionReducer,
-  [DefActionType.ADD_NEW_DEF]: appendNewDefsToWordByDefActionReducer,
-  [DefActionType.REMOVE_DEF]: removeDefsFromWordByDefActionReducer,
-  // update does not relating word entity since id hasn't change at all
-  //[DefActionType.UPDATE_DEF]: updateDefsOfWordByDefActionReducer,
+  [WordActionType.ADD_NEW_WORD]: addWordEntityCaseReducer,
+  [WordActionType.REMOVE_WORD]: removeWordEntityCaseReducer,
+  [WordActionType.UPDATE_WORD]: updateWordEntityCaseReducer,
   [ResetActionType.RESET_STATE]: resetWordsCaseReducer,
 }   
 
@@ -87,6 +78,7 @@ export const displayedWordListHandler: Handler<IDisplayedWordList> = {
 export const selectedWordListHandler: Handler<ISelectedWordList> = {
   [SelectedWordListActionType.TOGGLE_SELECT_WORD]: toggleSelectedWordListCaseReducer,
   [SelectedWordListActionType.SELECT_ALL_WORD]: selectAllSelectedWordListCaseReducer,
+  [SelectedWordListActionType.ADD_SELECT_WORD]: addSelectedWordListCaseReducer,
   [ResetActionType.RESET_STATE]: resetSelectedWordListCaseReducer,
 }
 

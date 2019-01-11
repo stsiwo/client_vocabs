@@ -14,61 +14,80 @@ export type caseReducer<T, A = AnyAction> = (state: T, action: A) => T;
 /**
  * case reducers
  **/
-export const addNewDefsByWordActionReducer: caseReducer<IEntityDef> = (defs, action) => ({
+export const addDefEntityCaseReducer: caseReducer<IEntityDef> = (defs, action) => ({
   ...defs,
-  ...action.entities.defs,
+  ...action.nextDef,
 });
 
-export const removeDefsByWordActionReducer: caseReducer<IEntityDef> = (defs, action) => {
-  const copy = JSON.parse(JSON.stringify(defs)); 
-  // find properties whose _wordId is action.id and put those into array
-  Object.keys(copy).map(( key ) => { 
-    copy[key]._wordId === action.id ? delete copy[key] : ''; 
-  });
-  return copy;
-}
+export const removeDefEntityCaseReducer: caseReducer<IEntityDef> = (defs, action) => ({
+  ...defs,
+  ...action.nextDef,
+});
 
-export const updateDefsByWordActionReducer: caseReducer<IEntityDef> = (defs, action) => {
-  return Object.assign({}, defs, action.entities.defs);
-};
+export const updateDefEntityCaseReducer: caseReducer<IEntityDef> = (defs, action) => ({
+  ...defs,
+  ...action.nextDef,
+});
 
-export const removeDefsByDefActionReducer: caseReducer<IEntityDef> = (defs, action) => {
-  const copy = JSON.parse(JSON.stringify(defs)); 
-  delete copy[action.id];
-  return copy;
-}
+//export const removeDefsByWordActionReducer: caseReducer<IEntityDef> = (defs, action) => {
+  //const copy = JSON.parse(JSON.stringify(defs)); 
+  //// find properties whose _wordId is action.id and put those into array
+  //Object.keys(copy).map(( key ) => { 
+    //copy[key]._wordId === action.id ? delete copy[key] : ''; 
+  //});
+  //return copy;
+//}
+
+//export const updateDefsByWordActionReducer: caseReducer<IEntityDef> = (defs, action) => {
+  //return Object.assign({}, defs, action.entities.defs);
+//};
+
+//export const removeDefsByDefActionReducer: caseReducer<IEntityDef> = (defs, action) => {
+  //const copy = JSON.parse(JSON.stringify(defs)); 
+  //delete copy[action.id];
+  //return copy;
+//}
 
 export const resetDefsCaseReducer: caseReducer<IEntityDef> = (defs, action) => Object.assign({}, defs, initialNormalizedState.entities.defs); 
 
-export const addNewWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => ({
+export const addWordEntityCaseReducer: caseReducer<IEntityWord> = (words, action) => ({
   ...words,
-  ...action.entities.words,
+  ...action.nextWord,
 });
 
-export const removeWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => {
-  const copy = JSON.parse(JSON.stringify(words)); 
-  delete copy[action.id];
-  return copy;
-}
+export const removeWordEntityCaseReducer: caseReducer<IEntityWord> = (words, action) => ({
+  ...words,
+  ...action.nextWord,
+});
 
-export const updateWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => {
-  return Object.assign({}, words, action.entities.words);
-};
+export const updateWordEntityCaseReducer: caseReducer<IEntityWord> = (words, action) => ({
+  ...words,
+  ...action.nextWord,
+});
+//export const removeWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => {
+  //const copy = JSON.parse(JSON.stringify(words)); 
+  //delete copy[action.id];
+  //return copy;
+//}
 
-export const appendNewDefsToWordByDefActionReducer: caseReducer<IEntityWord> = (words, action) => {
-  const copy = JSON.parse(JSON.stringify(words));
-  const targetWordId = action.entities.defs[Object.getOwnPropertyNames(action.entities.defs)[0]]._wordId;
-  // object keys function return string element of array so need to use map(Number) to convert those to number
-  copy[targetWordId].defs = copy[targetWordId].defs.concat(Object.keys(action.entities.defs).map(Number));
-  return copy;
-}
+//export const updateWordByWordActionReducer: caseReducer<IEntityWord> = (words, action) => {
+  //return Object.assign({}, words, action.entities.words);
+//};
 
-export const removeDefsFromWordByDefActionReducer: caseReducer<IEntityWord> = (words, action) => {
-  const copy = JSON.parse(JSON.stringify(words));
-  const targetIndex = copy[action._wordId].defs.indexOf(action.id);
-  copy[action._wordId].defs.splice(targetIndex, 1);
-  return copy;
-}
+//export const appendNewDefsToWordByDefActionReducer: caseReducer<IEntityWord> = (words, action) => {
+  //const copy = JSON.parse(JSON.stringify(words));
+  //const targetWordId = action.entities.defs[Object.getOwnPropertyNames(action.entities.defs)[0]]._wordId;
+  //// object keys function return string element of array so need to use map(Number) to convert those to number
+  //copy[targetWordId].defs = copy[targetWordId].defs.concat(Object.keys(action.entities.defs).map(Number));
+  //return copy;
+//}
+
+//export const removeDefsFromWordByDefActionReducer: caseReducer<IEntityWord> = (words, action) => {
+  //const copy = JSON.parse(JSON.stringify(words));
+  //const targetIndex = copy[action._wordId].defs.indexOf(action.id);
+  //copy[action._wordId].defs.splice(targetIndex, 1);
+  //return copy;
+//}
 
 export const resetWordsCaseReducer: caseReducer<IEntityWord> = (words, action) => Object.assign({}, words, initialNormalizedState.entities.words); 
 
@@ -89,6 +108,9 @@ export const toggleSelectedWordListCaseReducer: caseReducer<ISelectedWordList> =
   // if action.selectedWordId exist in state, remove otherwise add it
   return xor(selectedWordList, action.nextSelectedWordList);
 };
+
+// add new word to selectedWordList esp when adding new word form
+export const addSelectedWordListCaseReducer: caseReducer<ISelectedWordList> = (selectedWordList, action) => selectedWordList.concat(action.nextSelectedWordList); 
 
 // select all icon click event
 export const selectAllSelectedWordListCaseReducer: caseReducer<ISelectedWordList, ISelectAllWordActionType> = (selectedWordList, action) => {

@@ -31,6 +31,7 @@ interface IUiActionType {
 interface ISelectedWordListActionType {
   TOGGLE_SELECT_WORD: string;
   SELECT_ALL_WORD: string;
+  ADD_SELECT_WORD: string;
 }
 
 interface ISearchedWordListActionType {
@@ -89,6 +90,7 @@ export const SortedWordListActionType: ISortedWordListActionType = {
 export const SelectedWordListActionType: ISelectedWordListActionType = {
   TOGGLE_SELECT_WORD: "TOGGLE_SELECT_WORD",
   SELECT_ALL_WORD: "SELECT_ALL_WORD",
+  ADD_SELECT_WORD: "ADD_SELECT_WORD",
 }
 
 export const ResetActionType: IResetActionType = {

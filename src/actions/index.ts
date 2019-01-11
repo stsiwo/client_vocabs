@@ -1,4 +1,4 @@
-import { ISortedWordList, ICurrentFilter, ISearchedWordList, IDisplayedWordList } from '../state/type';
+import { ISortedWordList, ICurrentFilter, ISearchedWordList, IDisplayedWordList, IEntityWord, IEntityDef } from '../state/type';
 import { IWord } from '../domains/word';
 import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
@@ -8,13 +8,12 @@ import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 /**
  * action 
  **/
-export const addNewWordAction = (input: IWord) => {
-  const normalizedNewWord = normalizeWordObject(input);
+export const addNewWordAction = ( nextWord: IEntityWord ) => {
   return {
     type: WordActionType.ADD_NEW_WORD,
-    entities: normalizedNewWord.entities,
+    nextWord: nextWord,
   }
-};
+}
 
 export const removeWordAction = (id: number) => {
   return {
@@ -31,11 +30,10 @@ export const updateWordAction = (updateWord: IWord) => {
   }
 };
 
-export const addNewDefAction = (def: IDef[]) => {
-  const normalizedNewDef = normalizeDefsArray(def);
+export const addNewDefAction = (nextDef: IEntityDef) => {
   return {
     type: DefActionType.ADD_NEW_DEF,
-    entities: normalizedNewDef.entities,
+    nextDef: nextDef,
   }
 };
 
@@ -102,6 +100,11 @@ export const toggleSearchWordModalAction = (isSearchWordModalOpen: boolean) => (
 
 export const toggleSelectWordAction = (nextSelectedWordList: number[]) => ({
   type: SelectedWordListActionType.TOGGLE_SELECT_WORD,
+  nextSelectedWordList: nextSelectedWordList,
+});
+
+export const addSelectedWordListAction = (nextSelectedWordList: number[]) => ({
+  type: SelectedWordListActionType.ADD_SELECT_WORD,
   nextSelectedWordList: nextSelectedWordList,
 });
 

@@ -3,6 +3,8 @@ import { IDef } from '../domains/def';
 import { PosEnum } from '../domains/pos';
 import { IWord } from '../domains/word';
 import { INormalizedState, IEntity } from './type';
+import { getCurrentTimeStamp } from '../util/index';
+const uuidv4 = require('uuid/v4'); 
 
 
 /**
@@ -255,6 +257,26 @@ export const initialNormalizedState: INormalizedState = {
   },
 }
 /**
+ * new word 
+ **/
+export const getNewWord: (id: number) => IWord = (id) => {
+  return {
+    id: id,
+    name: "",
+    createDate: getCurrentTimeStamp(),
+    defs: [
+      {
+        id: uuidv4(),
+        pos: PosEnum.NOUN,
+        def: "",
+        image: "",
+        _wordId: id,
+      },
+    ],
+  }
+}
+
+/**
  * denormalize normalizr helper
  **/
 export const denormalizeWordList: (words: number[], entities: IEntity) => IWord[] = ( words, entities ) => {
@@ -264,6 +286,8 @@ export const denormalizeWordList: (words: number[], entities: IEntity) => IWord[
 /**
  * normalizr helper function 
  **/
+export const normalizeWord: ( word: IWord ) => IEntity = ( word ) => normalize(word, wordListSchema).entities; 
+
 export const normalizeWordsArray: (words: IWord[]) => INormalizedState = (words) => {
   const normalizedWords = normalize(words, wordListSchema);
   return Object.assign({}, initialNormalizedState, { entities: normalizedWords.entities });
