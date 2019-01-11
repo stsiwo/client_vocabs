@@ -42,11 +42,11 @@ describe('WordListCont', function() {
     const toggleSelectWordChange: toggleSelectWordDispatchType = wrapper.find("WordListItem").first().prop('toggleSelectWordChange');
 
     // programmarically call dispatch wrapper function since react event is tested in another test
-    toggleSelectWordChange([1]);
+    toggleSelectWordChange(["1"]);
 
     // get dispatched action in mock store
     const actions = store.getActions();
     
-    expect(actions[0]).toEqual(toggleSelectWordAction([1])); 
+    expect(actions[0]).toEqual(toggleSelectWordAction(["1"])); 
   })
 })

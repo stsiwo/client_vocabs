@@ -16,7 +16,7 @@ describe('clsoeSearchWordModal', function() {
 
     // apply the condition
     store = mockStore(Object.assign({}, initialNormalizedState, {
-      sortedWordList: [1,2,3,4,5],
+      sortedWordList: ["1","2","3","4","5"],
       ui: {
         ...initialNormalizedState.ui,
         isSearchWordModalOpen: true
@@ -29,7 +29,7 @@ describe('clsoeSearchWordModal', function() {
     const actions = store.getActions();
     
     // second, changeDisplayedWordListAction
-    expect(actions[0]).toEqual(changeDisplayedWordListAction([1,2,3,4,5]));
+    expect(actions[0]).toEqual(changeDisplayedWordListAction(["1","2","3","4","5"]));
     // first, toggleSearchWordModalAction
     expect(actions[1]).toEqual(toggleSearchWordModalAction(false));
   });

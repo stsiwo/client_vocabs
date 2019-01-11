@@ -3,11 +3,11 @@ import { initialNormalizedState } from '../../../src/state/index';
 
 export const addNewDefActionInputData: IEntityDef = {
   ["111"]: {
-    id: 14,
+    id: "14",
     pos: 2,
     def: "test",
     image: "test",
-    _wordId: 4,
+    _wordId: "4",
   }
 }
 

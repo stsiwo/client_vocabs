@@ -3,8 +3,6 @@ import { IDef } from '../domains/def';
 import { PosEnum } from '../domains/pos';
 import { IWord } from '../domains/word';
 import { INormalizedState, IEntity } from './type';
-import { getCurrentTimeStamp } from '../util/index';
-const uuidv4 = require('uuid/v4'); 
 
 
 /**
@@ -62,7 +60,7 @@ export const initialWordList: IWord[] = [
       {
         id: "14",
         pos: PosEnum.PRONOUN,
-        def: "the string of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
+        def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         image: "image1",
         _wordId: "4",
       },
@@ -256,25 +254,6 @@ export const initialNormalizedState: INormalizedState = {
     isSearchWordModalOpen: false,
   },
 }
-/**
- * new word 
- **/
-export const getNewWord: (id: string) => IWord = (id) => {
-  return {
-    id: id,
-    name: "",
-    createDate: getCurrentTimeStamp(),
-    defs: [
-      {
-        id: uuidv4(),
-        pos: PosEnum.NOUN,
-        def: "",
-        image: "",
-        _wordId: id,
-      },
-    ],
-  }
-}
 
 /**
  * denormalize normalizr helper
@@ -286,7 +265,7 @@ export const denormalizeWordList: (words: string[], entities: IEntity) => IWord[
 /**
  * normalizr helper function 
  **/
-export const normalizeWord: ( word: IWord ) => IEntity = ( word ) => normalize(word, wordListSchema).entities; 
+export const normalizeWord: ( word: IWord ) => IEntity = ( word ) => normalize(word, wordSchema).entities; 
 
 export const normalizeWordsArray: (words: IWord[]) => INormalizedState = (words) => {
   const normalizedWords = normalize(words, wordListSchema);

@@ -1,5 +1,5 @@
 import { IDef } from '../domains/def';
-import { IWord } from '../domains/word';
+import { IWord, INormalizedWord } from '../domains/word';
 import { SORT_ORDER } from '../enums';
 import { PosEnum } from '../domains/pos';
 
@@ -10,7 +10,7 @@ export interface IEntityDef {
 
 // entities.words
 export interface IEntityWord {
-  [id: string]: IWord;
+  [id: string]: INormalizedWord;
 }
 
 // entities

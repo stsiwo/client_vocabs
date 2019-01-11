@@ -1,10 +1,10 @@
 import { AnyAction } from 'redux';
 import { INormalizedState } from "../state/type"; 
 import { ThunkAction } from 'redux-thunk';
-import toggleSearchWordModalWrapperThunk from './toggleSearchWordModal';
-const uuidv4 = require('uuid/v4');
-import { getNewWord, normalizeWord } from './state/index';
-import { addSelectedWordListAction } from './actions/index';
+import getUuid from '../util/getUuid'; 
+import { normalizeWord } from '../state/index';
+import getNewWord from '../state/util/getNewWord';
+import { addSelectedWordListAction, addNewWordAction, addNewDefAction } from '../actions/index';
 
 /**
  * this thunk for creating new Word form when user click new icon  
@@ -12,19 +12,17 @@ import { addSelectedWordListAction } from './actions/index';
 export type addNewWordFormWrapperThunkType = () => ThunkAction<void, INormalizedState, undefined, AnyAction>;
 
 const addNewWordFormWrapperThunk: addNewWordFormWrapperThunkType = (  ) => ( dispatch, getState ) => {
-  // get selectedWordList 
-  const { selectedWordList } = getState();
   // get new id for new word 
-  const newWordId = uuidv4();
+  const newWordId = getUuid(); 
   // added to selectedWordList
   dispatch(addSelectedWordListAction([ newWordId ]));
   // get new word empty object from getNewWord() 
   const newWord = getNewWord(newWordId);
   // normalize it
-  const normalizedNewWord = normalizeWord(word); 
+  const normalizedNewWord = normalizeWord(newWord); 
   // dispatch add new word and add new def 
-  dispatch(addNewWordAction(normalizedNewWord.entities.words));
-  dispatch(addNewDefAction(normalizedNewWord.entities.defs));
+  dispatch(addNewWordAction(normalizedNewWord.words));
+  dispatch(addNewDefAction(normalizedNewWord.defs));
 }
 export default addNewWordFormWrapperThunk;
 

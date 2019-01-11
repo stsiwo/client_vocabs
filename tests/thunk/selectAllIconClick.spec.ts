@@ -20,7 +20,7 @@ describe('openModal', function() {
 
     // apply the condition
     store = mockStore(Object.assign({}, initialNormalizedState, {
-      sortedWordList: [1,2,3],
+      sortedWordList: ["1","2","3"],
       ui: {
         ...initialNormalizedState.ui,
         isSearchWordModalOpen: true

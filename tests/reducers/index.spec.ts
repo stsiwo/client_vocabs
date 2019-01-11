@@ -15,6 +15,7 @@ import {
   toggleSortFilterModalAction, 
   toggleSearchWordModalAction,
   toggleSelectWordAction,
+  addSelectedWordListAction,
   selectAllWordAction,
   resetStateAction,
   searchKeyWordAction,
@@ -64,6 +65,7 @@ import {
 import {
   normalizedToggleSelectWordState,
   normalizedToggleSelectWordRandomState,
+  normalizedAddSelectWordState,
   normalizedSelectAllWordState,
   normalizedEmptifyWordState
 } from '../storage/selectedWordList';
@@ -74,7 +76,7 @@ import { initialNormalizedState } from '../../src/state/index';
 
 //const log = (input: any) => console.log(JSON.stringify(input, null, 2));
 
-describe('rootReducer', () => {
+describe('reducers: dispatch action and check state has changed as expected', () => {
 
   beforeEach(() => {
     store.dispatch(resetStateAction());
@@ -250,25 +252,30 @@ describe('selectedWordList state (single word)', () => {
   })
 
   it('should return new state (added word id (=1) to selectedWordList state)', () => {
-    expect(rootReducer(undefined, toggleSelectWordAction([1]))).toEqual(normalizedToggleSelectWordState)
+    expect(rootReducer(undefined, toggleSelectWordAction(["1"]))).toEqual(normalizedToggleSelectWordState)
   })
 
   it('should return new state (added word ids (random) to selectedWordList state)', () => {
-    expect(rootReducer(undefined, toggleSelectWordAction([1, 3, 5, 7]))).toEqual(normalizedToggleSelectWordRandomState)
+    expect(rootReducer(undefined, toggleSelectWordAction(["1", "3", "5", "7"]))).toEqual(normalizedToggleSelectWordRandomState)
+  })
+
+  it('should return new state (added word id (=1) to selectedWordList state)', () => {
+    // id must be new id which does not exist in selectedWordList
+    expect(rootReducer(undefined, addSelectedWordListAction(["10"]))).toEqual(normalizedAddSelectWordState)
   })
 
   it('should return new state (case A: select all of sortedWordList to selectedWordList state)', () => {
     // since initial selectedWordList includes some values ( 0,1,2,3 ) so normalizedSelelctAllWordState's selectedWordList must return all values of sortedWordList 
-    expect(rootReducer(undefined, selectAllWordAction([0,1,2,3,4,5,6,7,8,9,10]))).toEqual(normalizedSelectAllWordState)
+    expect(rootReducer(undefined, selectAllWordAction(["0","1","2","3","4","5","6","7","8","9","10"]))).toEqual(normalizedSelectAllWordState)
   })
 
   it('should return new state (case B: emptify selectedWordList state)', () => {
 
     // select all word item first 
-    store.dispatch(selectAllWordAction([0,1,2,3,4,5,6,7,8,9,10]));
+    store.dispatch(selectAllWordAction(["0","1","2","3","4","5","6","7","8","9","10"]));
 
     // emptify selectedWordList 
-    store.dispatch(selectAllWordAction([0,1,2,3,4,5,6,7,8,9,10]));
+    store.dispatch(selectAllWordAction(["0","1","2","3","4","5","6","7","8","9","10"]));
     
     // dispatch -> action -> reducer -> store 
     // rootReducer just return new state so it means does not affect store.getState() 
@@ -297,7 +304,7 @@ describe('searchedWordList state', () => {
   })
 
   it('should return new state ( change searchedWordList to ramdom values array', () => {
-    expect(rootReducer(undefined, changeSearchedWordListAction([1,2,3,4])).searchedWordList).toEqual([1,2,3,4])
+    expect(rootReducer(undefined, changeSearchedWordListAction(["1","2","3","4"])).searchedWordList).toEqual(["1","2","3","4"])
   })
 })
 
@@ -311,7 +318,7 @@ describe('displayedWordList state', () => {
   })
 
   it('should return new state ( change displayedWordList to ramdom values array', () => {
-    expect(rootReducer(undefined, changeDisplayedWordListAction([1,2,3,4])).displayedWordList).toEqual([1,2,3,4])
+    expect(rootReducer(undefined, changeDisplayedWordListAction(["1","2","3","4"])).displayedWordList).toEqual(["1","2","3","4"])
   })
 })
 

@@ -12,7 +12,7 @@ describe('WordListItem', function() {
   it('should invoke the event handler is called when word item is clicked( WordListItem )', function() {
     // props dummy
     const wordDummy: IWordListItem = {
-      id: 111,
+      id: "111",
       name: 'dummy',
       isChecked: false,
     };
