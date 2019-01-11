@@ -5,12 +5,12 @@ import { PosEnum } from '../domains/pos';
 
 // entities.defs
 export interface IEntityDef {
-  [id: number]: IDef;
+  [id: string]: IDef;
 }
 
 // entities.words
 export interface IEntityWord {
-  [id: number]: IWord;
+  [id: string]: IWord;
 }
 
 // entities
@@ -30,16 +30,16 @@ export interface IUi {
 export type ICurrentSort = SORT_ORDER; 
 
 // sortedWordList 
-export type ISortedWordList = number[]; 
+export type ISortedWordList = string[]; 
 
 // searchedWordList 
-export type ISearchedWordList = number[]; 
+export type ISearchedWordList = string[]; 
 
 // displayedWordList 
-export type IDisplayedWordList = number[]; 
+export type IDisplayedWordList = string[]; 
 
 // selectedWordList 
-export type ISelectedWordList = number[]; 
+export type ISelectedWordList = string[]; 
 
 // currentFilter
 export type ICurrentFilter = PosEnum[];

@@ -1,16 +1,16 @@
 import { IDef } from './def';
 
 export interface IWord {
-  id: number;
+  id: string;
   name: string;
   defs: IDef[];
   createDate: string;
 }
 
 export interface INormalizedWord {
-  id: number;
+  id: string;
   name: string;
-  defs: number[];
+  defs: string[];
   createDate: string;
 }
 
@@ -19,7 +19,7 @@ export interface INormalizedWord {
  * this interface is for WordListCont to display partial content of word (id, name, isChecked)
  **/
 export interface IWordListItem {
-  id: number;
+  id: string;
   name: string;
   isChecked: boolean;
 }

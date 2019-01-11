@@ -15,7 +15,7 @@ export const addNewWordAction = ( nextWord: IEntityWord ) => {
   }
 }
 
-export const removeWordAction = (id: number) => {
+export const removeWordAction = (id: string) => {
   return {
     type: WordActionType.REMOVE_WORD,
     id,
@@ -37,7 +37,7 @@ export const addNewDefAction = (nextDef: IEntityDef) => {
   }
 };
 
-export const removeDefAction = (id: number, _wordId: number) => {
+export const removeDefAction = (id: string, _wordId: string) => {
   return {
     type: DefActionType.REMOVE_DEF,
     id,
@@ -98,17 +98,17 @@ export const toggleSearchWordModalAction = (isSearchWordModalOpen: boolean) => (
   isSearchWordModalOpen: isSearchWordModalOpen,
 })
 
-export const toggleSelectWordAction = (nextSelectedWordList: number[]) => ({
+export const toggleSelectWordAction = (nextSelectedWordList: string[]) => ({
   type: SelectedWordListActionType.TOGGLE_SELECT_WORD,
   nextSelectedWordList: nextSelectedWordList,
 });
 
-export const addSelectedWordListAction = (nextSelectedWordList: number[]) => ({
+export const addSelectedWordListAction = (nextSelectedWordList: string[]) => ({
   type: SelectedWordListActionType.ADD_SELECT_WORD,
   nextSelectedWordList: nextSelectedWordList,
 });
 
-export const selectAllWordAction = (nextSelectedWordList: number[]) => ({
+export const selectAllWordAction = (nextSelectedWordList: string[]) => ({
   type: SelectedWordListActionType.SELECT_ALL_WORD,
   nextSelectedWordList: nextSelectedWordList,
 });

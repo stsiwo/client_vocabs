@@ -13,8 +13,8 @@ interface Props {
   def: IDef;
   isOpen: boolean;
   initialSearchInput: string;
-  onDefChange: (newValue: IPos | string, targetId: number, property: string) => void;
-  onDeleteDefClick: (targetId: number) => void;
+  onDefChange: (newValue: IPos | string, targetId: string, property: string) => void;
+  onDeleteDefClick: (targetId: string) => void;
 }
 
 interface State {

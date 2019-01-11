@@ -51,7 +51,7 @@ class WordForm extends React.Component<Props, State> {
     //this.setState({ defs: [...currentDefs] });
   }
 
-  handleDeleteDefClick(targetDefId: number) {
+  handleDeleteDefClick(targetDefId: string) {
     const currentDefs = this.state.defs;
     // slice function returns shallow copy of original
     const newDefs = currentDefs.filter(( def ) => def.id !== targetDefId );
@@ -61,7 +61,7 @@ class WordForm extends React.Component<Props, State> {
 
 
     
-  handleDefChange(newValue: IPos | string, targetDefId: number, property: string ) {
+  handleDefChange(newValue: IPos | string, targetDefId: string, property: string ) {
     const currentDefs = this.state.defs;
 
     // map function return new array so it's immutable

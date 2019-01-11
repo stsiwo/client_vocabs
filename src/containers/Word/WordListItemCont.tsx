@@ -9,7 +9,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleSelectWordChange: ( nextSelectedWordList: number[] ) => { dispatch( toggleSelectWordAction( nextSelectedWordList ))}, 
+  toggleSelectWordChange: ( nextSelectedWordList: string[] ) => { dispatch( toggleSelectWordAction( nextSelectedWordList ))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( WordListItem )

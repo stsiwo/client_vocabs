@@ -12,9 +12,9 @@ interface Props {
   className?: string;
   initialSearchInput: string; // word name for initial search input
   defs: IDef[]; 
-  onDefChange: (newValue: IPos, targetId: number, property: string) => void;
+  onDefChange: (newValue: IPos, targetId: string, property: string) => void;
   onNewDefClick: () => void;
-  onDeleteDefClick: (targetId: number) => void;
+  onDeleteDefClick: (targetId: string) => void;
 }
 
 interface State {

@@ -1,11 +1,11 @@
 import { PosEnum } from './pos';
 
 export interface IDef {
-  id: number;
+  id: string;
   pos: PosEnum;
   def: string;
   image: string;
-  _wordId: number;
+  _wordId: string;
 }
 
 

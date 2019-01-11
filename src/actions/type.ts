@@ -115,12 +115,12 @@ export const DisplayedWordListActionType: IDisplayedWordListActionType = {
  **/
 export interface ISelectAllWordActionType {
   type: string;
-  nextSelectedWordList: number[];
+  nextSelectedWordList: string[];
 }
 
 export interface IChangeSortedWordListAction {
   type: string;
-  nextSortedWordList: number[];
+  nextSortedWordList: string[];
 }
 
 /**

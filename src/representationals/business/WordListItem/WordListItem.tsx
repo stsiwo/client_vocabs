@@ -17,7 +17,7 @@ class WordListItem extends React.Component<Props, {}> {
   }
 
   onCheckChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.props.toggleSelectWordChange([parseInt(e.target.value)]);
+    this.props.toggleSelectWordChange([e.target.value]);
   }
 
   render() {
