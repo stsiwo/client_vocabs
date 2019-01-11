@@ -1,5 +1,5 @@
 import { IDef } from '../domains/def';
-import { IWord, INormalizedWord } from '../domains/word';
+import { INormalizedWord } from '../domains/word';
 import { SORT_ORDER } from '../enums';
 import { PosEnum } from '../domains/pos';
 

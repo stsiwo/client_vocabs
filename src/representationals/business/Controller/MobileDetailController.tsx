@@ -3,6 +3,7 @@ import styled from '../../story/styledComponents';
 import { Vl } from '../../base/common/Line';
 import BackControllerItem from './BackControllerItem';
 import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
+import NewControllerItemCont from '../../../containers/Controller/NewControllerItemCont';
 
 interface Props {
   className?: string;
@@ -17,6 +18,8 @@ class MobileController extends React.Component<Props, {}> {
     return (
       <div className={ this.props.className }>
         <BackControllerItem />
+        <Vl />
+        <NewControllerItemCont />
         <Vl />
         <SaveControllerItemCont />
       </div>

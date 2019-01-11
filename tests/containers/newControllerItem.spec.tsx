@@ -4,10 +4,10 @@ import { ProviderAndThemeWrapperHOC } from './helper';
 import NewControllerItemCont from '../../src/containers/Controller/NewControllerItemCont';
 import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
-import { openModalWrapperThunkDummyFunc } from '../storage/thunk/openModal';
+import { addNewWordFormWrapperThunkDummyFunc } from '../storage/thunk/addNewWordForm';
 import * as sinon from 'sinon';
 import { SinonSpy } from 'sinon';
-import * as openModalWrapperThunk from '../../src/thunk/openModal';
+import * as addNewWordFormWrapperThunk from '../../src/thunk/addNewWordForm';
 import thunk from 'redux-thunk';
 
 const mockStore = configureMockStore([ thunk ]);
@@ -29,7 +29,7 @@ describe('NewControllerItemCont', function() {
      * WHEN SPY, MOCK, STUB imported function or object, use like below
      * if using ES6, you have to import as default and assign object and its method as default like below and import as object ( like import * as ... )
      **/
-   let openModalWrapperThunkStub: SinonSpy = sinon.stub(openModalWrapperThunk, 'default').callsFake(openModalWrapperThunkDummyFunc)
+   let addNewWordFormWrapperThunkStub: SinonSpy = sinon.stub(addNewWordFormWrapperThunk, 'default').callsFake(addNewWordFormWrapperThunkDummyFunc)
 ;
 
     // programmarically call dispatch wrapper function since react event is tested in another test
@@ -38,7 +38,7 @@ describe('NewControllerItemCont', function() {
     // get dispatched action in mock store
     const actions = store.getActions();
 
-    sinon.assert.called(openModalWrapperThunkStub);
+    sinon.assert.called(addNewWordFormWrapperThunkStub);
     
     expect(actions[0]).toEqual({ type: "dummy_thunk_action" }); 
   })

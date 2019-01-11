@@ -1,33 +1,7 @@
-export const getNewWordStubTestData = (id: string) => ({
-  id: id,
-  name: "",
-  createDate: "now",
-  defs: [
-    {
-      id: "defID",
-      pos: 2, 
-      def: "",
-      image: "",
-      _wordId: id,
-    },
-  ],
-});
+import { addNewWordFormWrapperThunkType } from '../../../src/thunk/addNewWordForm';
 
-export const addNewWordActionTestData =  {
-  wordId: {
-    id: "wordId",
-    name: "",
-    createDate: "now",
-    defs: ["defID"],
-  }
+export const addNewWordFormWrapperThunkDummyFunc: addNewWordFormWrapperThunkType = (  ) => ( dispatch, getState ) => {
+  dispatch({ type: "dummy_thunk_action", });
 }
 
-export const addNewDefActionTestData = {
-  defID: {
-    id: "defID",
-    pos: 2,
-    def: "",
-    image: "",
-    _wordId: "wordId",
-  }
-}
+

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import NewControllerItemCont from '../../../containers/Controller/NewControllerItemCont';
 import DeleteControllerItemCont from '../../../containers/Controller/DeleteControllerItemCont';
 import EditControllerItemCont from '../../../containers/Controller/EditControllerItemCont';
 import SortFilterControllerItemCont from '../../../containers/Controller/SortFilterControllerItemCont';
@@ -23,8 +22,6 @@ class MobileWordController extends React.Component<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-        <NewControllerItemCont />
-        <Vl />
         <DeleteControllerItemCont />
         <Vl />
         <EditControllerItemCont />
