@@ -6,10 +6,11 @@ import { initialNormalizedState } from '../../src/state/index';
 import { INormalizedState } from '../../src/state/type';
 import { addSelectedWordListAction, addNewWordAction, addNewDefAction } from '../../src/actions/index';
 import * as sinon from 'sinon';
-//const uuidv4 = require('uuid/v4');
 import * as getUuid from '../../src/util/getUuid';
 import * as getNewWord from '../../src/state/util/getNewWord';
-import { getNewWordStubTestData, addNewWordActionTestData, addNewDefActionTestData } from '../storage/thunk/addNewWordForm';
+import { getNewWordStubTestData } from '../storage/util/getNewWordStub';
+import { addNewWordActionTestData } from '../storage/actions/addNewWordAction';
+import { addNewDefActionTestData } from '../storage/actions/addNewDefAction';
 
 const mockStore = configureMockStore<INormalizedState>([thunk]);
 

@@ -12,13 +12,15 @@ interface IFilterActionType {
 export interface IWordActionType {
   ADD_NEW_WORD: string;
   REMOVE_WORD: string;
-  UPDATE_WORD: string;
+  UPDATE_WORD_NAME: string;
 }
 
 export interface IDefActionType {
   ADD_NEW_DEF: string;
   REMOVE_DEF: string;
-  UPDATE_DEF: string;
+  UPDATE_DEF_POS: string;
+  UPDATE_DEF_TEXT: string;
+  UPDATE_DEF_IMAGE: string;
 }
 
 interface IUiActionType {
@@ -67,13 +69,15 @@ export const FilterActionType: IFilterActionType = {
 export const WordActionType: IWordActionType = {
   ADD_NEW_WORD: "ADD_NEW_WORD",
   REMOVE_WORD: "REMOVE_WORD",
-  UPDATE_WORD: "UPDATE_WORD",
+  UPDATE_WORD_NAME: "UPDATE_WORD_NAME",
 }
 
 export const DefActionType: IDefActionType = {
   ADD_NEW_DEF: "ADD_NEW_DEF",
   REMOVE_DEF: "REMOVE_DEF",
-  UPDATE_DEF: "UPDATE_DEF",
+  UPDATE_DEF_POS: "UPDATE_DEF_POS",
+  UPDATE_DEF_TEXT: "UPDATE_DEF_TEXT",
+  UPDATE_DEF_IMAGE: "UPDATE_DEF_IMAGE",
 }
 
 export const UiActionType: IUiActionType = {

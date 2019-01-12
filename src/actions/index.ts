@@ -1,9 +1,7 @@
 import { ISortedWordList, ICurrentFilter, ISearchedWordList, IDisplayedWordList, IEntityWord, IEntityDef } from '../state/type';
-import { IWord } from '../domains/word';
-import { IDef } from '../domains/def';
 import { SORT_ORDER } from '../enums';
+import { PosEnum } from '../domains/pos';
 import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType, SearchedWordListActionType, DisplayedWordListActionType } from './type'; 
-import { normalizeWordObject, normalizeDefsArray } from '../state/index';
 
 /**
  * action 
@@ -22,11 +20,11 @@ export const removeWordAction = (id: string) => {
   }
 };
 
-export const updateWordAction = (updateWord: IWord) => {
-  const normalizedUpdateWord = normalizeWordObject(updateWord);
+export const updateWordNameAction = (id: string, nextWordName: string) => {
   return {
-    type: WordActionType.UPDATE_WORD,
-    entities: normalizedUpdateWord.entities,
+    type: WordActionType.UPDATE_WORD_NAME,
+    id: id,
+    nextWordName: nextWordName,
   }
 };
 
@@ -37,19 +35,35 @@ export const addNewDefAction = (nextDef: IEntityDef) => {
   }
 };
 
-export const removeDefAction = (id: string, _wordId: string) => {
+export const removeDefAction = (wordId: string, defId: string) => {
   return {
     type: DefActionType.REMOVE_DEF,
-    id,
-    _wordId,
+    wordId: wordId,
+    defId: defId,
   }
 };
 
-export const updateDefAction = (updateDef: IDef[]) => {
-  const normalizedUpdateDef = normalizeDefsArray(updateDef);
+export const updateDefPosAction = (id: string, nextPos: PosEnum) => {
   return {
-    type: DefActionType.UPDATE_DEF,
-    entities: normalizedUpdateDef.entities,
+    type: DefActionType.UPDATE_DEF_POS,
+    id: id,
+    nextPos: nextPos,
+  }
+};
+
+export const updateDefTextAction = (id: string, nextText: string) => {
+  return {
+    type: DefActionType.UPDATE_DEF_TEXT,
+    id: id,
+    nextText: nextText,
+  }
+};
+
+export const updateDefImageAction = (id: string, nextImage: string) => {
+  return {
+    type: DefActionType.UPDATE_DEF_IMAGE,
+    id: id,
+    nextImage: nextImage,
   }
 };
 

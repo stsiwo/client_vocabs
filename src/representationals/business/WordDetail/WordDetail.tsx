@@ -18,7 +18,6 @@ class WordDetail extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.renderSelectedWords = this.renderSelectedWords.bind(this);
-
   }
 
   renderSelectedWords() {

@@ -99,9 +99,8 @@ export const normalizedNewWord = {
 
 export const removedWord: IWord[] = initialWordList.filter(( word ) => word.id !== "1" );
 // need to copy defs array inside word object. above code just do shallow copy; array is still refers to original array
-const updateWordsCopy = JSON.parse(JSON.stringify(initialWordList[0]));
-updateWordsCopy.name = "update";
-updateWordsCopy.defs[0].def = "update";
+const updateWordsCopy = JSON.parse(JSON.stringify(initialWordList.filter(( word ) => word.id === "0" )[0]));
+updateWordsCopy.name = "test";
 
 export const updateWord: IWord = Object.assign({}, updateWordsCopy );
 

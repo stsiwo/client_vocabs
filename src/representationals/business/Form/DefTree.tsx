@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
-import DefNode from './DefNode';
-import { IPos } from '../../../domains/pos';
+import DefNodeCont from '../../../containers/Def/DefNodeCont';
 import { IDef } from '../../../domains/def';
 
 const arrowIcon = require('./assets/rightArrow.svg');
@@ -10,11 +9,8 @@ const newIcon = require('./assets/new.svg');
 
 interface Props {
   className?: string;
-  initialSearchInput: string; // word name for initial search input
   defs: IDef[]; 
-  onDefChange: (newValue: IPos, targetId: string, property: string) => void;
-  onNewDefClick: () => void;
-  onDeleteDefClick: (targetId: string) => void;
+  addNewDefClick: ( wordId: string ) => void;
 }
 
 interface State {
@@ -36,13 +32,18 @@ class DefTree extends React.Component<Props, State> {
     this.setState({ isDefNodeOpen : !currentToggleStatus });  
   }
 
-  handleNewDefClick() {
-    this.props.onNewDefClick();
+  handleNewDefClick(e: React.MouseEvent<HTMLElement>) {
+    // need to get word id of defs so pick any def's _wordId
+    this.props.addNewDefClick(this.props.defs[0]._wordId);
   }
 
   renderDefNodes() {
     return this.props.defs.map(( eachDef ) => ( 
-      <DefNode key={ eachDef.id } def={ eachDef } isOpen={ this.state.isDefNodeOpen } initialSearchInput={ this.props.initialSearchInput } onDefChange={ this.props.onDefChange } onDeleteDefClick={ this.props.onDeleteDefClick }></DefNode>
+      <DefNodeCont 
+        key={ eachDef.id } 
+        def={ eachDef } 
+        isOpen={ this.state.isDefNodeOpen }>
+      </DefNodeCont>
     ));
   }
 

@@ -3,10 +3,14 @@ import { caseReducer } from './caseReducer';
 import { 
   addDefEntityCaseReducer, 
   removeDefEntityCaseReducer, 
-  updateDefEntityCaseReducer, 
+  removeDefCaseReducer,
+  updateDefPosCaseReducer,
+  updateDefTextCaseReducer,
+  updateDefImageCaseReducer,
   addWordEntityCaseReducer, 
   removeWordEntityCaseReducer,
-  updateWordEntityCaseReducer, 
+  removeDefsCaseReducer,
+  updateWordNameCaseReducer,
   currentSortCaseReducer, 
   sortedWordListCaseReducer, 
   currentFilterCaseReducer,
@@ -41,14 +45,20 @@ export type Handler<T> = {
 export const defsHandler: Handler<IEntityDef> = {
   [DefActionType.ADD_NEW_DEF]: addDefEntityCaseReducer,
   [DefActionType.REMOVE_DEF]: removeDefEntityCaseReducer, 
-  [DefActionType.UPDATE_DEF]: updateDefEntityCaseReducer,
+  [DefActionType.UPDATE_DEF_POS]: updateDefPosCaseReducer,
+  [DefActionType.UPDATE_DEF_TEXT]: updateDefTextCaseReducer,
+  [DefActionType.UPDATE_DEF_IMAGE]: updateDefImageCaseReducer,
+  // remove defs of a particular word when the word is remvoed
+  [WordActionType.REMOVE_WORD]: removeDefsCaseReducer,
   [ResetActionType.RESET_STATE]: resetDefsCaseReducer,
 }   
 
 export const wordsHandler: Handler<IEntityWord> = {
   [WordActionType.ADD_NEW_WORD]: addWordEntityCaseReducer,
   [WordActionType.REMOVE_WORD]: removeWordEntityCaseReducer,
-  [WordActionType.UPDATE_WORD]: updateWordEntityCaseReducer,
+  [WordActionType.UPDATE_WORD_NAME]: updateWordNameCaseReducer,
+  // remove target def id from defs property of word entitiy when def is removed
+  [DefActionType.REMOVE_DEF]: removeDefCaseReducer, 
   [ResetActionType.RESET_STATE]: resetWordsCaseReducer,
 }   
 

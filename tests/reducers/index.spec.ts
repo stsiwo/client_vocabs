@@ -5,11 +5,13 @@ import { AnyAction } from 'redux';
 //import { newDef, updateDef } from '../storage/def'; 
 import { 
   addNewWordAction, 
-  //removeWordAction, 
-  //updateWordAction, 
+  removeWordAction,
+  updateWordNameAction,
   addNewDefAction, 
-  //removeDefAction, 
-  //updateDefAction, 
+  removeDefAction,
+  updateDefPosAction,
+  updateDefTextAction,
+  updateDefImageAction,
   toggleSelectWarningModalAction, 
   toggleDeleteConfirmModalAction,
   toggleSortFilterModalAction, 
@@ -25,10 +27,13 @@ import {
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
-  //wordRemovedNormState, 
-  //wordUpdateNormState, 
+  wordRemovedNormState, 
+  wordNameUpdateNormState, 
   //newDefAddedNormState, 
-  //defRemovedNormState, 
+  defRemovedNormState, 
+  defPosUpdateNormState,
+  defTextUpdateNormState,
+  defImageUpdateNormState,
   //defUpdateNormState, 
   normalizedSortAscState, 
   normalizedSortDescState, 
@@ -95,28 +100,34 @@ describe('reducers: dispatch action and check state has changed as expected', ()
     expect(rootReducer(undefined, addNewWordAction(addNewWordActionInputData))).toEqual(addNewWordActionOutputData)
   })
 
-  // skip this test until implementation
-  //it('should return new state (removed a particular word)', () => {
-    //expect(rootReducer(undefined, removeWordAction(1))).toEqual(wordRemovedNormState)
-  //})
+  it('should return new state (removed a particular word)', () => {
+    expect(rootReducer(undefined, removeWordAction('1'))).toEqual(wordRemovedNormState)
+  })
 
-  //it('should return new state (updated a particular word)', () => {
-    //expect(rootReducer(undefined, updateWordAction(updateWord))).toEqual(wordUpdateNormState)
-  //})
+  it('should return new state (updated word name of a particular word )', () => {
+    expect(rootReducer(undefined, updateWordNameAction("0", "test"))).toEqual(wordNameUpdateNormState)
+  })
 
   it('should return new state (added new def to a particular word)', () => {
     expect(rootReducer(undefined, addNewDefAction(addNewDefActionInputData))).toEqual(addNewDefActionOutputData)
   })
 
-  // skip this test until implementation
-  //it('should return new state (removed a particular def)', () => {
-    //expect(rootReducer(undefined, removeDefAction(1, 0))).toEqual(defRemovedNormState)
-  //})
+  it('should return new state (removed a particular def)', () => {
 
-  //it('should return new state (updated a particular def)', () => {
-    //expect(rootReducer(undefined, updateDefAction(updateDef))).toEqual(defUpdateNormState)
-  //})
+    expect(rootReducer(undefined, removeDefAction("0","1"))).toEqual(defRemovedNormState)
+  })
 
+  it('should return new state (updated pos a particular def)', () => {
+    expect(rootReducer(undefined, updateDefPosAction('0', 4))).toEqual(defPosUpdateNormState)
+  })
+
+  it('should return new state (updated def text (def) a particular def)', () => {
+    expect(rootReducer(undefined, updateDefTextAction('0', "test"))).toEqual(defTextUpdateNormState)
+  })
+
+  it('should return new state (updated def image (image) a particular def)', () => {
+    expect(rootReducer(undefined, updateDefImageAction('0', "test"))).toEqual(defImageUpdateNormState)
+  })
   // thunk -- sort --- 
   it('should return new state (changed sort of wordlist to alpha asc)', () => {
     // this use thunk to call sort change action 

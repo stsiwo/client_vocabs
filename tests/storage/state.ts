@@ -26,7 +26,7 @@ export const wordRemovedNormState = normalizeWordsArray(removedWord);
 
 export const normalizedUpdateWord = normalizeWordObject(updateWord);
 
-export const wordUpdateNormState = Object.assign({}, initialNormalizedState, {
+export const wordNameUpdateNormState = Object.assign({}, initialNormalizedState, {
   entities: {
     defs: {
       ...normalizedState.entities.defs,
@@ -62,6 +62,51 @@ export const defUpdateNormState = Object.assign({}, initialNormalizedState, {
       ...normalizedUpdateDef.entities.words,
     },
   },
+});
+
+export const defPosUpdateNormState = Object.assign({}, initialNormalizedState, { 
+  entities: {
+    words: {
+      ...initialNormalizedState.entities.words,
+    },
+    defs: {
+      ...initialNormalizedState.entities.defs,
+      [initialNormalizedState.entities.defs[0].id]: {
+        ...initialNormalizedState.entities.defs[0],
+        pos: 4,
+      }
+    },
+  }
+});
+
+export const defTextUpdateNormState = Object.assign({}, initialNormalizedState, { 
+  entities: {
+    words: {
+      ...initialNormalizedState.entities.words,
+    },
+    defs: {
+      ...initialNormalizedState.entities.defs,
+      [initialNormalizedState.entities.defs[0].id]: {
+        ...initialNormalizedState.entities.defs[0],
+        def: "test",
+      }
+    },
+  }
+});
+
+export const defImageUpdateNormState = Object.assign({}, initialNormalizedState, { 
+  entities: {
+    words: {
+      ...initialNormalizedState.entities.words,
+    },
+    defs: {
+      ...initialNormalizedState.entities.defs,
+      [initialNormalizedState.entities.defs[0].id]: {
+        ...initialNormalizedState.entities.defs[0],
+        image: "test",
+      }
+    },
+  }
 });
 // sort asc test data  
 const sortAscTestData = [

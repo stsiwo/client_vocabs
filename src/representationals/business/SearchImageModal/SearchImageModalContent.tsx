@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Search from '../../base/Input/Search';
-import SearchResults from './SearchResults';
+import SearchResultsCont from '../../../containers/SearchResultsCont';
 
 interface ImageIF {
   name: string;
@@ -10,8 +10,9 @@ interface ImageIF {
 
 interface Props {
   className?: string;
-  //handleSearchBtnClick: (e: React.MouseEvent<HTMLElement>) => void;
-  initialSearchInput: string;
+  wordName: string;
+  defId: string;
+  wordId: string;
 }
 
 interface State {
@@ -20,12 +21,12 @@ interface State {
 }
 
 
-class SearchModalContent extends React.Component<Props, State> {
+class SearchImageModalContent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       items: [], 
-      searchInput: this.props.initialSearchInput,
+      searchInput: this.props.wordName,
     }
     this.handleSearchBtnClick = this.handleSearchBtnClick.bind(this);
   }
@@ -40,19 +41,19 @@ class SearchModalContent extends React.Component<Props, State> {
   render() {
     return (
       <div className={ this.props.className }>
-        <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } value={ this.props.initialSearchInput }/>
-        <SearchResults items={ this.state.items } />
+        <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } value={ this.props.wordName }/>
+        <SearchResultsCont items={ this.state.items } defId={ this.props.defId } />
       </div>
     );
   }
 }
 
-const StyledSearchModalContent = styled(SearchModalContent)`
+const StyledSearchImageModalContent = styled(SearchImageModalContent)`
  
 `;
 
 
-export default StyledSearchModalContent;
+export default StyledSearchImageModalContent;
 
 
 

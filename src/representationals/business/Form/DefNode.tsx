@@ -1,9 +1,8 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
-import DefContent from './DefContent';
-import { IPos, pos } from '../../../domains/pos';
 import { IDef } from '../../../domains/def';
+import DefContent from '../Form/DefContent';
 
 const arrowIcon = require('./assets/rightArrow.svg');
 const deleteIcon = require('./assets/delete.svg');
@@ -12,9 +11,7 @@ interface Props {
   className?: string;
   def: IDef;
   isOpen: boolean;
-  initialSearchInput: string;
-  onDefChange: (newValue: IPos | string, targetId: string, property: string) => void;
-  onDeleteDefClick: (targetId: string) => void;
+  removeDefClick: ( wordId: string, defId: string ) => void;
 }
 
 interface State {
@@ -28,8 +25,6 @@ class DefNode extends React.Component<Props, State> {
       isDefContentOpen: true,
     }
     this.handleToggleClick = this.handleToggleClick.bind(this);
-    this.handlePosSelectChange = this.handlePosSelectChange.bind(this);
-    this.handleDefTextChange = this.handleDefTextChange.bind(this);
     this.handleDeleteDefClick = this.handleDeleteDefClick.bind(this);
   }
 
@@ -38,17 +33,9 @@ class DefNode extends React.Component<Props, State> {
     this.setState({ isDefContentOpen : !currentToggleStatus });  
   }
 
-  handlePosSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const targetPosItem = pos.find(( pos ) => pos.value === e.target.value);
-    this.props.onDefChange(targetPosItem, this.props.def.id, 'pos');
-  }
-
-  handleDefTextChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.props.onDefChange(e.target.value, this.props.def.id, 'def');
-  }
-
-  handleDeleteDefClick() {
-    this.props.onDeleteDefClick(this.props.def.id);
+  handleDeleteDefClick(e: React.MouseEvent<HTMLElement>) {
+    // dispatch removeDefAction
+    this.props.removeDefClick(this.props.def._wordId, this.props.def.id);
   }
 
   render() {
@@ -63,7 +50,11 @@ class DefNode extends React.Component<Props, State> {
             <Icon svgSrc={ deleteIcon } onClick={ this.handleDeleteDefClick } width="20px" height="20px"></Icon>
           </div>
         </li>
-        <DefContent onSelectChange={ this.handlePosSelectChange } onTextChange={ this.handleDefTextChange } def={ this.props.def } isOpen={this.state.isDefContentOpen } />
+        
+        <DefContent 
+          def={ this.props.def } 
+          isOpen={this.state.isDefContentOpen } 
+        />
       </ul>
     );
   }

@@ -9,6 +9,8 @@ interface ImageIF {
 interface Props {
   className?: string;
   items: ImageIF[]; 
+  updateDefChange: ( id: string, nextFile: string ) => void;
+  defId: string;
 }
 
 class SearchResults extends React.Component<Props, {} > {
@@ -18,12 +20,13 @@ class SearchResults extends React.Component<Props, {} > {
     this.renderImageElement = this.renderImageElement.bind(this);
   }
 
-  //handleClick(e: React.MouseEvent<HTMLElement>) {
-    //e.stopPropagation();
-  //}
+  handleDefImageClick(e: React.MouseEvent<HTMLElement>) {
+    // need to get value of src of img tag and convert to string
+    this.props.updateDefChange(this.props.defId, "image test");
+  }
 
   renderImageElement() {
-    return this.props.items.map(( img ) => <img src={ img.src } alt={ img.name }/> );
+    return this.props.items.map(( img ) => <img src={ img.src } alt={ img.name } onClick={ this.handleDefImageClick }/> );
   }
 
   render() {

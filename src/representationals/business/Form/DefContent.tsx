@@ -1,17 +1,14 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import Select from '../../base/Input/Select';
-import Text from '../../base/Input/Text';
-import { pos } from '../../../domains/pos';
-import File from '../../base/Input/File';
+import PosSelectCont from '../../../containers/Form/PosSelectCont';
+import DefTextCont from '../../../containers/Form/DefTextCont';
+import DefImageFileCont from '../../../containers/Form/DefImageFileCont';
 import BottomModal from '../../base/Modal/BottomModal';
-import SearchModalContent from '../SearchImageModal/SearchModalContent';
+import SearchImageModalContentCont from '../../../containers/SearchImageModalContentCont';
 import { IDef } from '../../../domains/def';
 
 interface Props {
   className?: string;
-  onSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  onTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   def: IDef;
   isOpen: boolean;
 }
@@ -38,15 +35,21 @@ class DefContent extends React.Component<Props, State> {
     return (
       <ul className={ this.props.className }>
         <li>
-          <Select onChange={ this.props.onSelectChange } items={ pos } pos={ this.props.def.pos } labelName="pos">Pos</Select>
+          <PosSelectCont pos={ this.props.def.pos } defId={ this.props.def.id } /> 
         </li>
         <li>
-          <Text onChange={ this.props.onTextChange } placeholder="enter your definition here..." labelName="def" value={ this.props.def.def }>Def</Text>
+          <DefTextCont defText={ this.props.def.def }  defId={ this.props.def.id }/>
         </li>
         <li>
-          <File labelName="def-upload-image" handleSearchImageToggleClick={ this.handleSearchImageToggleClick } file={ this.props.def.image }/> 
+          <DefImageFileCont 
+            image={ this.props.def.image } 
+            handleSearchImageToggleClick={ this.handleSearchImageToggleClick } 
+            defId={ this.props.def.id }
+          /> 
         </li>
-        <BottomModal isOpen={ this.state.isSearchImageModalOpen } handleSearchImageToggleClick={ this.handleSearchImageToggleClick }><SearchModalContent initialSearchInput="initial value" /></BottomModal>
+        <BottomModal isOpen={ this.state.isSearchImageModalOpen } handleSearchImageToggleClick={ this.handleSearchImageToggleClick }>
+          <SearchImageModalContentCont wordId={ this.props.def._wordId } defId={ this.props.def.id }/>
+        </BottomModal>
       </ul>
     );
   }
