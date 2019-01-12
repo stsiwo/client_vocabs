@@ -9,7 +9,7 @@ const mapStateToProps = (state: INormalizedState , ownProps: {}) => ({
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   // dispatch updateDefTextAction 
-  updateDefChange: ( id: string, nextDefText: string ) => { dispatch( updateDefTextAction( id, nextDefText ) )},
+  updateDefTextChange: ( id: string, nextDefText: string ) => { dispatch( updateDefTextAction( id, nextDefText ) )},
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( DefText );

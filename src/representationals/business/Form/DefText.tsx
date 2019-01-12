@@ -5,7 +5,7 @@ interface Props {
   className?: string;
   defText: string;
   defId: string;
-  updateDefChange: ( id: string, nextDefText: string ) => void;
+  updateDefTextChange: ( id: string, nextDefText: string ) => void;
 }
 
 class DefText extends React.Component<Props, {}> {
@@ -15,7 +15,7 @@ class DefText extends React.Component<Props, {}> {
   }
 
   handleDefTextChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.props.updateDefChange(this.props.defId, e.target.value);
+    this.props.updateDefTextChange(this.props.defId, e.target.value);
   }
 
   render() {

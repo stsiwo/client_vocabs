@@ -6,7 +6,7 @@ interface Props {
   className?: string;
   pos: PosEnum;
   defId: string;
-  updateDefChange: ( id: string, nextPos: PosEnum ) => void;
+  updateDefPosChange: ( id: string, nextPos: PosEnum ) => void;
 }
 
 class PosSelect extends React.Component<Props, {}> {
@@ -16,7 +16,7 @@ class PosSelect extends React.Component<Props, {}> {
   }
 
   handlePosChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.updateDefChange(this.props.defId, parseInt(e.target.value));
+    this.props.updateDefPosChange(this.props.defId, parseInt(e.target.value));
   }
 
   render() {

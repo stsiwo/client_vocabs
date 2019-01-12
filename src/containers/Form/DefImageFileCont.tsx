@@ -9,7 +9,7 @@ const mapStateToProps = (state: INormalizedState , ownProps: {}) => ({
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   // dispatch updateDefImageAction 
-  updateDefChange: ( id: string, nextFile: string ) => { dispatch( updateDefImageAction( id, nextFile ) )},
+  updateDefImageClick: ( id: string, nextImage: string ) => { dispatch( updateDefImageAction( id, nextImage ) )},
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( DefImageFile );

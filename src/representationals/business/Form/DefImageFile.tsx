@@ -5,7 +5,7 @@ interface Props {
   className?: string;
   image: string;
   defId: string;
-  updateDefChange: ( id: string, nextFile: string ) => void;
+  updateDefImageClick: ( id: string, nextFile: string ) => void;
   handleSearchImageToggleClick: (e: React.MouseEvent<HTMLElement>) => void; 
 }
 
@@ -16,7 +16,7 @@ class DefImageFile extends React.Component<Props, {}> {
   }
 
   handleDefImageFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.props.updateDefChange(this.props.defId, e.target.value);
+    this.props.updateDefImageClick(this.props.defId, e.target.value);
   }
 
   render() {

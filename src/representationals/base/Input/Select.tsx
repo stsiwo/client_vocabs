@@ -34,8 +34,7 @@ class Select extends React.Component<Props, State> {
   }
 
   handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    //this.setState({ pos: e.target.value });
-    //this.props.onChange(e);
+    this.props.onChange(e);
   }
 
   render() {

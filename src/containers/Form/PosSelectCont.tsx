@@ -10,7 +10,7 @@ const mapStateToProps = (state: INormalizedState , ownProps: {}) => ({
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   // dispatch updateDefAction 
-  updateDefChange: ( id: string, nextPos: PosEnum ) => { dispatch( updateDefPosAction( id, nextPos ) )},
+  updateDefPosChange: ( id: string, nextPos: PosEnum ) => { dispatch( updateDefPosAction( id, nextPos ) )},
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( PosSelect );

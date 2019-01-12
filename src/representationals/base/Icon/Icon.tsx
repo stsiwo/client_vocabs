@@ -64,5 +64,6 @@ class WrapperIcon extends React.Component<Props, {}> {
 const StyledWrapperIcon = styled(WrapperIcon)`
   margin: 0 5px;
 `
+StyledWrapperIcon.displayName = "IconSelector";
 
 export default StyledWrapperIcon;

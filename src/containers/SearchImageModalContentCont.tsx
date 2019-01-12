@@ -9,7 +9,7 @@ const mapStateToProps = (state: INormalizedState , ownProps: { wordId: string })
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  // dispatch updateDefAction 
+  // updateDefImageAction is in SearchResultsCont
   //updateDefChange: ( id: string, nextFile: string ) => { dispatch( updateDefAction( id, nextFile ) )},
 });
 
