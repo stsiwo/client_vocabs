@@ -8,6 +8,7 @@ import {
   updateDefTextCaseReducer,
   updateDefImageCaseReducer,
   addWordEntityCaseReducer, 
+  addDefCaseReducer,
   removeWordEntityCaseReducer,
   removeDefsCaseReducer,
   updateWordNameCaseReducer,
@@ -55,6 +56,8 @@ export const defsHandler: Handler<IEntityDef> = {
 
 export const wordsHandler: Handler<IEntityWord> = {
   [WordActionType.ADD_NEW_WORD]: addWordEntityCaseReducer,
+  // need this when add new word because it also has to change words entity's defs property
+  [DefActionType.ADD_NEW_DEF]: addDefCaseReducer,
   [WordActionType.REMOVE_WORD]: removeWordEntityCaseReducer,
   [WordActionType.UPDATE_WORD_NAME]: updateWordNameCaseReducer,
   // remove target def id from defs property of word entitiy when def is removed

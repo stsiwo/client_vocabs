@@ -62,6 +62,22 @@ export const addWordEntityCaseReducer: caseReducer<IEntityWord> = (words, action
   ...action.nextWord,
 });
 
+// modify word.defs property to add new def when add new def icon is clicked
+export const addDefCaseReducer: caseReducer<IEntityWord> = (words, action) => {
+  const defId = Object.keys(action.nextDef)[0];
+  const def = action.nextDef[defId];
+  const wordId = def._wordId;
+  
+  return {
+    ...words,
+    [wordId]: {
+      ...words[wordId],
+      defs: words[wordId].defs.concat([ def.id ]),
+    }
+  }
+}
+
+
 export const removeWordEntityCaseReducer: caseReducer<IEntityWord> = (words, action) => omit(words, action.id); 
 
 

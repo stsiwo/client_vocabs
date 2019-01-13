@@ -2,8 +2,8 @@ import { IEntityDef } from '../../../src/state/type';
 import { initialNormalizedState } from '../../../src/state/index';
 
 export const addNewDefActionInputData: IEntityDef = {
-  ["111"]: {
-    id: "14",
+  ["200"]: {
+    id: "200",
     pos: 2,
     def: "test",
     image: "test",
@@ -15,6 +15,10 @@ export const addNewDefActionOutputData = Object.assign({}, initialNormalizedStat
   entities: {
     words: {
       ...initialNormalizedState.entities.words,
+      ["4"]: {
+        ...initialNormalizedState.entities.words["4"],
+        defs: initialNormalizedState.entities.words["4"].defs.concat(["200"]),
+      }
     },
     defs: {
       ...initialNormalizedState.entities.defs,

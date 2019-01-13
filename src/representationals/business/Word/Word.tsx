@@ -42,11 +42,11 @@ class Word extends React.Component<Props, State> {
       <div className={ this.props.className }>
         <MediaQuery maxWidth={ 425 }>
           <Route exact path="/word" component={ WordListCont } />
-          <Route path="/word/detail" component={ WordDetailCont }/>} />
+          <Route path="/word/detail" component={ WordDetailCont } />
         </MediaQuery>
         <MediaQuery minWidth={ 426 }>
-          <Route path="/word" component={ WordListCont } />} /> 
-          <Route path="/word/detail" component={ WordDetailCont } />} />
+          <Route path="/word" component={ WordListCont } /> 
+          <Route path="/word/detail" component={ WordDetailCont } />
           <Redirect from="/word" to="/word/detail" />
           <Controller />
         </MediaQuery>

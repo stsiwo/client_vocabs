@@ -36,6 +36,3 @@ class WordNameText extends React.Component<Props, {}> {
 }
 
 export default WordNameText;
-
-
-
