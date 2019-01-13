@@ -38,6 +38,10 @@ class SearchResults extends React.Component<Props, {} > {
     );
   }
 }
+/******************************************
+// react + typescript can't define displayName: error TS2339: Property 'displayName' does not exist on type 'typeof SearchResults'
+//SearchResults.displayName = "SearchResults";
+*******************************************/
 
 const StyledSearchResults = styled(SearchResults)`
   display: grid;
@@ -56,7 +60,7 @@ const StyledSearchResults = styled(SearchResults)`
   }
  
 `;
-
+StyledSearchResults.displayName = "SearchResults";
 
 export default StyledSearchResults;
 

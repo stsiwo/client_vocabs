@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../story/styledComponents';
 import Search from '../../base/Input/Search';
 import SearchResultsCont from '../../../containers/SearchResultsCont';
 
@@ -20,7 +19,7 @@ interface State {
   searchInput: string;
 }
 
-
+  // test : tests/ui/searchImageModalContent.spec.tsx
 class SearchImageModalContent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -29,33 +28,39 @@ class SearchImageModalContent extends React.Component<Props, State> {
       searchInput: this.props.wordName,
     }
     this.handleSearchBtnClick = this.handleSearchBtnClick.bind(this);
+    this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
   }
 
   handleSearchBtnClick(e: React.MouseEvent<HTMLElement>) {
     // fetch image 
+    //  - need to create container components then define mdtp to wrap dispach thunk to fetch image
     // change state to items
-    // temporary just console.log
-    console.log('search the images');
+    //  - temporary test data
+    this.setState({ items: 
+      [
+        {
+          name: 'test-image-name',
+          src: 'test-imge-src',
+        }
+      ] 
+    });
+  }
+
+  handleSearchInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({ searchInput: e.target.value });
   }
 
   render() {
     return (
       <div className={ this.props.className }>
-        <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } value={ this.props.wordName }/>
+        <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } onChange={ this.handleSearchInputChange } value={ this.state.searchInput }/>
         <SearchResultsCont items={ this.state.items } defId={ this.props.defId } />
       </div>
     );
   }
 }
 
-const StyledSearchImageModalContent = styled(SearchImageModalContent)`
- 
-`;
-
-
-export default StyledSearchImageModalContent;
-
-
+export default SearchImageModalContent;
 
 
 

@@ -10,7 +10,9 @@ interface Props {
   className?: string;
   labelName?: string;
   placeholder?: string;
+  // icon click to get search result
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  // text input change to display text change
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
 }
@@ -25,7 +27,7 @@ class Search extends React.Component<Props, {}> {
       <div className={ this.props.className }>
         <Input type="search" id={ this.props.labelName } name={ this.props.labelName } placeholder={ this.props.placeholder } value={ this.props.value } onChange={ this.props.onChange }></Input>
         <label htmlFor={ this.props.labelName }>
-          <Icon svgSrc={ searchIcon } hoverEffect={ true } />
+          <Icon svgSrc={ searchIcon } hoverEffect={ true } onClick={ this.props.onClick } />
         </label>
       </div>
     );

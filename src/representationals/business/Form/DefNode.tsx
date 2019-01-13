@@ -18,7 +18,7 @@ interface State {
   isDefContentOpen: boolean;
 }
 
-class DefNode extends React.Component<Props, State> {
+export class DefNode extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
