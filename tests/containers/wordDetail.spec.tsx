@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount/*, shallow */ } from 'enzyme';
-import { ProviderAndThemeWrapperHOC } from './helper';
+import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC';
 import WordDetailCont from '../../src/containers/Word/WordDetailCont';
 import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount/*, shallow */ } from 'enzyme';
-import { ProviderAndThemeWrapperHOC } from './helper';
+import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC';
 import SelectAllControllerItemCont from '../../src/containers/Controller/SelectAllControllerItemCont';
 import { initialNormalizedState } from '../../src/state/index';
 import * as sinon from 'sinon';

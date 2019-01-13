@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount/*, shallow */ } from 'enzyme';
-import { ProviderAndThemeWrapperHOC } from './helper';
+import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC';
 import DeleteControllerItemCont from '../../src/containers/Controller/DeleteControllerItemCont';
 import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
