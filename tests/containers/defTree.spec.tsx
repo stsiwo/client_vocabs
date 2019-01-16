@@ -8,7 +8,7 @@ import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addNewDefAction } from '../../src/actions/index';
+import { addNewDefActionCreator } from '../../src/actions/index';
 import { defTestData } from '../storage/domains/def';
 import getNewNormalizedDef from '../../src/state/util/getNewNormalizedDef';
 
@@ -21,7 +21,7 @@ describe('DefTreeCont', function() {
   });
 
   // this mdtp is defined in "WordListItemCont" not "DefTreeCont" container component
-  it('should invoke addNewDefAction (MDTP function)', function() {
+  it('should invoke addNewDefActionCreator (MDTP function)', function() {
     
     let store: MockStoreEnhanced;
     // change initial currentSort and currentFilter
@@ -41,8 +41,8 @@ describe('DefTreeCont', function() {
     const actions = store.getActions();
 
     // check dispatched action is dummy
-    // only check type of action since this test is to make sure mdtp functionality which means that when addNewDefClick is called addNewDefAction is dispatch. it does not matter of content of the data of action
-    expect(actions[0].type).toEqual(addNewDefAction(getNewNormalizedDef("0")).type); 
+    // only check type of action since this test is to make sure mdtp functionality which means that when addNewDefClick is called addNewDefActionCreator is dispatch. it does not matter of content of the data of action
+    expect(actions[0].type).toEqual(addNewDefActionCreator(getNewNormalizedDef("0")).type); 
   })
 })
 

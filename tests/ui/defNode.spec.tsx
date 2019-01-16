@@ -12,7 +12,7 @@ interface Props {
   className?: string;
   def: IDef;
   isOpen: boolean;
-  removeDefClick: ( wordId: string, defId: string ) => void;
+  removeDefClick: ( wordId: string, defId: string[] ) => void;
 }
 
 describe('DefNode', function() {

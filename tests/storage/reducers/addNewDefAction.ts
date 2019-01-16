@@ -1,7 +1,7 @@
-import { IEntityDef } from '../../../src/state/type';
+import { StateType } from '../../../src/state/type';
 import { initialNormalizedState } from '../../../src/state/index';
 
-export const addNewDefActionInputData: IEntityDef = {
+export const addNewDefActionInputData: StateType.IEntityDef = {
   ["200"]: {
     id: "200",
     pos: 2,

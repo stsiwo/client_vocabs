@@ -52,7 +52,7 @@ describe('EditControllerItemCont', function() {
   })
 
   // this mdtp is defined in "WordListItemCont" not "EditControllerItemCont" container component
-  it('should invoke openModalWrapperThunk with toggleSelectWarningModalAction action (MDTP function)', function() {
+  it('should invoke openModalWrapperThunk with toggleSelectWarningModalActionCreator action (MDTP function)', function() {
     let store = mockStore(initialNormalizedState);
     const ContextHOC = ProviderAndThemeWrapperHOC(EditControllerItemCont, store);
     const wrapper = mount(

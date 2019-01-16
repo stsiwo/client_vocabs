@@ -1,7 +1,7 @@
-import { IEntityWord } from '../../../src/state/type';
+import { StateType } from '../../../src/state/type';
 import { initialNormalizedState } from '../../../src/state/index';
 
-export const addNewWordActionInputData: IEntityWord = {
+export const addNewWordActionInputData: StateType.IEntityWord = {
   ["111"]: {
     id: "111",
     name: "test",

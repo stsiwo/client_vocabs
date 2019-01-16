@@ -12,7 +12,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: { defs: IDef[] }) =>
 
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: { defs: IDef[] } ) => ({
-  addNewDefClick: ( wordId: string ): void => { dispatch( addNewDefActionCreator( getNewNormalizedDef(wordId) ))}, 
+  addNewDefClick: ( wordId: string ): void => { dispatch( addNewDefActionCreator( wordId, getNewNormalizedDef(wordId) ))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( DefTree );

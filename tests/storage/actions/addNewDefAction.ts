@@ -1,7 +1,7 @@
-import { IEntityDef } from '../../../src/state/type';
+import { StateType } from '../../../src/state/type';
 // "wordId" from thunk/addnewWordForm.spec.tsx 
 // "defId" from util/getNewWord
-export const addNewDefActionTestData: IEntityDef = {
+export const addNewDefActionTestData: StateType.IEntityDef = {
   defId: {
     id: "defId",
     pos: 1,

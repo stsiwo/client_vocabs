@@ -3,6 +3,7 @@ import { StateType } from '../state/type';
 import { initialNormalizedState } from '../state/index';
 const xor = require('lodash/xor');
 const omit = require('lodash/omit');
+const omitBy = require('lodash/omitBy');
 
 /**
  * case reducer
@@ -76,7 +77,7 @@ export namespace CaseReducer {
   });
 
 
-  export const removeWordEntityCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => omit(words, action.id);
+  export const removeWordEntityCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => omit(words, action.wordId);
 
 
   export const updateWordNameCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => ({
@@ -90,7 +91,13 @@ export namespace CaseReducer {
   // append or pluck def id from word.defs
   export const toggleWordDefsCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => {
     // if action.defId exist in state, remove otherwise add it
-    return xor(words[action.wordId].defs, [ action.defId ]);
+    return {
+      ...words,
+      [action.wordId]: {
+        ...words[action.wordId],
+        defs: xor(words[action.wordId].defs, action.defIds ),  
+      }
+    }
   };
 
   // update (replace) the entire word.defs
@@ -113,6 +120,8 @@ export namespace CaseReducer {
   });
 
   export const removeDefEntityCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => omit(defs, action.defIds);
+
+  export const removeDefEntitiesCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => omitBy(defs, ( def: StateType.IEntityDef ) => def._wordId === action.wordId);
 
   export const updateDefPosCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => ({
     ...defs,
@@ -210,7 +219,7 @@ export namespace CaseReducer {
   /*********************************************
    * ui CaseReducer
    *********************************************/
-  export const toggleSelectWarningModalCaseReducer: CaseReducerType<StateType.IUi> = (ui, action) => Object.assign({}, ui, { isSelectWarningModalOpen: action.sortedWordList });;
+  export const toggleSelectWarningModalCaseReducer: CaseReducerType<StateType.IUi> = (ui, action) => Object.assign({}, ui, { isSelectWarningModalOpen: action.isSelectWarningModalOpen });;
 
   export const toggleDeleteConfirmModalCaseReducer: CaseReducerType<StateType.IUi> = (ui, action) => Object.assign({}, ui, { isDeleteConfirmModalOpen: action.isDeleteConfirmModalOpen });
 

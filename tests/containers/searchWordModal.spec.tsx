@@ -5,7 +5,7 @@ import SearchWordModalCont from '../../src/containers/SearchWordModalCont';
 import { initialNormalizedState } from '../../src/state/index';
 //import { wordListItemModel } from '../storage/containers/wordListCont';
 import configureMockStore from 'redux-mock-store';
-import { searchKeyWordAction, changeSearchedWordListAction, changeDisplayedWordListAction } from '../../src/actions/index';
+import { changeSearchKeyWordActionCreator, changeDisplayedWordListActionCreator } from '../../src/actions/index';
 import { changeSearchKeyWordDispatchType } from '../../src/containers/type';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -32,7 +32,7 @@ describe('SearchWordModalCont', function() {
   })
 
   // this mdtp is defined in "WordListItemCont" not "SearchWordModalCont" container component
-  it('should invoke dispatch function with toggleSelectWordAction action (MDTP function)', function() {
+  it('should invoke dispatch function with toggleSelectWordActionCreator action (MDTP function)', function() {
     const ContextHOC = ProviderAndThemeWrapperHOC(SearchWordModalCont, store);
     const wrapper = mount(
       <ContextHOC />
@@ -46,9 +46,8 @@ describe('SearchWordModalCont', function() {
     // get dispatched action in mock store
     const actions = store.getActions();
     
-    expect(actions[0]).toEqual(changeSearchedWordListAction([])); 
-    expect(actions[1]).toEqual(changeDisplayedWordListAction([])); 
-    expect(actions[2]).toEqual(searchKeyWordAction('test')); 
+    expect(actions[0]).toEqual(changeSearchKeyWordActionCreator('test', [])); 
+    expect(actions[1]).toEqual(changeDisplayedWordListActionCreator([])); 
   })
 })
 

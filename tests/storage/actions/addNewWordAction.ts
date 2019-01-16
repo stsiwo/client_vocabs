@@ -1,6 +1,6 @@
-import { IEntityWord } from '../../../src/state/type';
+import { StateType } from '../../../src/state/type';
 // "wordId" from thunk/addnewWordForm.spec.tsx 
-export const addNewWordActionTestData: IEntityWord = {
+export const addNewWordActionTestData: StateType.IEntityWord = {
   wordId: {
     id: "wordId",
     name: "",

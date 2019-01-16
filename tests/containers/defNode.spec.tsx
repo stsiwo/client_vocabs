@@ -8,7 +8,7 @@ import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { removeDefAction } from '../../src/actions/index';
+import { removeDefActionCreator } from '../../src/actions/index';
 import { defTestData } from '../storage/domains/def';
 
 const mockStore = configureMockStore([ thunk ]);
@@ -20,7 +20,7 @@ describe('DefNodeCont', function() {
   });
 
   // this mdtp is defined in "WordListItemCont" not "DefNodeCont" container component
-  it('should invoke removeDefAction (MDTP function)', function() {
+  it('should invoke removeDefActionCreator (MDTP function)', function() {
     
     let store: MockStoreEnhanced;
     // change initial currentSort and currentFilter
@@ -31,16 +31,16 @@ describe('DefNodeCont', function() {
       <ContextHOC def={ defTestData } isOpen={ true } />
     );
     
-    const removeDefClick: (wordId: string, defId: string) => void = wrapper.find("DefNode").first().prop('removeDefClick');
+    const removeDefClick: (wordId: string, defIds: string[]) => void = wrapper.find("DefNode").first().prop('removeDefClick');
 
     // programmarically call dispatch wrapper function since react event is tested in another test
-    removeDefClick("0","0");
+    removeDefClick("0",[ "0" ]);
 
     // get dispatched action in mock store
     const actions = store.getActions();
 
     // check dispatched action is dummy
-    expect(actions[0]).toEqual(removeDefAction("0", "0")); 
+    expect(actions[0]).toEqual(removeDefActionCreator("0", [ "0" ])); 
   })
 })
 

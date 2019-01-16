@@ -1,11 +1,11 @@
-import { SortedWordListActionType, SearchKeyWordActionType, IChangeSortedWordListAction } from '../../../src/actions/type';
+import { SortedWordListActionType, SearchKeyWordActionType, IChangeSortedWordListActionCreator } from '../../../src/actions/type';
 import { IWordListItem } from '../../../src/domains/word';
 //import * as fuzzysort from 'fuzzysort';
 import { KeysResults } from './fuzzyType';
 /**
  * changeSearchKeyWordWrapperThunk test data
  **/
-export const changeSortedWordListActionDummy: IChangeSortedWordListAction  = {
+export const changeSortedWordListActionDummy: IChangeSortedWordListActionCreator  = {
   type: SortedWordListActionType.CHANGE_SORTED_WORD_LIST, 
   nextSortedWordList: [],// result of fuzzy matching with initialNormalizedState 
 }

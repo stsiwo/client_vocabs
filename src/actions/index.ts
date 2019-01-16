@@ -14,10 +14,10 @@ export const addNewWordActionCreator = ( nextWord: StateType.IEntityWord) => {
   }
 }
 
-export const removeWordActionCreator = (id: string) => {
+export const removeWordActionCreator = (wordId: string) => {
   return {
     type: ActionType.REMOVE_WORD,
-    id,
+    wordId,
   }
 };
 
@@ -30,11 +30,12 @@ export const updateWordNameActionCreator = (id: string, nextWordName: string) =>
 };
 
 
-export const addNewDefActionCreator = (nextDef: StateType.IEntityDef) => {
+export const addNewDefActionCreator = (wordId: string, nextDef: StateType.IEntityDef) => {
   return {
     type: ActionType.ADD_NEW_DEF,
     nextDef: nextDef,
-    wordId: nextDef._wordId, // for toggleWordDefsCaseReducer
+    wordId: wordId,
+    defIds: Object.keys(nextDef),
   }
 };
 
@@ -114,19 +115,18 @@ export const toggleSearchWordModalActionCreator = (isSearchWordModalOpen: boolea
   isSearchWordModalOpen: isSearchWordModalOpen,
 })
 
-export const toggleSelectWordActionCreator = (nextSelectedWordList: string[]) => ({
+export const toggleSelectedWordListActionCreator = (nextWordId: string) => ({
   type: ActionType.TOGGLE_SELECT_WORD,
-  nextSelectedWordList: nextSelectedWordList,
+  nextWordId: nextWordId,
 });
 
-export const addSelectedWordListActionCreator = (nextSelectedWordList: string[]) => ({
-  type: ActionType.TOGGLE_SELECT_WORD,
-  nextSelectedWordList: nextSelectedWordList,
-});
-
-export const selectAllWordActionCreator = (nextSelectedWordList: string[]) => ({
+export const selectAllSelectedWordListActionCreator = (nextSelectedWordList: string[]) => ({
   type: ActionType.SELECT_ALL_WORD,
   nextSelectedWordList: nextSelectedWordList,
+});
+
+export const emptySelectedWordListActionCreator = () => ({
+  type: ActionType.EMPTY_SELECTED_WORD,
 });
 
 export const resetStateActionCreator = () => ({

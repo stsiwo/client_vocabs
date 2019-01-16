@@ -36,7 +36,7 @@ export namespace ActionHandler {
    ****************************************/
   export const defsHandler: HandlerType<StateType.IEntityDef> = {
     [ActionType.ADD_NEW_WORD]: CaseReducer.addDefEntityCaseReducer, // ok
-    [ActionType.REMOVE_WORD]: CaseReducer.removeDefEntityCaseReducer, // ok
+    [ActionType.REMOVE_WORD]: CaseReducer.removeDefEntitiesCaseReducer, // ok
     [ActionType.ADD_NEW_DEF]: CaseReducer.addDefEntityCaseReducer, // ok
     [ActionType.REMOVE_DEF]: CaseReducer.removeDefEntityCaseReducer, // ok
     [ActionType.UPDATE_DEF_POS]: CaseReducer.updateDefPosCaseReducer, // ok
@@ -86,7 +86,8 @@ export namespace ActionHandler {
    * sortedWordList
    ****************************************/
   export const sortedWordListHandler: HandlerType<StateType.ISortedWordList> = {
-    [ActionType.CHANGE_SORTED_WORD_LIST]: CaseReducer.changeSortedWordListCaseReducer, // ok
+    [ActionType.CHANGE_SORT]: CaseReducer.changeSortedWordListCaseReducer, // ok
+    [ActionType.CHANGE_FILTER]: CaseReducer.changeSortedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetSortedWordListCaseReducer,
   }
 

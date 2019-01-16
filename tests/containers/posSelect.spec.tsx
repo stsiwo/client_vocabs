@@ -8,7 +8,7 @@ import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { updateDefPosAction } from '../../src/actions/index';
+import { updateDefPosActionCreator } from '../../src/actions/index';
 
 const mockStore = configureMockStore([ thunk ]);
 
@@ -19,7 +19,7 @@ describe('PosSelectCont', function() {
   });
 
   // this mdtp is defined in "WordListItemCont" not "PosSelectCont" container component
-  it('should invoke updateDefPosAction (MDTP function)', function() {
+  it('should invoke updateDefPosActionCreator (MDTP function)', function() {
     
     let store: MockStoreEnhanced;
     // change initial currentSort and currentFilter
@@ -39,7 +39,7 @@ describe('PosSelectCont', function() {
     const actions = store.getActions();
 
     // check dispatched action is dummy
-    expect(actions[0]).toEqual(updateDefPosAction("0", 2 )); 
+    expect(actions[0]).toEqual(updateDefPosActionCreator("0", 2 )); 
   })
 })
 

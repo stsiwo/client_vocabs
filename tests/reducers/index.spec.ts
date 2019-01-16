@@ -4,26 +4,26 @@ import { AnyAction } from 'redux';
 //import { updateWord } from '../storage/word';
 //import { newDef, updateDef } from '../storage/def'; 
 import { 
-  addNewWordAction, 
-  removeWordAction,
-  updateWordNameAction,
-  addNewDefAction, 
-  removeDefAction,
-  updateDefPosAction,
-  updateDefTextAction,
-  updateDefImageAction,
-  toggleSelectWarningModalAction, 
-  toggleDeleteConfirmModalAction,
-  toggleSortFilterModalAction, 
-  toggleSearchWordModalAction,
-  toggleSelectWordAction,
-  addSelectedWordListAction,
-  selectAllWordAction,
-  resetStateAction,
-  searchKeyWordAction,
-  changeSortedWordListAction,
-  changeSearchedWordListAction,
-  changeDisplayedWordListAction
+  addNewWordActionCreator, 
+  removeWordActionCreator,
+  updateWordNameActionCreator,
+  addNewDefActionCreator, 
+  removeDefActionCreator,
+  updateDefPosActionCreator,
+  updateDefTextActionCreator,
+  updateDefImageActionCreator,
+  changeSortActionCreator,
+  changeFilterActionCreator,
+  toggleSelectWarningModalActionCreator, 
+  toggleDeleteConfirmModalActionCreator,
+  toggleSortFilterModalActionCreator, 
+  toggleSearchWordModalActionCreator,
+  toggleSelectedWordListActionCreator,
+  selectAllSelectedWordListActionCreator,
+  emptySelectedWordListActionCreator,
+  resetStateActionCreator,
+  changeSearchKeyWordActionCreator,
+  changeDisplayedWordListActionCreator,
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
@@ -69,7 +69,6 @@ import {
 } from '../storage/ui';
 import {
   normalizedToggleSelectWordState,
-  normalizedToggleSelectWordRandomState,
   normalizedAddSelectWordState,
   normalizedSelectAllWordState,
   normalizedEmptifyWordState
@@ -84,7 +83,7 @@ import { initialNormalizedState } from '../../src/state/index';
 describe('reducers: dispatch action and check state has changed as expected', () => {
 
   beforeEach(() => {
-    store.dispatch(resetStateAction());
+    store.dispatch(resetStateActionCreator());
   })
 
   it('should return initial state', () => {
@@ -97,36 +96,38 @@ describe('reducers: dispatch action and check state has changed as expected', ()
   })
 
   it('should return new state (added new word)', () => {
-    expect(rootReducer(undefined, addNewWordAction(addNewWordActionInputData))).toEqual(addNewWordActionOutputData)
+    expect(rootReducer(undefined, addNewWordActionCreator(addNewWordActionInputData))).toEqual(addNewWordActionOutputData)
   })
 
   it('should return new state (removed a particular word)', () => {
-    expect(rootReducer(undefined, removeWordAction('1'))).toEqual(wordRemovedNormState)
+    expect(rootReducer(undefined, removeWordActionCreator('1'))).toEqual(wordRemovedNormState)
   })
 
   it('should return new state (updated word name of a particular word )', () => {
-    expect(rootReducer(undefined, updateWordNameAction("0", "test"))).toEqual(wordNameUpdateNormState)
+    expect(rootReducer(undefined, updateWordNameActionCreator("0", "test"))).toEqual(wordNameUpdateNormState)
   })
 
   it('should return new state (added new def to a particular word)', () => {
-    expect(rootReducer(undefined, addNewDefAction(addNewDefActionInputData))).toEqual(addNewDefActionOutputData)
+    // wordId = 4 from test data file
+    expect(rootReducer(undefined, addNewDefActionCreator("4", addNewDefActionInputData))).toEqual(addNewDefActionOutputData)
   })
 
   it('should return new state (removed a particular def)', () => {
 
-    expect(rootReducer(undefined, removeDefAction("0","1"))).toEqual(defRemovedNormState)
+
+    expect(rootReducer(undefined, removeDefActionCreator("0",[ "1" ]))).toEqual(defRemovedNormState)
   })
 
   it('should return new state (updated pos a particular def)', () => {
-    expect(rootReducer(undefined, updateDefPosAction('0', 4))).toEqual(defPosUpdateNormState)
+    expect(rootReducer(undefined, updateDefPosActionCreator('0', 4))).toEqual(defPosUpdateNormState)
   })
 
   it('should return new state (updated def text (def) a particular def)', () => {
-    expect(rootReducer(undefined, updateDefTextAction('0', "test"))).toEqual(defTextUpdateNormState)
+    expect(rootReducer(undefined, updateDefTextActionCreator('0', "test"))).toEqual(defTextUpdateNormState)
   })
 
   it('should return new state (updated def image (image) a particular def)', () => {
-    expect(rootReducer(undefined, updateDefImageAction('0', "test"))).toEqual(defImageUpdateNormState)
+    expect(rootReducer(undefined, updateDefImageActionCreator('0', "test"))).toEqual(defImageUpdateNormState)
   })
   // thunk -- sort --- 
   it('should return new state (changed sort of wordlist to alpha asc)', () => {
@@ -137,7 +138,7 @@ describe('reducers: dispatch action and check state has changed as expected', ()
     // 2. then get updated state from stor
     // 3. compared with test data
     store.dispatch<any>(changeSortWrapperThunk(SORT_ORDER.ALPHA_ASC))
-    // should work fine without <any> since I defined ThunkAction but does not work, so use as last resort
+    // should work fine without <any> since I defined ThunkActionCreator but does not work, so use as last resort
     expect(store.getState()).toEqual(normalizedSortAscState);
   })
 
@@ -220,23 +221,23 @@ describe('reducers: dispatch action and check state has changed as expected', ()
 
 describe('rootReducer UI state test', () => {
   beforeEach(() => {
-    store.dispatch(resetStateAction());
+    store.dispatch(resetStateActionCreator());
   })
   // ui toggle modal
   it('should return new state (changed ui.isSelectWarningModalOpen to true', () => {
-    expect(rootReducer(undefined, toggleSelectWarningModalAction(true))).toEqual(normalizedToggleSelectWarningModalState)
+    expect(rootReducer(undefined, toggleSelectWarningModalActionCreator(true))).toEqual(normalizedToggleSelectWarningModalState)
   })
 
   it('should return new state (changed ui.isDeleteConfirmModalOpen to true', () => {
-    expect(rootReducer(undefined, toggleDeleteConfirmModalAction(true))).toEqual(normalizedToggleDeleteConfirmModalState)
+    expect(rootReducer(undefined, toggleDeleteConfirmModalActionCreator(true))).toEqual(normalizedToggleDeleteConfirmModalState)
   })
 
   it('should return new state (changed ui.isSortFilterModalOpen to true', () => {
-    expect(rootReducer(undefined, toggleSortFilterModalAction(true))).toEqual(normalizedToggleSortFilterModalState)
+    expect(rootReducer(undefined, toggleSortFilterModalActionCreator(true))).toEqual(normalizedToggleSortFilterModalState)
   })
 
   it('should return new state (changed ui.isSearchWordModalOpen to true', () => {
-    expect(rootReducer(undefined, toggleSearchWordModalAction(true))).toEqual(normalizedToggleSearchWordModalState)
+    expect(rootReducer(undefined, toggleSearchWordModalActionCreator(true))).toEqual(normalizedToggleSearchWordModalState)
   })
 })
 // initial normalized state
@@ -259,34 +260,27 @@ describe('rootReducer UI state test', () => {
 
 describe('selectedWordList state (single word)', () => {
   beforeEach(() => {
-    store.dispatch(resetStateAction());
+    store.dispatch(resetStateActionCreator());
   })
 
   it('should return new state (added word id (=1) to selectedWordList state)', () => {
-    expect(rootReducer(undefined, toggleSelectWordAction(["1"]))).toEqual(normalizedToggleSelectWordState)
-  })
-
-  it('should return new state (added word ids (random) to selectedWordList state)', () => {
-    expect(rootReducer(undefined, toggleSelectWordAction(["1", "3", "5", "7"]))).toEqual(normalizedToggleSelectWordRandomState)
+    expect(rootReducer(undefined, toggleSelectedWordListActionCreator("1"))).toEqual(normalizedToggleSelectWordState)
   })
 
   it('should return new state (added word id (=1) to selectedWordList state)', () => {
     // id must be new id which does not exist in selectedWordList
-    expect(rootReducer(undefined, addSelectedWordListAction(["10"]))).toEqual(normalizedAddSelectWordState)
+    expect(rootReducer(undefined, toggleSelectedWordListActionCreator("10"))).toEqual(normalizedAddSelectWordState)
   })
 
   it('should return new state (case A: select all of sortedWordList to selectedWordList state)', () => {
     // since initial selectedWordList includes some values ( 0,1,2,3 ) so normalizedSelelctAllWordState's selectedWordList must return all values of sortedWordList 
-    expect(rootReducer(undefined, selectAllWordAction(["0","1","2","3","4","5","6","7","8","9","10"]))).toEqual(normalizedSelectAllWordState)
+    expect(rootReducer(undefined, selectAllSelectedWordListActionCreator(["0","1","2","3","4","5","6","7","8","9","10"]))).toEqual(normalizedSelectAllWordState)
   })
 
   it('should return new state (case B: emptify selectedWordList state)', () => {
 
-    // select all word item first 
-    store.dispatch(selectAllWordAction(["0","1","2","3","4","5","6","7","8","9","10"]));
-
     // emptify selectedWordList 
-    store.dispatch(selectAllWordAction(["0","1","2","3","4","5","6","7","8","9","10"]));
+    store.dispatch(emptySelectedWordListActionCreator());
     
     // dispatch -> action -> reducer -> store 
     // rootReducer just return new state so it means does not affect store.getState() 
@@ -296,61 +290,56 @@ describe('selectedWordList state (single word)', () => {
 
 describe('sortedWordList state', () => {
   beforeEach(() => {
-    store.dispatch(resetStateAction());
+    store.dispatch(resetStateActionCreator());
   })
 
-  it('should return new state ( change sortedWordList to empty array', () => {
-    expect(rootReducer(undefined, changeSortedWordListAction([])).sortedWordList).toEqual([])
+  it('should return new state ( changeSortActionCreator change sortedWordList to empty array )', () => {
+    // currentSort values does not matter
+    expect(rootReducer(undefined, changeSortActionCreator(3, [])).sortedWordList).toEqual([])
   })
 
-})
-
-describe('searchedWordList state', () => {
-  beforeEach(() => {
-    store.dispatch(resetStateAction());
-  })
-
-  it('should return new state ( change searchedWordList to empty array', () => {
-    expect(rootReducer(undefined, changeSearchedWordListAction([])).searchedWordList).toEqual([])
-  })
-
-  it('should return new state ( change searchedWordList to ramdom values array', () => {
-    expect(rootReducer(undefined, changeSearchedWordListAction(["1","2","3","4"])).searchedWordList).toEqual(["1","2","3","4"])
+  it('should return new state ( changeFilterActionCreator change sortedWordList to empty array )', () => {
+    // currentFilter values does not matter
+    expect(rootReducer(undefined, changeFilterActionCreator([1,2,3], [])).sortedWordList).toEqual([])
   })
 })
 
 describe('displayedWordList state', () => {
   beforeEach(() => {
-    store.dispatch(resetStateAction());
+    store.dispatch(resetStateActionCreator());
   })
 
   it('should return new state ( change displayedWordList to empty array', () => {
-    expect(rootReducer(undefined, changeDisplayedWordListAction([])).displayedWordList).toEqual([])
+    expect(rootReducer(undefined, changeDisplayedWordListActionCreator([])).displayedWordList).toEqual([])
   })
 
   it('should return new state ( change displayedWordList to ramdom values array', () => {
-    expect(rootReducer(undefined, changeDisplayedWordListAction(["1","2","3","4"])).displayedWordList).toEqual(["1","2","3","4"])
+    expect(rootReducer(undefined, changeDisplayedWordListActionCreator(["1","2","3","4"])).displayedWordList).toEqual(["1","2","3","4"])
   })
 })
 
 describe('searchKeyWord state', () => {
   beforeEach(() => {
-    store.dispatch(resetStateAction());
+    store.dispatch(resetStateActionCreator());
   })
 
   it('should return new state ( change search keyword )', () => {
-    expect(rootReducer(undefined, searchKeyWordAction('test')).searchKeyWord).toEqual('test')
+    expect(rootReducer(undefined, changeSearchKeyWordActionCreator('test', [])).searchKeyWord).toEqual('test')
+  })
+
+  it('should return new state ( change search keyword )', () => {
+    expect(rootReducer(undefined, changeSearchKeyWordActionCreator('test', [])).searchKeyWord).toEqual('test')
   })
 
 })
 
 describe('reset state to initial state ', () => {
   beforeEach(() => {
-    store.dispatch(resetStateAction());
+    store.dispatch(resetStateActionCreator());
   })
 
   it('should return new state (initial state)', () => {
-    expect(rootReducer(undefined, resetStateAction())).toEqual(initialNormalizedState)
+    expect(rootReducer(undefined, resetStateActionCreator())).toEqual(initialNormalizedState)
   })
 
 })

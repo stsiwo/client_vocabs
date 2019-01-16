@@ -5,7 +5,7 @@ import WordListCont from '../../src/containers/Word/WordListCont';
 import { initialNormalizedState } from '../../src/state/index';
 import { wordListItemModel } from '../storage/containers/wordListCont';
 import configureMockStore from 'redux-mock-store';
-import { toggleSelectWordAction } from '../../src/actions/index';
+import { toggleSelectWordActionCreator } from '../../src/actions/index';
 import { toggleSelectWordDispatchType } from '../../src/containers/type';
 import { MockStoreEnhanced } from 'redux-mock-store';
 
@@ -33,7 +33,7 @@ describe('WordListCont', function() {
   })
 
   // this mdtp is defined in "WordListItemCont" not "WordListCont" container component
-  it('should invoke dispatch function with toggleSelectWordAction action (MDTP function)', function() {
+  it('should invoke dispatch function with toggleSelectWordActionCreator action (MDTP function)', function() {
     const ContextHOC = ProviderAndThemeWrapperHOC(WordListCont, store);
     const wrapper = mount(
       <ContextHOC />
@@ -47,6 +47,6 @@ describe('WordListCont', function() {
     // get dispatched action in mock store
     const actions = store.getActions();
     
-    expect(actions[0]).toEqual(toggleSelectWordAction(["1"])); 
+    expect(actions[0]).toEqual(toggleSelectWordActionCreator(["1"])); 
   })
 })

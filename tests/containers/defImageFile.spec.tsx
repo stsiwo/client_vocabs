@@ -8,7 +8,7 @@ import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { updateDefImageAction } from '../../src/actions/index';
+import { updateDefImageActionCreator } from '../../src/actions/index';
 
 const mockStore = configureMockStore([ thunk ]);
 
@@ -19,7 +19,7 @@ describe('DefImageFileCont', function() {
   });
 
   // this mdtp is defined in "WordListItemCont" not "DefImageFileCont" container component
-  it('should invoke updateDefImageAction (MDTP function)', function() {
+  it('should invoke updateDefImageActionCreator (MDTP function)', function() {
     
     let store: MockStoreEnhanced;
     // change initial currentSort and currentFilter
@@ -39,7 +39,7 @@ describe('DefImageFileCont', function() {
     const actions = store.getActions();
 
     // check dispatched action is dummy
-    expect(actions[0]).toEqual(updateDefImageAction("0", "image test")); 
+    expect(actions[0]).toEqual(updateDefImageActionCreator("0", "image test")); 
   })
 })
 

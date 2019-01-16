@@ -3,7 +3,7 @@ import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { changeSearchKeyWordWrapperThunk } from '../../src/reducers/thunk';
 import { initialNormalizedState } from '../../src/state/index';
-import { searchKeyWordAction, changeSearchedWordListAction, changeDisplayedWordListAction } from '../../src/actions/index';
+import { changeSearchKeyWordActionCreator, changeDisplayedWordListActionCreator } from '../../src/actions/index';
 import { INormalizedState } from '../../src/state/type';
 
 const mockStore = configureMockStore<INormalizedState>([thunk]);
@@ -16,21 +16,19 @@ describe('SearchWordModalCont', function() {
     store = mockStore(initialNormalizedState);
   });
 
-  it('should dispatch searchKeyWordAction and changeSearchedWordListAction and changeDisplayedWordListAction', () => {
+  it('should dispatch searchKeyWordActionCreator and changeSearchedWordListActionCreator and changeDisplayedWordListAction', () => {
     
     // newSearchKey = 'test' so does not return any matching
     store.dispatch<any>(changeSearchKeyWordWrapperThunk('test'));
     // get dispatched actions
     const actions = store.getActions();
     
-    // first, changeSearchedWordListAction
-    expect(actions[0]).toEqual(changeSearchedWordListAction([]));
+    // first, searchKeyWordAction
+    expect(actions[0]).toEqual(changeSearchKeyWordActionCreator('test', []));
 
     // second, changeDisplayedWordListAction
-    expect(actions[1]).toEqual(changeDisplayedWordListAction([]));
+    expect(actions[1]).toEqual(changeDisplayedWordListActionCreator([]));
 
-    // third, searchKeyWordAction
-    expect(actions[2]).toEqual(searchKeyWordAction('test'));
   });
 
   it('should send proper data with changeSearchedWordListAction', () => {
@@ -45,18 +43,15 @@ describe('SearchWordModalCont', function() {
     // get dispatched actions
     const actions = store.getActions();
     
-    // first, changeSearchedWordListAction 
-    expect(actions[0]).toEqual(changeSearchedWordListAction([initialNormalizedState.entities.words[0].id]));
+    // first, searchKeyWordAction
+    expect(actions[0]).toEqual(changeSearchKeyWordActionCreator(initialNormalizedState.entities.words[0].name, [initialNormalizedState.entities.words[0].id]));
+    // second, changeDisplayedWordListActionCreator 
+    expect(actions[1]).toEqual(changeDisplayedWordListActionCreator([initialNormalizedState.entities.words[0].id]));
 
-    // second, changeDisplayedWordListAction 
-    expect(actions[1]).toEqual(changeDisplayedWordListAction([initialNormalizedState.entities.words[0].id]));
-
-    // second, searchKeyWordAction
-    expect(actions[2]).toEqual(searchKeyWordAction(initialNormalizedState.entities.words[0].name));
 
   })
 
-  it('should dispatch changeDisplayedWordListAction when nextSearchKey is empty', () => {
+  it('should dispatch changeDisplayedWordListActionCreator when nextSearchKey is empty', () => {
     // newSearchKey = 'sport' so return should be 1 match 
     store.dispatch<any>(changeSearchKeyWordWrapperThunk(''));
     // get dispatched actions
@@ -64,9 +59,9 @@ describe('SearchWordModalCont', function() {
 
     const currentState: INormalizedState = store.getState();
     
-    expect(actions[0]).toEqual(changeDisplayedWordListAction(currentState.sortedWordList));
+    expect(actions[0]).toEqual(changeSearchKeyWordActionCreator('', []));
+    expect(actions[1]).toEqual(changeDisplayedWordListActionCreator(currentState.sortedWordList));
 
-    expect(actions[1]).toEqual(searchKeyWordAction(''));
 
   })
 });

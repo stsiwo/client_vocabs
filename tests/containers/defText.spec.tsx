@@ -8,7 +8,7 @@ import { initialNormalizedState } from '../../src/state/index';
 import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { updateDefTextAction } from '../../src/actions/index';
+import { updateDefTextActionCreator } from '../../src/actions/index';
 
 const mockStore = configureMockStore([ thunk ]);
 
@@ -19,7 +19,7 @@ describe('DefTextCont', function() {
   });
 
   // this mdtp is defined in "WordListItemCont" not "DefTextCont" container component
-  it('should invoke updateDefTextAction (MDTP function)', function() {
+  it('should invoke updateDefTextActionCreator (MDTP function)', function() {
     
     let store: MockStoreEnhanced;
     // change initial currentSort and currentFilter
@@ -39,7 +39,7 @@ describe('DefTextCont', function() {
     const actions = store.getActions();
 
     // check dispatched action is dummy
-    expect(actions[0]).toEqual(updateDefTextAction("0", "text test")); 
+    expect(actions[0]).toEqual(updateDefTextActionCreator("0", "text test")); 
   })
 })
 

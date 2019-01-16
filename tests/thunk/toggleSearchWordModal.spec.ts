@@ -3,7 +3,7 @@ import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import toggleSearchWordModalWrapperThunk from '../../src/thunk/toggleSearchWordModal';
 import { initialNormalizedState } from '../../src/state/index';
-import { toggleSearchWordModalAction, changeDisplayedWordListAction } from '../../src/actions/index';
+import { toggleSearchWordModalActionCreator, changeDisplayedWordListActionCreator } from '../../src/actions/index';
 import { INormalizedState } from '../../src/state/type';
 
 const mockStore = configureMockStore<INormalizedState>([thunk]);
@@ -11,7 +11,7 @@ const mockStore = configureMockStore<INormalizedState>([thunk]);
 describe('clsoeSearchWordModal', function() {
   //let store: MockStoreEnhanced;
 
-  it('should dispatch toggleSearchWordModalAction and changeDisplayedWordListAction: condition where isSearchWordModalOpen is true', () => {
+  it('should dispatch toggleSearchWordModalActionCreator and changeDisplayedWordListAction: condition where isSearchWordModalOpen is true', () => {
     let store: MockStoreEnhanced<INormalizedState, {}>;
 
     // apply the condition
@@ -29,9 +29,9 @@ describe('clsoeSearchWordModal', function() {
     const actions = store.getActions();
     
     // second, changeDisplayedWordListAction
-    expect(actions[0]).toEqual(changeDisplayedWordListAction(["1","2","3","4","5"]));
+    expect(actions[0]).toEqual(changeDisplayedWordListActionCreator(["1","2","3","4","5"]));
     // first, toggleSearchWordModalAction
-    expect(actions[1]).toEqual(toggleSearchWordModalAction(false));
+    expect(actions[1]).toEqual(toggleSearchWordModalActionCreator(false));
   });
 });
 

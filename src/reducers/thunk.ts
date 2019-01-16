@@ -100,11 +100,15 @@ export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkTyp
   // should i use sync or async? (async is better?)
   // if nextSearchKey is empty, list default words (sortedWordList)
   if (!nextSearchKey) {
+    // search key is empty =======================================
     const { sortedWordList } = getState();
     // change displayedWordList to sortedWordList
+    // empty  searchedWordList when search key is empty (called inside changeSearchKeyWordActionCreator)
+    dispatch(changeSearchKeyWordActionCreator(nextSearchKey, []));
     dispatch(changeDisplayedWordListActionCreator(sortedWordList));
-    dispatch(changeSearchKeyWordActionCreator(nextSearchKey, sortedWordList));
+    // search key is empty =======================================
   } else {
+    // search key is not empty ===================================
     // get sortedWordList 
     const { displayedWordList ,selectedWordList, entities } = getState();
     // convert into IWordListItem 
@@ -117,6 +121,7 @@ export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkTyp
     // dispatch follows:
     dispatch(changeSearchKeyWordActionCreator(nextSearchKey, nextSearchedWordList));
     dispatch(changeDisplayedWordListActionCreator(nextSearchedWordList));
+    // search key is not empty ===================================
   }
 }
 

@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { INormalizedState } from "../state/type"; 
-import { selectAllWordActionCreator } from '../actions/index';
+import { selectAllSelectedWordListActionCreator } from '../actions/index';
 import { ThunkAction } from 'redux-thunk';
 import toggleSearchWordModalWrapperThunk from '../thunk/toggleSearchWordModal';
 
@@ -21,7 +21,7 @@ const selectAllIconClickWrapperThunk: selectAllIconClickWrapperThunkType = (  ) 
     dispatch(toggleSearchWordModalWrapperThunk());
   } 
   // dispatch selectAllWordActionCreator with sortedWordList 
-  dispatch(selectAllWordActionCreator(sortedWordList));
+  dispatch(selectAllSelectedWordListActionCreator(sortedWordList));
 }
 export default selectAllIconClickWrapperThunk;
 
