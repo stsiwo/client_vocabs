@@ -3,7 +3,7 @@ import { AnyAction, Dispatch, compose } from 'redux';
 import Word from '../representationals/business/Word/Word';
 import { INormalizedState } from '../state/type';
 import { withRouter } from 'react-router-dom';
-//import { toggleSelectWarningModalAction } from '../actions/index';
+//import { toggleSelectWarningModalActionCreator } from '../actions/index';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
 
@@ -17,7 +17,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
 
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  //toggleSelectWarningModalClick: ( isOpen: boolean ): void => { dispatch( toggleSelectWarningModalAction( isOpen ))}, 
+  //toggleSelectWarningModalClick: ( isOpen: boolean ): void => { dispatch( toggleSelectWarningModalActionCreator( isOpen ))}, 
 });
 
 export default compose(

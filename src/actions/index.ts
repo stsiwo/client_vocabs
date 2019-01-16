@@ -29,10 +29,12 @@ export const updateWordNameActionCreator = (id: string, nextWordName: string) =>
   }
 };
 
+
 export const addNewDefActionCreator = (nextDef: StateType.IEntityDef) => {
   return {
     type: ActionType.ADD_NEW_DEF,
     nextDef: nextDef,
+    wordId: nextDef._wordId, // for toggleWordDefsCaseReducer
   }
 };
 

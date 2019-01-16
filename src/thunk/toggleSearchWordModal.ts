@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { INormalizedState } from "../state/type"; 
-import { toggleSearchWordModalAction, changeDisplayedWordListAction } from '../actions/index';
+import { toggleSearchWordModalActionCreator, changeDisplayedWordListActionCreator } from '../actions/index';
 import { ThunkAction } from 'redux-thunk';
 
 
@@ -17,11 +17,11 @@ const toggleSearchWordModalWrapperThunk: toggleSearchWordModalWrapperThunkType =
 
   // if isSearchWordModalOpen is true, need to close it and also change displayed wordList to sortedWordList
   if ( isSearchWordModalOpen ) {
-    // dispatch changeDisplayedWordListAction with sortedWordList values
-    dispatch(changeDisplayedWordListAction(sortedWordList));
+    // dispatch changeDisplayedWordListActionCreator with sortedWordList values
+    dispatch(changeDisplayedWordListActionCreator(sortedWordList));
   } 
-  // dispatch toggleSearchWordModalAction with false
-  dispatch(toggleSearchWordModalAction(!isSearchWordModalOpen));
+  // dispatch toggleSearchWordModalActionCreator with false
+  dispatch(toggleSearchWordModalActionCreator(!isSearchWordModalOpen));
 }
 export default toggleSearchWordModalWrapperThunk;
 

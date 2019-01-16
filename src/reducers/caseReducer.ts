@@ -1,12 +1,8 @@
 import { AnyAction } from 'redux';
 import { StateType } from '../state/type';
-import { ISelectAllWordActionType } from '../actions/type';
 import { initialNormalizedState } from '../state/index';
 const xor = require('lodash/xor');
-const isEqual = require('lodash/isEqual');
-const sortBy = require('lodash/sortBy');
 const omit = require('lodash/omit');
-const omitBy = require('lodash/omitBy');
 
 /**
  * case reducer
@@ -40,7 +36,7 @@ const omitBy = require('lodash/omitBy');
  *      - changeSearchedWordListCaseReducer
  *      - resetSearchedWordListCaseReducer
  *  - searchKeyWord:
- *      - changeSearchedWordListCaseReducer
+ *      - changeSearchKeyWordCaseReducer
  *      - resetSearchKeyWordCaseReducer
  *  - selectedWordList:
  *      - toggleSelectedWordListCaseReducer
@@ -62,7 +58,7 @@ export namespace CaseReducer {
   /**
    *  case reducer type
    **/
-  export type caseReducerType<T, A = AnyAction> = (state: T, action: A) => T;
+  export type CaseReducerType<T, A = AnyAction> = (state: T, action: A) => T;
 
   /**
    * case reducers:
@@ -74,16 +70,16 @@ export namespace CaseReducer {
   /*********************************************
    * entities.words CaseReducer
    *********************************************/
-  export const addWordEntityCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => ({
+  export const addWordEntityCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => ({
     ...words,
     ...action.nextWord,
   });
 
 
-  export const removeWordEntityCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => omit(words, action.id);
+  export const removeWordEntityCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => omit(words, action.id);
 
 
-  export const updateWordNameCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => ({
+  export const updateWordNameCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => ({
     ...words,
     [words[action.id].id]: {
       ...words[action.id],
@@ -92,48 +88,13 @@ export namespace CaseReducer {
   });
 
   // append or pluck def id from word.defs
-  export const toggleWordDefsCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => {
+  export const toggleWordDefsCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => {
     // if action.defId exist in state, remove otherwise add it
-    return xor(selectedWordList, [ action.defId ]);
+    return xor(words[action.wordId].defs, [ action.defId ]);
   };
 
   // update (replace) the entire word.defs
-  export const updateWordDefsCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => ({
-    ...words,
-    [words[action.id].id]: {
-      ...words[action.id],
-      defs: action.nextDefIds,
-    }
-  });
-  export const resetWordsCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => Object.assign({}, words, initialNormalizedState.entities.words);
-  /*********************************************
-   * entities.words CaseReducer
-   *********************************************/
-  export const addWordEntityCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => ({
-    ...words,
-    ...action.nextWord,
-  });
-
-
-  export const removeWordEntityCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => omit(words, action.id);
-
-
-  export const updateWordNameCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => ({
-    ...words,
-    [words[action.id].id]: {
-      ...words[action.id],
-      name: action.nextWordName,
-    }
-  });
-
-  // append or pluck def id from word.defs
-  export const toggleWordDefsCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => {
-    // if action.defId exist in state, remove otherwise add it
-    return xor(selectedWordList, [ action.defId ]);
-  };
-
-  // update (replace) the entire word.defs
-  export const updateWordDefsCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => ({
+  export const updateWordDefsCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => ({
     ...words,
     [words[action.id].id]: {
       ...words[action.id],
@@ -141,19 +102,19 @@ export namespace CaseReducer {
     }
   });
 
-  export const resetWordsCaseReducer: caseReducerType<stateType.IEntityWord> = (words, action) => Object.assign({}, words, initialNormalizedState.entities.words);
+  export const resetWordsCaseReducer: CaseReducerType<StateType.IEntityWord> = (words, action) => Object.assign({}, words, initialNormalizedState.entities.words);
 
   /*********************************************
    * entities.defs CaseReducer
    *********************************************/
-  export const addDefEntityCaseReducer: caseReducerType<stateType.IEntityDef> = (defs, action) => ({
+  export const addDefEntityCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => ({
     ...defs,
     ...action.nextDef,
   });
 
-  export const removeDefEntityCaseReducer: caseReducerType<stateType.IEntityDef> = (defs, action) => omit(defs, action.defIds);
+  export const removeDefEntityCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => omit(defs, action.defIds);
 
-  export const updateDefPosCaseReducer: caseReducerType<stateType.IEntityDef> = (defs, action) => ({
+  export const updateDefPosCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => ({
     ...defs,
     [defs[action.id].id]: {
       ...defs[action.id],
@@ -162,7 +123,7 @@ export namespace CaseReducer {
   });
 
 
-  export const updateDefTextCaseReducer: caseReducerType<stateType.IEntityDef> = (defs, action) => ({
+  export const updateDefTextCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => ({
     ...defs,
     [ defs[action.id].id]: {
       ...defs[action.id],
@@ -170,7 +131,7 @@ export namespace CaseReducer {
     }
   });
 
-  export const updateDefImageCaseReducer: caseReducerType<stateType.IEntityDef> = (defs, action) => ({
+  export const updateDefImageCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => ({
     ...defs,
     [defs[action.id].id]: {
       ...defs[action.id],
@@ -179,23 +140,23 @@ export namespace CaseReducer {
   });
 
 
-  export const resetDefsCaseReducer: caseReducerType<stateType.IEntityDef> = (defs, action) => Object.assign({}, defs, initialNormalizedState.entities.defs);
+  export const resetDefsCaseReducer: CaseReducerType<StateType.IEntityDef> = (defs, action) => Object.assign({}, defs, initialNormalizedState.entities.defs);
 
 
   /*********************************************
    * currentSort CaseReducer
    *********************************************/
-  export const changeCurrentSortCaseReducer: caseReducerType<stateType.ICurrentSort> = (currentSort, action) => action.currentSort;
+  export const changeCurrentSortCaseReducer: CaseReducerType<StateType.ICurrentSort> = (currentSort, action) => action.currentSort;
 
-  export const resetCurrentSortCaseReducer: caseReducerType<stateType.ICurrentSort> = (currentSort, action) => initialNormalizedState.currentSort;
+  export const resetCurrentSortCaseReducer: CaseReducerType<StateType.ICurrentSort> = (currentSort, action) => initialNormalizedState.currentSort;
 
 
   /*********************************************
    * currentFilter CaseReducer
    *********************************************/
-  export const changeCurrentFilterCaseReducer: caseReducerType<stateType.ICurrentFilter> = (currentFilter, action) => action.currentFilter;
+  export const changeCurrentFilterCaseReducer: CaseReducerType<StateType.ICurrentFilter> = (currentFilter, action) => action.currentFilter;
 
-  export const resetCurrentFilterCaseReducer: caseReducerType<stateType.ICurrentFilter> = (currentFilter, action) => initialNormalizedState.currentFilter;
+  export const resetCurrentFilterCaseReducer: CaseReducerType<StateType.ICurrentFilter> = (currentFilter, action) => initialNormalizedState.currentFilter;
 
 
 
@@ -203,59 +164,59 @@ export namespace CaseReducer {
    * selectedWordList CaseReducer
    *********************************************/
   // add word id to selectedWordList
-  export const toggleSelectedWordListCaseReducer: caseReducerType<stateType.ISelectedWordList> = (selectedWordList, action) => {
+  export const toggleSelectedWordListCaseReducer: CaseReducerType<StateType.ISelectedWordList> = (selectedWordList, action) => {
     // if action.selectedWordId exist in state, remove otherwise add it
     return xor(selectedWordList, [ action.nextWordId ]);
   };
   // empty selectedWordList (SelectAll controller item)
-  export const emptySelectedWordListCaseReducer: caseReducerType<stateType.ISelectedWordList> = (selectedWordList, action) => [];
+  export const emptySelectedWordListCaseReducer: CaseReducerType<StateType.ISelectedWordList> = (selectedWordList, action) => [];
 
   // select all available word item (assign sortedWordList values to selectedWordList)
-  export const selectAllSelectedWordListCaseReducer: caseReducerType<stateType.ISelectedWordList, stateType.ISelectAllWordActionType> = (selectedWordList, action) => [ ...action.nextSelectedWordList ];
+  export const selectAllSelectedWordListCaseReducer: CaseReducerType<StateType.ISelectedWordList> = (selectedWordList, action) => [ ...action.nextSelectedWordList ];
 
-  export const resetSelectedWordListCaseReducer: caseReducerType<stateType.ISelectedWordList> = (selectedWordList, action) => initialNormalizedState.selectedWordList;
+  export const resetSelectedWordListCaseReducer: CaseReducerType<StateType.ISelectedWordList> = (selectedWordList, action) => initialNormalizedState.selectedWordList;
 
   /*********************************************
    * sortedWordList CaseReducer
    *********************************************/
   // update ( replace ) the entire sortedWordList
-  export const changeSortedWordListCaseReducer: caseReducerType<stateType.ISortedWordList> = (sortedWordList, action) => action.nextSortedWordList;
+  export const changeSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList> = (sortedWordList, action) => action.nextSortedWordList;
 
-  export const resetSortedWordListCaseReducer: caseReducerType<stateType.ISortedWordList> = (sortedWordList, action) => initialNormalizedState.sortedWordList;
+  export const resetSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList> = (sortedWordList, action) => initialNormalizedState.sortedWordList;
 
   /*********************************************
    * displayedWordList CaseReducer
    *********************************************/
   // change DisplayedWordList to sortedWordList or searchedWordList (nextDisplayedWordList)
-  export const changeDisplayedWordListCaseReducer: caseReducerType<stateType.IDisplayedWordList> = (displayedWordList, action) => action.nextDisplayedWordList;
+  export const changeDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList> = (displayedWordList, action) => action.nextDisplayedWordList;
 
-  export const resetDisplayedWordListCaseReducer: caseReducerType<stateType.IDisplayedWordList> = (displayedWordList, action) => initialNormalizedState.displayedWordList;
+  export const resetDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList> = (displayedWordList, action) => initialNormalizedState.displayedWordList;
 
 
   /*********************************************
    * searchedWordList CaseReducer
    *********************************************/
-  export const changeSearchedWordListCaseReducer: caseReducerType<stateType.ISearchedWordList> = (searchedWordList, action) => action.nextSearchedWordList;
+  export const changeSearchedWordListCaseReducer: CaseReducerType<StateType.ISearchedWordList> = (searchedWordList, action) => action.nextSearchedWordList;
 
-  export const resetSearchedWordListCaseReducer: caseReducerType<stateType.ISearchedWordList> = (searchedWordList, action) => initialNormalizedState.searchedWordList;
+  export const resetSearchedWordListCaseReducer: CaseReducerType<StateType.ISearchedWordList> = (searchedWordList, action) => initialNormalizedState.searchedWordList;
 
   /*********************************************
    * searchKeyWord CaseReducer
    *********************************************/
-  export const changeSearchKeyWordCaseReducer: caseReducerType<stateType.ISearchKeyWord> = (searchKeyWord, action) => action.nextSearchKey;
+  export const changeSearchKeyWordCaseReducer: CaseReducerType<StateType.ISearchKeyWord> = (searchKeyWord, action) => action.nextSearchKey;
 
-  export const resetSearchKeyWordCaseReducer: caseReducerType<stateType.ISearchKeyWord> = (searchKeyWord, action) => initialNormalizedState.searchKeyWord;
+  export const resetSearchKeyWordCaseReducer: CaseReducerType<StateType.ISearchKeyWord> = (searchKeyWord, action) => initialNormalizedState.searchKeyWord;
 
   /*********************************************
    * ui CaseReducer
    *********************************************/
-  export const toggleSelectWarningModalCaseReducer: caseReducerType<stateType.IUi> = (ui, action) => Object.assign({}, ui, { isSelectWarningModalOpen: action.sortedWordList });;
+  export const toggleSelectWarningModalCaseReducer: CaseReducerType<StateType.IUi> = (ui, action) => Object.assign({}, ui, { isSelectWarningModalOpen: action.sortedWordList });;
 
-  export const toggleDeleteConfirmModalCaseReducer: caseReducerType<stateType.IUi> = (ui, action) => Object.assign({}, ui, { isDeleteConfirmModalOpen: action.isDeleteConfirmModalOpen });
+  export const toggleDeleteConfirmModalCaseReducer: CaseReducerType<StateType.IUi> = (ui, action) => Object.assign({}, ui, { isDeleteConfirmModalOpen: action.isDeleteConfirmModalOpen });
 
-  export const toggleSortFilterModalCaseReducer: caseReducerType<stateType.IUi> = (ui, action) => Object.assign({}, ui, { isSortFilterModalOpen: action.isSortFilterModalOpen });
+  export const toggleSortFilterModalCaseReducer: CaseReducerType<StateType.IUi> = (ui, action) => Object.assign({}, ui, { isSortFilterModalOpen: action.isSortFilterModalOpen });
 
-  export const toggleSearchWordModalCaseReducer: caseReducerType<stateType.IUi> = (ui, action) => Object.assign({}, ui, { isSearchWordModalOpen: action.isSearchWordModalOpen });
+  export const toggleSearchWordModalCaseReducer: CaseReducerType<StateType.IUi> = (ui, action) => Object.assign({}, ui, { isSearchWordModalOpen: action.isSearchWordModalOpen });
 
-  export const resetUiCaseReducer: caseReducerType<stateType.IUi> = (ui, action) => Object.assign({}, ui, initialNormalizedState.ui);
+  export const resetUiCaseReducer: CaseReducerType<StateType.IUi> = (ui, action) => Object.assign({}, ui, initialNormalizedState.ui);
 } 

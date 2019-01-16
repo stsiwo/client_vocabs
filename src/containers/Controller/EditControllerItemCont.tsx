@@ -3,7 +3,7 @@ import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import EditControllerItem from '../../representationals/business/Controller/EditControllerItem';
 import { INormalizedState } from '../../state/type';
 //import { withRouter } from 'react-router-dom';
-import { toggleSelectWarningModalAction } from '../../actions/index';
+import { toggleSelectWarningModalActionCreator } from '../../actions/index';
 import openModalWrapperThunk from '../../thunk/openModal';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleSelectWarningModalClick: () => { dispatch<any>( openModalWrapperThunk(toggleSelectWarningModalAction))}, 
+  toggleSelectWarningModalClick: () => { dispatch<any>( openModalWrapperThunk(toggleSelectWarningModalActionCreator))}, 
   closeSearchWordModalClick: () => { dispatch<any>( openModalWrapperThunk(undefined))}, 
 });
 

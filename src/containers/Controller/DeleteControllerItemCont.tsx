@@ -3,7 +3,7 @@ import { AnyAction, Dispatch/*, compose */ } from 'redux';
 import DeleteControllerItem from '../../representationals/business/Controller/DeleteControllerItem';
 import { INormalizedState } from '../../state/type';
 //import { withRouter } from 'react-router-dom';
-import { toggleDeleteConfirmModalAction, toggleSelectWarningModalAction } from '../../actions/index';
+import { toggleDeleteConfirmModalActionCreator, toggleSelectWarningModalActionCreator } from '../../actions/index';
 import openModalWrapperThunk from '../../thunk/openModal';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
@@ -14,8 +14,8 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleDeleteConfirmModalClick: ( isOpen: boolean ) => { dispatch<any>( openModalWrapperThunk( toggleDeleteConfirmModalAction ))}, 
-  toggleSelectWarningModalClick: ( isOpen: boolean ) => { dispatch<any>( openModalWrapperThunk( toggleSelectWarningModalAction ))}, 
+  toggleDeleteConfirmModalClick: ( isOpen: boolean ) => { dispatch<any>( openModalWrapperThunk( toggleDeleteConfirmModalActionCreator ))}, 
+  toggleSelectWarningModalClick: ( isOpen: boolean ) => { dispatch<any>( openModalWrapperThunk( toggleSelectWarningModalActionCreator ))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( DeleteControllerItem );

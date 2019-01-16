@@ -4,7 +4,7 @@
 /**
  * action type interface
  **/
-interface IActionType {
+export interface IActionType {
 
   // words
   ADD_NEW_WORD: string; // ok

@@ -2,7 +2,7 @@ import { normalize, schema, denormalize } from 'normalizr';
 import { IDef } from '../domains/def';
 import { PosEnum } from '../domains/pos';
 import { IWord } from '../domains/word';
-import { INormalizedState, IEntity } from './type';
+import { INormalizedState, StateType } from './type';
 
 
 /**
@@ -258,14 +258,14 @@ export const initialNormalizedState: INormalizedState = {
 /**
  * denormalize normalizr helper
  **/
-export const denormalizeWordList: (words: string[], entities: IEntity) => IWord[] = ( words, entities ) => {
+export const denormalizeWordList: (words: string[], entities: StateType.IEntity) => IWord[] = ( words, entities ) => {
   return denormalize( words, wordListSchema, entities )
 }
 
 /**
  * normalizr helper function 
  **/
-export const normalizeWord: ( word: IWord ) => IEntity = ( word ) => normalize(word, wordSchema).entities; 
+export const normalizeWord: ( word: IWord ) => StateType.IEntity = ( word ) => normalize(word, wordSchema).entities; 
 
 export const normalizeWordsArray: (words: IWord[]) => INormalizedState = (words) => {
   const normalizedWords = normalize(words, wordListSchema);

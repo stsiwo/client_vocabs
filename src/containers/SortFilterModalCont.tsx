@@ -1,16 +1,16 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
 import SortFilterModal from '../representationals/business/SortFilterModal/SortFilterModal';
-import { StateType } from '../state/type';
+import { INormalizedState } from '../state/type';
 import { withRouter } from 'react-router-dom';
-import { toggleSortFilterModalAction } from '../actions/index';
+import { toggleSortFilterModalActionCreator } from '../actions/index';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
   isSortFilterModalOpen: state.ui.isSortFilterModalOpen,
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleSortFilterModalClick: ( isOpen: boolean ) => { dispatch( toggleSortFilterModalAction( isOpen ))}, 
+  toggleSortFilterModalClick: ( isOpen: boolean ) => { dispatch( toggleSortFilterModalActionCreator( isOpen ))}, 
 });
 
 export default compose(
