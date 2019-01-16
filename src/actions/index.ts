@@ -1,137 +1,134 @@
-import { ISortedWordList, ICurrentFilter, ISearchedWordList, IDisplayedWordList, IEntityWord, IEntityDef } from '../state/type';
+import { StateType } from '../state/type';
 import { SORT_ORDER } from '../enums';
 import { PosEnum } from '../domains/pos';
-import { WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType, SearchedWordListActionType, DisplayedWordListActionType } from './type'; 
+import { ActionType } from './type';
 
-/**
- * action 
- **/
-export const addNewWordAction = ( nextWord: IEntityWord ) => {
+
+/****************************************************
+ * ActionCreator Creator
+ ****************************************************/
+export const addNewWordActionCreator = ( nextWord: StateType.IEntityWord) => {
   return {
-    type: WordActionType.ADD_NEW_WORD,
+    type: ActionType.ADD_NEW_WORD,
     nextWord: nextWord,
   }
 }
 
-export const removeWordAction = (id: string) => {
+export const removeWordActionCreator = (id: string) => {
   return {
-    type: WordActionType.REMOVE_WORD,
+    type: ActionType.REMOVE_WORD,
     id,
   }
 };
 
-export const updateWordNameAction = (id: string, nextWordName: string) => {
+export const updateWordNameActionCreator = (id: string, nextWordName: string) => {
   return {
-    type: WordActionType.UPDATE_WORD_NAME,
+    type: ActionType.UPDATE_WORD_NAME,
     id: id,
     nextWordName: nextWordName,
   }
 };
 
-export const addNewDefAction = (nextDef: IEntityDef) => {
+export const addNewDefActionCreator = (nextDef: StateType.IEntityDef) => {
   return {
-    type: DefActionType.ADD_NEW_DEF,
+    type: ActionType.ADD_NEW_DEF,
     nextDef: nextDef,
   }
 };
 
-export const removeDefAction = (wordId: string, defId: string) => {
+export const removeDefActionCreator = (wordId: string, defIds: string[]) => {
   return {
-    type: DefActionType.REMOVE_DEF,
+    type: ActionType.REMOVE_DEF,
     wordId: wordId,
-    defId: defId,
+    defIds: defIds,
   }
 };
 
-export const updateDefPosAction = (id: string, nextPos: PosEnum) => {
+export const updateDefPosActionCreator = (id: string, nextPos: PosEnum) => {
   return {
-    type: DefActionType.UPDATE_DEF_POS,
+    type: ActionType.UPDATE_DEF_POS,
     id: id,
     nextPos: nextPos,
   }
 };
 
-export const updateDefTextAction = (id: string, nextText: string) => {
+export const updateDefTextActionCreator = (id: string, nextText: string) => {
   return {
-    type: DefActionType.UPDATE_DEF_TEXT,
+    type: ActionType.UPDATE_DEF_TEXT,
     id: id,
     nextText: nextText,
   }
 };
 
-export const updateDefImageAction = (id: string, nextImage: string) => {
+export const updateDefImageActionCreator= (id: string, nextImage: string) => {
   return {
-    type: DefActionType.UPDATE_DEF_IMAGE,
+    type: ActionType.UPDATE_DEF_IMAGE,
     id: id,
     nextImage: nextImage,
   }
 };
 
-export const changeSortAction = ( nextSort: SORT_ORDER ) => ({
-  type: SortActionType.CHANGE_SORT,
+export const changeSortActionCreator = ( nextSort: SORT_ORDER, nextSortedWordList: StateType.ISortedWordList) => ({
+  type: ActionType.CHANGE_SORT,
   currentSort: nextSort,
-});
-
-export const changeFilterAction = ( nextFilter: ICurrentFilter ) => ({
-  type: FilterActionType.CHANGE_FILTER, 
-  currentFilter: nextFilter,
-});
-
-export const changeSortedWordListAction = (nextSortedWordList: ISortedWordList) => ({
-  type: SortedWordListActionType.CHANGE_SORTED_WORD_LIST,
   nextSortedWordList: nextSortedWordList,
-})
+});
 
-export const changeSearchedWordListAction = (nextSearchedWordList: ISearchedWordList) => ({
-  type: SearchedWordListActionType.CHANGE_SEARCHED_WORD_LIST,
+export const changeFilterActionCreator = ( nextFilter: StateType.ICurrentFilter, nextSortedWordList: StateType.ISortedWordList) => ({
+  type: ActionType.CHANGE_FILTER,
+  currentFilter: nextFilter,
+  nextSortedWordList: nextSortedWordList,
+});
+
+export const changeSearchKeyWordActionCreator = (nextSearchKey: string, nextSearchedWordList: StateType.ISearchedWordList) => ({
+  type: ActionType.CHANGE_SEARCH_TEXT,
+  nextSearchKey: nextSearchKey,
   nextSearchedWordList: nextSearchedWordList,
-})
+});
 
-export const changeDisplayedWordListAction = (nextDisplayedWordList: IDisplayedWordList) => ({
-  type: DisplayedWordListActionType.CHANGE_DISPLAYED_WORD_LIST,
+
+export const changeDisplayedWordListActionCreator = (nextDisplayedWordList: StateType.IDisplayedWordList) => ({
+  type: ActionType.CHANGE_DISPLAYED_WORD_LIST,
   nextDisplayedWordList: nextDisplayedWordList,
 })
 
-export const toggleSelectWarningModalAction = (isSelectWarningModalOpen: boolean) => ({
-  type: UiActionType.TOGGLE_SELECT_WARNING_MODAL,
+export const toggleSelectWarningModalActionCreator = (isSelectWarningModalOpen: boolean) => ({
+  type: ActionType.TOGGLE_SELECT_WARNING_MODAL,
   isSelectWarningModalOpen: isSelectWarningModalOpen,
 })
 
-export const toggleDeleteConfirmModalAction = (isDeleteConfirmModalOpen: boolean) => ({
-  type: UiActionType.TOGGLE_DELETE_CONFIRM_MODAL,
+export const toggleDeleteConfirmModalActionCreator = (isDeleteConfirmModalOpen: boolean) => ({
+  type: ActionType.TOGGLE_DELETE_CONFIRM_MODAL,
   isDeleteConfirmModalOpen: isDeleteConfirmModalOpen,
 })
 
-export const toggleSortFilterModalAction = (isSortFilterModalOpen: boolean) => ({
-  type: UiActionType.TOGGLE_SORT_FILTER_MODAL,
+export const toggleSortFilterModalActionCreator = (isSortFilterModalOpen: boolean) => ({
+  type: ActionType.TOGGLE_SORT_FILTER_MODAL,
   isSortFilterModalOpen: isSortFilterModalOpen,
 })
 
-export const toggleSearchWordModalAction = (isSearchWordModalOpen: boolean) => ({
-  type: UiActionType.TOGGLE_SEARCH_WORD_MODAL,
+export const toggleSearchWordModalActionCreator = (isSearchWordModalOpen: boolean) => ({
+  type: ActionType.TOGGLE_SEARCH_WORD_MODAL,
   isSearchWordModalOpen: isSearchWordModalOpen,
 })
 
-export const toggleSelectWordAction = (nextSelectedWordList: string[]) => ({
-  type: SelectedWordListActionType.TOGGLE_SELECT_WORD,
+export const toggleSelectWordActionCreator = (nextSelectedWordList: string[]) => ({
+  type: ActionType.TOGGLE_SELECT_WORD,
   nextSelectedWordList: nextSelectedWordList,
 });
 
-export const addSelectedWordListAction = (nextSelectedWordList: string[]) => ({
-  type: SelectedWordListActionType.ADD_SELECT_WORD,
+export const addSelectedWordListActionCreator = (nextSelectedWordList: string[]) => ({
+  type: ActionType.TOGGLE_SELECT_WORD,
   nextSelectedWordList: nextSelectedWordList,
 });
 
-export const selectAllWordAction = (nextSelectedWordList: string[]) => ({
-  type: SelectedWordListActionType.SELECT_ALL_WORD,
+export const selectAllWordActionCreator = (nextSelectedWordList: string[]) => ({
+  type: ActionType.SELECT_ALL_WORD,
   nextSelectedWordList: nextSelectedWordList,
 });
 
-export const resetStateAction = () => ({
-  type: ResetActionType.RESET_STATE,
+export const resetStateActionCreator = () => ({
+  type: ActionType.RESET_STATE,
 });
 
-export const searchKeyWordAction = (nextSearchKey: string) => ({
-  type: SearchKeyWordActionType.CHANGE_SEARCH_TEXT,
-  nextSearchKey: nextSearchKey,
-});
+

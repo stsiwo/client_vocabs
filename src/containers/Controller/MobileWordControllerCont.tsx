@@ -1,9 +1,9 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import MobileWordController from '../../representationals/business/Controller/MobileWordController';
-import { INormalizedState } from '../../state/type';
+import * as StateType from '../../state/type/StateType';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: StateType.INormalizedState, ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

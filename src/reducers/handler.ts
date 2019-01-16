@@ -1,108 +1,116 @@
-import { IWordActionType, WordActionType, DefActionType, SortActionType, FilterActionType, UiActionType, SelectedWordListActionType, ResetActionType, SearchKeyWordActionType, SortedWordListActionType, SearchedWordListActionType, DisplayedWordListActionType } from '../actions/type';
-import { caseReducer } from './caseReducer';
-import { 
-  addDefEntityCaseReducer, 
-  removeDefEntityCaseReducer, 
-  removeDefCaseReducer,
-  updateDefPosCaseReducer,
-  updateDefTextCaseReducer,
-  updateDefImageCaseReducer,
-  addWordEntityCaseReducer, 
-  addDefCaseReducer,
-  removeWordEntityCaseReducer,
-  removeDefsCaseReducer,
-  updateWordNameCaseReducer,
-  currentSortCaseReducer, 
-  sortedWordListCaseReducer, 
-  currentFilterCaseReducer,
-  toggleSelectWarningModalReducer,
-  toggleDeleteConfirmModalReducer,
-  toggleSortFilterModalReducer,
-  toggleSearchWordModalReducer,
-  toggleSelectedWordListCaseReducer,
-  addSelectedWordListCaseReducer,
-  selectAllSelectedWordListCaseReducer,
-  resetDefsCaseReducer,
-  resetWordsCaseReducer,
-  resetCurrentSortCaseReducer,
-  resetCurrentFilterCaseReducer,
-  resetSortedWordListCaseReducer,
-  resetSelectedWordListCaseReducer,
-  resetUiCaseReducer,
-  searchKeyWordCaseReducer,
-  searchedWordListCaseReducer,
-  displayedWordListCaseReducer
-} from './caseReducer';
-import { IEntityDef, IEntityWord, ICurrentSort, ISortedWordList, ICurrentFilter, IUi, ISelectedWordList, ISearchKeyWord, ISearchedWordList, IDisplayedWordList } from '../state/type';
+import { ActionType } from '../actions/type';
+// since every functions are used in here so import whole modules
+import { CaseReducer } from './caseReducer';
+// since every functions are used in here so import whole modules
+import { StateType } from '../state/type';
+
 /**
  * Hander type
  * must match property name with action type of a domain
  * and value name with the name of the slice reducer function
+ * also relationship between action and caseReducer is M:N
  **/
-export type Handler<T> = {
-  [P in keyof IWordActionType]?: caseReducer<T>;
+/**************************
+ * this is source of error : Final loading didn't return a buffer or string .... 
+ **************************/
+//export type Handler<T> = {
+  //[P in keyof ActionType]?: caseReducer.caseReducerType<T>;
+//}
+
+
+/*****************************************
+ * entities.words handler
+ ****************************************/
+export const wordsHandler: Handler<stateType.IEntityWord> = {
+  [ActionType.ADD_NEW_WORD]: caseReducer.addWordEntityCaseReducer, // ok
+  [ActionType.REMOVE_WORD]: caseReducer.removeWordEntityCaseReducer, // ok
+  [ActionType.ADD_NEW_DEF]: caseReducer.toggleWordDefsCaseReducer, // ok
+  [ActionType.UPDATE_WORD_NAME]: caseReducer.updateWordNameCaseReducer, // ok
+  [ActionType.REMOVE_DEF]: caseReducer.toggleWordDefsCaseReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetWordsCaseReducer,
 }
 
-export const defsHandler: Handler<IEntityDef> = {
-  [DefActionType.ADD_NEW_DEF]: addDefEntityCaseReducer,
-  [DefActionType.REMOVE_DEF]: removeDefEntityCaseReducer, 
-  [DefActionType.UPDATE_DEF_POS]: updateDefPosCaseReducer,
-  [DefActionType.UPDATE_DEF_TEXT]: updateDefTextCaseReducer,
-  [DefActionType.UPDATE_DEF_IMAGE]: updateDefImageCaseReducer,
-  // remove defs of a particular word when the word is remvoed
-  [WordActionType.REMOVE_WORD]: removeDefsCaseReducer,
-  [ResetActionType.RESET_STATE]: resetDefsCaseReducer,
-}   
-
-export const wordsHandler: Handler<IEntityWord> = {
-  [WordActionType.ADD_NEW_WORD]: addWordEntityCaseReducer,
-  // need this when add new word because it also has to change words entity's defs property
-  [DefActionType.ADD_NEW_DEF]: addDefCaseReducer,
-  [WordActionType.REMOVE_WORD]: removeWordEntityCaseReducer,
-  [WordActionType.UPDATE_WORD_NAME]: updateWordNameCaseReducer,
-  // remove target def id from defs property of word entitiy when def is removed
-  [DefActionType.REMOVE_DEF]: removeDefCaseReducer, 
-  [ResetActionType.RESET_STATE]: resetWordsCaseReducer,
-}   
-
-export const currentSortHandler: Handler<ICurrentSort> = {
-  [SortActionType.CHANGE_SORT]: currentSortCaseReducer,
-  [ResetActionType.RESET_STATE]: resetCurrentSortCaseReducer,
+/*****************************************
+ * entities.defs handler
+ ****************************************/
+export const defsHandler: Handler<stateType.IEntityDef> = {
+  [ActionType.ADD_NEW_WORD]: caseReducer.addDefEntityCaseReducer, // ok
+  [ActionType.REMOVE_WORD]: caseReducer.removeDefEntityCaseReducer, // ok
+  [ActionType.ADD_NEW_DEF]: caseReducer.addDefEntityCaseReducer, // ok
+  [ActionType.REMOVE_DEF]: caseReducer.removeDefEntityCaseReducer, // ok
+  [ActionType.UPDATE_DEF_POS]: caseReducer.updateDefPosCaseReducer, // ok
+  [ActionType.UPDATE_DEF_TEXT]: caseReducer.updateDefTextCaseReducer, // ok
+  [ActionType.UPDATE_DEF_IMAGE]: caseReducer.updateDefImageCaseReducer,  // ok
+  [ActionType.RESET_STATE]: caseReducer.resetDefsCaseReducer,
 }
 
-export const currentFilterHandler: Handler<ICurrentFilter> = {
-  [FilterActionType.CHANGE_FILTER]: currentFilterCaseReducer,
-  [ResetActionType.RESET_STATE]: resetCurrentFilterCaseReducer,
+/*****************************************
+ * currentSort
+ ****************************************/
+export const currentSortHandler: Handler<stateType.ICurrentSort> = {
+  [ActionType.CHANGE_SORT]: caseReducer.changeCurrentSortCaseReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetCurrentSortCaseReducer,
 }
 
-export const sortedWordListHandler: Handler<ISortedWordList> = {
-  [ResetActionType.RESET_STATE]: resetSortedWordListCaseReducer,
-  [SortedWordListActionType.CHANGE_SORTED_WORD_LIST]: sortedWordListCaseReducer,
+/*****************************************
+ * currentFilter
+ ****************************************/
+export const currentFilterHandler: Handler<stateType.ICurrentFilter> = {
+  [ActionType.CHANGE_FILTER]: caseReducer.changeCurrentFilterCaseReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetCurrentFilterCaseReducer,
 }
 
-export const searchedWordListHandler: Handler<ISearchedWordList> = {
-  [SearchedWordListActionType.CHANGE_SEARCHED_WORD_LIST]: searchedWordListCaseReducer,
+/*****************************************
+ * ui
+ ****************************************/
+export const uiHandler: Handler<stateType.IUi> = {
+  [ActionType.TOGGLE_SELECT_WARNING_MODAL]: toggleSelectWarningModalReducer, // ok
+  [ActionType.TOGGLE_DELETE_CONFIRM_MODAL]: toggleDeleteConfirmModalReducer, // ok
+  [ActionType.TOGGLE_SORT_FILTER_MODAL]: toggleSortFilterModalReducer, // ok
+  [ActionType.TOGGLE_SEARCH_WORD_MODAL]: toggleSearchWordModalReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetUiCaseReducer,
 }
 
-export const displayedWordListHandler: Handler<IDisplayedWordList> = {
-  [DisplayedWordListActionType.CHANGE_DISPLAYED_WORD_LIST]: displayedWordListCaseReducer,
+/*****************************************
+ * selectedWordList
+ ****************************************/
+export const selectedWordListHandler: Handler<stateType.ISelectedWordList> = {
+  [ActionType.TOGGLE_SELECT_WORD]: caseReducer.toggleSelectedWordListCaseReducer, // ok
+  [ActionType.SELECT_ALL_WORD]: caseReducer.selectAllSelectedWordListCaseReducer, // ok
+  [ActionType.EMPTY_SELECTED_WORD]: caseReducer.emptySelectedWordListCaseReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetSelectedWordListCaseReducer,
 }
 
-export const selectedWordListHandler: Handler<ISelectedWordList> = {
-  [SelectedWordListActionType.TOGGLE_SELECT_WORD]: toggleSelectedWordListCaseReducer,
-  [SelectedWordListActionType.SELECT_ALL_WORD]: selectAllSelectedWordListCaseReducer,
-  [SelectedWordListActionType.ADD_SELECT_WORD]: addSelectedWordListCaseReducer,
-  [ResetActionType.RESET_STATE]: resetSelectedWordListCaseReducer,
+/*****************************************
+ * sortedWordList
+ ****************************************/
+export const sortedWordListHandler: Handler<stateType.ISortedWordList> = {
+  [ActionType.CHANGE_SORTED_WORD_LIST]: caseReducer.changeSortedWordListCaseReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetSortedWordListCaseReducer,
 }
 
-export const uiHandler: Handler<IUi> = {
-  [UiActionType.TOGGLE_SELECT_WARNING_MODAL]: toggleSelectWarningModalReducer,
-  [UiActionType.TOGGLE_DELETE_CONFIRM_MODAL]: toggleDeleteConfirmModalReducer,
-  [UiActionType.TOGGLE_SORT_FILTER_MODAL]: toggleSortFilterModalReducer,
-  [UiActionType.TOGGLE_SEARCH_WORD_MODAL]: toggleSearchWordModalReducer,
-  [ResetActionType.RESET_STATE]: resetUiCaseReducer,
+
+/*****************************************
+ * searchedWordList
+ ****************************************/
+export const searchedWordListHandler: Handler<stateType.ISearchedWordList> = {
+  [ActionType.CHANGE_SEARCHED_WORD_LIST]: caseReducer.changeSearchedWordListCaseReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetSearchedWordListCaseReducer, // ok
 }
 
-export const searchKeyWordHandler: Handler<ISearchKeyWord> = {
-  [SearchKeyWordActionType.CHANGE_SEARCH_TEXT]: searchKeyWordCaseReducer,
+/*****************************************
+ * displayedWordList
+ ****************************************/
+export const displayedWordListHandler: Handler<stateType.IDisplayedWordList> = {
+  [ActionType.CHANGE_DISPLAYED_WORD_LIST]: caseReducer.changeDisplayedWordListCaseReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetDisplayedWordListCaseReducer, // ok
 }
+
+/*****************************************
+ * searchKeyWord
+ ****************************************/
+export const searchKeyWordHandler: Handler<stateType.ISearchKeyWord> = {
+  [ActionType.CHANGE_SEARCH_TEXT]: caseReducer.searchKeyWordCaseReducer, // ok
+  [ActionType.RESET_STATE]: caseReducer.resetSearchKeyWordCaseReducer, // ok
+}
+
