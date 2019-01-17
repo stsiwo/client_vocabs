@@ -7,12 +7,11 @@ import getNewNormalizedDef from '../../state/util/getNewNormalizedDef';
 import { IDef } from '../../domains/def';
 
 const mapStateToProps = (state: INormalizedState, ownProps: { defs: IDef[] }) => ({
-  test: "test",
 });
 
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: { defs: IDef[] } ) => ({
-  addNewDefClick: ( wordId: string ): void => { dispatch( addNewDefActionCreator( wordId, getNewNormalizedDef(wordId) ))}, 
+  addNewDefClick: ( wordId: string ): void => { dispatch( addNewDefActionCreator( getNewNormalizedDef(wordId), wordId))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( DefTree );

@@ -2,7 +2,7 @@
  * action creator and action
  ****************************************/
 /**
- * action type interface
+ * action type's type interface
  **/
 export interface IActionType {
 
@@ -88,7 +88,7 @@ export const ActionType: IActionType = {
 }
 
 /**
- * each action type
+ * action type 
  **/
 export interface ISelectAllWordActionType {
   type: string;
