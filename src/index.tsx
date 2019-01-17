@@ -3,7 +3,9 @@ import * as ReactDOM from 'react-dom';
 import App from './representationals/App';
 import store from './storeConfig';
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from "react-router-dom";
+// use custom Router and history rather than BroswerRouter for using history inside thunk
+import { Router } from 'react-router';
+import { history } from './routeHistory';
 import { ThemeProvider } from './representationals/story/styledComponents'; 
 import { theme } from './representationals/story/theme';
 //import MediaTest from './MediaTest';
@@ -11,7 +13,7 @@ import { theme } from './representationals/story/theme';
 ReactDOM.render(
   <Provider store={ store }>
     <ThemeProvider theme={ theme } >
-      <Router>
+      <Router history={ history }>
     {/*
       <MediaTest />
       */}
