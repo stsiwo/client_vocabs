@@ -47,6 +47,7 @@ const StyleControllerItem = styled(ControllerItem)`
     transition: opacity 0.5s;
   }
 `;
+StyleControllerItem.displayName = "ControllerItemSelector"
 // default export is styled with styled-component
 export default StyleControllerItem;
 

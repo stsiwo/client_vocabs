@@ -35,14 +35,14 @@ describe('DefTreeCont', function() {
     const addNewDefClick: (id: string) => void = wrapper.find("DefTree").first().prop('addNewDefClick');
 
     // programmarically call dispatch wrapper function since react event is tested in another test
-    addNewDefClick("0");
+    addNewDefClick(defTestData._wordId);
 
     // get dispatched action in mock store
     const actions = store.getActions();
 
     // check dispatched action is dummy
     // only check type of action since this test is to make sure mdtp functionality which means that when addNewDefClick is called addNewDefActionCreator is dispatch. it does not matter of content of the data of action
-    expect(actions[0].type).toEqual(addNewDefActionCreator(getNewNormalizedDef("0")).type); 
+    expect(actions[0].type).toEqual(addNewDefActionCreator(defTestData._wordId, getNewNormalizedDef(defTestData._wordId)).type); 
   })
 })
 

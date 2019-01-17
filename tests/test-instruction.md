@@ -35,3 +35,17 @@ conduct testing following functionalities:
 conduct testing following functionalities:
 
 4.1. state change: when an action is dispatched, the state is also changed properly
+
+## 5. integration testing
+
+conduct testing following functionalities:
+
+5.1. a specific part of system functionality (integration with reducers, thunk, Container component, Representational component)
+
+* use real redux store. 
+
+## 6. end-to-end testing
+
+under development...
+
+maybe use phantomjs, puppert, logRocket?

@@ -7,10 +7,11 @@ import { ActionType } from './type';
 /****************************************************
  * ActionCreator Creator
  ****************************************************/
-export const addNewWordActionCreator = ( nextWord: StateType.IEntityWord) => {
+export const addNewWordActionCreator = ( nextWord: StateType.IEntityWord, nextDef: StateType.IEntityDef ) => {
   return {
     type: ActionType.ADD_NEW_WORD,
     nextWord: nextWord,
+    nextDef: nextDef,
   }
 }
 
@@ -115,9 +116,9 @@ export const toggleSearchWordModalActionCreator = (isSearchWordModalOpen: boolea
   isSearchWordModalOpen: isSearchWordModalOpen,
 })
 
-export const toggleSelectedWordListActionCreator = (nextWordId: string) => ({
+export const toggleSelectedWordListActionCreator = (wordId: string) => ({
   type: ActionType.TOGGLE_SELECT_WORD,
-  nextWordId: nextWordId,
+  wordId: wordId,
 });
 
 export const selectAllSelectedWordListActionCreator = (nextSelectedWordList: string[]) => ({

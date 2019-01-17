@@ -40,7 +40,10 @@ class Word extends React.Component<Props, State> {
   render() {
     return (
       <div className={ this.props.className }>
-        <MediaQuery maxWidth={ 425 }>
+      {/*
+        values props are for testing purpose 
+        */}
+        <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
           <Route exact path="/word" component={ WordListCont } />
           <Route path="/word/detail" component={ WordDetailCont } />
         </MediaQuery>

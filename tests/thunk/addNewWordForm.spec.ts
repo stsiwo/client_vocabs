@@ -4,20 +4,19 @@ import thunk from 'redux-thunk';
 import  addNewWordFormWrapperThunk  from '../../src/thunk/addNewWordForm';
 import { initialNormalizedState } from '../../src/state/index';
 import { INormalizedState } from '../../src/state/type';
-import { addSelectedWordListActionCreator, addNewWordActionCreator, addNewDefActionCreator } from '../../src/actions/index';
+import { toggleSelectedWordListActionCreator, addNewWordActionCreator } from '../../src/actions/index';
 import * as sinon from 'sinon';
 import * as getUuid from '../../src/util/getUuid';
 import * as getNewWord from '../../src/state/util/getNewWord';
 import { getNewWordStubTestData } from '../storage/util/getNewWordStub';
-import { addNewWordActionTestData } from '../storage/actions/addNewWordAction';
-import { addNewDefActionTestData } from '../storage/actions/addNewDefAction';
+import { addNewWordActionInputTestData, addNewDefActionInputTestData  } from '../storage/actions/addNewWordAction';
 
 const mockStore = configureMockStore<INormalizedState>([thunk]);
 
 describe('addNewWordForm', function() {
   //let store: MockStoreEnhanced;
 
-  it('should dispatch 1) addSelectedWordListActionCreator, 2) addNewWordForm, 3) addNewWordForm', () => {
+  it('should dispatch 1) toggleSelectedWordListActionCreator, 2) addNewWordForm, 3) addNewWordForm', () => {
     let store: MockStoreEnhanced<INormalizedState, {}>;
 
     // apply the condition: isSearchWordModalOpen is false as default
@@ -36,9 +35,8 @@ describe('addNewWordForm', function() {
     sinon.assert.calledOnce(getNewWordStub);
     
     // second, mock action of modalActionCreatorDummy
-    expect(actions[0]).toEqual(addSelectedWordListActionCreator(["wordId"]));
-    expect(actions[1]).toEqual(addNewWordActionCreator(addNewWordActionTestData));
-    expect(actions[2]).toEqual(addNewDefActionCreator(addNewDefActionTestData));
+    expect(actions[0]).toEqual(toggleSelectedWordListActionCreator("wordId"));
+    expect(actions[1]).toEqual(addNewWordActionCreator(addNewWordActionInputTestData, addNewDefActionInputTestData ));
   });
 });
 

@@ -8,14 +8,14 @@ import * as toggleSearchWordModalWrapperThunk from '../../src/thunk/toggleSearch
 import * as sinon from 'sinon';
 import { SinonSpy } from 'sinon'; 
 import { toggleSearchWordModalWrapperThunkDummyFunc } from '../storage/thunk/toggleSearchWordModal';
-import { selectAllWordActionCreator } from '../../src/actions/index';
+import { selectAllSelectedWordListActionCreator } from '../../src/actions/index';
 
 const mockStore = configureMockStore<INormalizedState>([thunk]);
 
 describe('openModal', function() {
   //let store: MockStoreEnhanced;
 
-  it('should call toggleSearchWordModalWrapperThunk and dispatch selectAllWordActionCreator sent as arg with condition where isSearchWordModalOpen is open', () => {
+  it('should call toggleSearchWordModalWrapperThunk and dispatch selectAllSelectedWordListActionCreator sent as arg with condition where isSearchWordModalOpen is open', () => {
     let store: MockStoreEnhanced<INormalizedState, {}>;
 
     // apply the condition
@@ -45,11 +45,11 @@ describe('openModal', function() {
 
     // should dispatch following actions
     expect(actions[0]).toEqual({ type: "dummy_thunk_action" });
-    expect(actions[1]).toEqual(selectAllWordActionCreator(sortedWordList));
+    expect(actions[1]).toEqual(selectAllSelectedWordListActionCreator(sortedWordList));
 
   });
 
-  it('should dispatch selectAllWordActionCreator sent as arg with condition where isSearchWordModalOpen is false', () => {
+  it('should dispatch selectAllSelectedWordListActionCreator sent as arg with condition where isSearchWordModalOpen is false', () => {
     let store: MockStoreEnhanced<INormalizedState, {}>;
 
     // apply the condition: isSearchWordModalOpen is false as default
@@ -62,8 +62,7 @@ describe('openModal', function() {
     const { sortedWordList } = store.getState();
     
     // second, mock action of modalActionCreatorDummy
-    expect(actions[0]).toEqual(selectAllWordActionCreator(sortedWordList));
-
+    expect(actions[0]).toEqual(selectAllSelectedWordListActionCreator(sortedWordList));
   });
 });
 

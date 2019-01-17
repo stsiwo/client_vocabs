@@ -4,6 +4,7 @@ import Button from '../../base/Button/Button';
 
 interface Props {
   className?: string;
+  onConfirm: () => void;
 }
 
 class ConfirmButton extends React.Component<Props, {}> {
@@ -13,6 +14,7 @@ class ConfirmButton extends React.Component<Props, {}> {
   }
 
   handleClick(e: React.MouseEvent<HTMLElement>) {
+    this.props.onConfirm();
   }
 
   render() {
@@ -24,6 +26,7 @@ class ConfirmButton extends React.Component<Props, {}> {
 
 const StyledConfirmButton = styled(ConfirmButton)`
 `;
+StyledConfirmButton.displayName = "ConfirmButtonSelector";
 
 
 export default StyledConfirmButton;

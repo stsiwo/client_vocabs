@@ -84,6 +84,7 @@ const StyledModal = styled(Modal)`
   }
     
 `;
+StyledModal.displayName = "ModalSelector";
 
 
 export default StyledModal;

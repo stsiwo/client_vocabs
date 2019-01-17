@@ -21,7 +21,7 @@ const addNewWordFormWrapperThunk: addNewWordFormWrapperThunkType = (  ) => ( dis
   // normalize it
   const normalizedNewWord = normalizeWord(newWord); 
   // dispatch add new word and add new def 
-  dispatch(addNewWordActionCreator(normalizedNewWord.words));
+  dispatch(addNewWordActionCreator(normalizedNewWord.words, normalizedNewWord.defs));
 }
 export default addNewWordFormWrapperThunk;
 

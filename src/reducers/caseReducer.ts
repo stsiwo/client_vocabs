@@ -175,7 +175,7 @@ export namespace CaseReducer {
   // add word id to selectedWordList
   export const toggleSelectedWordListCaseReducer: CaseReducerType<StateType.ISelectedWordList> = (selectedWordList, action) => {
     // if action.selectedWordId exist in state, remove otherwise add it
-    return xor(selectedWordList, [ action.nextWordId ]);
+    return xor(selectedWordList, [ action.wordId ]);
   };
   // empty selectedWordList (SelectAll controller item)
   export const emptySelectedWordListCaseReducer: CaseReducerType<StateType.ISelectedWordList> = (selectedWordList, action) => [];
@@ -188,6 +188,10 @@ export namespace CaseReducer {
   /*********************************************
    * sortedWordList CaseReducer
    *********************************************/
+  export const toggleSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList> = (sortedWordList, action) => {
+    // if action.sortedWordId exist in state, remove otherwise add it
+    return xor(sortedWordList, [ action.wordId ]);
+  };
   // update ( replace ) the entire sortedWordList
   export const changeSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList> = (sortedWordList, action) => action.nextSortedWordList;
 
@@ -196,6 +200,11 @@ export namespace CaseReducer {
   /*********************************************
    * displayedWordList CaseReducer
    *********************************************/
+  // add word id to selectedWordList
+  export const toggleDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList> = (displayedWordList, action) => {
+    // if action.selectedWordId exist in state, remove otherwise add it
+    return xor(displayedWordList, [ action.wordId ]);
+  };
   // change DisplayedWordList to sortedWordList or searchedWordList (nextDisplayedWordList)
   export const changeDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList> = (displayedWordList, action) => action.nextDisplayedWordList;
 

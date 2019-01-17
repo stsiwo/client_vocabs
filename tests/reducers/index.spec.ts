@@ -27,7 +27,6 @@ import {
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
-  wordRemovedNormState, 
   wordNameUpdateNormState, 
   //newDefAddedNormState, 
   defRemovedNormState, 
@@ -40,10 +39,8 @@ import {
   normalizedSortDateNewerState, 
   normalizedSortDateOlderState 
 } from '../storage/state';
-import { 
-  addNewWordActionOutputData,
-  addNewWordActionInputData
-} from '../storage/reducers/addNewWordAction';
+import { addNewWordActionInputTestData, addNewDefActionInputTestData, addNewWordActionOutputTestData } from '../storage/actions/addNewWordAction';
+import { removeWordActionInputTestData, removeWordActionOutputTestData } from '../storage/actions/removeWordAction';
 import { 
   addNewDefActionOutputData,
   addNewDefActionInputData
@@ -96,11 +93,11 @@ describe('reducers: dispatch action and check state has changed as expected', ()
   })
 
   it('should return new state (added new word)', () => {
-    expect(rootReducer(undefined, addNewWordActionCreator(addNewWordActionInputData))).toEqual(addNewWordActionOutputData)
+    expect(rootReducer(undefined, addNewWordActionCreator(addNewWordActionInputTestData, addNewDefActionInputTestData))).toEqual(addNewWordActionOutputTestData)
   })
 
   it('should return new state (removed a particular word)', () => {
-    expect(rootReducer(undefined, removeWordActionCreator('1'))).toEqual(wordRemovedNormState)
+    expect(rootReducer(undefined, removeWordActionCreator(removeWordActionInputTestData))).toEqual(removeWordActionOutputTestData)
   })
 
   it('should return new state (updated word name of a particular word )', () => {

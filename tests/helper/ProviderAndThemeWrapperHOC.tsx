@@ -4,12 +4,14 @@ import { Provider } from 'react-redux'
 import { ThemeProvider } from '../../src/representationals/story/styledComponents';
 import { theme } from '../../src/representationals/story/theme';
 import { MemoryRouter } from 'react-router-dom';
+import { Store, AnyAction } from 'redux';
+import { INormalizedState } from '../../src/state/type';
 
-export const ProviderAndThemeWrapperHOC = <P extends object>(Component: React.ComponentType<P>, store: MockStoreEnhanced ) => {
+export const ProviderAndThemeWrapperHOC = <P extends object>(Component: React.ComponentType<P>, store: MockStoreEnhanced | Store<INormalizedState, AnyAction>) => {
   return (props: P) => (
     <Provider store={ store }>
       <ThemeProvider theme={ theme }>
-        <MemoryRouter>
+        <MemoryRouter initialEntries={ [ '/word' ] }>
           <Component { ...props }/>
         </MemoryRouter>
       </ThemeProvider>

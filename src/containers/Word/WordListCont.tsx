@@ -5,9 +5,9 @@ import { INormalizedState } from '../../state/type';
 import { getWordListItem } from '../../reducers/helper';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
-  // get state (sortedWordList and selectedWordList)
+  // get state (displayedWordList and selectedWordList)
   const { selectedWordList, entities, displayedWordList } = state;
-  // convert sortedWordList to [IWordListItem] see word.ts in domains
+  // convert displayedWordList to [IWordListItem] see word.ts in domains
   const wordListItem = getWordListItem(displayedWordList, selectedWordList, entities);  
   // send that IWordListItem[] as props
   return {

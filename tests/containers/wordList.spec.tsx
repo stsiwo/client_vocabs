@@ -5,7 +5,7 @@ import WordListCont from '../../src/containers/Word/WordListCont';
 import { initialNormalizedState } from '../../src/state/index';
 import { wordListItemModel } from '../storage/containers/wordListCont';
 import configureMockStore from 'redux-mock-store';
-import { toggleSelectWordActionCreator } from '../../src/actions/index';
+import { toggleSelectedWordListActionCreator } from '../../src/actions/index';
 import { toggleSelectWordDispatchType } from '../../src/containers/type';
 import { MockStoreEnhanced } from 'redux-mock-store';
 
@@ -33,7 +33,7 @@ describe('WordListCont', function() {
   })
 
   // this mdtp is defined in "WordListItemCont" not "WordListCont" container component
-  it('should invoke dispatch function with toggleSelectWordActionCreator action (MDTP function)', function() {
+  it('should invoke dispatch function with toggleSelectedWordListActionCreator action (MDTP function)', function() {
     const ContextHOC = ProviderAndThemeWrapperHOC(WordListCont, store);
     const wrapper = mount(
       <ContextHOC />
@@ -42,11 +42,11 @@ describe('WordListCont', function() {
     const toggleSelectWordChange: toggleSelectWordDispatchType = wrapper.find("WordListItem").first().prop('toggleSelectWordChange');
 
     // programmarically call dispatch wrapper function since react event is tested in another test
-    toggleSelectWordChange(["1"]);
+    toggleSelectWordChange("1");
 
     // get dispatched action in mock store
     const actions = store.getActions();
     
-    expect(actions[0]).toEqual(toggleSelectWordActionCreator(["1"])); 
+    expect(actions[0]).toEqual(toggleSelectedWordListActionCreator("1")); 
   })
 })

@@ -32,7 +32,7 @@ export class WordList extends React.Component<Props, {}> {
         <ul>
           { this.renderWordItem() }  
         </ul>
-        <MediaQuery maxWidth={ 425 }>
+        <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
           <MobileWordController />
         </MediaQuery>
       </div>

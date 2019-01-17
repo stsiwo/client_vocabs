@@ -9,6 +9,7 @@ interface Props {
   className?: string;
   isDeleteConfirmModalOpen: boolean;
   toggleDeleteConfirmModalClick: toggleClickType; 
+  deleteConfirmClick: () => void;
 }
 
 class DeleteModal extends React.Component<Props, {}> {
@@ -18,13 +19,13 @@ class DeleteModal extends React.Component<Props, {}> {
 
   render() {
     const title = 'Are you sure you want to delete these itmes?'; 
-    const detail = 'Once you delete these words, you can NOT restore them permanentaly, so please make sure it before deleting. ';
+    const detail = 'Once you delete these words, you can NOT restore them permanentaly, so please make sure it before deleting.';
     return (
         <Modal 
           title={ title } 
           detail={ detail } 
           closeButton={ <CloseButton onClose={ this.props.toggleDeleteConfirmModalClick } /> } 
-          confirmButton={ <ConfirmButton /> } 
+          confirmButton={ <ConfirmButton onConfirm={ this.props.deleteConfirmClick } /> } 
           onClose={ this.props.toggleDeleteConfirmModalClick } 
           isOpen={ this.props.isDeleteConfirmModalOpen }>
         </Modal>

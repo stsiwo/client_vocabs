@@ -79,7 +79,9 @@ export namespace ActionHandler {
     [ActionType.TOGGLE_SELECT_WORD]: CaseReducer.toggleSelectedWordListCaseReducer, // ok
     [ActionType.SELECT_ALL_WORD]: CaseReducer.selectAllSelectedWordListCaseReducer, // ok
     [ActionType.EMPTY_SELECTED_WORD]: CaseReducer.emptySelectedWordListCaseReducer, // ok
+    [ActionType.REMOVE_WORD]: CaseReducer.toggleSelectedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetSelectedWordListCaseReducer,
+
   }
 
   /*****************************************
@@ -88,6 +90,7 @@ export namespace ActionHandler {
   export const sortedWordListHandler: HandlerType<StateType.ISortedWordList> = {
     [ActionType.CHANGE_SORT]: CaseReducer.changeSortedWordListCaseReducer, // ok
     [ActionType.CHANGE_FILTER]: CaseReducer.changeSortedWordListCaseReducer, // ok
+    [ActionType.REMOVE_WORD]: CaseReducer.toggleSortedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetSortedWordListCaseReducer,
   }
 
@@ -105,6 +108,7 @@ export namespace ActionHandler {
    ****************************************/
   export const displayedWordListHandler: HandlerType<StateType.IDisplayedWordList> = {
     [ActionType.CHANGE_DISPLAYED_WORD_LIST]: CaseReducer.changeDisplayedWordListCaseReducer, // ok
+    [ActionType.REMOVE_WORD]: CaseReducer.toggleDisplayedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetDisplayedWordListCaseReducer, // ok
   }
 
