@@ -13,6 +13,7 @@ export namespace ActionHandler {
    **/
   /**************************
    * this is source of error : Final loading didn't return a buffer or string .... 
+   *  - SOLVED: i was putting object in where it would be supposed to be interface ( IActionType )
    **************************/
   export type HandlerType<T> = {
     [P in keyof IActionType]?: CaseReducer.CaseReducerType<T>;
@@ -99,7 +100,7 @@ export namespace ActionHandler {
    * searchedWordList
    ****************************************/
   export const searchedWordListHandler: HandlerType<StateType.ISearchedWordList> = {
-    [ActionType.CHANGE_SEARCHED_WORD_LIST]: CaseReducer.changeSearchedWordListCaseReducer, // ok
+    [ActionType.CHANGE_SEARCH_TEXT]: CaseReducer.changeSearchedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetSearchedWordListCaseReducer, // ok
   }
 

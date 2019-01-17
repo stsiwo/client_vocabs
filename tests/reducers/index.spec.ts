@@ -106,7 +106,7 @@ describe('reducers: dispatch action and check state has changed as expected', ()
 
   it('should return new state (added new def to a particular word)', () => {
     // wordId = 4 from test data file
-    expect(rootReducer(undefined, addNewDefActionCreator("4", addNewDefActionInputData))).toEqual(addNewDefActionOutputData)
+    expect(rootReducer(undefined, addNewDefActionCreator(addNewDefActionInputData, "4"))).toEqual(addNewDefActionOutputData)
   })
 
   it('should return new state (removed a particular def)', () => {

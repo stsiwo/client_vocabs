@@ -1,142 +1,144 @@
 import { StateType } from '../state/type';
 import { PosEnum } from '../domains/pos';
-import { ActionType} from './type';
+import { ActionType } from './type';
 import { Action } from 'redux';
 
 /****************************************************
  * Action type interface
  ****************************************************/
-export interface IAddNewWordAction extends Action<string> {
-  word: StateType.IEntityWord;
-  def: StateType.IEntityDef;
+export namespace IAction { 
+
+  export interface IAddNewWordAction extends Action<string> {
+    word: StateType.IEntityWord;
+    def: StateType.IEntityDef;
+  }
+
+  export interface IRemoveWordAction extends Action<string> {
+    wordId: string;
+  }
+
+
+  export interface IUpdateWordNameAction extends Action<string> {
+    wordId: string;
+    wordName: string;
+  }
+
+
+  export interface IAddNewDefAction extends Action<string> {
+    def: StateType.IEntityDef;
+    wordId: string;
+    defIds: string[];
+  }
+
+  export interface IRemoveDefAction extends Action<string> {
+    wordId: string;
+    defIds: string[];
+  }
+
+  export interface IUpdateDefPosAction extends Action<string> {
+    defId: string;
+    defPos: PosEnum;
+  }
+
+  export interface IUpdateDefTextAction extends Action<string> {
+    defId: string;
+    defText: string;
+  }
+
+  export interface IUpdateDefImageAction extends Action<string> {
+    defId: string;
+    defImage: string;
+  }
+
+  export interface IChangeSortAction extends Action<string> {
+    currentSort: StateType.ICurrentSort;
+    currentSortedWordList: StateType.ISortedWordList;
+  }
+
+  export interface IChangeFilterAction extends Action<string> {
+    currentFilter: StateType.ICurrentFilter;
+    currentSortedWordList: StateType.ISortedWordList;
+  }
+
+  export interface IChangeSearchKeyWordAction extends Action<string> {
+    nextSearchKey: string;
+    nextSearchedWordList: StateType.ISearchedWordList;
+  }
+
+  export interface IChangeDisplayedWordListAction extends Action<string> {
+    nextDisplayedWordList: StateType.IDisplayedWordList;
+  }
+
+  export interface IToggleSelectWarningModalAction extends Action<string> {
+    isSelectWarningModalOpen: boolean;
+  }
+
+  export interface IToggleDeleteConfirmModalAction extends Action<string> {
+    isDeleteConfirmModalOpen: boolean;
+  }
+
+  export interface IToggleSortFilterModalAction extends Action<string> {
+    isSortFilterModalOpen: boolean;
+  }
+
+  export interface IToggleSearchWordModalAction extends Action<string> {
+    isSearchWordModalOpen: boolean;
+  }
+
+  export interface IToggleSelectedWordListAction extends Action<string> {
+    wordId: string;
+  }
+
+  export interface ISelectAllSelectedWordListAction extends Action<string> {
+    nextSelectedWordList: string[];
+  }
+
+  export type IEmptySelectedWordListAction = Action<string>; 
+
+  export type IResetStateAction = Action<string>; 
 }
-
-export interface IRemoveWordAction extends Action<string> {
-  wordId: string;
-}
-
-
-export interface IUpdateWordNameAction extends Action<string> {
-  wordId: string;
-  wordName: string;
-}
-
-
-export interface IAddNewDefAction extends Action<string> {
-  def: StateType.IEntityDef;
-  wordId: string;
-  defIds: string[];
-}
-
-export interface IRemoveDefAction extends Action<string> {
-  wordId: string;
-  defIds: string[];
-}
-
-export interface IUpdateDefPosAction extends Action<string> {
-  defId: string;
-  defPos: PosEnum;
-}
-
-export interface IUpdateDefTextAction extends Action<string> {
-  defId: string;
-  defText: string;
-}
-
-export interface IUpdateDefImageAction extends Action<string> {
-  defId: string;
-  defImage: string;
-}
-
-export interface IChangeSortAction extends Action<string> {
-  currentSort: StateType.ICurrentSort;
-  currentSortedWordList: StateType.ISortedWordList;
-}
-
-export interface IChangeFilterAction extends Action<string> {
-  currentFilter: StateType.ICurrentFilter;
-  currentSortedWordList: StateType.ISortedWordList;
-}
-
-export interface IChangeSearchKeyWordAction extends Action<string> {
-  nextSearchKey: string;
-  nextSearchedWordList: StateType.ISearchedWordList;
-}
-
-export interface IChangeDisplayedWordListAction extends Action<string> {
-  nextDisplayedWordList: StateType.IDisplayedWordList;
-}
-
-export interface IToggleSelectWarningModalAction extends Action<string> {
-  isSelectWarningModalOpen: boolean;
-}
-
-export interface IToggleDeleteConfirmModalAction extends Action<string> {
-  isDeleteConfirmModalOpen: boolean;
-}
-
-export interface IToggleSortFilterModalAction extends Action<string> {
-  isSortFilterModalOpen: boolean;
-}
-
-export interface IToggleSearchWordModalAction extends Action<string> {
-  isSearchWordModalOpen: boolean;
-}
-
-export interface IToggleSelectedWordListAction extends Action<string> {
-  wordId: string;
-}
-
-export interface ISelectAllSelectedWordListAction extends Action<string> {
-  nextSelectedWordList: string[];
-}
-
-export type IEmptySelectedWordListAction = Action<string>; 
-
-export type IResetStateAction = Action<string>; 
-
 /****************************************************
  * ActionCreator call signature
  ****************************************************/
-type IAddNewWordActionCreator = (word: StateType.IEntityWord, def: StateType.IEntityDef) =>  IAddNewWordAction;
+type IAddNewWordActionCreator = (word: StateType.IEntityWord, def: StateType.IEntityDef) =>  IAction.IAddNewWordAction;
 
-type IRemoveWordActionCreator = (wordId: string) =>  IRemoveWordAction;
+type IRemoveWordActionCreator = (wordId: string) =>  IAction.IRemoveWordAction;
 
-type IUpdateWordNameActionCreator = (wordId: string, wordName: string) =>  IUpdateWordNameAction;
+type IUpdateWordNameActionCreator = (wordId: string, wordName: string) =>  IAction.IUpdateWordNameAction;
 
-type IAddNewDefActionCreator = (def: StateType.IEntityDef, wordId: string) =>  IAddNewDefAction;
+type IAddNewDefActionCreator = (def: StateType.IEntityDef, wordId: string) =>  IAction.IAddNewDefAction;
 
-type IRemoveDefActionCreator = (wordId: string, defIds: string[]) =>  IRemoveDefAction;
+type IRemoveDefActionCreator = (wordId: string, defIds: string[]) =>  IAction.IRemoveDefAction;
 
-type IUpdateDefPosActionCreator = (defId: string, defPos: PosEnum) =>  IUpdateDefPosAction;
+type IUpdateDefPosActionCreator = (defId: string, defPos: PosEnum) =>  IAction.IUpdateDefPosAction;
 
-type IUpdateDefTextActionCreator = (defId: string, defText: string) =>  IUpdateDefTextAction;
+type IUpdateDefTextActionCreator = (defId: string, defText: string) =>  IAction.IUpdateDefTextAction;
 
-type IUpdateDefImageActionCreator = (defId: string, defImage: string) =>  IUpdateDefImageAction;
+type IUpdateDefImageActionCreator = (defId: string, defImage: string) =>  IAction.IUpdateDefImageAction;
 
-type IChangeSortActionCreator = (currentSort: StateType.ICurrentSort, currentSortedWordList: StateType.ISortedWordList) =>  IChangeSortAction;
+type IChangeSortActionCreator = (currentSort: StateType.ICurrentSort, currentSortedWordList: StateType.ISortedWordList) =>  IAction.IChangeSortAction;
 
-type IChangeFilterActionCreator = ( currentFilter: StateType.ICurrentFilter, currentSortedWordList: StateType.ISortedWordList) =>  IChangeFilterAction;
+type IChangeFilterActionCreator = ( currentFilter: StateType.ICurrentFilter, currentSortedWordList: StateType.ISortedWordList) =>  IAction.IChangeFilterAction;
 
-type IChangeSearchKeyWordActionCreator = (nextSearchKey: string, nextSearchedWordList: StateType.ISearchedWordList) =>  IChangeSearchKeyWordAction;
+type IChangeSearchKeyWordActionCreator = (nextSearchKey: string, nextSearchedWordList: StateType.ISearchedWordList) =>  IAction.IChangeSearchKeyWordAction;
 
-type IChangeDisplayedWordListActionCreator = (nextDisplayedWordList: StateType.IDisplayedWordList) =>  IChangeDisplayedWordListAction;
+type IChangeDisplayedWordListActionCreator = (nextDisplayedWordList: StateType.IDisplayedWordList) =>  IAction.IChangeDisplayedWordListAction;
 
-type IToggleSelectWarningModalActionCreator = (isSelectWarningModalOpen: boolean) =>  IToggleSelectWarningModalAction;
+type IToggleSelectWarningModalActionCreator = (isSelectWarningModalOpen: boolean) =>  IAction.IToggleSelectWarningModalAction;
 
-type IToggleDeleteConfirmModalActionCreator = (isDeleteConfirmModalOpen: boolean) =>  IToggleDeleteConfirmModalAction;
+type IToggleDeleteConfirmModalActionCreator = (isDeleteConfirmModalOpen: boolean) =>  IAction.IToggleDeleteConfirmModalAction;
 
-type IToggleSortFilterModalActionCreator = (isSortFilterModalOpen: boolean) =>  IToggleSortFilterModalAction;
+type IToggleSortFilterModalActionCreator = (isSortFilterModalOpen: boolean) =>  IAction.IToggleSortFilterModalAction;
 
-type IToggleSearchWordModalActionCreator = (isSearchWordModalOpen: boolean) =>  IToggleSearchWordModalAction;
+type IToggleSearchWordModalActionCreator = (isSearchWordModalOpen: boolean) =>  IAction.IToggleSearchWordModalAction;
 
-type IToggleSelectedWordListActionCreator = (wordId: string) =>  IToggleSelectedWordListAction;
+type IToggleSelectedWordListActionCreator = (wordId: string) =>  IAction.IToggleSelectedWordListAction;
 
-type ISelectAllSelectedWordListActionCreator = (nextSelectedWordList: string[]) =>  ISelectAllSelectedWordListAction;
+type ISelectAllSelectedWordListActionCreator = (nextSelectedWordList: string[]) =>  IAction.ISelectAllSelectedWordListAction;
 
-type IEmptySelectedWordListActionCreator = () =>  IEmptySelectedWordListAction;
+type IEmptySelectedWordListActionCreator = () =>  IAction.IEmptySelectedWordListAction;
 
-type IResetStateActionCreator = () =>  IResetStateAction;
+type IResetStateActionCreator = () =>  IAction.IResetStateAction;
 /****************************************************
  * ActionCreator Creator
  ****************************************************/

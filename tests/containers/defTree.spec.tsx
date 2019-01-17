@@ -42,7 +42,7 @@ describe('DefTreeCont', function() {
 
     // check dispatched action is dummy
     // only check type of action since this test is to make sure mdtp functionality which means that when addNewDefClick is called addNewDefActionCreator is dispatch. it does not matter of content of the data of action
-    expect(actions[0].type).toEqual(addNewDefActionCreator(defTestData._wordId, getNewNormalizedDef(defTestData._wordId)).type); 
+    expect(actions[0].type).toEqual(addNewDefActionCreator(getNewNormalizedDef(defTestData._wordId), defTestData._wordId).type); 
   })
 })
 
