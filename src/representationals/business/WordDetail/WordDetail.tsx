@@ -31,7 +31,7 @@ class WordDetail extends React.Component<Props, {}> {
         <div className={ this.props.className }>
         { this.renderSelectedWords() }
         </div>
-        <MediaQuery maxWidth={ 425 }>
+        <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
           <MobileDetailController />
         </MediaQuery>
       </div>
@@ -45,6 +45,7 @@ const StyledWordDetail = styled(WordDetail)`
   }
 
 `;
+StyledWordDetail.displayName = "WordDetailSelector";
 
 
 export default StyledWordDetail;

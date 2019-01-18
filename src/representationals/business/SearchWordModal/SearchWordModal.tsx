@@ -45,6 +45,7 @@ const StyledSearchWordModal = styled(SearchWordModal)`
   width: 100%;
   background-color: #FFFFFF; 
 `;
+StyledSearchWordModal.displayName = "SearchWordModalSelector";
 
 
 export default StyledSearchWordModal;

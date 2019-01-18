@@ -59,6 +59,7 @@ const StyledSearch = styled(Search)`
   }
 
 `;
+StyledSearch.displayName = "SearchSelector";
 
 export default StyledSearch;
 
