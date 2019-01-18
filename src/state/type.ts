@@ -25,6 +25,7 @@ export namespace StateType {
     isDeleteConfirmModalOpen: boolean;
     isSortFilterModalOpen: boolean;
     isSearchWordModalOpen: boolean;
+    isDefineWarningModalOpen: boolean;
   }
 
   // currentSort

@@ -19,6 +19,7 @@ import { INormalizedState, StateType } from './type';
  *    - isDeleteConfirmModalOpen:
  *    - isSortFilterModalOpen:
  *    - isSearchWordModalOpen:
+ *    - isDefineWarningModalOpen:
  *  
  **/
 
@@ -252,6 +253,7 @@ export const initialNormalizedState: INormalizedState = {
     isDeleteConfirmModalOpen: false,
     isSortFilterModalOpen: false,
     isSearchWordModalOpen: false,
+    isDefineWarningModalOpen: false,
   },
 }
 

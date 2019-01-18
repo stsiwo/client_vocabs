@@ -5,8 +5,6 @@ import MediaQuery from 'react-responsive';
 import { Route, Redirect } from 'react-router-dom';
 import WordDetailCont from '../../../containers/Word/WordDetailCont';
 import Controller from '../Controller/Controller';
-import { IWord } from '../../../domains/word';
-import { initialWordList } from '../../../state/index';
 import SelectModalCont from '../../../containers/SelectModalCont';
 import DeleteModalCont from '../../../containers/DeleteModalCont';
 import SortFilterModalCont from '../../../containers/SortFilterModalCont';
@@ -20,21 +18,10 @@ interface Props {
   isSearchWordModalOpen: boolean;
 }
 
-interface State {
-  words: IWord[];
-  currentWords: IWord[];
-  isSelectModalContOpen: boolean;
-}
 
-class Word extends React.Component<Props, State> {
+class Word extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      words: initialWordList, 
-      currentWords: [
-      ],
-      isSelectModalContOpen: false,
-    }
   }
 
   render() {

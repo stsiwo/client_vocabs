@@ -244,4 +244,6 @@ export const resetSearchedWordListCaseReducer: CaseReducerType<StateType.ISearch
   export const toggleSearchWordModalCaseReducer: CaseReducerType<StateType.IUi, IAction.IToggleSearchWordModalAction> = (ui, action) => Object.assign({}, ui, { isSearchWordModalOpen: action.isSearchWordModalOpen });
 
   export const resetUiCaseReducer: CaseReducerType<StateType.IUi, IAction.IResetStateAction> = (ui, action) => Object.assign({}, ui, initialNormalizedState.ui);
+
+  export const toggleDefineWarningModalCaseReducer: CaseReducerType<StateType.IUi, IAction.IToggleDefineWarningModalAction> = (ui, action) => Object.assign({}, ui, { isDefineWarningModalOpen: action.isDefineWarningModalOpen });;
 } 

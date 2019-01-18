@@ -9,11 +9,13 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
   // get state sortedWordList and entities
   const { selectedWordList, entities } = state;
+  const { isDefineWarningModalOpen } = state.ui;
   // denormalized selectedWordList 
   const words: IWord[] = denormalizeWordList(selectedWordList, entities);
    
   return {
     words: words,
+    isDefineWarningModalOpen: isDefineWarningModalOpen,
   }
 };
 

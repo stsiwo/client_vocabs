@@ -27,6 +27,7 @@ export interface IActionType {
   TOGGLE_DELETE_CONFIRM_MODAL: string; // ok
   TOGGLE_SORT_FILTER_MODAL: string; // ok
   TOGGLE_SEARCH_WORD_MODAL: string; // ok
+  TOGGLE_DEFINE_WARNING_MODAL: string; // ok
 
   // selectedWordList
   TOGGLE_SELECT_WORD: string; // ok
@@ -71,6 +72,7 @@ export const ActionType: IActionType = {
   TOGGLE_DELETE_CONFIRM_MODAL: "TOGGLE_DELETE_CONFIRM_MODAL",
   TOGGLE_SORT_FILTER_MODAL: "TOGGLE_SORT_FILTER_MODAL",
   TOGGLE_SEARCH_WORD_MODAL: "TOGGLE_SEARCH_WORD_MODAL",
+  TOGGLE_DEFINE_WARNING_MODAL: "TOGGLE_DEFINE_WARNING_MODAL",
 
   TOGGLE_SELECT_WORD: "TOGGLE_SELECT_WORD",
   SELECT_ALL_WORD: "SELECT_ALL_WORD",
@@ -87,16 +89,4 @@ export const ActionType: IActionType = {
   RESET_STATE: "RESET_STATE",
 }
 
-/**
- * action type 
- **/
-export interface ISelectAllWordActionType {
-  type: string;
-  nextSelectedWordList: string[];
-}
-
-export interface IChangeSortedWordListActionCreator {
-  type: string;
-  nextSortedWordList: string[];
-}
 

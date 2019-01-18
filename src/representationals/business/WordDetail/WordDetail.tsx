@@ -5,10 +5,12 @@ import WordForm from '../Form/WordForm';
 import { IWord } from '../../../domains/word';
 import MediaQuery from 'react-responsive';
 import MobileDetailController from '../Controller/MobileDetailController';
+import DefineWarningModalCont from '../../../containers/DefineWarningModalCont';
 
 interface Props extends RouteComponentProps<{}> {
   className?: string;
   words: IWord[]; 
+  isDefineWarningModalOpen: boolean;
 }
 /**
  * display selected word items' details 
@@ -33,6 +35,7 @@ class WordDetail extends React.Component<Props, {}> {
         </div>
         <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
           <MobileDetailController />
+          { this.props.isDefineWarningModalOpen && <DefineWarningModalCont /> }
         </MediaQuery>
       </div>
     );
