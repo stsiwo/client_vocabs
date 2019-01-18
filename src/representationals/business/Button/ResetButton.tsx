@@ -20,7 +20,7 @@ class ResetButton extends React.Component<Props, {}> {
 
   render() {
     return (
-      <Button onClick={ this.handleClick }>Reset</Button>
+      <Button id="reset" onClick={ this.handleClick }>Reset</Button>
     );
   }
 }

@@ -39,6 +39,7 @@ class SortFilterModal extends React.Component<Props, {}> {
 
 const StyledSortFilterModal = styled(SortFilterModal)`
 `;
+StyledSortFilterModal.displayName = "SortFilterModalSelector";
 
 
 export default StyledSortFilterModal;

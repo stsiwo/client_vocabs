@@ -23,7 +23,7 @@ class CloseButton extends React.Component<Props, {}> {
 
   render() {
     return (
-      <Button onClick={ this.handleClick }>Close</Button>
+      <Button id="close" onClick={ this.handleClick }>Close</Button>
     );
   }
 }

@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   children: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  id: string;
 }
 
 class Button extends React.Component<Props, {}> {
@@ -22,6 +23,7 @@ class Button extends React.Component<Props, {}> {
     return (
       <button
         type="button"
+        id={ this.props.id }
         className={ this.props.className }
         onClick={this.handleClick}
       >
