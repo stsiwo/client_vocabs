@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../Icon/Icon';
-import NavBar from './NavBar';
+import NavBarCont from '../../../containers/NavBar/NavBarCont';
 const settingIcon = require('./assets/setting.svg');
 
 interface Props {
@@ -30,7 +30,7 @@ class Header extends React.Component<Props, State> {
     return (
       <header className={ this.props.className }>
         <Icon svgSrc={ settingIcon }></Icon>
-        <NavBar isOpen={ this.state.isNavBarOpen }/>
+        <NavBarCont isOpen={ this.state.isNavBarOpen }/>
         <Icon svgSrc={ settingIcon } onClick={ this.handleClick }></Icon>
       </header>
     );

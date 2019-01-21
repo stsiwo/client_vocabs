@@ -24,12 +24,6 @@ const checkDeleteWordWrapperThunk: checkDeleteWordWrapperThunkType = (  ) => ( d
     // if not, proceed to confirmation modal
     dispatch(toggleDeleteConfirmModalActionCreator(true));
   }
-  
-
-
-
-      
-  
 }
 export default checkDeleteWordWrapperThunk;
 

@@ -6,6 +6,7 @@ import DefTreeCont from '../../src/containers/Def/DefTreeCont';
 //import { SinonSpy } from 'sinon';
 import { defTestData } from '../storage/domains/def';
 import store from '../../src/storeConfig';
+import { formikDummy } from '../storage/Hoc/formik';
 
 
 describe('add new def to a particular word functionality', function() {
@@ -22,7 +23,7 @@ describe('add new def to a particular word functionality', function() {
     
     const ContextHOC = ProviderAndThemeWrapperHOC(DefTreeCont, store);
     const wrapper = mount(
-      <ContextHOC defs={ [ defTestData ] } />
+      <ContextHOC defs={ [ defTestData ] } wordIndex={ 0 } formik={ formikDummy }/>
     );
     
     // find target event handler

@@ -8,24 +8,22 @@ interface Props {
   labelName: string;
   children: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   value: string;
 }
 
-interface State {
-  textInput: string;
-}
-
-class Text extends React.Component<Props, State> {
+class Text extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-       textInput: this.props.value,
-    }
     this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+  }
+
+  handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+    this.props.onBlur(e);
   }
 
   handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ textInput: e.target.value });
     this.props.onChange(e);
   }
 
@@ -35,7 +33,15 @@ class Text extends React.Component<Props, State> {
         <label htmlFor={ this.props.labelName }>
           { this.props.children }
         </label>
-        <Input type="text" placeholder={ this.props.placeholder } id={ this.props.labelName } name={ this.props.labelName } onChange={ this.handleChange } value={ this.state.textInput }/>
+        <Input 
+          type="text" 
+          placeholder={ this.props.placeholder } 
+          id={ this.props.labelName } 
+          name={ this.props.labelName } 
+          onChange={ this.handleChange } 
+          onBlur={ this.handleBlur } 
+          value={ this.props.value }
+        />
       </div>
     );
   }

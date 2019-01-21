@@ -5,6 +5,7 @@ import { INormalizedState } from '../../state/type';
 import { denormalizeWordList } from '../../state/index';
 import { IWord } from '../../domains/word';
 import { withRouter } from 'react-router-dom';
+import { toggleWordFormErrorActionCreator } from '../../actions/index';
 
 const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
   // get state sortedWordList and entities
@@ -20,6 +21,7 @@ const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
+  wordFormErrorCheck: (isError: boolean) => { dispatch<any>(toggleWordFormErrorActionCreator(isError))}, 
 });
 
 export default compose(

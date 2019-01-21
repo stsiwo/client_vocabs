@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import { Vl } from '../../base/common/Line';
-import BackControllerItem from './BackControllerItem';
+import BackControllerItemCont from '../../../containers/Controller/BackControllerItemCont';
 import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
 import NewControllerItemCont from '../../../containers/Controller/NewControllerItemCont';
 
@@ -17,7 +17,7 @@ class MobileController extends React.Component<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-        <BackControllerItem />
+        <BackControllerItemCont />
         <Vl />
         <NewControllerItemCont />
         <Vl />

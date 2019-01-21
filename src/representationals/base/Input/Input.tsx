@@ -4,6 +4,7 @@ import styled from '../../story/styledComponents';
 interface Props {
   className?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FormEvent<HTMLInputElement>) => void;
   id?: string;
   name?: string;
   placeholder?: string;
@@ -16,11 +17,17 @@ class Input extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     if (this.props.onChange)
       this.props.onChange(e);
+  }
+
+  handleBlur(e: React.FocusEvent<HTMLInputElement>): void {
+    if (this.props.onBlur)
+      this.props.onBlur(e);
   }
 
   render() {
@@ -32,6 +39,7 @@ class Input extends React.Component<Props, {}> {
         name={ this.props.name }
         placeholder={ this.props.placeholder }
         onChange={ this.handleChange }
+        onBlur={ this.handleBlur } 
         checked={ this.props.checked }
         value={ this.props.value }
       />

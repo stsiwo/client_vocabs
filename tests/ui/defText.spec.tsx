@@ -6,22 +6,41 @@ import DefText from '../../src/representationals/business/Form/DefText';
 //import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from '../../src/representationals/story/styledComponents';
 import { theme } from '../../src/representationals/story/theme';
+import { formikDummy } from '../storage/Hoc/formik';
+
 
 describe('DefText', function() {
-  it('should invoke the event handler is called when word text is change', function() {
+
+  it('should invoke the handleDefTextBlur event handler is called when word text is change', function() {
 
     // props spy 
-    const updateDefTextChangeSpy: SinonSpy = sinon.spy();
+    const handleDefTextBlurSpy: SinonSpy = sinon.spy(DefText.prototype, "handleDefTextBlur");
  
      const wrapper = mount(
        <ThemeProvider theme={ theme }>
-        <DefText defId={ "1" } defText={ "test" } updateDefTextChange={ updateDefTextChangeSpy } />
+        <DefText  defIndex={ 0 } wordIndex={ 0 } formik={ formikDummy } defText={ "test" } />
+       </ThemeProvider>
+     ) 
+    
+     wrapper.find("InputSelector").simulate('blur');
+
+     sinon.assert.calledOnce(handleDefTextBlurSpy);
+  })
+
+  it('should invoke the handleDefTextChange event handler is called when word text is change', function() {
+
+    // props spy 
+    const handleDefTextChangeSpy: SinonSpy = sinon.spy(DefText.prototype, "handleDefTextChange");
+ 
+     const wrapper = mount(
+       <ThemeProvider theme={ theme }>
+        <DefText  defIndex={ 0 } wordIndex={ 0 } formik={ formikDummy } defText={ "test" } />
        </ThemeProvider>
      ) 
     
      wrapper.find("InputSelector").simulate('change');
 
-     sinon.assert.calledOnce(updateDefTextChangeSpy);
+     sinon.assert.calledOnce(handleDefTextChangeSpy);
   })
 })
 

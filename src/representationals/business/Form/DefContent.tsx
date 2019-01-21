@@ -6,11 +6,15 @@ import DefImageFileCont from '../../../containers/Form/DefImageFileCont';
 import BottomModal from '../../base/Modal/BottomModal';
 import SearchImageModalContentCont from '../../../containers/SearchImageModalContentCont';
 import { IDef } from '../../../domains/def';
+import { CustomFormikProps } from '../../../Hoc/withForm';
 
 interface Props {
   className?: string;
   def: IDef;
   isOpen: boolean;
+  formik: CustomFormikProps;
+  wordIndex: number;
+  defIndex: number;
 }
 
 interface State {
@@ -35,16 +39,28 @@ class DefContent extends React.Component<Props, State> {
     return (
       <ul className={ this.props.className }>
         <li>
-          <PosSelectCont pos={ this.props.def.pos } defId={ this.props.def.id } /> 
+          <PosSelectCont 
+            pos={ this.props.def.pos } 
+            formik={ this.props.formik } 
+            wordIndex={ this.props.wordIndex }
+            defIndex={ this.props.defIndex }
+          /> 
         </li>
         <li>
-          <DefTextCont defText={ this.props.def.def }  defId={ this.props.def.id }/>
+          <DefTextCont 
+            defText={ this.props.def.def } 
+            formik={ this.props.formik }
+            wordIndex={ this.props.wordIndex }
+            defIndex={ this.props.defIndex }
+          />
         </li>
         <li>
           <DefImageFileCont 
             image={ this.props.def.image } 
             handleSearchImageToggleClick={ this.handleSearchImageToggleClick } 
-            defId={ this.props.def.id }
+            formik={ this.props.formik }
+            wordIndex={ this.props.wordIndex }
+            defIndex={ this.props.defIndex }
           /> 
         </li>
         <BottomModal isOpen={ this.state.isSearchImageModalOpen } handleSearchImageToggleClick={ this.handleSearchImageToggleClick }>

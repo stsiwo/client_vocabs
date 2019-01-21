@@ -89,6 +89,10 @@ export namespace IAction {
     isDefineWarningModalOpen: boolean;
   }
 
+  export interface IToggleWordFormErrorAction extends Action<string> {
+    wordFormError: boolean;
+  }
+
   export interface IToggleSelectedWordListAction extends Action<string> {
     wordId: string;
   }
@@ -137,6 +141,8 @@ type IToggleSortFilterModalActionCreator = (isSortFilterModalOpen: boolean) =>  
 type IToggleSearchWordModalActionCreator = (isSearchWordModalOpen: boolean) =>  IAction.IToggleSearchWordModalAction;
 
 type IToggleDefineWarningModalActionCreator = (isDefineWarningModalOpen: boolean) =>  IAction.IToggleDefineWarningModalAction;
+
+type IToggleWordFormErrorActionCreator = (wordFormError: boolean) =>  IAction.IToggleWordFormErrorAction;
 
 type IToggleSelectedWordListActionCreator = (wordId: string) =>  IAction.IToggleSelectedWordListAction;
 
@@ -260,6 +266,11 @@ export const toggleSearchWordModalActionCreator: IToggleSearchWordModalActionCre
 export const toggleDefineWarningModalActionCreator: IToggleDefineWarningModalActionCreator = (isDefineWarningModalOpen) => ({
   type: ActionType.TOGGLE_DEFINE_WARNING_MODAL,
   isDefineWarningModalOpen: isDefineWarningModalOpen,
+})
+
+export const toggleWordFormErrorActionCreator: IToggleWordFormErrorActionCreator = (wordFormError) => ({
+  type: ActionType.TOGGLE_WORD_FORM_ERROR,
+  wordFormError: wordFormError,
 })
 
 export const toggleSelectedWordListActionCreator: IToggleSelectedWordListActionCreator = (wordId) => ({

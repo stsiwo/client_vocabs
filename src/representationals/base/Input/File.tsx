@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../Icon/Icon';
+import { CustomFormikProps } from '../../../Hoc/withForm';
 
 const uploadImageIcon = require('./assets/uploadImage.svg');
 const searchImageIcon = require('./assets/searchImage.svg');
@@ -11,35 +12,35 @@ interface Props {
   handleSearchImageToggleClick: (e: React.MouseEvent<HTMLElement>) => void;
   // url to image server
   file: string;
-}
-
-interface State {
-   currentImage: string;
+  formik: CustomFormikProps;
 }
 
 
-class File extends React.Component<Props, State> {
+class File extends React.Component<Props, {}> {
 
   private preview = React.createRef<HTMLImageElement>();
 
   constructor(props: Props) {
     super(props);
-    this.state = {
-      currentImage: this.props.file,
-    }
     this.handleChange = this.handleChange.bind(this);
     this.releaseObjectURL = this.releaseObjectURL.bind(this);
   }
 
+  /*******************************************************************
+   * need to fix later (how to handle image with formik validation) 
+   * also how to upload image and fetch from image server
+   *******************************************************************/
   handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const selectedFile = e.target.files[0];
 
-    console.log(typeof selectedFile);
 
     // display selected image to preview div
     const content = URL.createObjectURL(selectedFile);
-    this.setState({ currentImage: content });
+    console.log(content);
+  }
 
+  handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+    this.props.formik.handleBlur(e);
   }
 
   releaseObjectURL(e: React.ChangeEvent<HTMLImageElement>) {
@@ -55,9 +56,9 @@ class File extends React.Component<Props, State> {
           <label htmlFor={ this.props.labelName }>
             <Icon svgSrc={ uploadImageIcon } />
           </label>
-          <input type="file" id={ this.props.labelName } name={ this.props.labelName } accept="image/*" onChange={ this.handleChange }/>
+          <input type="file" id={ this.props.labelName } name={ this.props.labelName } accept="image/*" onChange={ this.handleChange } onBlur={ this.handleBlur } />
         </div>
-        <img src={ this.state.currentImage } ref={this.preview} onLoad={ this.releaseObjectURL }></img>
+        <img src={ this.props.file } ref={this.preview} onLoad={ this.releaseObjectURL }></img>
       </div>
     );
   }

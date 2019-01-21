@@ -24,6 +24,7 @@ import {
   resetStateActionCreator,
   changeSearchKeyWordActionCreator,
   changeDisplayedWordListActionCreator,
+  toggleWordFormErrorActionCreator,
 } from '../../src/actions'; 
 import { SORT_ORDER } from '../../src/enums';
 import { 
@@ -328,6 +329,16 @@ describe('searchKeyWord state', () => {
     expect(rootReducer(undefined, changeSearchKeyWordActionCreator('test', [])).searchKeyWord).toEqual('test')
   })
 
+})
+
+describe('wordFormError state', () => {
+  beforeEach(() => {
+    store.dispatch(resetStateActionCreator());
+  })
+  // ui toggle modal
+  it('should return new state (changed wordFormError to true', () => {
+    expect(rootReducer(undefined, toggleWordFormErrorActionCreator(true)).wordFormError).toEqual(true)
+  })
 })
 
 describe('reset state to initial state ', () => {

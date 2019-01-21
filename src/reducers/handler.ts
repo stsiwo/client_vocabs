@@ -115,6 +115,14 @@ export namespace ActionHandler {
   }
 
   /*****************************************
+   * wordFormError
+   ****************************************/
+  export const wordFormErrorHandler: HandlerType<StateType.IWordFormError> = {
+    [ActionType.TOGGLE_WORD_FORM_ERROR]: CaseReducer.toggleWordFormErrorCaseReducer, // ok
+    [ActionType.RESET_STATE]: CaseReducer.resetWordFormErrorCaseReducer, // ok
+  }
+
+  /*****************************************
    * searchKeyWord
    ****************************************/
   export const searchKeyWordHandler: HandlerType<StateType.ISearchKeyWord> = {

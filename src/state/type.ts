@@ -46,6 +46,9 @@ export namespace StateType {
   // currentFilter
   export type ICurrentFilter = PosEnum[];
 
+  // wordFormError
+  export type IWordFormError = boolean; 
+
   export type ISearchKeyWord = string;
   /**
    * normalized state shape interface 
@@ -60,6 +63,7 @@ export interface INormalizedState {
   displayedWordList: StateType.IDisplayedWordList;
   currentSort: StateType.ICurrentSort;
   currentFilter: StateType.ICurrentFilter;  
+  wordFormError: StateType.IWordFormError;
   searchKeyWord: StateType.ISearchKeyWord;
   ui: StateType.IUi;
 }

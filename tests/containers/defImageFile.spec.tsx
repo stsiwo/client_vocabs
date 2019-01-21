@@ -9,6 +9,7 @@ import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { updateDefImageActionCreator } from '../../src/actions/index';
+import { formikDummy } from '../storage/Hoc/formik';
 
 const mockStore = configureMockStore([ thunk ]);
 
@@ -27,7 +28,7 @@ describe('DefImageFileCont', function() {
 
     const ContextHOC = ProviderAndThemeWrapperHOC(DefImageFileCont, store);
     const wrapper = mount(
-      <ContextHOC image={ "test-image" } defId={ "0" } handleSearchImageToggleClick={ (e: React.MouseEvent<HTMLElement>) => {} }/>
+      <ContextHOC image={ "test-image" } handleSearchImageToggleClick={ (e: React.MouseEvent<HTMLElement>) => {} } wordIndex={ 0 } defIndex={ 0 } formik={ formikDummy }/>
     );
     
     const updateDefImageClick: (id: string, nextImage: string) => void = wrapper.find("DefImageFile").first().prop('updateDefImageClick');

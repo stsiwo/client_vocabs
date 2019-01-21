@@ -10,6 +10,7 @@ interface Props {
   pos: PosEnum;
   labelName: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLSelectElement>) => void;
 }
 
 interface State {
@@ -19,11 +20,9 @@ interface State {
 class Select extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-        pos: this.props.pos,
-    }
     this.renderOptions = this.renderOptions.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   renderOptions() {
@@ -33,13 +32,17 @@ class Select extends React.Component<Props, State> {
     }));
   }
 
+  handleBlur(e: React.FocusEvent<HTMLSelectElement>) {
+    this.props.onBlur(e);
+  }
+
   handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     this.props.onChange(e);
   }
 
   render() {
     return (
-      <select value={this.state.pos} name={this.props.labelName} className={ this.props.className } onChange={this.handleChange}>
+      <select value={this.props.pos} name={this.props.labelName} className={ this.props.className } onChange={this.handleChange} onBlur={ this.handleBlur } >
         { this.renderOptions() }
       </select>
     );
@@ -59,6 +62,7 @@ interface WrapperProps {
   labelName: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   children: string;
+  onBlur: (e: React.FocusEvent<HTMLSelectElement>) => void;
 }
 
 const WrapperSelect: React.SFC<WrapperProps> = (props) => {
@@ -67,7 +71,7 @@ const WrapperSelect: React.SFC<WrapperProps> = (props) => {
       <label htmlFor={ props.labelName }>
         { props.children }
       </label>
-      <StyledSelect items={ props.items } pos={ props.pos } labelName={ props.labelName } onChange={props.onChange}></StyledSelect>
+      <StyledSelect items={ props.items } pos={ props.pos } labelName={ props.labelName } onChange={props.onChange} onBlur={ props.onBlur } />
     </div>
   );
 }

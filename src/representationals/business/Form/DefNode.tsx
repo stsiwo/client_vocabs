@@ -3,6 +3,7 @@ import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
 import { IDef } from '../../../domains/def';
 import DefContent from '../Form/DefContent';
+import { CustomFormikProps } from '../../../Hoc/withForm';
 
 const arrowIcon = require('./assets/rightArrow.svg');
 const deleteIcon = require('./assets/delete.svg');
@@ -12,6 +13,9 @@ interface Props {
   def: IDef;
   isOpen: boolean;
   removeDefClick: ( wordId: string, defIds: string[] ) => void;
+  formik: CustomFormikProps;
+  wordIndex: number;
+  defIndex: number;
 }
 
 interface State {
@@ -54,6 +58,9 @@ export class DefNode extends React.Component<Props, State> {
         <DefContent 
           def={ this.props.def } 
           isOpen={this.state.isDefContentOpen } 
+          formik={ this.props.formik } 
+          wordIndex={ this.props.wordIndex }
+          defIndex={ this.props.defIndex }
         />
       </ul>
     );

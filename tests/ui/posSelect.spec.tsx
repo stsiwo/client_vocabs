@@ -6,22 +6,39 @@ import PosSelect from '../../src/representationals/business/Form/PosSelect';
 //import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from '../../src/representationals/story/styledComponents';
 import { theme } from '../../src/representationals/story/theme';
+import { formikDummy } from '../storage/Hoc/formik';
 
 describe('PosSelect', function() {
-  it('should invoke the event handler is called when word text is change', function() {
+  it('should invoke the handlePosBlur event handler is called when word text is change', function() {
 
     // props spy 
-    const updateDefPosChangeSpy: SinonSpy = sinon.spy();
+    const handlePosBlurSpy: SinonSpy = sinon.spy(PosSelect.prototype, "handlePosBlur");
  
      const wrapper = mount(
        <ThemeProvider theme={ theme }>
-        <PosSelect pos={ 1 } defId={ "0" } updateDefPosChange={ updateDefPosChangeSpy } />
+        <PosSelect pos={ 1 } defIndex={ 0 } wordIndex={ 0 } formik={ formikDummy } />
+       </ThemeProvider>
+     ) 
+    
+     wrapper.find("select").simulate('blur');
+
+     sinon.assert.calledOnce(handlePosBlurSpy);
+  })
+
+  it('should invoke the handlePosChange event handler is called when word text is change', function() {
+
+    // props spy 
+    const handlePosChangeSpy: SinonSpy = sinon.spy(PosSelect.prototype, "handlePosChange");
+ 
+     const wrapper = mount(
+       <ThemeProvider theme={ theme }>
+        <PosSelect pos={ 1 } defIndex={ 0 } wordIndex={ 0 } formik={ formikDummy } />
        </ThemeProvider>
      ) 
     
      wrapper.find("select").simulate('change');
 
-     sinon.assert.calledOnce(updateDefPosChangeSpy);
+     sinon.assert.calledOnce(handlePosChangeSpy);
   })
 })
 

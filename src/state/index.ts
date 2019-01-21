@@ -248,6 +248,7 @@ export const initialNormalizedState: INormalizedState = {
   displayedWordList: ["0","1","2","3","4","5","6","7","8","9","10"], 
   searchKeyWord: '',
   currentFilter: [0,1,2,3,4,5,6,7,8,9],
+  wordFormError: false,
   ui: {
     isSelectWarningModalOpen: false,
     isDeleteConfirmModalOpen: false,

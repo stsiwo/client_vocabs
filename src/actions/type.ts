@@ -43,6 +43,9 @@ export interface IActionType {
   // displayedWordList
   CHANGE_DISPLAYED_WORD_LIST: string; // ok
 
+  // wordFormError
+  TOGGLE_WORD_FORM_ERROR: string;
+
   // searchKeyWord
   CHANGE_SEARCH_TEXT: string; // ok
 
@@ -81,6 +84,8 @@ export const ActionType: IActionType = {
   CHANGE_SORTED_WORD_LIST: 'CHANGE_SORTED_WORD_LIST',
 
   CHANGE_SEARCHED_WORD_LIST: 'CHANGE_SEARCHED_WORD_LIST',
+
+  TOGGLE_WORD_FORM_ERROR: "TOGGLE_WORD_FORM_ERROR",
 
   CHANGE_SEARCH_TEXT: "CHANGE_SEARCH_TEXT",
 

@@ -1,12 +1,15 @@
 import * as React from 'react';
 import File from '../../base/Input/File';
+import { CustomFormikProps } from '../../../Hoc/withForm';
 
 interface Props {
   className?: string;
   image: string;
-  defId: string;
-  updateDefImageClick: ( id: string, nextFile: string ) => void;
+  //updateDefImageClick: ( id: string, nextFile: string ) => void;
   handleSearchImageToggleClick: (e: React.MouseEvent<HTMLElement>) => void; 
+  formik: CustomFormikProps;
+  wordIndex: number;
+  defIndex: number;
 }
 
 class DefImageFile extends React.Component<Props, {}> {
@@ -16,15 +19,17 @@ class DefImageFile extends React.Component<Props, {}> {
   }
 
   handleDefImageFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.props.updateDefImageClick(this.props.defId, e.target.value);
+    //this.props.updateDefImageClick(this.props.defIndex, e.target.value);
   }
 
   render() {
+    const { wordIndex, defIndex } = this.props; 
     return (
       <File 
-        labelName="def-upload-image" 
+        labelName={ `words.${ wordIndex }.defs.${ defIndex }.image` } 
         handleSearchImageToggleClick={ this.props.handleSearchImageToggleClick } 
         file={ this.props.image }
+        formik={ this.props.formik }
       /> 
     );
   }

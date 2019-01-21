@@ -9,6 +9,7 @@ import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { updateWordNameActionCreator } from '../../src/actions/index';
+import { formikDummy } from '../storage/Hoc/formik';
 
 const mockStore = configureMockStore([ thunk ]);
 
@@ -27,7 +28,7 @@ describe('WordNameTextCont', function() {
 
     const ContextHOC = ProviderAndThemeWrapperHOC(WordNameTextCont, store);
     const wrapper = mount(
-      <ContextHOC wordId={ "0" } name={ "test-name" } />
+      <ContextHOC wordId={ "0" } name={ "test-name" }  wordIndex={ 0 } formik={ formikDummy }/>
     );
     
     const changeWordNameText: (id: string, nextText: string) => void = wrapper.find("WordNameText").first().prop('changeWordNameText');

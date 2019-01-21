@@ -3,6 +3,7 @@ import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
 import DefNodeCont from '../../../containers/Def/DefNodeCont';
 import { IDef } from '../../../domains/def';
+import { CustomFormikProps } from '../../../Hoc/withForm';
 
 const arrowIcon = require('./assets/rightArrow.svg');
 const newIcon = require('./assets/new.svg');
@@ -11,6 +12,8 @@ interface Props {
   className?: string;
   defs: IDef[]; 
   addNewDefClick: ( wordId: string ) => void;
+  formik: CustomFormikProps;
+  wordIndex: number;
 }
 
 interface State {
@@ -38,12 +41,15 @@ export class DefTree extends React.Component<Props, State> {
   }
 
   renderDefNodes() {
-    return this.props.defs.map(( eachDef ) => ( 
+    return this.props.defs.map(( eachDef, index ) => ( 
       <DefNodeCont 
         key={ eachDef.id } 
         def={ eachDef } 
-        isOpen={ this.state.isDefNodeOpen }>
-      </DefNodeCont>
+        isOpen={ this.state.isDefNodeOpen }
+        formik={ this.props.formik }
+        wordIndex={ this.props.wordIndex } 
+        defIndex={ index }
+      />
     ));
   }
 

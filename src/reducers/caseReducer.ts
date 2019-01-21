@@ -217,6 +217,12 @@ export namespace CaseReducer {
 
   export const resetDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IResetStateAction> = (displayedWordList, action) => initialNormalizedState.displayedWordList;
 
+  /*********************************************
+   * wordFormError CaseReducer
+   *********************************************/
+  export const toggleWordFormErrorCaseReducer: CaseReducerType<StateType.IWordFormError, IAction.IToggleWordFormErrorAction> = (wordFormError, action) => action.wordFormError;
+
+export const resetWordFormErrorCaseReducer: CaseReducerType<StateType.IWordFormError, IAction.IResetStateAction> = (wordFormError, action) => initialNormalizedState.wordFormError;
 
   /*********************************************
    * searchedWordList CaseReducer

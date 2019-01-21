@@ -10,6 +10,7 @@ import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { removeDefActionCreator } from '../../src/actions/index';
 import { defTestData } from '../storage/domains/def';
+import { formikDummy } from '../storage/Hoc/formik';
 
 const mockStore = configureMockStore([ thunk ]);
 
@@ -28,7 +29,7 @@ describe('DefNodeCont', function() {
 
     const ContextHOC = ProviderAndThemeWrapperHOC(DefNodeCont, store);
     const wrapper = mount(
-      <ContextHOC def={ defTestData } isOpen={ true } />
+      <ContextHOC def={ defTestData } isOpen={ true }  wordIndex={ 0 } defIndex={ 0 } formik={ formikDummy }/>
     );
     
     const removeDefClick: (wordId: string, defIds: string[]) => void = wrapper.find("DefNode").first().prop('removeDefClick');

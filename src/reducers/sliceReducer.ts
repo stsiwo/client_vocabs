@@ -33,6 +33,8 @@ export const selectedWordListReducer = createReducer<StateType.ISelectedWordList
 
 export const currentFilterReducer = createReducer<StateType.ICurrentFilter>(normalizedState.currentFilter, ActionHandler.currentFilterHandler);
 
+export const wordFormErrorReducer = createReducer<StateType.IWordFormError>(normalizedState.wordFormError, ActionHandler.wordFormErrorHandler);
+
 export const searchKeyWordReducer = createReducer<StateType.ISearchKeyWord>(normalizedState.searchKeyWord, ActionHandler.searchKeyWordHandler);
 
 export const entityReducer = combineReducers<StateType.IEntity, AnyAction>({

@@ -1,37 +1,43 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import Icon from '../Icon/Icon';
-import { Hl } from '../common/Line';
+import Icon from '../../base/Icon/Icon';
+import { Hl } from '../../base/common/Line';
 import { ThemeInterface } from '../../story/theme'; 
 import { NavLink } from 'react-router-dom'; 
+import { Prompt } from 'react-router';
 const settingIcon = require('./assets/setting.svg');
 
 interface Props {
   className?: string;
   isOpen?: boolean;
+  wordFormError: boolean;
 }
 
 class NavBar extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
+    this.handleLink = this.handleLink.bind(this);
   }
 
-  handleChange(): void {
-
+  handleLink(e: React.MouseEvent<HTMLElement>) {
   }
 
   render() {
     return (
       <nav className={ this.props.className }>
-      <NavLink to="/word" >
-        <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-        <h4>Word</h4>
-      </NavLink>
-      <Hl />
-      <NavLink to="/dictionary">
-        <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-        <h4>Dictionary</h4>
-      </NavLink>
+        <NavLink to="/word" >
+          <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+          <h4>Word</h4>
+        </NavLink>
+        <Hl />
+        <NavLink to="/dictionary" >
+          <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+          <h4>Dictionary</h4>
+        </NavLink>
+        <Prompt
+          when={this.props.wordFormError}
+          message="Some of your word have not defined completely. Are you sure you want to leave?"
+        />
       </nav>
    );
   }

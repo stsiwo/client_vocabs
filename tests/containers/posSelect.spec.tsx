@@ -9,6 +9,7 @@ import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { updateDefPosActionCreator } from '../../src/actions/index';
+import { formikDummy } from '../storage/Hoc/formik';
 
 const mockStore = configureMockStore([ thunk ]);
 
@@ -27,7 +28,7 @@ describe('PosSelectCont', function() {
 
     const ContextHOC = ProviderAndThemeWrapperHOC(PosSelectCont, store);
     const wrapper = mount(
-      <ContextHOC pos={ 1 } defId={ "0" } />
+      <ContextHOC pos={ 1 } wordIndex={ 0 } defIndex={ 0 } formik={ formikDummy }/>
     );
     
     const updateDefPosChange: (id: string, nextPos: number) => void = wrapper.find("PosSelect").first().prop('updateDefPosChange');

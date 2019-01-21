@@ -1,5 +1,7 @@
 import * as React from 'react';
 import TextWithIcon from '../../base/Input/TextWithIcon';
+import { CustomFormikProps } from '../../../Hoc/withForm';
+import { ErrorMessage } from 'formik';
 
 const wordIcon = require('./assets/word.svg');
 
@@ -9,28 +11,41 @@ interface Props {
   className?: string;
   wordId: string;
   name: string;
-  changeWordNameText: ( id: string, nextWordname: string ) => void;
+  wordIndex: number;
+  //changeWordNameText: ( id: string, nextWordname: string ) => void;
+  formik: CustomFormikProps;
 }
 
 class WordNameText extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleWordNameChange = this.handleWordNameChange.bind(this);
+    this.handleWordNameBlur = this.handleWordNameBlur.bind(this);
   }
 
   handleWordNameChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.props.changeWordNameText(this.props.wordId, e.target.value);
+    //this.props.changeWordNameText(this.props.wordId, e.target.value);
+    this.props.formik.handleChange(e);
+  }
+
+  handleWordNameBlur(e: React.FocusEvent<HTMLInputElement>) {
+    this.props.formik.handleBlur(e);
   }
 
   render() {
+    const { wordIndex } = this.props;
     return (
-      <TextWithIcon 
-        placeholder="enter a new word here..." 
-        svgSrc={ wordIcon } 
-        labelName="word-text" 
-        onChange={ this.handleWordNameChange } 
-        value={ this.props.name }
-      />
+      <div>
+        <TextWithIcon 
+          placeholder="enter a new word here..." 
+          svgSrc={ wordIcon } 
+          labelName={ `words.${ wordIndex }.name` } 
+          onChange={ this.handleWordNameChange } 
+          onBlur={ this.handleWordNameBlur } 
+          value={ this.props.name }
+        />
+        <ErrorMessage name={ `words.${ wordIndex }.name` } />
+      </div>
     );
   }
 }

@@ -6,6 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 interface Props extends RouteComponentProps {
   className?: string;
+  backWordClick: () => void;
 }
 
 class BackControllerItem extends React.Component<Props, {}> {
@@ -15,7 +16,7 @@ class BackControllerItem extends React.Component<Props, {}> {
   }
 
   onBackClick(e: React.MouseEvent<HTMLElement>) {
-    this.props.history.push('/word');
+    this.props.backWordClick();
   }
 
   render() {

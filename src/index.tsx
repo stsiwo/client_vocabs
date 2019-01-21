@@ -8,16 +8,16 @@ import { Router } from 'react-router';
 import history from './routeHistory';
 import { ThemeProvider } from './representationals/story/styledComponents'; 
 import { theme } from './representationals/story/theme';
-//import MediaTest from './MediaTest';
+//import Experiment from './Experiment';
 
 ReactDOM.render(
   <Provider store={ store }>
     <ThemeProvider theme={ theme } >
       <Router history={ history }>
-    {/*
-      <MediaTest />
-      */}
-      <App />
+  {/*
+    <Experiment />
+    */}
+    <App />
       </Router>
     </ThemeProvider>
   </Provider>

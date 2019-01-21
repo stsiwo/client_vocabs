@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { formikDummy } from '../storage/Hoc/formik';
 import { mount/*, shallow */ } from 'enzyme';
 import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC';
 import DefNodeCont from '../../src/containers/Def/DefNodeCont';
@@ -22,7 +23,7 @@ describe('remove def in a particular word', function() {
     
     const ContextHOC = ProviderAndThemeWrapperHOC(DefNodeCont, store);
     const wrapper = mount(
-      <ContextHOC def={ defTestData } isOpen={ true }/>
+      <ContextHOC def={ defTestData } isOpen={ true } wordIndex={ 0 } defIndex={ 0 } formik={ formikDummy }/>
     );
     
     // find target event handler

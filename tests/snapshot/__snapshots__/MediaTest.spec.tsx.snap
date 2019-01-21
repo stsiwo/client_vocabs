@@ -1,7 +1,103 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Link changes the class when hovered 1`] = `
-<div>
-  test
-</div>
+<form
+  onSubmit={[Function]}
+>
+  <div>
+    <input
+      name="words.0.name"
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value="test1"
+    />
+    <div>
+      <input
+        name="words.0.defs.0.def"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value="def1"
+      />
+    </div>
+    <div>
+      <input
+        name="words.0.defs.1.def"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value="def1"
+      />
+    </div>
+    <div>
+      <input
+        name="words.0.defs.2.def"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value="def1"
+      />
+    </div>
+    <div>
+      <input
+        name="words.0.defs.3.def"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value="def1"
+      />
+    </div>
+  </div>
+  <div>
+    <input
+      name="words.1.name"
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value="test2"
+    />
+    <div>
+      <input
+        name="words.1.defs.0.def"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value="def2"
+      />
+    </div>
+    <div>
+      <input
+        name="words.1.defs.1.def"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value="def2"
+      />
+    </div>
+    <div>
+      <input
+        name="words.1.defs.2.def"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value="def2"
+      />
+    </div>
+    <div>
+      <input
+        name="words.1.defs.3.def"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value="def2"
+      />
+    </div>
+  </div>
+  <button
+    type="submit"
+  >
+    submit
+  </button>
+</form>
 `;

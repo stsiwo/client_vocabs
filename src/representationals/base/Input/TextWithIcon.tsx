@@ -11,6 +11,7 @@ interface Props {
   svgSrc: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const TextWithIcon: React.SFC<Props> = ( props ) => {
@@ -19,7 +20,15 @@ const TextWithIcon: React.SFC<Props> = ( props ) => {
       <label htmlFor={ props.labelName }>
         <Icon svgSrc={ props.svgSrc }/>
       </label>
-      <Input type="text" placeholder={ props.placeholder } id={ props.labelName } name={ props.labelName } value={ props.value } onChange={ props.onChange }/>
+      <Input 
+        type="text" 
+        placeholder={ props.placeholder } 
+        id={ props.labelName } 
+        name={ props.labelName } 
+        value={ props.value } 
+        onChange={ props.onChange } 
+        onBlur={ props.onBlur } 
+      />
     </div>
   );
 }

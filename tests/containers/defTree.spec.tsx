@@ -11,6 +11,7 @@ import thunk from 'redux-thunk';
 import { addNewDefActionCreator } from '../../src/actions/index';
 import { defTestData } from '../storage/domains/def';
 import getNewNormalizedDef from '../../src/state/util/getNewNormalizedDef';
+import { formikDummy } from '../storage/Hoc/formik';
 
 const mockStore = configureMockStore([ thunk ]);
 
@@ -29,7 +30,7 @@ describe('DefTreeCont', function() {
 
     const ContextHOC = ProviderAndThemeWrapperHOC(DefTreeCont, store);
     const wrapper = mount(
-      <ContextHOC defs={ [ defTestData ] } />
+      <ContextHOC defs={ [ defTestData ] } formik={ formikDummy } wordIndex={ 0 }/>
     );
     
     const addNewDefClick: (id: string) => void = wrapper.find("DefTree").first().prop('addNewDefClick');

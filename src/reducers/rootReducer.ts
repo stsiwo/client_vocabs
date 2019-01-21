@@ -13,6 +13,7 @@ export const rootReducer = combineReducers<INormalizedState, AnyAction>({
     displayedWordList: sliceReducer.displayedWordListReducer,
     currentSort: sliceReducer.currentSortReducer,
     currentFilter: sliceReducer.currentFilterReducer,
+    wordFormError: sliceReducer.wordFormErrorReducer,
     searchKeyWord: sliceReducer.searchKeyWordReducer,
     ui: sliceReducer.uiReducer,
 });
