@@ -1,17 +1,18 @@
 import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import  t1WrapperThunk  from '../../src/thunk/tc1';
-import  t2WrapperThunk  from '../../src/thunk/tc2';
-import  t3WrapperThunk  from '../../src/thunk/tc3';
-import thunkComponents from '../../src/thunk/thunkComponent';
+import  tc1ThunkComponentWrapper  from '../../src/thunk/tc1';
+import  tc2ThunkComponentWrapper  from '../../src/thunk/tc2';
+import  tc3ThunkComponentWrapper  from '../../src/thunk/tc3';
+import mainThunkComponentWrapper from '../../src/thunk/mainThunkComponent';
+import applyThunkConditions from '../../src/thunk/thunkComponent';
 import { initialNormalizedState } from '../../src/state/index';
 import { INormalizedState } from '../../src/state/type';
 import { toggleSearchWordModalActionCreator, toggleSelectWarningModalActionCreator, toggleDefineWarningModalActionCreator } from '../../src/actions/index';
 
 const mockStore = configureMockStore<INormalizedState>([thunk]);
 
-describe('thunkComponent (tc1, tc2, tc3)', function() {
+describe('applyThunkConditions', function() {
 
   it('should dispatch toggleSelectWarningModalActionCreator, toggleSearchWordModalActionCreator, toggleDefineWarningModalActionCreator ', () => {
     let store: MockStoreEnhanced<INormalizedState, {}>;
@@ -22,11 +23,15 @@ describe('thunkComponent (tc1, tc2, tc3)', function() {
       }
     ));
 
-    console.log(thunkComponents(t1WrapperThunk, t2WrapperThunk, t3WrapperThunk).toString());
+    const thunkWithConditions = applyThunkConditions(
+      tc1ThunkComponentWrapper, 
+      tc2ThunkComponentWrapper, 
+      tc3ThunkComponentWrapper
+    )(mainThunkComponentWrapper);
 
+    store.dispatch<any>(thunkWithConditions("satoshi"));
     // dispatch with mock store
     //store.dispatch<any>(thunkComponents(t1WrapperThunk, t2WrapperThunk, t3WrapperThunk)("satoshi"));
-    store.dispatch<any>(toggleSearchWordModalActionCreator(true));
     // get dispatched actions
     const actions = store.getActions();
 
