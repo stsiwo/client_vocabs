@@ -3,8 +3,7 @@ import { MainThunkType } from './thunkComponent';
 
 
 /**
- * this thunk for  that edit word action is ready or not 
- *  - this thunk is called when edit controller item in controller 
+ * main thunk base example: use this as template
  **/
 
 const mainThunkComponentWrapper: MainThunkType = ( arg ) => ( dispatch, getState ) => {

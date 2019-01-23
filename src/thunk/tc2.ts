@@ -1,8 +1,7 @@
 import { ThunkMiddlewareType } from './thunkComponent';
 
 /**
- * this thunk for  that edit word action is ready or not 
- *  - this thunk is called when edit controller item in controller 
+ * thunk middleware base example: use this as template
  **/
 const tc2ThunkComponentWrapper: ThunkMiddlewareType = ( next ) => ( ...args ) => ( dispatch, getState ) => {
 
