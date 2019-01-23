@@ -191,6 +191,54 @@ describe('applyThunkConditions', function() {
 
     expect(actions[0]).toEqual(changeSearchKeyWordActionCreator("satoshi", []));
   });
+
+  it('main thunk = action creator: should dispatch action because condition is met ', () => {
+    let store: MockStoreEnhanced<INormalizedState, {}>;
+
+    // mock store with initialNormalizedState which is adjusted to suit this test
+    store = mockStore(Object.assign({}, initialNormalizedState,
+      {
+      }
+    ));
+
+    const thunkWithConditions = applyThunkConditions(
+      tc1ThunkComponentWrapper
+    )(toggleWordFormErrorActionCreator);
+
+    store.dispatch<any>(thunkWithConditions(true));
+    // dispatch with mock store
+    //store.dispatch<any>(thunkComponents(t1WrapperThunk, t2WrapperThunk, t3WrapperThunk)("satoshi"));
+    // get dispatched actions
+    const actions = store.getActions();
+
+    expect(actions[0]).toEqual(toggleWordFormErrorActionCreator(true));
+  });
+
+  it('main thunk = action creator: should do nothing because condition is not met', () => {
+    let store: MockStoreEnhanced<INormalizedState, {}>;
+
+    // mock store with initialNormalizedState which is adjusted to suit this test
+    store = mockStore(Object.assign({}, initialNormalizedState,
+      {
+        ui: {
+          ...initialNormalizedState.ui,
+          isSearchWordModalOpen: true,
+        }
+      }
+    ));
+
+    const thunkWithConditions = applyThunkConditions(
+      tc1ThunkComponentWrapper
+    )(toggleWordFormErrorActionCreator);
+
+    store.dispatch<any>(thunkWithConditions(true));
+    // dispatch with mock store
+    //store.dispatch<any>(thunkComponents(t1WrapperThunk, t2WrapperThunk, t3WrapperThunk)("satoshi"));
+    // get dispatched actions
+    const actions = store.getActions();
+
+    expect(actions).toEqual([]);
+  });
 });
 
 

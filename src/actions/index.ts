@@ -1,7 +1,7 @@
 import { StateType } from '../state/type';
 import { PosEnum } from '../domains/pos';
 import { ActionType } from './type';
-import { Action } from 'redux';
+import { Action, AnyAction } from 'redux';
 
 /****************************************************
  * Action type interface
@@ -108,6 +108,8 @@ export namespace IAction {
 /****************************************************
  * ActionCreator call signature
  ****************************************************/
+export type IActionCreatorBaseType = (...args: any[]) => AnyAction;
+
 type IAddNewWordActionCreator = (word: StateType.IEntityWord, def: StateType.IEntityDef) =>  IAction.IAddNewWordAction;
 
 type IRemoveWordActionCreator = (wordId: string) =>  IAction.IRemoveWordAction;

@@ -1,4 +1,5 @@
 import { INormalizedState } from "../state/type"; 
+import { IActionCreatorBaseType } from '../actions/index';
 import { AnyAction, compose } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
@@ -38,11 +39,9 @@ export type ThunkComponentType = ( ...args: any[] ) => ThunkAction<void, INormal
 
 export type ThunkComponentWrapperType = ( next: ThunkComponentType ) => ThunkComponentType;
 
-//  this function is necessary to make thunkComponents return ThunkAction type 
-//  see my note more defail
-
 export type MainThunkComponentType = ThunkComponentType;
 
+export type MainActionComponentType = IActionCreatorBaseType;
 
 //const thunkArg = <T extends any[] = any[]>( ...args: T ): ThunkAction<void, INormalizedState, undefined, AnyAction> => ( dispatch, getState ) => {} ;  
 
@@ -51,7 +50,7 @@ export type MainThunkComponentType = ThunkComponentType;
 
 // compose a list of thunk component and return thunk action composed those thunk component
 //const applyThunkComponents = <T extends any[] = any[]>( ...tcs: ThunkComponentWrapperType<T>[] ): ThunkAction<void, INormalizedState, undefined, AnyAction> => compose<>( ...tcs )(thunkArg);
-type applyThunkConditionsType = ( ...tcw: ThunkComponentWrapperType[] ) => ( mainThunkComponent: MainThunkComponentType ) => ThunkComponentType; 
+type applyThunkConditionsType = ( ...tcw: ThunkComponentWrapperType[] ) => ( mainThunkComponent: MainThunkComponentType | MainActionComponentType ) => ThunkComponentType; 
 
 /*******************************************************************************
  * use apply method when you have an array of arguments and assign each element as input of another function:
