@@ -1,4 +1,3 @@
-import { toggleSearchWordModalActionCreator } from '../actions/index';
 import { ThunkComponentWrapperType } from './thunkComponent';
 
 
@@ -8,11 +7,13 @@ import { ThunkComponentWrapperType } from './thunkComponent';
  **/
 
 const tc1ThunkComponentWrapper: ThunkComponentWrapperType = ( next ) => ( arg ) => ( dispatch, getState ) => {
-  console.log("do something in thunk component 1");
 
-  dispatch(toggleSearchWordModalActionCreator(true));
+  if (getState().ui.isSearchWordModalOpen) {
+    console.log("since isSearchWordModalOpen is true, cancel the main thunk here");
+  } else {
+    dispatch<any>(next(arg)); 
+  }
 
-  dispatch<any>(next(arg)); 
 }
 export default tc1ThunkComponentWrapper;
 

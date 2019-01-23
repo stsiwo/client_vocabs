@@ -1,4 +1,3 @@
-import { toggleSelectWarningModalActionCreator } from '../actions/index';
 import { ThunkComponentWrapperType } from './thunkComponent';
 
 /**
@@ -6,11 +5,13 @@ import { ThunkComponentWrapperType } from './thunkComponent';
  *  - this thunk is called when edit controller item in controller 
  **/
 const tc2ThunkComponentWrapper: ThunkComponentWrapperType = ( next ) => ( arg ) => ( dispatch, getState ) => {
-  console.log("do something in thunk component 2");
 
-  dispatch(toggleSelectWarningModalActionCreator(true));
+  if (getState().ui.isSelectWarningModalOpen) {
+    console.log("since isSelectWarningModalOpen is true, cancel the main thunk here");
+  } else {
+    dispatch<any>(next(arg)); 
+  }
 
-  dispatch<any>(next(arg)); 
 }
 export default tc2ThunkComponentWrapper;
 

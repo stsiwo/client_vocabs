@@ -1,4 +1,3 @@
-import { toggleDefineWarningModalActionCreator } from '../actions/index';
 import { ThunkComponentWrapperType } from './thunkComponent';
 
 /**
@@ -7,11 +6,13 @@ import { ThunkComponentWrapperType } from './thunkComponent';
  **/
 
 const tc3ThunkComponentWrapper: ThunkComponentWrapperType = ( next ) => ( arg ) => ( dispatch, getState ) => {
-  console.log("do something in thunk component 3");
+  
+  if (getState().ui.isDefineWarningModalOpen) {
+    console.log("since isDefineWarningModalOpen is true, cancel the main thunk here");
+  } else {
+    dispatch<any>(next(arg)); 
+  }
 
-  dispatch(toggleDefineWarningModalActionCreator(true));
-
-  dispatch<any>(next(arg)); 
 }
 export default tc3ThunkComponentWrapper;
 

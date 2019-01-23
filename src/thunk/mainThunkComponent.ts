@@ -8,8 +8,6 @@ import { MainThunkComponentType } from './thunkComponent';
  **/
 
 const mainThunkComponentWrapper: MainThunkComponentType = ( arg ) => ( dispatch, getState ) => {
-  console.log("do something in thunk component 1");
-
   dispatch(toggleWordFormErrorActionCreator(true));
 }
 export default mainThunkComponentWrapper;
