@@ -28,7 +28,7 @@ import { ThunkAction } from 'redux-thunk';
 /*******************************************************************************
  * type of function returned by ThunkComponentWrapper
  *******************************************************************************/
-export type ThunkComponentType = ( arg: string ) => ThunkAction<void, INormalizedState, undefined, AnyAction>; 
+export type ThunkComponentType = ( ...args: any[] ) => ThunkAction<void, INormalizedState, undefined, AnyAction>; 
 
 //export interface ThunkComponentWrapperType<T extends any{}> {
   //( next: ThunkComponentType<T> ): ThunkComponentType<T>;

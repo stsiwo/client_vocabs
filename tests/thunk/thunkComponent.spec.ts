@@ -4,6 +4,8 @@ import thunk from 'redux-thunk';
 import  tc1ThunkComponentWrapper  from '../../src/thunk/tc1';
 import  tc2ThunkComponentWrapper  from '../../src/thunk/tc2';
 import  tc3ThunkComponentWrapper  from '../../src/thunk/tc3';
+import  tc4ThunkComponentWrapper  from '../../src/thunk/tc4';
+import multipleArgMainThunkComponentWrapper from '../../src/thunk/multipleArgMainThunk';
 import mainThunkComponentWrapper from '../../src/thunk/mainThunkComponent';
 import applyThunkConditions from '../../src/thunk/thunkComponent';
 import { initialNormalizedState } from '../../src/state/index';
@@ -160,6 +162,28 @@ describe('applyThunkConditions', function() {
     )(searchKeyWordChangeMainThunkComponentWrapper);
 
     store.dispatch<any>(thunkWithConditions("satoshi"));
+    // dispatch with mock store
+    //store.dispatch<any>(thunkComponents(t1WrapperThunk, t2WrapperThunk, t3WrapperThunk)("satoshi"));
+    // get dispatched actions
+    const actions = store.getActions();
+
+    expect(actions[0]).toEqual(changeSearchKeyWordActionCreator("satoshi", []));
+  });
+
+  it('multiple args are passed through conditions thunk and main thunk ', () => {
+    let store: MockStoreEnhanced<INormalizedState, {}>;
+
+    // mock store with initialNormalizedState which is adjusted to suit this test
+    store = mockStore(Object.assign({}, initialNormalizedState,
+      {
+      }
+    ));
+
+    const thunkWithConditions = applyThunkConditions(
+      tc4ThunkComponentWrapper
+    )(multipleArgMainThunkComponentWrapper);
+
+    store.dispatch<any>(thunkWithConditions("satoshi", []));
     // dispatch with mock store
     //store.dispatch<any>(thunkComponents(t1WrapperThunk, t2WrapperThunk, t3WrapperThunk)("satoshi"));
     // get dispatched actions

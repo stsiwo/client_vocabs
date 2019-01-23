@@ -6,12 +6,12 @@ import { ThunkComponentWrapperType } from './thunkComponent';
  *  - this thunk is called when edit controller item in controller 
  **/
 
-const tc1ThunkComponentWrapper: ThunkComponentWrapperType = ( next ) => ( arg ) => ( dispatch, getState ) => {
+const tc1ThunkComponentWrapper: ThunkComponentWrapperType = ( next ) => ( ...args ) => ( dispatch, getState ) => {
 
   if (getState().ui.isSearchWordModalOpen) {
     console.log("since isSearchWordModalOpen is true, cancel the main thunk here");
   } else {
-    dispatch<any>(next(arg)); 
+    dispatch<any>(next(...args)); 
   }
 
 }

@@ -5,7 +5,7 @@ import { ThunkComponentWrapperType } from './thunkComponent';
  *  - this thunk is called when edit controller item in controller 
  **/
 
-const tc3ThunkComponentWrapper: ThunkComponentWrapperType = ( next ) => ( ...args ) => ( dispatch, getState ) => {
+const tc4ThunkComponentWrapper: ThunkComponentWrapperType = ( next ) => ( ...args ) => ( dispatch, getState ) => {
   
   if (getState().ui.isDefineWarningModalOpen) {
     console.log("since isDefineWarningModalOpen is true, cancel the main thunk here");
@@ -14,7 +14,8 @@ const tc3ThunkComponentWrapper: ThunkComponentWrapperType = ( next ) => ( ...arg
   }
 
 }
-export default tc3ThunkComponentWrapper;
+export default tc4ThunkComponentWrapper;
+
 
 
 
