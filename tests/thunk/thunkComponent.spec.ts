@@ -7,7 +7,7 @@ import  tc3ThunkComponentWrapper  from '../../src/thunk/tc3';
 import  tc4ThunkComponentWrapper  from '../../src/thunk/tc4';
 import multipleArgMainThunkComponentWrapper from '../../src/thunk/multipleArgMainThunk';
 import mainThunkComponentWrapper from '../../src/thunk/mainThunkComponent';
-import applyThunkConditions from '../../src/thunk/thunkComponent';
+import applyThunkMiddleware from '../../src/thunk/thunkComponent';
 import { initialNormalizedState } from '../../src/state/index';
 import { INormalizedState } from '../../src/state/type';
 import { toggleWordFormErrorActionCreator, changeSearchKeyWordActionCreator } from '../../src/actions/index';
@@ -15,7 +15,7 @@ import searchKeyWordChangeMainThunkComponentWrapper from '../../src/thunk/search
 
 const mockStore = configureMockStore<INormalizedState>([thunk]);
 
-describe('applyThunkConditions', function() {
+describe('applyThunkMiddleware', function() {
 
   it('single condition and change the action in main thunk', () => {
     let store: MockStoreEnhanced<INormalizedState, {}>;
@@ -26,7 +26,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc1ThunkComponentWrapper, 
     )(mainThunkComponentWrapper);
 
@@ -53,7 +53,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc1ThunkComponentWrapper, 
     )(mainThunkComponentWrapper);
 
@@ -76,7 +76,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc1ThunkComponentWrapper, 
       tc2ThunkComponentWrapper, 
       tc3ThunkComponentWrapper, 
@@ -102,7 +102,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc1ThunkComponentWrapper, 
       tc2ThunkComponentWrapper, 
       tc3ThunkComponentWrapper, 
@@ -131,7 +131,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc1ThunkComponentWrapper, 
       tc2ThunkComponentWrapper, 
       tc3ThunkComponentWrapper, 
@@ -155,7 +155,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc1ThunkComponentWrapper, 
       tc2ThunkComponentWrapper, 
       tc3ThunkComponentWrapper, 
@@ -179,7 +179,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc4ThunkComponentWrapper
     )(multipleArgMainThunkComponentWrapper);
 
@@ -201,7 +201,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc1ThunkComponentWrapper
     )(toggleWordFormErrorActionCreator);
 
@@ -227,7 +227,7 @@ describe('applyThunkConditions', function() {
       }
     ));
 
-    const thunkWithConditions = applyThunkConditions(
+    const thunkWithConditions = applyThunkMiddleware(
       tc1ThunkComponentWrapper
     )(toggleWordFormErrorActionCreator);
 

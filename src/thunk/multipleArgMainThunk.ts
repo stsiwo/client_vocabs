@@ -1,5 +1,5 @@
 import { changeSearchKeyWordActionCreator } from '../actions/index';
-import { MainThunkComponentType } from './thunkComponent';
+import { MainThunkType } from './thunkComponent';
 
 
 /**
@@ -7,7 +7,7 @@ import { MainThunkComponentType } from './thunkComponent';
  *  - this thunk is called when edit controller item in controller 
  **/
 
-const multipleArgMainThunkComponentWrapper: MainThunkComponentType = ( ...args ) => ( dispatch, getState ) => {
+const multipleArgMainThunkComponentWrapper: MainThunkType = ( ...args ) => ( dispatch, getState ) => {
   dispatch(changeSearchKeyWordActionCreator(args[0], args[1]));
 }
 export default multipleArgMainThunkComponentWrapper;

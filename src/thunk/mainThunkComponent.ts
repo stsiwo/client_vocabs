@@ -1,5 +1,5 @@
 import { toggleWordFormErrorActionCreator } from '../actions/index';
-import { MainThunkComponentType } from './thunkComponent';
+import { MainThunkType } from './thunkComponent';
 
 
 /**
@@ -7,7 +7,7 @@ import { MainThunkComponentType } from './thunkComponent';
  *  - this thunk is called when edit controller item in controller 
  **/
 
-const mainThunkComponentWrapper: MainThunkComponentType = ( arg ) => ( dispatch, getState ) => {
+const mainThunkComponentWrapper: MainThunkType = ( arg ) => ( dispatch, getState ) => {
   dispatch(toggleWordFormErrorActionCreator(true));
 }
 export default mainThunkComponentWrapper;
