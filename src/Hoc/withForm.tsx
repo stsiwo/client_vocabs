@@ -58,7 +58,8 @@ const withForm = <P extends FormValues>( FormComponent: React.ComponentType<Inje
     // handle submit with submitted form values and extra object called "FormikBag"
     // FormikBag: includes props passed to wrapped component and some useful functions (see doc)
     handleSubmit: (values: FormValues) => {
-      console.log(values); 
+      // use thunk to submit async so do nothing here
+      console.log('inside handleSubmit in formik'); 
     },
 
     // validation schema
