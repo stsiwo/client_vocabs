@@ -1,4 +1,5 @@
 import { ThunkMiddlewareType } from '../thunkComponent';
+import { toggleDefineWarningModalActionCreator } from '../../actions/index';
 
 
 /**
@@ -12,6 +13,8 @@ const checkWordFormErrorThunkMiddleware: ThunkMiddlewareType = ( next ) => ( ...
 
   if (getState().wordFormError) {
     // since word form has errors cancel dispatch main thunk or action creator
+    // and display DefineWord Warning modal
+    dispatch(toggleDefineWarningModalActionCreator(true));
   } else {
     dispatch<any>(next(...args)); 
   }

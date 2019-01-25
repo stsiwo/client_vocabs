@@ -5,7 +5,7 @@ import applyThunkMiddleware from './thunkComponent';
 
 // thunk with middleware
 // 1. check word form error state 
-//  - if yes, cancel
+//  - if yes, cancel and display defineWord warning modal
 // 2. save words in remote
 //  - wait for finish in remote
 // 3. update words in redux state

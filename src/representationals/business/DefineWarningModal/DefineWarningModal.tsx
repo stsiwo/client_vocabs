@@ -16,8 +16,8 @@ class DefineWarningModal extends React.Component<Props, {}> {
   }
 
   render() {
-    const title = 'Plase define word (at least name and one definition) before leaving this page.';
-    const detail = 'Some of your word have not defined completely. Please define those word before moving to another page.';
+    const title = 'Plase define word (at least name and one definition) before your next action!!';
+    const detail = 'Some of your word have not defined completely. Please define those word which is marked with error message';
     return (
         <Modal 
           title={ title } 
