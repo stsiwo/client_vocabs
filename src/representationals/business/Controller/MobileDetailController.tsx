@@ -4,9 +4,11 @@ import { Vl } from '../../base/common/Line';
 import BackControllerItemCont from '../../../containers/Controller/BackControllerItemCont';
 import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
 import NewControllerItemCont from '../../../containers/Controller/NewControllerItemCont';
+import { FormValues } from '../../../Hoc/withForm';
 
 interface Props {
   className?: string;
+  formValues: FormValues;
 }
 
 class MobileController extends React.Component<Props, {}> {
@@ -21,7 +23,7 @@ class MobileController extends React.Component<Props, {}> {
         <Vl />
         <NewControllerItemCont />
         <Vl />
-        <SaveControllerItemCont />
+        <SaveControllerItemCont formValues={ this.props.formValues } />
       </div>
     );
   }

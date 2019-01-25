@@ -14,7 +14,6 @@ describe('edit controller item click', function() {
   beforeEach(() => {
   });
 
-  // this mdtp is defined in "WordListItemCont" not "EditControllerItemCont" container component
   it('should direct /word/detail when selectedWordList is not empty', function() {
 
       ////use initial state data

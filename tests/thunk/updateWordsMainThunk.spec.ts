@@ -29,7 +29,14 @@ describe('updateWordsMainThunk - middlewares: saveWordsThunkMiddleware', functio
     store.dispatch<any>(thunkWithMiddlewares(wordsTestData)).then(() => {
       const actions = store.getActions();
 
+      // check the action is dispatched
       expect(actions[0]).toEqual(addNewWordActionCreator(normalizedWordsTestData.words, normalizedWordsTestData.defs));
+
+      // check the state is changed (entities.words)
+      expect(store.getState().entities.words).toEqual(expect.objectContaining(normalizedWordsTestData.words));
+
+      // check the state is changed (entities.defs)
+      expect(store.getState().entities.defs).toEqual(expect.objectContaining(normalizedWordsTestData.defs));
     });;
   });
 

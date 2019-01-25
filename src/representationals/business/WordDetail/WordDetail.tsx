@@ -55,14 +55,13 @@ class WordDetail extends React.Component<InjectedFormikProps<Props, FormValues>,
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <form className={ this.props.className }>
         { this.renderSelectedWords() }
         </form>
         <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
-          <MobileDetailController />
+          <MobileDetailController formValues={ this.props.values }/>
           { this.props.isDefineWarningModalOpen && <DefineWarningModalCont /> }
         </MediaQuery>
       </div>

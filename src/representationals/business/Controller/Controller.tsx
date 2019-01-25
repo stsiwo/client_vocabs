@@ -6,7 +6,7 @@ import DeleteControllerItemCont from '../../../containers/Controller/DeleteContr
 import SortFilterControllerItemCont from '../../../containers/Controller/SortFilterControllerItemCont';
 import SearchWordControllerItemCont from '../../../containers/Controller/SearchWordControllerItemCont';
 import SelectAllControllerItemCont from '../../../containers/Controller/SelectAllControllerItemCont';
-import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
+//import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
 
 interface Props {
   className?: string;
@@ -30,8 +30,10 @@ class MobileController extends React.Component<Props, {}> {
         <SearchWordControllerItemCont />
         <Vl />
         <SelectAllControllerItemCont />
+      {/*
         <Vl />
         <SaveControllerItemCont />
+        */}
       </div>
     );
   }

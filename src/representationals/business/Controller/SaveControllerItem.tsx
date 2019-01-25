@@ -1,9 +1,12 @@
 import * as React from 'react';
 import ControllerItem from '../../base/Controller/ControllerItem';
 const saveIcon = require('./assets/save.svg');
+import { FormValues } from '../../../Hoc/withForm';
 
 interface Props {
   className?: string;
+  saveWordsClick: (formInput: FormValues) => void;
+  formValues: FormValues;
 }
 
 class SaveControllerItem extends React.Component<Props, {}> {
@@ -13,6 +16,7 @@ class SaveControllerItem extends React.Component<Props, {}> {
   }
 
   onSaveClick(e: React.MouseEvent<HTMLElement>) {
+    this.props.saveWordsClick(this.props.formValues);
   }
 
   render() {
@@ -21,6 +25,7 @@ class SaveControllerItem extends React.Component<Props, {}> {
     );
   }
 }
+
 
 export default SaveControllerItem;
 
