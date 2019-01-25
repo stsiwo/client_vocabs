@@ -156,6 +156,15 @@ type IResetStateActionCreator = () =>  IAction.IResetStateAction;
 /****************************************************
  * ActionCreator Creator
  ****************************************************/
+/**
+ * update words (including defs entities) 
+ *  - should change name to udpateWords
+ *
+ * @param {IEntityWord} word - word to be updated in redux state 
+ * @param {IEntityDef} def - def to be updated in redux state 
+ * @return {IAction.IAddNewDefAction} action 
+ *
+ */
 export const addNewWordActionCreator: IAddNewWordActionCreator = ( word, def ) => {
   return {
     type: ActionType.ADD_NEW_WORD,

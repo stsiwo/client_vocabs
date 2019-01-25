@@ -264,11 +264,23 @@ export const initialNormalizedState: INormalizedState = {
 export const denormalizeWordList: (words: string[], entities: StateType.IEntity) => IWord[] = ( words, entities ) => {
   return denormalize( words, wordListSchema, entities )
 }
+/**
+ * normalize IWord to entities (normalizr) 
+ *
+ * @param {IWord} word - word to be normalized 
+ * @return {StateType.IEntity} normalized entities 
+ *
+ */
+export const normalizeWord: ( word: IWord ) => StateType.IEntity = ( word ) => normalize(word, wordSchema).entities; 
 
 /**
- * normalizr helper function 
- **/
-export const normalizeWord: ( word: IWord ) => StateType.IEntity = ( word ) => normalize(word, wordSchema).entities; 
+ * normalize IWord[] to entities (normalizr) 
+ *
+ * @param {IWord[]} word - word to be normalized 
+ * @return {StateType.IEntity} normalized entities 
+ *
+ */
+export const normalizeWords: ( words: IWord[] ) => StateType.IEntity = ( words ) => normalize(words, wordSchema).entities; 
 
 export const normalizeWordsArray: (words: IWord[]) => INormalizedState = (words) => {
   const normalizedWords = normalize(words, wordListSchema);

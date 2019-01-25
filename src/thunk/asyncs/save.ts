@@ -1,4 +1,5 @@
-//import saveRequest from '../requests/save';
+
+
 
 const saveAsync =  ( formInput: string ) => {
 
@@ -11,6 +12,7 @@ const saveAsync =  ( formInput: string ) => {
     }, ( reason ) => {
       // network error (not HTTP error status which is resolved correctly)
       console.log(`network error occured because of ${reason}`);
+      Promise.reject(new Error(`network error occured because of ${reason}`));
     })
     .then(( json ) => {
       // json() return resolved promise so in the case handle it here 
