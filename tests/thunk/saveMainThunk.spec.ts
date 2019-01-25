@@ -4,6 +4,8 @@ import thunk from 'redux-thunk';
 import saveMainThunk from '../../src/thunk/mains/save';
 import { initialNormalizedState } from '../../src/state/index';
 import { INormalizedState } from '../../src/state/type';
+import { changeSearchKeyWordActionCreator } from '../../src/actions/index';
+jest.mock('../../src/thunk/asyncs/save');
 
 const mockStore = configureMockStore<INormalizedState>([thunk]);
 
@@ -18,14 +20,20 @@ describe('saveMainThunk', function() {
       }
     ));
 
+    // don't need to create stub for saveAsync
 
-    store.dispatch<any>(saveMainThunk("satoshi"));
+    /*********************************************************** 
+     * when testing async function, chain then function to this store.disatch to make sure the flow controll
+     ***********************************************************/
+    store.dispatch<any>(saveMainThunk("satoshi")).then(() => {
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual(changeSearchKeyWordActionCreator("satoshi", []));
+    });;
     // dispatch with mock store
     //store.dispatch<any>(thunkComponents(t1WrapperThunk, t2WrapperThunk, t3WrapperThunk)("satoshi"));
     // get dispatched actions
-    //const actions = store.getActions();
-
-    //expect(actions[0]).toEqual(toggleWordFormErrorActionCreator(true));
+ 
 
   });
 

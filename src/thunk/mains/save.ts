@@ -1,5 +1,6 @@
 import { MainThunkType } from '../thunkComponent';
 import saveAsync from '../asyncs/save';
+import { changeSearchKeyWordActionCreator } from '../../actions/index';
 
 /**
  * main thunk: save to another page (path: arg) 
@@ -14,7 +15,7 @@ const saveMainThunk: MainThunkType = ( ...args ) => async ( dispatch, getState )
   const updatedWords = await saveAsync(args[0]);
 
   // test: replace this to dispatch action to udpate entities when implemnetation
-  console.log(updatedWords);
+  dispatch(changeSearchKeyWordActionCreator(updatedWords, [])); 
 }
 export default saveMainThunk;
 

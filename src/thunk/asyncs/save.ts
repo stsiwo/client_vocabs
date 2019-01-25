@@ -1,8 +1,8 @@
-import saveRequest from '../requests/save';
+//import saveRequest from '../requests/save';
 
 const saveAsync =  ( formInput: string ) => {
 
-  return fetch(saveRequest)
+  return fetch(new Request('url'))
     .then(( response ) => {
       // if response include HTTP error status
       if (!response.ok) Promise.reject(`${ response.status }: ${ response.statusText }`);
