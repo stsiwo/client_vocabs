@@ -4,7 +4,11 @@ import { FormValues } from '../../../Hoc/withForm';
 export default function saveAsync(input: FormValues) {
   return new Promise((resolve, reject) => {
     process.nextTick(() => { 
-      resolve(wordsTestData) 
+      if (input) {
+        resolve(wordsTestData)  
+      } else {
+        reject({ error: "error occured" })
+      }
     });
   });
 }

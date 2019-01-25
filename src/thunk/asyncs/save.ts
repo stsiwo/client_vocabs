@@ -1,5 +1,4 @@
-
-
+import { ErrorType } from './error';
 
 const saveAsync =  ( formInput: string ) => {
 
@@ -12,7 +11,12 @@ const saveAsync =  ( formInput: string ) => {
     }, ( reason ) => {
       // network error (not HTTP error status which is resolved correctly)
       console.log(`network error occured because of ${reason}`);
-      Promise.reject(new Error(`network error occured because of ${reason}`));
+
+      const error: ErrorType = { 
+        error: `network error occured because of ${reason}`,
+      }
+
+      Promise.reject(error);
     })
     .then(( json ) => {
       // json() return resolved promise so in the case handle it here 
@@ -20,7 +24,13 @@ const saveAsync =  ( formInput: string ) => {
     }, ( reason ) => {
       // json() return rejected promise so in the case handle it here 
       // or response.ok is false which means HTTP status error
-      console.log(`json() error occured because of ${reason}`);
+      console.log(`error occured because of ${reason}`);
+
+      const error: ErrorType = { 
+        error: `error occured because of ${reason}`,
+      }
+
+      Promise.reject(error);
     });
       
 

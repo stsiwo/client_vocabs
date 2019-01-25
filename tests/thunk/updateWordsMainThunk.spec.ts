@@ -33,7 +33,7 @@ describe('updateWordsMainThunk - middlewares: saveWordsThunkMiddleware', functio
     });;
   });
 
-  it('should dispatch addNewWordActionCreator', () => {
+  it('should do nothing because something wrong during request', () => {
     let store: MockStoreEnhanced<INormalizedState, {}>;
 
     // mock store with initialNormalizedState which is adjusted to suit this test
@@ -44,10 +44,10 @@ describe('updateWordsMainThunk - middlewares: saveWordsThunkMiddleware', functio
     /*********************************************************** 
      * when testing async function, chain then function to this store.disatch to make sure the flow controll
      ***********************************************************/
-    store.dispatch<any>(thunkWithMiddlewares(wordsTestData)).then(() => {
+    store.dispatch<any>(thunkWithMiddlewares()).then(() => {
       const actions = store.getActions();
 
-      expect(actions[0]).toEqual(addNewWordActionCreator(normalizedWordsTestData.words, normalizedWordsTestData.defs));
+      expect(actions).toEqual([]);
     });;
   });
 });
