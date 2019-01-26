@@ -1,7 +1,11 @@
 import * as React from 'react';
 
-class SecondChild extends React.Component</*Props*/{}, {}> {
-  constructor(props: {}/*Props*/) {
+interface Props {
+  name: string;
+}
+
+class SecondChild extends React.PureComponent<Props, {}> {
+  constructor(props: Props) {
     super(props);
   }
 
@@ -28,7 +32,7 @@ class SecondChild extends React.Component</*Props*/{}, {}> {
   render() {
     console.log("SecondChild is being rendering");
     return (
-      <div>second child</div>
+      <div>{ this.props.name }</div>
     );
   }
 }

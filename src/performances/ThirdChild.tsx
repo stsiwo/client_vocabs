@@ -1,7 +1,12 @@
 import * as React from 'react';
 
-class ThirdChild extends React.Component</*Props*/{}, {}> {
-  constructor(props: {}/*Props*/) {
+interface Props {
+  name: string;
+}
+
+
+class ThirdChild extends React.PureComponent<Props, {}> {
+  constructor(props: Props) {
     super(props);
   }
 

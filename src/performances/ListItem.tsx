@@ -4,7 +4,7 @@ interface Props {
   name: string;
 }
 
-class ListItem extends React.Component<Props, {}> {
+class ListItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
