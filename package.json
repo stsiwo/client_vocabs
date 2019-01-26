@@ -37,6 +37,7 @@
     "@types/yup": "^0.26.4",
     "formik": "^1.4.2",
     "fuzzysort": "^1.1.4",
+    "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.11",
     "normalizr": "^3.3.0",
     "query-string": "^6.2.0",
