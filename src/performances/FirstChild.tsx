@@ -1,4 +1,5 @@
 import * as React from 'react';
+import FirstFirstChild from './FirstFirstChild';
 
 interface Props {
   name: string;
@@ -32,7 +33,7 @@ class FirstChild extends React.PureComponent<Props, {}> {
   render() {
     console.log("FirstChild is being rendering");
     return (
-      <div>{ this.props.name }</div>
+      <FirstFirstChild name={ this.props.name } />
     );
   }
 }
