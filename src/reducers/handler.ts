@@ -129,4 +129,12 @@ export namespace ActionHandler {
     [ActionType.CHANGE_SEARCH_TEXT]: CaseReducer.changeSearchKeyWordCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetSearchKeyWordCaseReducer, // ok
   }
+
+  /*****************************************
+   * asyncs - isInitialWordsFetching
+   ****************************************/
+  export const asyncsHandler: HandlerType<StateType.IAsyncs> = {
+    [ActionType.START_INITIAL_WORDS_FETCH_REQUEST]: CaseReducer.startInitialWordsFetchRequestCaseReducer, 
+    [ActionType.FINISH_INITIAL_WORDS_FETCH_REQUEST]: CaseReducer.finishInitialWordsFetchRequestCaseReducer, 
+  }
 }

@@ -44,5 +44,6 @@ export const entityReducer = combineReducers<StateType.IEntity, AnyAction>({
 
 export const uiReducer = createReducer<StateType.IUi>(normalizedState.ui, ActionHandler.uiHandler);
 
+export const asyncsReducer = createReducer<StateType.IAsyncs>(normalizedState.asyncs, ActionHandler.asyncsHandler);
 
 

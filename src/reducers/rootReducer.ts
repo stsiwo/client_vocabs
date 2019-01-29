@@ -16,5 +16,6 @@ export const rootReducer = combineReducers<INormalizedState, AnyAction>({
     wordFormError: sliceReducer.wordFormErrorReducer,
     searchKeyWord: sliceReducer.searchKeyWordReducer,
     ui: sliceReducer.uiReducer,
+    asyncs: sliceReducer.asyncsReducer,
 });
 

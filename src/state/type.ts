@@ -28,6 +28,10 @@ export namespace StateType {
     isDefineWarningModalOpen: boolean;
   }
 
+  export interface IAsyncs {
+    isInitialWordsFetching: boolean;
+  }
+
   // currentSort
   export type ICurrentSort = SORT_ORDER; 
 
@@ -66,4 +70,5 @@ export interface INormalizedState {
   wordFormError: StateType.IWordFormError;
   searchKeyWord: StateType.ISearchKeyWord;
   ui: StateType.IUi;
+  asyncs: StateType.IAsyncs;
 }

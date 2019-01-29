@@ -104,12 +104,23 @@ export namespace IAction {
   export type IEmptySelectedWordListAction = Action<string>; 
 
   export type IResetStateAction = Action<string>; 
+
+  export interface IStartInitialWordsFetchRequestAction extends Action<string> {
+    isInitialWordsFetching: boolean; 
+  }
+  
+  export interface IFinishInitialWordsFetchRequestAction extends Action<string> {
+    isInitialWordsFetching: boolean; 
+  }
 }
 /****************************************************
  * ActionCreator call signature
  ****************************************************/
 export type IActionCreatorBaseType = (...args: any[]) => AnyAction;
 
+/************************************************
+ * name of this type should be changed to "updateWords or something
+ ************************************************/
 type IAddNewWordActionCreator = (word: StateType.IEntityWord, def: StateType.IEntityDef) =>  IAction.IAddNewWordAction;
 
 type IRemoveWordActionCreator = (wordId: string) =>  IAction.IRemoveWordAction;
@@ -153,12 +164,17 @@ type ISelectAllSelectedWordListActionCreator = (nextSelectedWordList: string[]) 
 type IEmptySelectedWordListActionCreator = () =>  IAction.IEmptySelectedWordListAction;
 
 type IResetStateActionCreator = () =>  IAction.IResetStateAction;
+
+type IStartInitialWordsFetchRequestActionCreator = () =>  IAction.IStartInitialWordsFetchRequestAction;
+
+type IFinishInitialWordsFetchRequestActionCreator = () => IAction.IFinishInitialWordsFetchRequestAction;
 /****************************************************
  * ActionCreator Creator
  ****************************************************/
 /**
  * update words (including defs entities) 
  *  - should change name to udpateWords
+ *  - also should change args (word and def) to (words and defs)
  *
  * @param {IEntityWord} word - word to be updated in redux state 
  * @param {IEntityDef} def - def to be updated in redux state 
@@ -302,4 +318,24 @@ export const resetStateActionCreator: IResetStateActionCreator = () => ({
   type: ActionType.RESET_STATE,
 });
 
+/**
+ * start initial words fetch request (ation creator) 
+ *
+ * @return {IAction.IStartInitialWordsFetchRequestAction} action 
+ *
+ */
+export const startInitialWordsFetchRequestActionCreator: IStartInitialWordsFetchRequestActionCreator = () => ({
+  type: ActionType.START_INITIAL_WORDS_FETCH_REQUEST,
+  isInitialWordsFetching: true,
+});
 
+/**
+ * finish initial words fetch request (ation creator) 
+ *
+ * @return {IAction.IFinishInitialWordsFetchRequestAction} action 
+ *
+ */
+export const finishInitialWordsFetchRequestActionCreator: IFinishInitialWordsFetchRequestActionCreator = () => ({
+  type: ActionType.FINISH_INITIAL_WORDS_FETCH_REQUEST,
+  isInitialWordsFetching: false,
+});

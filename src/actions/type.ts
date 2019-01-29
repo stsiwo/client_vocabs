@@ -51,6 +51,12 @@ export interface IActionType {
 
   // reset to initial state
   RESET_STATE: string; // ok
+
+  // initial words fetch request start
+  START_INITIAL_WORDS_FETCH_REQUEST: string;
+
+  // initial words fetch request done
+  FINISH_INITIAL_WORDS_FETCH_REQUEST: string;
 }
 
 /**
@@ -92,6 +98,10 @@ export const ActionType: IActionType = {
   CHANGE_DISPLAYED_WORD_LIST: 'CHANGE_DISPLAYED_WORD_LIST',
 
   RESET_STATE: "RESET_STATE",
+
+  START_INITIAL_WORDS_FETCH_REQUEST: "START_INITIAL_WORDS_FETCH_REQUEST",
+
+  FINISH_INITIAL_WORDS_FETCH_REQUEST: "FINISH_INITIAL_WORDS_FETCH_REQUEST",
 }
 
 

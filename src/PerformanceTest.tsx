@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { data } from './testData/data';
+//import { data } from './testData/data';
 
 //interface Props {
 
@@ -14,7 +14,7 @@ class Performance extends React.Component</*Props*/{}, State> {
   constructor(props: {}/*Props*/) {
     super(props);
     this.state = {
-      items: data,
+      items: [],
       count: 0,
     }
     this.renderListItem = this.renderListItem.bind(this);

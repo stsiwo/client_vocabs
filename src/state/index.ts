@@ -235,17 +235,44 @@ export const wordListSchema = new schema.Array(wordSchema);
 /**
  * normalized initial State
  **/
-const normalizedEntities = normalize(initialWordList, wordListSchema);
+//const normalizedEntities = normalize(initialWordList, wordListSchema);
+
+//export const initialNormalizedState: INormalizedState = {
+  //entities: {
+    //defs: normalizedEntities.entities.defs,
+    //words: normalizedEntities.entities.words,
+  //},
+  //currentSort: 1, 
+  //sortedWordList: ["0","1","2","3","4","5","6","7","8","9","10"],
+  //searchedWordList: [],
+  //selectedWordList: ["0","1","2","3"],
+  //displayedWordList: ["0","1","2","3","4","5","6","7","8","9","10"], 
+  //searchKeyWord: '',
+  //currentFilter: [0,1,2,3,4,5,6,7,8,9],
+  //wordFormError: false,
+  //ui: {
+    //isSelectWarningModalOpen: false,
+    //isDeleteConfirmModalOpen: false,
+    //isSortFilterModalOpen: false,
+    //isSearchWordModalOpen: false,
+    //isDefineWarningModalOpen: false,
+  //},
+//}
+
+/**
+ * normalized empty initial state
+ * @type { INormalizedState } 
+ **/
 export const initialNormalizedState: INormalizedState = {
   entities: {
-    defs: normalizedEntities.entities.defs,
-    words: normalizedEntities.entities.words,
+    defs: {},
+    words: {},
   },
   currentSort: 1, 
-  sortedWordList: ["0","1","2","3","4","5","6","7","8","9","10"],
+  sortedWordList: [],
   searchedWordList: [],
-  selectedWordList: ["0","1","2","3"],
-  displayedWordList: ["0","1","2","3","4","5","6","7","8","9","10"], 
+  selectedWordList: [],
+  displayedWordList: [], 
   searchKeyWord: '',
   currentFilter: [0,1,2,3,4,5,6,7,8,9],
   wordFormError: false,
@@ -256,10 +283,19 @@ export const initialNormalizedState: INormalizedState = {
     isSearchWordModalOpen: false,
     isDefineWarningModalOpen: false,
   },
+  asyncs: {
+    isInitialWordsFetching: false,
+  }
 }
+
 
 /**
  * denormalize normalizr helper
+ *
+ * @param {string[]} wordIds - list of ids of words you want to denormalize 
+ * @param {StateType.IEntity} entities - contains words and defs entities 
+ * @return {IWord} denormalized words 
+ *
  **/
 export const denormalizeWordList: (words: string[], entities: StateType.IEntity) => IWord[] = ( words, entities ) => {
   return denormalize( words, wordListSchema, entities )
@@ -280,7 +316,7 @@ export const normalizeWord: ( word: IWord ) => StateType.IEntity = ( word ) => n
  * @return {StateType.IEntity} normalized entities 
  *
  */
-export const normalizeWords: ( words: IWord[] ) => StateType.IEntity = ( words ) => normalize(words, wordSchema).entities; 
+export const normalizeWords: ( words: IWord[] ) => StateType.IEntity = ( words ) => normalize(words, wordListSchema).entities; 
 
 export const normalizeWordsArray: (words: IWord[]) => INormalizedState = (words) => {
   const normalizedWords = normalize(words, wordListSchema);

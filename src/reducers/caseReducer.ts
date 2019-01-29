@@ -6,55 +6,6 @@ const xor = require('lodash/xor');
 const omit = require('lodash/omit');
 const omitBy = require('lodash/omitBy');
 
-/**
- * case reducer
- *  - entities
- *    - defs:
- *      - addDefEntityCaseReducer
- *      - removeDefEntityCaseReducer
- *      - updateDefPosCaseReducer
- *      - updateDefTextCaseReducer
- *      - updateDefImageCaseReducer
- *      - resetDefsCaseReducer
- *    - words:
- *      - addWordEntityCaseReducer
- *      - removeWordEntityCaseReducer
- *      - updateWordNameCaseReducer
- *      - updateWordDefsCaseReducer
- *      - resetWordsCaseReducer
- *  - sortedWordList:
- *      - updateSortedWordListCaseReducer,
- *      - resetSortedWordListCaseReducer,
- *  - displayedWordList:
- *      - changeDisplayedWordListCaseReducer,
- *      - resetDisplayedWordListCaseReducer
- *  - currentSort:
- *      - changeCurrentSortCaseReducer
- *      - resetCurrentSortCaseReducer
- *  - currentFilter:
- *      - changeCurrentFilterCaseRuducer
- *      - resetCurrentFilterCaseRuducer
- *  - searchedWordList:
- *      - changeSearchedWordListCaseReducer
- *      - resetSearchedWordListCaseReducer
- *  - searchKeyWord:
- *      - changeSearchKeyWordCaseReducer
- *      - resetSearchKeyWordCaseReducer
- *  - selectedWordList:
- *      - toggleSelectedWordListCaseReducer
- *      - emptySelectedWordListCaseReducer,
- *      - selectAllSelectedWordListCaseReducer
- *      - resetSelectedWordListCaseReducer
- *  - ui
- *    - isSelectWarningModalOpen:
- *      - toggleSelectWarningModalCaseReducer
- *    - isDeleteConfirmModalOpen:
- *      - toggleDeleteConfirmModalCaseReducer
- *    - isSortFilterModalOpen:
- *      - toggleSortFilterModalCaseReducer
- *    - isSearchWordModalOpen:
- *      - toggleSearchWordModalCaseReducer
- **/
 
 export namespace CaseReducer {
   /**
@@ -252,4 +203,11 @@ export const resetSearchedWordListCaseReducer: CaseReducerType<StateType.ISearch
   export const resetUiCaseReducer: CaseReducerType<StateType.IUi, IAction.IResetStateAction> = (ui, action) => Object.assign({}, ui, initialNormalizedState.ui);
 
   export const toggleDefineWarningModalCaseReducer: CaseReducerType<StateType.IUi, IAction.IToggleDefineWarningModalAction> = (ui, action) => Object.assign({}, ui, { isDefineWarningModalOpen: action.isDefineWarningModalOpen });;
+
+  /*********************************************
+   * asyncs CaseReducer
+   *********************************************/
+  export const startInitialWordsFetchRequestCaseReducer: CaseReducerType<StateType.IAsyncs, IAction.IStartInitialWordsFetchRequestAction> = (asyncs, action) => Object.assign({}, asyncs, { isInitialWordsFetching: action.isInitialWordsFetching });;
+
+  export const finishInitialWordsFetchRequestCaseReducer: CaseReducerType<StateType.IAsyncs, IAction.IFinishInitialWordsFetchRequestAction> = (asyncs, action) => Object.assign({}, asyncs, { isInitialWordsFetching: action.isInitialWordsFetching });;
 } 

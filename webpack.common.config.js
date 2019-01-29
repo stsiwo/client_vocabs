@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+//const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 // 1. import default from the plugin module
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
@@ -14,7 +14,7 @@ module.exports = {
     app: './src/index.tsx'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    //new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'CSS Experiment',
       meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
@@ -69,6 +69,14 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          'file-loader'
+        ]
+      },
+      {
+        type: 'javascript/auto',
+        test: /\.json$/,
         include: path.resolve(__dirname, 'src'),
         use: [
           'file-loader'

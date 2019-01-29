@@ -8,14 +8,14 @@ import { Router } from 'react-router';
 import history from './routeHistory';
 import { ThemeProvider } from './representationals/story/styledComponents'; 
 import { theme } from './representationals/story/theme';
-import Root from './performances/Root';
+import RootCont from './performances/RootCont';
 
 ReactDOM.render(
   <Provider store={ store }>
     <ThemeProvider theme={ theme } >
       <Router history={ history }>
   
-        <Root />
+        <RootCont />
   {/*
     <App />
     */}
