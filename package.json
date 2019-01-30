@@ -53,6 +53,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.1.2",
     "uuid": "^3.3.2",
+    "with-immutable-props-to-js": "^1.1.0",
     "yup": "^0.26.7"
   },
   "devDependencies": {
@@ -94,7 +95,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "jsdoc": "^3.5.5",
-    "json-loader": "^0.5.7",
     "prettier": "^1.15.2",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-test-renderer": "^16.6.3",
