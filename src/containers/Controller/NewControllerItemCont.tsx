@@ -1,10 +1,10 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import NewControllerItem from '../../representationals/business/Controller/NewControllerItem';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import addNewWordFormWrapperThunk from '../../thunk/addNewWordForm';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: IState, ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

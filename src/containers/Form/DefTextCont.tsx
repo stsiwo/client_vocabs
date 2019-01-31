@@ -1,10 +1,10 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
 import DefText from '../../representationals/business/Form/DefText';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import { updateDefTextActionCreator } from '../../actions/index';
 
-const mapStateToProps = (state: INormalizedState , ownProps: {}) => ({
+const mapStateToProps = (state: IState , ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

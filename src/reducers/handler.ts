@@ -3,6 +3,7 @@ import { ActionType, IActionType } from '../actions/type';
 import { CaseReducer } from './caseReducer';
 // since every functions are used in here so import whole modules
 import { StateType } from '../state/type';
+import { Record } from 'immutable';
 
 export namespace ActionHandler {
   /**
@@ -24,26 +25,9 @@ export namespace ActionHandler {
    * entities.words handler
    ****************************************/
   export const wordsHandler: HandlerType<StateType.IEntityWord> = {
-    [ActionType.ADD_NEW_WORD]: CaseReducer.addWordEntityCaseReducer, // ok
+    [ActionType.BULK_UPDATE_WORD]: CaseReducer.bulkUpdateWordCaseReducer, // ok
     [ActionType.REMOVE_WORD]: CaseReducer.removeWordEntityCaseReducer, // ok
-    [ActionType.ADD_NEW_DEF]: CaseReducer.toggleWordDefsCaseReducer, // ok
-    [ActionType.UPDATE_WORD_NAME]: CaseReducer.updateWordNameCaseReducer, // ok
-    [ActionType.REMOVE_DEF]: CaseReducer.toggleWordDefsCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetWordsCaseReducer,
-  }
-
-  /*****************************************
-   * entities.defs handler
-   ****************************************/
-  export const defsHandler: HandlerType<StateType.IEntityDef> = {
-    [ActionType.ADD_NEW_WORD]: CaseReducer.addDefEntityCaseReducer, // ok
-    [ActionType.REMOVE_WORD]: CaseReducer.removeDefEntitiesCaseReducer, // ok
-    [ActionType.ADD_NEW_DEF]: CaseReducer.addDefEntityCaseReducer, // ok
-    [ActionType.REMOVE_DEF]: CaseReducer.removeDefEntityCaseReducer, // ok
-    [ActionType.UPDATE_DEF_POS]: CaseReducer.updateDefPosCaseReducer, // ok
-    [ActionType.UPDATE_DEF_TEXT]: CaseReducer.updateDefTextCaseReducer, // ok
-    [ActionType.UPDATE_DEF_IMAGE]: CaseReducer.updateDefImageCaseReducer,  // ok
-    [ActionType.RESET_STATE]: CaseReducer.resetDefsCaseReducer,
   }
 
   /*****************************************
@@ -65,7 +49,7 @@ export namespace ActionHandler {
   /*****************************************
    * ui
    ****************************************/
-  export const uiHandler: HandlerType<StateType.IUi> = {
+  export const uiHandler: HandlerType<Record<StateType.IUi>> = {
     [ActionType.TOGGLE_SELECT_WARNING_MODAL]: CaseReducer.toggleSelectWarningModalCaseReducer, // ok
     [ActionType.TOGGLE_DELETE_CONFIRM_MODAL]: CaseReducer.toggleDeleteConfirmModalCaseReducer, // ok
     [ActionType.TOGGLE_SORT_FILTER_MODAL]: CaseReducer.toggleSortFilterModalCaseReducer, // ok
@@ -83,7 +67,6 @@ export namespace ActionHandler {
     [ActionType.EMPTY_SELECTED_WORD]: CaseReducer.emptySelectedWordListCaseReducer, // ok
     [ActionType.REMOVE_WORD]: CaseReducer.toggleSelectedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetSelectedWordListCaseReducer,
-
   }
 
   /*****************************************
@@ -95,7 +78,6 @@ export namespace ActionHandler {
     [ActionType.REMOVE_WORD]: CaseReducer.toggleSortedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetSortedWordListCaseReducer,
   }
-
 
   /*****************************************
    * searchedWordList
@@ -133,7 +115,7 @@ export namespace ActionHandler {
   /*****************************************
    * asyncs - isInitialWordsFetching
    ****************************************/
-  export const asyncsHandler: HandlerType<StateType.IAsyncs> = {
+  export const asyncsHandler: HandlerType<Record<StateType.IAsyncs>> = {
     [ActionType.START_INITIAL_WORDS_FETCH_REQUEST]: CaseReducer.startInitialWordsFetchRequestCaseReducer, 
     [ActionType.FINISH_INITIAL_WORDS_FETCH_REQUEST]: CaseReducer.finishInitialWordsFetchRequestCaseReducer, 
   }

@@ -1,13 +1,13 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
 import Filter from '../representationals/business/SortFilterModal/Filter';
-import { INormalizedState } from '../state/type';
+import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import { changeFilterWrapperThunk } from '../reducers/thunk';
 import { filter } from '../domains/filter';
 import { PosEnum } from '../domains/pos';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
+const mapStateToProps = (state: IState, ownProps: {}) => {
   const { currentFilter } = state;
   const filterCopyObject = Object.assign({}, filter);
   currentFilter.forEach(( pos ) => filterCopyObject[pos] = true ); 

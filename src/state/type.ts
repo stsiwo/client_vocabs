@@ -1,23 +1,16 @@
-import { IDef } from '../domains/def';
-import { INormalizedWord } from '../domains/word';
 import { SORT_ORDER } from '../enums';
+import { IWord } from '../domains/word';
 import { PosEnum } from '../domains/pos';
+// immutablejs
+import { Map, List, Record, Set } from 'immutable';
 
 export namespace StateType {
-  // entities.defs
-  export interface IEntityDef {
-    [id: string]: IDef;
-  }
 
-  // entities.words
-  export interface IEntityWord {
-    [id: string]: INormalizedWord;
-  }
+  export type IEntityWord = Map<string, IWord>;
 
   // entities
   export interface IEntity {
-    words: IEntityWord,
-      defs: IEntityDef,
+    words: IEntityWord;
   }
 
   export interface IUi {
@@ -36,31 +29,28 @@ export namespace StateType {
   export type ICurrentSort = SORT_ORDER; 
 
   // sortedWordList 
-  export type ISortedWordList = string[]; 
+  export type ISortedWordList = List<string>; 
 
   // searchedWordList 
-  export type ISearchedWordList = string[]; 
+  export type ISearchedWordList = List<string>; 
 
   // displayedWordList 
-  export type IDisplayedWordList = string[]; 
+  export type IDisplayedWordList = List<string>; 
 
   // selectedWordList 
-  export type ISelectedWordList = string[]; 
+  export type ISelectedWordList = List<string>; 
 
   // currentFilter
-  export type ICurrentFilter = PosEnum[];
+  export type ICurrentFilter = Set<PosEnum>;
 
   // wordFormError
   export type IWordFormError = boolean; 
 
   export type ISearchKeyWord = string;
-  /**
-   * normalized state shape interface 
-   **/
 }
 
-export interface INormalizedState { 
-  entities: StateType.IEntity;
+export interface IState { 
+  entities: Record<StateType.IEntity>;
   sortedWordList: StateType.ISortedWordList;
   selectedWordList: StateType.ISortedWordList;
   searchedWordList: StateType.ISearchedWordList;
@@ -69,6 +59,7 @@ export interface INormalizedState {
   currentFilter: StateType.ICurrentFilter;  
   wordFormError: StateType.IWordFormError;
   searchKeyWord: StateType.ISearchKeyWord;
-  ui: StateType.IUi;
-  asyncs: StateType.IAsyncs;
+  ui: Record<StateType.IUi>;
+  asyncs: Record<StateType.IAsyncs>;
 }
+

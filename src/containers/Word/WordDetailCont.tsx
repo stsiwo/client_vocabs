@@ -1,13 +1,13 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
 import WordDetail from '../../representationals/business/WordDetail/WordDetail';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import { denormalizeWordList } from '../../state/index';
 import { IWord } from '../../domains/word';
 import { withRouter } from 'react-router-dom';
 import { toggleWordFormErrorActionCreator } from '../../actions/index';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
+const mapStateToProps = (state: IState, ownProps: {}) => {
   // get state sortedWordList and entities
   const { selectedWordList, entities } = state;
   const { isDefineWarningModalOpen } = state.ui;

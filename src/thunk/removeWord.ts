@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { INormalizedState } from "../state/type"; 
+import { IState } from "../state/type"; 
 import { ThunkAction } from 'redux-thunk';
 import { removeWordActionCreator } from '../actions/index';
 
@@ -8,7 +8,7 @@ import { removeWordActionCreator } from '../actions/index';
  *  - this thunk is called when delete modal confirm button is clicked 
  *  - precondition exists such as selectedWordList is not empty (made sure in DeleteControllerItem click event handler)
  **/
-export type removeWordWrapperThunkType = () => ThunkAction<void, INormalizedState, undefined, AnyAction>;
+export type removeWordWrapperThunkType = () => ThunkAction<void, IState, undefined, AnyAction>;
 
 const removeWordWrapperThunk: removeWordWrapperThunkType = (  ) => ( dispatch, getState ) => {
   // get selectedWordList to remove

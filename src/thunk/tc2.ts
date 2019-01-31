@@ -5,7 +5,7 @@ import { ThunkMiddlewareType } from './thunkComponent';
  **/
 const tc2ThunkComponentWrapper: ThunkMiddlewareType = ( next ) => ( ...args ) => ( dispatch, getState ) => {
 
-  if (getState().ui.isSelectWarningModalOpen) {
+  if (getState().get('ui').get('isSelectWarningModalOpen')) {
     console.log("since isSelectWarningModalOpen is true, cancel the main thunk here");
   } else {
     dispatch<any>(next(...args)); 

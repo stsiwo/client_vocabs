@@ -1,10 +1,10 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
 import DefNode from '../../representationals/business/Form/DefNode';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import { removeDefActionCreator } from '../../actions/index';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: IState, ownProps: {}) => ({
 });
 
 

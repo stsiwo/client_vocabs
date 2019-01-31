@@ -7,16 +7,8 @@
 export interface IActionType {
 
   // words
-  ADD_NEW_WORD: string; // ok
+  BULK_UPDATE_WORD: string;
   REMOVE_WORD: string; // ok
-  UPDATE_WORD_NAME: string; // ok
-
-  // def logic
-  ADD_NEW_DEF: string; // ok
-  REMOVE_DEF: string; // ok
-  UPDATE_DEF_POS: string; // ok
-  UPDATE_DEF_TEXT: string; // ok
-  UPDATE_DEF_IMAGE: string; // ok
 
   // sort & filter
   CHANGE_SORT: string, // ok
@@ -64,15 +56,8 @@ export interface IActionType {
  **/
 export const ActionType: IActionType = {
 
-  ADD_NEW_WORD: "ADD_NEW_WORD",
+  BULK_UPDATE_WORD: "BULK_UPDATE_WORD",
   REMOVE_WORD: "REMOVE_WORD",
-  UPDATE_WORD_NAME: "UPDATE_WORD_NAME",
-
-  ADD_NEW_DEF: "ADD_NEW_DEF",
-  REMOVE_DEF: "REMOVE_DEF",
-  UPDATE_DEF_POS: "UPDATE_DEF_POS",
-  UPDATE_DEF_TEXT: "UPDATE_DEF_TEXT",
-  UPDATE_DEF_IMAGE: "UPDATE_DEF_IMAGE",
 
   CHANGE_SORT: "CHANGE_SORT",
   CHANGE_FILTER: "CHANGE_FILTER",

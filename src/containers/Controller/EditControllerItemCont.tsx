@@ -1,11 +1,11 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import EditControllerItem from '../../representationals/business/Controller/EditControllerItem';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import editWordWrapperThunk from '../../thunk/editWord';
 //import { withRouter } from 'react-router-dom';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: IState, ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

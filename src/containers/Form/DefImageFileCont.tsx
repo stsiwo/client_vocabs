@@ -1,10 +1,10 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
 import DefImageFile from '../../representationals/business/Form/DefImageFile';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import { updateDefImageActionCreator } from '../../actions/index';
 
-const mapStateToProps = (state: INormalizedState , ownProps: {}) => ({
+const mapStateToProps = (state: IState , ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

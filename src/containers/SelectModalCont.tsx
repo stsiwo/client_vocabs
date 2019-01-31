@@ -1,11 +1,11 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
 import SelectModal from '../representationals/business/SelectModal/SelectModal';
-import { INormalizedState } from '../state/type';
+import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import { toggleSelectWarningModalActionCreator } from '../actions/index';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: IState, ownProps: {}) => ({
   isSelectWarningModalOpen: state.ui.isSelectWarningModalOpen,
 });
 

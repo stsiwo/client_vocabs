@@ -1,28 +1,28 @@
 import { SORT_ORDER } from '../enums';
 import { AnyAction } from 'redux';
-import { INormalizedState } from "../state/type"; 
+import { IState } from "../state/type"; 
 import { changeSortActionCreator, changeFilterActionCreator, changeSearchKeyWordActionCreator, changeDisplayedWordListActionCreator } from "../actions";
-import { IWord } from "../domains/word";
-import { IDef } from '../domains/def';
+import { IWord, IWordNameList, IWordListItem } from "../domains/word";
 import { ThunkAction } from 'redux-thunk';
 import { PosEnum } from '../../src/domains/pos';
 import { getWordListItem } from './helper';
-import { denormalizeWordList } from '../state/index';
 import * as fuzzysort from 'fuzzysort';
-const uniq = require('lodash/uniq');
+import { getWordNameList, filter } from './helper';
+import { List } from 'immutable';
 //const flatten = require('lodash/flatten');
-//: ThunkAction<void, INormalizedState, undefined, AnyAction> 
-
-type changeSortWrapperThunkType = (newSort: SORT_ORDER) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
+//: ThunkAction<void, IState, undefined, AnyAction> 
+// apply immutablejs for sorting
+type changeSortWrapperThunkType = (newSort: SORT_ORDER) => ThunkAction<void, IState, undefined, AnyAction>;
 
 export const changeSortWrapperThunk: changeSortWrapperThunkType = ( newSort ) => ( dispatch, getState ) => {
   // get sortedWordList and denormalized to sort
   const { sortedWordList, entities } = getState();
-  const wordList = denormalizeWordList( sortedWordList, entities ); 
+  // get list with its word name to sort
+  const wordList: List<IWordNameList> = getWordNameList(sortedWordList, entities); 
   // sort with handler
   wordList.sort( sortHandlers[newSort] ); 
   // extract only id 
-  const wordIdList = wordList.map(( word ) => word.id );
+  const wordIdList = wordList.map(( word: IWord ) => word.id );
   // dispatch change sort action
   dispatch(changeSortActionCreator(newSort, wordIdList));
   dispatch(changeDisplayedWordListActionCreator(wordIdList));
@@ -73,28 +73,21 @@ export const sortHandlers: ISortHandler = {
   },
 }
     
-type changeFilterWrapperThunkType = (newFilter: PosEnum[]) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
+type changeFilterWrapperThunkType = (newFilter: PosEnum[]) => ThunkAction<void, IState, undefined, AnyAction>;
 
 export const changeFilterWrapperThunk: changeFilterWrapperThunkType = ( newFilter ) => ( dispatch, getState ) => {
 
-  // get sortedWordList and denormalized to sort
-  //const { sortedWordList } = getState();
-  //const wordList = denormalizeWordList(sortedWordList); 
-  // extract IDef[] and flatten to single dimensional array 
-  //const defList = flatten(wordList.map(( word: IWord ) => word.defs));
-  const defList = Object.values(getState().entities.defs);
-  // filter with handler
-  const filteredDef = defList.filter(( def: IDef ) => newFilter.includes(def.pos));
-  // extract only id 
-  const wordIdList = filteredDef.map(( def: IDef ) => def._wordId );
-  // remove duplicate word id 
-  const duplFreeWordIdList = uniq(wordIdList);
-  // dispatch change sort action
-  dispatch(changeFilterActionCreator(newFilter, duplFreeWordIdList));
-  dispatch(changeDisplayedWordListActionCreator(duplFreeWordIdList));
+  // get displayedWordList (not sortedWordList: since can't get retrieve original list after filterd)
+  const { displayedWordList, entities } = getState();
+
+  // filter words with newFilter so it only contains words whose def's pos match with newFilter 
+  const filteredWordList: List<string> = filter(displayedWordList, entities, newFilter); 
+
+  dispatch(changeFilterActionCreator(newFilter, filteredWordList));
+  dispatch(changeDisplayedWordListActionCreator(filteredWordList));
 }
 
-type changeSearchKeyWordWrapperThunkType = (nextSearchKey: string) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
+type changeSearchKeyWordWrapperThunkType = (nextSearchKey: string) => ThunkAction<void, IState, undefined, AnyAction>;
 
 export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkType = ( nextSearchKey ) => ( dispatch, getState ) => {
   // should i use sync or async? (async is better?)
@@ -113,8 +106,13 @@ export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkTyp
     const { displayedWordList ,selectedWordList, entities } = getState();
     // convert into IWordListItem 
     const wordListItem = getWordListItem(displayedWordList, selectedWordList, entities);
+
+    // for now, use toArray (expensive in Immutablejs) for fuzzy string: i don't have an idea how to achieve fuzzy string search using immutablejs
+    // need to fix this one (at least don't use expensive function in immutablejs like toJS, toArray, toObject)
+    const wordListItemArray: IWordListItem[] = wordListItem.toArray();
+
     // fuzzy string matching using newSearchKey and sortedWordList
-    const fuzzyResult = fuzzysort.go(nextSearchKey, wordListItem, { key: 'name' });
+    const fuzzyResult = fuzzysort.go(nextSearchKey, wordListItemArray, { key: 'name' });
 
     // get result ( list of matching word name ) and put them into sortedWordList 
     const nextSearchedWordList = fuzzyResult.map(( result ) => result.obj.id );

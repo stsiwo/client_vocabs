@@ -1,11 +1,11 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
 import SortFilterModal from '../representationals/business/SortFilterModal/SortFilterModal';
-import { INormalizedState } from '../state/type';
+import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import { toggleSortFilterModalActionCreator } from '../actions/index';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: IState, ownProps: {}) => ({
   isSortFilterModalOpen: state.ui.isSortFilterModalOpen,
 });
 

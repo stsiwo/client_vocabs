@@ -1,10 +1,10 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
 import SearchImageModalContent from '../representationals/business/SearchImageModal/SearchImageModalContent';
-import { INormalizedState } from '../state/type';
+import { IState } from '../state/type';
 //import { updateDefActionCreator } from '../actions/index';
 
-const mapStateToProps = (state: INormalizedState , ownProps: { wordId: string }) => ({
+const mapStateToProps = (state: IState , ownProps: { wordId: string }) => ({
    wordName: state.entities.words[ownProps.wordId].name,
 });
 

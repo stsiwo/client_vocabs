@@ -1,18 +1,13 @@
 import { IDef } from './def';
+import { List } from 'immutable';
 
 export interface IWord {
   id: string;
   name: string;
-  defs: IDef[];
+  defs: List<IDef>; 
   createDate: string;
 }
 
-export interface INormalizedWord {
-  id: string;
-  name: string;
-  defs: string[];
-  createDate: string;
-}
 
 /**
  * IWordListItem
@@ -22,4 +17,24 @@ export interface IWordListItem {
   id: string;
   name: string;
   isChecked: boolean;
+}
+
+/**
+ * IWordNameList
+ *  - sorting purpose
+ * @type {IWordNameList}
+ **/
+export interface IWordNameList {
+  id: string;
+  name: string;
+}
+
+/**
+ * IWordDefsList
+ *  - sorting purpose
+ * @type {IWordDefsList}
+ **/
+export interface IWordDefsList {
+  id: string;
+  defs: List<IDef>;
 }

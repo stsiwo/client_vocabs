@@ -11,7 +11,7 @@ import { toggleDefineWarningModalActionCreator } from '../../actions/index';
 
 const checkWordFormErrorThunkMiddleware: ThunkMiddlewareType = ( next ) => ( ...args ) => ( dispatch, getState ) => {
 
-  if (getState().wordFormError) {
+  if (getState().get('wordFormError')) {
     // since word form has errors cancel dispatch main thunk or action creator
     // and display DefineWord Warning modal
     dispatch(toggleDefineWarningModalActionCreator(true));

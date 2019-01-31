@@ -1,10 +1,10 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import WordListItem from '../../representationals/business/WordListItem/WordListItem';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import { toggleSelectedWordListActionCreator } from '../../actions/index';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: IState, ownProps: {}) => ({
   // N/A
 });
 

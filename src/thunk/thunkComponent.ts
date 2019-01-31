@@ -1,7 +1,8 @@
-import { INormalizedState } from "../state/type"; 
+import { IState } from "../state/type"; 
 import { IActionCreatorBaseType } from '../actions/index';
 import { AnyAction, compose } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import { Record } from 'immutable';
 
 /*****************************************************************************
  * thunk middleware 
@@ -20,12 +21,12 @@ import { ThunkAction } from 'redux-thunk';
  * const myFunc = <T extends any[]>(arg: T): T => arg; 
  *
  *******************************************************************************/
-//export type ThunkType<T extends any[] = any[]> = (...args: T) => ThunkAction<void, INormalizedState, undefined, AnyAction>;
+//export type ThunkType<T extends any[] = any[]> = (...args: T) => ThunkAction<void, IState, undefined, AnyAction>;
 
 /*******************************************************************************
  * type of function returned by ThunkComponentWrapper
  *******************************************************************************/
-export type ThunkType = ( ...args: any[] ) => ThunkAction<void, INormalizedState, undefined, AnyAction>; 
+export type ThunkType = ( ...args: any[] ) => ThunkAction<void, Record<IState>, undefined, AnyAction>; 
 
 // middleware when dispatch main thunk or main action creator (not action) 
 // use this as arguments of compose( ... ) <= here

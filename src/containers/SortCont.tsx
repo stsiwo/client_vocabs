@@ -1,13 +1,13 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
 import Sort from '../representationals/business/SortFilterModal/Sort';
-import { INormalizedState } from '../state/type';
+import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import { changeSortWrapperThunk } from '../reducers/thunk';
 import { sort , ISort } from '../domains/sort';
 import { SORT_ORDER } from '../enums/index';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
+const mapStateToProps = (state: IState, ownProps: {}) => {
   const { currentSort } = state;
   // change only current selected sort to true.
   // don't mutate Sort object (default: everything is false)

@@ -2,11 +2,11 @@ import { connect } from 'react-redux'
 import { AnyAction, Dispatch, compose } from 'redux';
 import DeleteModal from '../representationals/business/DeleteModal/DeleteModal';
 import { toggleDeleteConfirmModalActionCreator } from '../actions/index';
-import { INormalizedState } from '../state/type';
+import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import removeWordWrapperThunk from '../thunk/removeWord';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: IState, ownProps: {}) => ({
   isDeleteConfirmModalOpen: state.ui.isDeleteConfirmModalOpen,
 });
 

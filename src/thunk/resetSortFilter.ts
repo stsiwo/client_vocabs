@@ -1,20 +1,19 @@
 import { AnyAction } from 'redux';
-import { INormalizedState } from "../state/type"; 
+import { IState } from "../state/type"; 
 import { ThunkAction } from 'redux-thunk';
 import { changeSortWrapperThunk, changeFilterWrapperThunk } from '../reducers/thunk'; 
-import { initialNormalizedState } from '../state/index';
+import { initialState } from '../state/index';
 
 /**
  * this thunk for close SearchWordModal when users open another modal
  * while SearchWordModal is open
  **/
-export type resetSortFilterWrapperThunkType = () => ThunkAction<void, INormalizedState, undefined, AnyAction>;
+export type resetSortFilterWrapperThunkType = () => ThunkAction<void, IState, undefined, AnyAction>;
 
 const resetSortFilterWrapperThunk: resetSortFilterWrapperThunkType = (  ) => ( dispatch, getState ) => {
   // reset currentFilter, currentSort
-  // default values from initialNormalizedState ( state/index.ts )
-  dispatch(changeSortWrapperThunk(initialNormalizedState.currentSort));
-  dispatch(changeFilterWrapperThunk(initialNormalizedState.currentFilter));
+  dispatch(changeSortWrapperThunk(initialState.currentSort));
+  dispatch(changeFilterWrapperThunk(initialState.currentFilter.toArray()));
 }
 export default resetSortFilterWrapperThunk;
 

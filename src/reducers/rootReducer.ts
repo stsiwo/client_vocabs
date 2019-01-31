@@ -1,11 +1,12 @@
-import { combineReducers, AnyAction } from "redux";
-import { INormalizedState } from '../state/type';
+import { AnyAction } from "redux";
+import { combineReducers } from 'redux-immutable';
+import { IState } from '../state/type';
 import * as sliceReducer from './sliceReducer';
 
 /**
  * root Reducer
  **/
-export const rootReducer = combineReducers<INormalizedState, AnyAction>({
+export const rootReducer = combineReducers<IState, AnyAction, string>({
     entities: sliceReducer.entityReducer,
     sortedWordList: sliceReducer.sortedWordListReducer,
     selectedWordList: sliceReducer.selectedWordListReducer,

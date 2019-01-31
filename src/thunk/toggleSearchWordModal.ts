@@ -1,19 +1,20 @@
 import { AnyAction } from 'redux';
-import { INormalizedState } from "../state/type"; 
+import { IState } from "../state/type"; 
 import { toggleSearchWordModalActionCreator, changeDisplayedWordListActionCreator } from '../actions/index';
 import { ThunkAction } from 'redux-thunk';
+import { Record } from 'immutable';
 
 
 /**
  * this thunk for toggle SearchWordModal and also change displayed wordList to sorted wordList (not searchedWordList) 
  * ( often need to invoke multiple actions so make this as thunk
  **/
-export type toggleSearchWordModalWrapperThunkType = () => ThunkAction<void, INormalizedState, undefined, AnyAction>;
+export type toggleSearchWordModalWrapperThunkType = () => ThunkAction<void, Record<IState>, undefined, AnyAction>;
 
 const toggleSearchWordModalWrapperThunk: toggleSearchWordModalWrapperThunkType = (  ) => ( dispatch, getState ) => {
   // get sortedWordList state to assign to displayedWordList
-  const { sortedWordList } = getState();
-  const { isSearchWordModalOpen } = getState().ui;
+  const sortedWordList = getState().get('sortedWordList');
+  const isSearchWordModalOpen = getState().get('ui').get('isSearchWordModalOpen');
 
   // if isSearchWordModalOpen is true, need to close it and also change displayed wordList to sortedWordList
   if ( isSearchWordModalOpen ) {

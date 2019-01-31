@@ -1,11 +1,11 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
 import DefineWarningModal from '../representationals/business/DefineWarningModal/DefineWarningModal';
-import { INormalizedState } from '../state/type';
+import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import { toggleDefineWarningModalActionCreator } from '../actions/index';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => ({
+const mapStateToProps = (state: IState, ownProps: {}) => ({
   isDefineWarningModalOpen: state.ui.isDefineWarningModalOpen,
 });
 

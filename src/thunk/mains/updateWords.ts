@@ -1,6 +1,5 @@
 import { MainThunkType } from '../thunkComponent';
-import { normalizeWords } from '../../state/index';
-import { addNewWordActionCreator } from '../../actions/index';
+import { bulkUpdateWordActionCreator } from '../../actions/index';
 
 /**
  * main thunk: update (or create) words (entities) in redux state  
@@ -10,11 +9,8 @@ import { addNewWordActionCreator } from '../../actions/index';
  **/
 
 const updateWordsMainThunk: MainThunkType = ( ...args ) => ( dispatch, getState ) => {
-  // normalize IWord to IEntityWord and IEntityDef
-  const updatedEntities = normalizeWords(args[0]);
-
-  // dispatch addNewWordActionCreator 
-  dispatch(addNewWordActionCreator(updatedEntities.words, updatedEntities.defs));
+  // dispatch bulkUpdateWordActionCreator 
+  dispatch(bulkUpdateWordActionCreator(args[0]));
 
 }
 export default updateWordsMainThunk;

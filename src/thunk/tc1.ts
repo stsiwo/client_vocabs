@@ -7,7 +7,7 @@ import { ThunkMiddlewareType } from './thunkComponent';
 
 const tc1ThunkComponentWrapper: ThunkMiddlewareType = ( next ) => ( ...args ) => ( dispatch, getState ) => {
 
-  if (getState().ui.isSearchWordModalOpen) {
+  if (getState().get('ui').get('isSearchWordModalOpen')) {
     console.log("since isSearchWordModalOpen is true, cancel the main thunk here");
   } else {
     dispatch<any>(next(...args)); 

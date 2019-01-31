@@ -1,12 +1,12 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
 import DefTree from '../../representationals/business/Form/DefTree';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import { addNewDefActionCreator } from '../../actions/index';
 import getNewNormalizedDef from '../../state/util/getNewNormalizedDef';
 import { IDef } from '../../domains/def';
 
-const mapStateToProps = (state: INormalizedState, ownProps: { defs: IDef[] }) => ({
+const mapStateToProps = (state: IState, ownProps: { defs: IDef[] }) => ({
 });
 
 

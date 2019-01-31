@@ -1,10 +1,10 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import WordList from '../../representationals/business/WordList/WordList';
-import { INormalizedState } from '../../state/type';
+import { IState } from '../../state/type';
 import { getWordListItem } from '../../reducers/helper';
 
-const mapStateToProps = (state: INormalizedState, ownProps: {}) => {
+const mapStateToProps = (state: IState, ownProps: {}) => {
   // get state (displayedWordList and selectedWordList)
   const { selectedWordList, entities, displayedWordList } = state;
   // convert displayedWordList to [IWordListItem] see word.ts in domains

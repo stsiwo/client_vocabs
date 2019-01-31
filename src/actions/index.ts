@@ -1,53 +1,20 @@
 import { StateType } from '../state/type';
-import { PosEnum } from '../domains/pos';
+import { IWord } from '../domains/word';
 import { ActionType } from './type';
 import { Action, AnyAction } from 'redux';
+import { List } from 'immutable';
 
 /****************************************************
  * Action type interface
  ****************************************************/
 export namespace IAction { 
 
-  export interface IAddNewWordAction extends Action<string> {
-    word: StateType.IEntityWord;
-    def: StateType.IEntityDef;
+  export interface IBulkUpdateWordAction extends Action<string> {
+    words: IWord[];
   }
 
   export interface IRemoveWordAction extends Action<string> {
     wordId: string;
-  }
-
-
-  export interface IUpdateWordNameAction extends Action<string> {
-    wordId: string;
-    wordName: string;
-  }
-
-
-  export interface IAddNewDefAction extends Action<string> {
-    def: StateType.IEntityDef;
-    wordId: string;
-    defIds: string[];
-  }
-
-  export interface IRemoveDefAction extends Action<string> {
-    wordId: string;
-    defIds: string[];
-  }
-
-  export interface IUpdateDefPosAction extends Action<string> {
-    defId: string;
-    defPos: PosEnum;
-  }
-
-  export interface IUpdateDefTextAction extends Action<string> {
-    defId: string;
-    defText: string;
-  }
-
-  export interface IUpdateDefImageAction extends Action<string> {
-    defId: string;
-    defImage: string;
   }
 
   export interface IChangeSortAction extends Action<string> {
@@ -56,13 +23,13 @@ export namespace IAction {
   }
 
   export interface IChangeFilterAction extends Action<string> {
-    currentFilter: StateType.ICurrentFilter;
+    currentFilter: number[]; 
     currentSortedWordList: StateType.ISortedWordList;
   }
 
   export interface IChangeSearchKeyWordAction extends Action<string> {
     nextSearchKey: string;
-    nextSearchedWordList: StateType.ISearchedWordList;
+    nextSearchedWordList: string[]; 
   }
 
   export interface IChangeDisplayedWordListAction extends Action<string> {
@@ -98,7 +65,7 @@ export namespace IAction {
   }
 
   export interface ISelectAllSelectedWordListAction extends Action<string> {
-    nextSelectedWordList: string[];
+    nextSelectedWordList: List<string>;
   }
 
   export type IEmptySelectedWordListAction = Action<string>; 
@@ -121,27 +88,15 @@ export type IActionCreatorBaseType = (...args: any[]) => AnyAction;
 /************************************************
  * name of this type should be changed to "updateWords or something
  ************************************************/
-type IAddNewWordActionCreator = (word: StateType.IEntityWord, def: StateType.IEntityDef) =>  IAction.IAddNewWordAction;
+type IBulkUpdateWordActionCreator = (words: IWord[]) =>  IAction.IBulkUpdateWordAction;
 
 type IRemoveWordActionCreator = (wordId: string) =>  IAction.IRemoveWordAction;
 
-type IUpdateWordNameActionCreator = (wordId: string, wordName: string) =>  IAction.IUpdateWordNameAction;
-
-type IAddNewDefActionCreator = (def: StateType.IEntityDef, wordId: string) =>  IAction.IAddNewDefAction;
-
-type IRemoveDefActionCreator = (wordId: string, defIds: string[]) =>  IAction.IRemoveDefAction;
-
-type IUpdateDefPosActionCreator = (defId: string, defPos: PosEnum) =>  IAction.IUpdateDefPosAction;
-
-type IUpdateDefTextActionCreator = (defId: string, defText: string) =>  IAction.IUpdateDefTextAction;
-
-type IUpdateDefImageActionCreator = (defId: string, defImage: string) =>  IAction.IUpdateDefImageAction;
-
 type IChangeSortActionCreator = (currentSort: StateType.ICurrentSort, currentSortedWordList: StateType.ISortedWordList) =>  IAction.IChangeSortAction;
 
-type IChangeFilterActionCreator = ( currentFilter: StateType.ICurrentFilter, currentSortedWordList: StateType.ISortedWordList) =>  IAction.IChangeFilterAction;
+type IChangeFilterActionCreator = ( currentFilter: number[], currentSortedWordList: StateType.ISortedWordList) =>  IAction.IChangeFilterAction;
 
-type IChangeSearchKeyWordActionCreator = (nextSearchKey: string, nextSearchedWordList: StateType.ISearchedWordList) =>  IAction.IChangeSearchKeyWordAction;
+type IChangeSearchKeyWordActionCreator = (nextSearchKey: string, nextSearchedWordList: string[]) =>  IAction.IChangeSearchKeyWordAction;
 
 type IChangeDisplayedWordListActionCreator = (nextDisplayedWordList: StateType.IDisplayedWordList) =>  IAction.IChangeDisplayedWordListAction;
 
@@ -159,7 +114,7 @@ type IToggleWordFormErrorActionCreator = (wordFormError: boolean) =>  IAction.IT
 
 type IToggleSelectedWordListActionCreator = (wordId: string) =>  IAction.IToggleSelectedWordListAction;
 
-type ISelectAllSelectedWordListActionCreator = (nextSelectedWordList: string[]) =>  IAction.ISelectAllSelectedWordListAction;
+type ISelectAllSelectedWordListActionCreator = (nextSelectedWordList: List<string>) =>  IAction.ISelectAllSelectedWordListAction;
 
 type IEmptySelectedWordListActionCreator = () =>  IAction.IEmptySelectedWordListAction;
 
@@ -172,20 +127,16 @@ type IFinishInitialWordsFetchRequestActionCreator = () => IAction.IFinishInitial
  * ActionCreator Creator
  ****************************************************/
 /**
- * update words (including defs entities) 
- *  - should change name to udpateWords
- *  - also should change args (word and def) to (words and defs)
+ * bulk update words (including defs entities) 
  *
- * @param {IEntityWord} word - word to be updated in redux state 
- * @param {IEntityDef} def - def to be updated in redux state 
+ * @param {IWord[]} words- words to be updated in redux state 
  * @return {IAction.IAddNewDefAction} action 
  *
  */
-export const addNewWordActionCreator: IAddNewWordActionCreator = ( word, def ) => {
+export const bulkUpdateWordActionCreator: IBulkUpdateWordActionCreator = ( words ) => {
   return {
-    type: ActionType.ADD_NEW_WORD,
-    word: word,
-    def: def,
+    type: ActionType.BULK_UPDATE_WORD,
+    words: words,
   }
 }
 
@@ -193,56 +144,6 @@ export const removeWordActionCreator: IRemoveWordActionCreator = (wordId) => {
   return {
     type: ActionType.REMOVE_WORD,
     wordId,
-  }
-};
-
-export const updateWordNameActionCreator: IUpdateWordNameActionCreator = (wordId, wordName) => {
-  return {
-    type: ActionType.UPDATE_WORD_NAME,
-    wordId: wordId,
-    wordName: wordName,
-  }
-};
-
-
-export const addNewDefActionCreator: IAddNewDefActionCreator = (def, wordId) => {
-  return {
-    type: ActionType.ADD_NEW_DEF,
-    def: def,
-    wordId: wordId,
-    defIds: Object.keys(def),
-  }
-};
-
-export const removeDefActionCreator: IRemoveDefActionCreator = (wordId, defIds) => {
-  return {
-    type: ActionType.REMOVE_DEF,
-    wordId: wordId,
-    defIds: defIds,
-  }
-};
-
-export const updateDefPosActionCreator: IUpdateDefPosActionCreator = (defId, defPos) => {
-  return {
-    type: ActionType.UPDATE_DEF_POS,
-    defId: defId,
-    defPos: defPos,
-  }
-};
-
-export const updateDefTextActionCreator: IUpdateDefTextActionCreator = (defId, defText) => {
-  return {
-    type: ActionType.UPDATE_DEF_TEXT,
-    defId: defId,
-    defText: defText,
-  }
-};
-
-export const updateDefImageActionCreator: IUpdateDefImageActionCreator = (defId, defImage) => {
-  return {
-    type: ActionType.UPDATE_DEF_IMAGE,
-    defId: defId,
-    defImage: defImage,
   }
 };
 

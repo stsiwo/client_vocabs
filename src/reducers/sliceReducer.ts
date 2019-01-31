@@ -1,7 +1,9 @@
 import { StateType } from '../state/type';
 import { ActionHandler } from './handler';  
-import { normalizedState } from '../state/index';
-import { AnyAction, combineReducers } from 'redux';
+import { initialState } from '../state/index';
+import { AnyAction } from 'redux';
+import { Record } from 'immutable';
+import { combineReducers } from 'redux-immutable';
 
 // higher order reducer to make customized slice reducer 
 function createReducer<T>( initialState: T, handlers: ActionHandler.HandlerType<T> ) {
@@ -17,33 +19,30 @@ function createReducer<T>( initialState: T, handlers: ActionHandler.HandlerType<
 /**
  * slice reducers
  **/
-const defsReducer = createReducer<StateType.IEntityDef>(normalizedState.entities.defs, ActionHandler.defsHandler);
+const wordsReducer = createReducer<StateType.IEntityWord>(initialState.entities.get('words'), ActionHandler.wordsHandler);
 
-const wordsReducer = createReducer<StateType.IEntityWord>(normalizedState.entities.words, ActionHandler.wordsHandler);
+export const currentSortReducer = createReducer<StateType.ICurrentSort>(initialState.currentSort, ActionHandler.currentSortHandler);
 
-export const currentSortReducer = createReducer<StateType.ICurrentSort>(normalizedState.currentSort, ActionHandler.currentSortHandler);
+export const sortedWordListReducer = createReducer<StateType.ISortedWordList>(initialState.sortedWordList, ActionHandler.sortedWordListHandler);
 
-export const sortedWordListReducer = createReducer<StateType.ISortedWordList>(normalizedState.sortedWordList, ActionHandler.sortedWordListHandler);
+export const searchedWordListReducer = createReducer<StateType.ISearchedWordList>(initialState.searchedWordList, ActionHandler.searchedWordListHandler);
 
-export const searchedWordListReducer = createReducer<StateType.ISearchedWordList>(normalizedState.searchedWordList, ActionHandler.searchedWordListHandler);
+export const displayedWordListReducer = createReducer<StateType.IDisplayedWordList>(initialState.displayedWordList, ActionHandler.displayedWordListHandler);
 
-export const displayedWordListReducer = createReducer<StateType.IDisplayedWordList>(normalizedState.displayedWordList, ActionHandler.displayedWordListHandler);
+export const selectedWordListReducer = createReducer<StateType.ISelectedWordList>(initialState.selectedWordList, ActionHandler.selectedWordListHandler);
 
-export const selectedWordListReducer = createReducer<StateType.ISelectedWordList>(normalizedState.selectedWordList, ActionHandler.selectedWordListHandler);
+export const currentFilterReducer = createReducer<StateType.ICurrentFilter>(initialState.currentFilter, ActionHandler.currentFilterHandler);
 
-export const currentFilterReducer = createReducer<StateType.ICurrentFilter>(normalizedState.currentFilter, ActionHandler.currentFilterHandler);
+export const wordFormErrorReducer = createReducer<StateType.IWordFormError>(initialState.wordFormError, ActionHandler.wordFormErrorHandler);
 
-export const wordFormErrorReducer = createReducer<StateType.IWordFormError>(normalizedState.wordFormError, ActionHandler.wordFormErrorHandler);
+export const searchKeyWordReducer = createReducer<StateType.ISearchKeyWord>(initialState.searchKeyWord, ActionHandler.searchKeyWordHandler);
 
-export const searchKeyWordReducer = createReducer<StateType.ISearchKeyWord>(normalizedState.searchKeyWord, ActionHandler.searchKeyWordHandler);
+export const uiReducer = createReducer<Record<StateType.IUi>>(initialState.ui, ActionHandler.uiHandler);
 
-export const entityReducer = combineReducers<StateType.IEntity, AnyAction>({
-  defs: defsReducer,
+export const asyncsReducer = createReducer<Record<StateType.IAsyncs>>(initialState.asyncs, ActionHandler.asyncsHandler);
+
+export const entityReducer = combineReducers<Record<StateType.IEntity>, AnyAction, string>({
   words: wordsReducer, 
 })
-
-export const uiReducer = createReducer<StateType.IUi>(normalizedState.ui, ActionHandler.uiHandler);
-
-export const asyncsReducer = createReducer<StateType.IAsyncs>(normalizedState.asyncs, ActionHandler.asyncsHandler);
 
 
