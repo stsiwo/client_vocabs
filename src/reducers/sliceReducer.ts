@@ -3,7 +3,11 @@ import { ActionHandler } from './handler';
 import { initialState } from '../state/index';
 import { AnyAction } from 'redux';
 import { Record } from 'immutable';
-import { combineReducers } from 'redux-immutable';
+//import { combineReducers } from 'redux-immutable';
+
+/**********************************************
+ * DON'T USE combineReducers
+ **********************************************/
 
 // higher order reducer to make customized slice reducer 
 function createReducer<T>( initialState: T, handlers: ActionHandler.HandlerType<T> ) {
@@ -41,8 +45,10 @@ export const uiReducer = createReducer<Record<StateType.IUi>>(initialState.ui, A
 
 export const asyncsReducer = createReducer<Record<StateType.IAsyncs>>(initialState.asyncs, ActionHandler.asyncsHandler);
 
-export const entityReducer = combineReducers<Record<StateType.IEntity>, AnyAction, string>({
-  words: wordsReducer, 
-})
+export const entityReducer = (state: Record<StateType.IEntity>, action: AnyAction) => {
+  return Record<StateType.IEntity>({
+    words: wordsReducer(state.get('words'), action), 
+  })();
+}
 
 
