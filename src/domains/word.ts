@@ -1,10 +1,9 @@
 import { IDef } from './def';
-import { List } from 'immutable';
 
 export interface IWord {
   id: string;
   name: string;
-  defs: List<IDef>; 
+  defs: IDef[]; 
   createDate: string;
 }
 
@@ -36,5 +35,5 @@ export interface IWordNameList {
  **/
 export interface IWordDefsList {
   id: string;
-  defs: List<IDef>;
+  defs: IDef[];
 }

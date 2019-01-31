@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Search from '../../base/Input/Search';
-import SearchResultsCont from '../../../containers/SearchResultsCont';
+import SearchResults from './SearchResults';
 
 interface ImageIF {
   name: string;
@@ -54,7 +54,7 @@ class SearchImageModalContent extends React.Component<Props, State> {
     return (
       <div className={ this.props.className }>
         <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } onChange={ this.handleSearchInputChange } value={ this.state.searchInput }/>
-        <SearchResultsCont items={ this.state.items } defId={ this.props.defId } />
+        <SearchResults items={ this.state.items } defId={ this.props.defId } />
       </div>
     );
   }

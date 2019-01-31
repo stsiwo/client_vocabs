@@ -5,7 +5,7 @@ import { isImmutable } from 'immutable';
  * this is from redux documentation to avoid to use toJS (immutablejs) inside MSTP function
  * and also injecting immutablejs to Dump component
  ****************************************************/
-export const toJS = ( WrappedComponent: React.ComponentType ) => ( wrappedComponentProps: object ) => {
+export const toJS = <P extends object>( WrappedComponent: React.ComponentType<P> ) => ( wrappedComponentProps: P ) => {
   const KEY = 0
   const VALUE = 1
 
@@ -18,7 +18,7 @@ export const toJS = ( WrappedComponent: React.ComponentType ) => ( wrappedCompon
         : wrappedComponentProp[VALUE]
       return newProps
     },
-    {}
+    {} as P
   )
 
   return <WrappedComponent {...propsJS} />

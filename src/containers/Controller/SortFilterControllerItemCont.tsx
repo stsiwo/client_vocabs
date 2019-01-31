@@ -4,9 +4,10 @@ import SortFilterControllerItem from '../../representationals/business/Controlle
 import { IState } from '../../state/type';
 import { toggleSortFilterModalActionCreator } from '../../actions/index';
 import openModalWrapperThunk from '../../thunk/openModal';
+import { Record } from 'immutable';
 
-const mapStateToProps = (state: IState, ownProps: {}) => ({
-  isSortFilterModalOpen: state.ui.isSortFilterModalOpen,
+const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
+  isSortFilterModalOpen: state.get('ui').get('isSortFilterModalOpen'),
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

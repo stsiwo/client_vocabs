@@ -12,7 +12,6 @@ interface Props {
   wordId: string;
   name: string;
   wordIndex: number;
-  //changeWordNameText: ( id: string, nextWordname: string ) => void;
   formik: CustomFormikProps;
 }
 

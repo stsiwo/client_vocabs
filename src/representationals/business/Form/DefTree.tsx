@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
-import DefNodeCont from '../../../containers/Def/DefNodeCont';
+import DefNode from './DefNode';
 import { IDef } from '../../../domains/def';
 import { CustomFormikProps } from '../../../Hoc/withForm';
 
@@ -11,7 +11,6 @@ const newIcon = require('./assets/new.svg');
 interface Props {
   className?: string;
   defs: IDef[]; 
-  addNewDefClick: ( wordId: string ) => void;
   formik: CustomFormikProps;
   wordIndex: number;
 }
@@ -37,12 +36,11 @@ export class DefTree extends React.Component<Props, State> {
 
   handleNewDefClick(e: React.MouseEvent<HTMLElement>) {
     // need to get word id of defs so pick any def's _wordId
-    this.props.addNewDefClick(this.props.defs[0]._wordId);
   }
 
   renderDefNodes() {
     return this.props.defs.map(( eachDef, index ) => ( 
-      <DefNodeCont 
+      <DefNode 
         key={ eachDef.id } 
         def={ eachDef } 
         isOpen={ this.state.isDefNodeOpen }

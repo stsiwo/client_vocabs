@@ -3,9 +3,10 @@ import { AnyAction, Dispatch } from 'redux';
 import SearchImageModalContent from '../representationals/business/SearchImageModal/SearchImageModalContent';
 import { IState } from '../state/type';
 //import { updateDefActionCreator } from '../actions/index';
+import { Record } from 'immutable';
 
-const mapStateToProps = (state: IState , ownProps: { wordId: string }) => ({
-   wordName: state.entities.words[ownProps.wordId].name,
+const mapStateToProps = (state: Record<IState>, ownProps: { wordId: string, defId: string }) => ({
+   wordName: state.get('entities').getIn([ 'words', ownProps.wordId, name ]),
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

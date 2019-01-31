@@ -118,7 +118,7 @@ export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkTyp
     const nextSearchedWordList = fuzzyResult.map(( result ) => result.obj.id );
     // dispatch follows:
     dispatch(changeSearchKeyWordActionCreator(nextSearchKey, nextSearchedWordList));
-    dispatch(changeDisplayedWordListActionCreator(nextSearchedWordList));
+    dispatch(changeDisplayedWordListActionCreator(List<string>(nextSearchedWordList)));
     // search key is not empty ===================================
   }
 }

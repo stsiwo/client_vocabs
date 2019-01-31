@@ -3,7 +3,9 @@ import { AnyAction, Dispatch } from 'redux';
 import Root from './Root';
 import initialStateFetchMainThunk from '../thunk/mains/initialStateFetch';
 import { IState } from '../state/type';
-import { toJS } from '../containers/toJS';
+import withJSProps from '../Hoc/withJSProps';
+import { IWord } from '../domains/word';
+import { Map } from 'immutable';
 
 /***********************************************************
  * MSTP: must return original state ( not copy ) 
@@ -20,5 +22,11 @@ const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   initialWordsFetch: () => { dispatch<any>( initialStateFetchMainThunk() )},
 });
 
-export default connect( mapStateToProps, mapDispatchToProps )( toJS(Root) );
+interface Props {
+  isInitialWordsFetching: boolean;
+  words: IWord[];
+  initialWordsFetch: () => void;
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( withJSProps<{ isInitialWordsFetching: boolean; words: Map<string, IWord>; }, Props>(Root) );
 

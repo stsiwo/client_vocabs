@@ -4,9 +4,10 @@ import DefineWarningModal from '../representationals/business/DefineWarningModal
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import { toggleDefineWarningModalActionCreator } from '../actions/index';
+import { Record } from 'immutable';
 
-const mapStateToProps = (state: IState, ownProps: {}) => ({
-  isDefineWarningModalOpen: state.ui.isDefineWarningModalOpen,
+const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
+  isDefineWarningModalOpen: state.get('ui').get('isDefineWarningModalOpen'),
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

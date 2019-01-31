@@ -4,14 +4,15 @@ import Word from '../representationals/business/Word/Word';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 //import { toggleSelectWarningModalActionCreator } from '../actions/index';
+import { Record } from 'immutable';
 
-const mapStateToProps = (state: IState, ownProps: {}) => {
+const mapStateToProps = (state: Record<IState>, ownProps: {}) => {
 
   return {
-    isSelectWarningModalOpen: state.ui.isSelectWarningModalOpen,
-    isDeleteConfirmModalOpen: state.ui.isDeleteConfirmModalOpen,
-    isSortFilterModalOpen: state.ui.isSortFilterModalOpen,
-    isSearchWordModalOpen: state.ui.isSearchWordModalOpen,
+    isSelectWarningModalOpen: state.get('ui').get('isSelectWarningModalOpen'),
+    isDeleteConfirmModalOpen: state.get('ui').get('isDeleteConfirmModalOpen'),
+    isSortFilterModalOpen: state.get('ui').get('isSortFilterModalOpen'),
+    isSearchWordModalOpen: state.get('ui').get('isSearchWordModalOpen'),
   }
 };
 

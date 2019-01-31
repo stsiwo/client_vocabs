@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import PosSelectCont from '../../../containers/Form/PosSelectCont';
-import DefTextCont from '../../../containers/Form/DefTextCont';
-import DefImageFileCont from '../../../containers/Form/DefImageFileCont';
+import PosSelect from './PosSelect';
+import DefText from './DefText';
+import DefImageFile from './DefImageFile';
 import BottomModal from '../../base/Modal/BottomModal';
 import SearchImageModalContentCont from '../../../containers/SearchImageModalContentCont';
 import { IDef } from '../../../domains/def';
@@ -39,7 +39,7 @@ class DefContent extends React.Component<Props, State> {
     return (
       <ul className={ this.props.className }>
         <li>
-          <PosSelectCont 
+          <PosSelect 
             pos={ this.props.def.pos } 
             formik={ this.props.formik } 
             wordIndex={ this.props.wordIndex }
@@ -47,7 +47,7 @@ class DefContent extends React.Component<Props, State> {
           /> 
         </li>
         <li>
-          <DefTextCont 
+          <DefText 
             defText={ this.props.def.def } 
             formik={ this.props.formik }
             wordIndex={ this.props.wordIndex }
@@ -55,7 +55,7 @@ class DefContent extends React.Component<Props, State> {
           />
         </li>
         <li>
-          <DefImageFileCont 
+          <DefImageFile 
             image={ this.props.def.image } 
             handleSearchImageToggleClick={ this.handleSearchImageToggleClick } 
             formik={ this.props.formik }

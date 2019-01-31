@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { StateType } from '../state/type';
 import { initialState } from '../state/index';
 import { IAction } from '../actions/index';
-import { List, Record, Set } from 'immutable';
+import { List, Record, Set, fromJS } from 'immutable';
 
 
 export namespace CaseReducer {
@@ -22,8 +22,12 @@ export namespace CaseReducer {
    * entities.words CaseReducer
    *********************************************/
   export const bulkUpdateWordCaseReducer: CaseReducerType<StateType.IEntityWord, IAction.IBulkUpdateWordAction> = (words, action) => {
+    /*******************************************
+     * use withMutations for bulk update or set since it is really performant; immutabljs does create a copy every time which is time and memory consuming rather than it just create temporary copy and udpate or set multiple entries at once.
+     *******************************************/
+    // convert plain js words object to immutable map (defs is converted list)
     return words.withMutations(( words ) => {
-      action.words.forEach(( word ) => words.set( word.id, word ));
+      action.words.forEach(( word ) => words.set( word.id, fromJS( word )));
     })
   }
 

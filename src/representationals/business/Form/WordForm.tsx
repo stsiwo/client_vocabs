@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import WordNameTextCont from '../../../containers/Word/WordNameTextCont';
-import DefTreeCont from '../../../containers/Def/DefTreeCont';
+import WordNameText from './WordNameText';
+import DefTree from './DefTree';
 import { IWord } from '../../../domains/word';
 import { CustomFormikProps } from '../../../Hoc/withForm';
 
@@ -20,8 +20,8 @@ class WordForm extends React.Component<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-        <WordNameTextCont wordId={ this.props.word.id } name={ this.props.word.name } formik={ this.props.formik } wordIndex={ this.props.wordIndex }/>
-        <DefTreeCont defs={ this.props.word.defs } formik={ this.props.formik } wordIndex={ this.props.wordIndex }></DefTreeCont>
+        <WordNameText wordId={ this.props.word.id } name={ this.props.word.name } formik={ this.props.formik } wordIndex={ this.props.wordIndex }/>
+        <DefTree defs={ this.props.word.defs } formik={ this.props.formik } wordIndex={ this.props.wordIndex }></DefTree>
       </div>
     );
   }

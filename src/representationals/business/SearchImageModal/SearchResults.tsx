@@ -9,7 +9,6 @@ interface ImageIF {
 interface Props {
   className?: string;
   items: ImageIF[]; 
-  updateDefImageClick: ( id: string, nextImage: string ) => void;
   defId: string;
 }
 
@@ -23,7 +22,7 @@ class SearchResults extends React.Component<Props, {} > {
 
   handleDefImageClick(e: React.MouseEvent<HTMLElement>) {
     // need to get value of src of img tag and convert to string
-    this.props.updateDefImageClick(this.props.defId, "image test");
+    //this.props.updateDefImageClick(this.props.defId, "image test");
   }
 
   renderImageElement() {

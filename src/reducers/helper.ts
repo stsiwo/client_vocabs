@@ -1,6 +1,7 @@
 import { StateType } from '../state/type';
 import { IWordListItem, IWordNameList } from '../domains/word';
 import { IDef } from '../domains/def';
+import { IWord } from '../domains/word';
 import { List, Record } from 'immutable';
 /**
  * get IWordListItem[] of current State
@@ -22,6 +23,15 @@ export const getWordListItem = (displayedWordList: StateType.IDisplayedWordList,
   isChecked: selectedWordList.includes(wordId),
 }));
 
+/**
+ * get selected word list ( contains full definition ) 
+ *
+ * @param {StateType.ISelectedWordList} selectedWordList - sorted word list state
+ * @param {StateType.IEntity} entities - entities state 
+ * @return {List<IWord>} immutable List containing full word 
+ **/
+
+export const getSelectedWordList = (selectedWordList: StateType.ISelectedWordList, entities: Record<StateType.IEntity>): List<IWord> => selectedWordList.map(( wordId: string ) => entities.getIn([ 'words', wordId ]));
 
 /**
  * get word list with its name for sorting purpose

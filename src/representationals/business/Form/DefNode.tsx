@@ -12,7 +12,6 @@ interface Props {
   className?: string;
   def: IDef;
   isOpen: boolean;
-  removeDefClick: ( wordId: string, defIds: string[] ) => void;
   formik: CustomFormikProps;
   wordIndex: number;
   defIndex: number;
@@ -39,7 +38,7 @@ export class DefNode extends React.Component<Props, State> {
 
   handleDeleteDefClick(e: React.MouseEvent<HTMLElement>) {
     // dispatch removeDefAction
-    this.props.removeDefClick(this.props.def._wordId, [ this.props.def.id ]);
+    //this.props.removeDefClick(this.props.def._wordId, [ this.props.def.id ]);
   }
 
   render() {

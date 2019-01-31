@@ -1,17 +1,16 @@
-import { connect } from 'react-redux' 
-import { AnyAction, Dispatch } from 'redux';
-import WordNameText from '../../representationals/business/Form/WordNameText';
-import { IState } from '../../state/type';
-import { updateWordNameActionCreator } from '../../actions/index';
+//import { connect } from 'react-redux' 
+//import { AnyAction, Dispatch } from 'redux';
+//import WordNameText from '../../representationals/business/Form/WordNameText';
+//import { IState } from '../../state/type';
+//import { updateWordNameActionCreator } from '../../actions/index';
 
-const mapStateToProps = (state: IState, ownProps: {}) => ({
-});
+//const mapStateToProps = (state: IState, ownProps: {}) => ({
+//});
 
-const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  changeWordNameText: ( wordId: string, nextWordName: string) => { dispatch( updateWordNameActionCreator( wordId, nextWordName ))}, 
-});
+//const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
+//});
 
-export default connect( mapStateToProps, mapDispatchToProps )( WordNameText );
+//export default connect( mapStateToProps, mapDispatchToProps )( WordNameText );
 
 
 

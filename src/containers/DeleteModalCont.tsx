@@ -5,9 +5,10 @@ import { toggleDeleteConfirmModalActionCreator } from '../actions/index';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import removeWordWrapperThunk from '../thunk/removeWord';
+import { Record } from 'immutable';
 
-const mapStateToProps = (state: IState, ownProps: {}) => ({
-  isDeleteConfirmModalOpen: state.ui.isDeleteConfirmModalOpen,
+const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
+  isDeleteConfirmModalOpen: state.get('ui').get('isDeleteConfirmModalOpen'),
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
