@@ -4,7 +4,7 @@ import * as sliceReducer from './sliceReducer';
 import { Record } from 'immutable';
 
 /**********************************************
- * DON'T USE combineReducers
+ * DON'T USE combineReducers when using immutablejs
  **********************************************/
 
 /**

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { isImmutable } from 'immutable';
 
 /**
@@ -11,16 +11,17 @@ import { isImmutable } from 'immutable';
  * @type {J} props to be ended up (plain js object or array)
  **/
 const withJSProps = <I extends object, J extends object>( WrappedComponent: React.ComponentType<J> ) => {
-  class WithJSProps extends React.Component<I, {}> {
+  class WithJSProps extends React.PureComponent<I, {}> {
     
     constructor(props: I) {
       super(props);
       this.changeImmutableToPlainJS = this.changeImmutableToPlainJS.bind(this);
     }
 
-    changeImmutableToPlainJS(props: I) {
+    changeImmutableToPlainJS() {
       const KEY = 0;
       const VALUE = 1;
+      const props: I = this.props;
       return Object.entries(props).reduce(
         (newProps, prop) => {
           newProps[prop[KEY]] = isImmutable(
@@ -36,7 +37,7 @@ const withJSProps = <I extends object, J extends object>( WrappedComponent: Reac
 
     render() {
       return (
-        <WrappedComponent { ...this.changeImmutableToPlainJS(this.props) } /> 
+        <WrappedComponent { ...this.changeImmutableToPlainJS() } /> 
       );
     }
   }

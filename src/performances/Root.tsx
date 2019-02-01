@@ -76,11 +76,11 @@ class Root extends React.PureComponent<Props, {}> {
   }
 
   render() {
-    if (this.props.isInitialWordsFetching) return <div>loading</div>;
+    if (this.props.words && this.props.isInitialWordsFetching) return <div>loading</div>;
 
     return (
       <div>
-        { this.renderWords() } 
+        { this.props.words && this.renderWords() } 
       </div>
     );
   }

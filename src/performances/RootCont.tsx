@@ -5,16 +5,17 @@ import initialStateFetchMainThunk from '../thunk/mains/initialStateFetch';
 import { IState } from '../state/type';
 import withJSProps from '../Hoc/withJSProps';
 import { IWord } from '../domains/word';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 
 /***********************************************************
  * MSTP: must return original state ( not copy ) 
  *  - otherwise unnecessary re-render (calling render()) even if the state hasn't change at all
  ***********************************************************/
 const mapStateToProps = (state: IState, ownProps: {}) => {
+  console.log(state.entities.get('words')) 
   return {
     isInitialWordsFetching: state.asyncs.get('isInitialWordsFetching'),
-    words: state.entities.get('words'), 
+    words: state.entities.get('words').toList(), 
   }
 };
 
@@ -28,5 +29,11 @@ interface Props {
   initialWordsFetch: () => void;
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )( withJSProps<{ isInitialWordsFetching: boolean; words: Map<string, IWord>; }, Props>(Root) );
+interface ImmProps {
+  isInitialWordsFetching: boolean;
+  words: List<IWord>;
+  initialWordsFetch: () => void;
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( withJSProps<ImmProps, Props>(Root) );
 

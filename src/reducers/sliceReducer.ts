@@ -6,7 +6,7 @@ import { Record } from 'immutable';
 //import { combineReducers } from 'redux-immutable';
 
 /**********************************************
- * DON'T USE combineReducers
+ * DON'T USE combineReducers when using immutablejs
  **********************************************/
 
 // higher order reducer to make customized slice reducer 
