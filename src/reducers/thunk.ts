@@ -8,7 +8,7 @@ import { PosEnum } from '../../src/domains/pos';
 import { getWordListItem } from './helper';
 import * as fuzzysort from 'fuzzysort';
 import { getWordNameList, filter } from './helper';
-import { List } from 'immutable';
+import { OrderedSet } from 'immutable';
 //const flatten = require('lodash/flatten');
 //: ThunkAction<void, IState, undefined, AnyAction> 
 // apply immutablejs for sorting
@@ -18,7 +18,7 @@ export const changeSortWrapperThunk: changeSortWrapperThunkType = ( newSort ) =>
   // get sortedWordList and denormalized to sort
   const { sortedWordList, entities } = getState();
   // get list with its word name to sort
-  const wordList: List<IWordNameList> = getWordNameList(sortedWordList, entities); 
+  const wordList: OrderedSet<IWordNameList> = getWordNameList(sortedWordList, entities); 
   // sort with handler
   wordList.sort( sortHandlers[newSort] ); 
   // extract only id 
@@ -81,7 +81,7 @@ export const changeFilterWrapperThunk: changeFilterWrapperThunkType = ( newFilte
   const { displayedWordList, entities } = getState();
 
   // filter words with newFilter so it only contains words whose def's pos match with newFilter 
-  const filteredWordList: List<string> = filter(displayedWordList, entities, newFilter); 
+  const filteredWordList: OrderedSet<string> = filter(displayedWordList, entities, newFilter); 
 
   dispatch(changeFilterActionCreator(newFilter, filteredWordList));
   dispatch(changeDisplayedWordListActionCreator(filteredWordList));
@@ -118,7 +118,7 @@ export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkTyp
     const nextSearchedWordList = fuzzyResult.map(( result ) => result.obj.id );
     // dispatch follows:
     dispatch(changeSearchKeyWordActionCreator(nextSearchKey, nextSearchedWordList));
-    dispatch(changeDisplayedWordListActionCreator(List<string>(nextSearchedWordList)));
+    dispatch(changeDisplayedWordListActionCreator(OrderedSet<string>(nextSearchedWordList)));
     // search key is not empty ===================================
   }
 }

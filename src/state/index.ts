@@ -1,6 +1,6 @@
 import { IWord } from '../domains/word';
 import { IState, StateType } from './type';
-import { Record, Map, List, Set } from 'immutable';
+import { Record, Map, OrderedSet, Set } from 'immutable';
 
 /**
  * normalized empty initial state
@@ -11,10 +11,10 @@ export const initialState: IState = {
     words: Map<string, IWord>(), 
   })(),
   currentSort: 1, 
-  sortedWordList: List<string>(),
-  searchedWordList: List<string>(),
-  selectedWordList: List<string>(),
-  displayedWordList: List<string>(), 
+  sortedWordList: OrderedSet<string>(),
+  searchedWordList: OrderedSet<string>(),
+  selectedWordList: OrderedSet<string>(),
+  displayedWordList: OrderedSet<string>(), 
   searchKeyWord: '',
   currentFilter: Set<number>([0,1,2,3,4,5,6,7,8,9]),
   wordFormError: false,

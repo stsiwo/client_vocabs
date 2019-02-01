@@ -2,7 +2,7 @@ import { SORT_ORDER } from '../enums';
 import { IWord } from '../domains/word';
 import { PosEnum } from '../domains/pos';
 // immutablejs
-import { Map, List, Record, Set } from 'immutable';
+import { Map, OrderedSet, Record, Set } from 'immutable';
 
 export namespace StateType {
 
@@ -29,16 +29,16 @@ export namespace StateType {
   export type ICurrentSort = SORT_ORDER; 
 
   // sortedWordList 
-  export type ISortedWordList = List<string>; 
+  export type ISortedWordList = OrderedSet<string>; 
 
   // searchedWordList 
-  export type ISearchedWordList = List<string>; 
+  export type ISearchedWordList = OrderedSet<string>; 
 
   // displayedWordList 
-  export type IDisplayedWordList = List<string>; 
+  export type IDisplayedWordList = OrderedSet<string>; 
 
   // selectedWordList 
-  export type ISelectedWordList = List<string>; 
+  export type ISelectedWordList = OrderedSet<string>; 
 
   // currentFilter
   export type ICurrentFilter = Set<PosEnum>;

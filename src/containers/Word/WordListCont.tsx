@@ -6,7 +6,7 @@ import { getWordListItem } from '../../reducers/helper';
 import withJSProps from '../../Hoc/withJSProps';
 import { Record } from 'immutable';
 import { IWordListItem } from '../../domains/word';
-import { List } from 'immutable';
+import { OrderedSet } from 'immutable';
 import initialStateFetchMainThunk from '../../thunk/mains/initialStateFetch';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => {
@@ -36,7 +36,7 @@ interface Props {
 
 interface ImmProps {
   className?: string;
-  wordListItem: List<IWordListItem>;
+  wordListItem: OrderedSet<IWordListItem>;
   initialWordsFetch: () => void;
   isInitialWordsFetching: boolean;
 }

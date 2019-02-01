@@ -2,7 +2,7 @@ import { StateType } from '../state/type';
 import { IWordListItem, IWordNameList } from '../domains/word';
 import { IDef } from '../domains/def';
 import { IWord } from '../domains/word';
-import { List, Record } from 'immutable';
+import { OrderedSet, Record } from 'immutable';
 /**
  * get IWordListItem[] of current State
  *  - create word list item for /word page to display only word name
@@ -17,7 +17,7 @@ import { List, Record } from 'immutable';
  *  Record (Immutablejs) can be supposed to use dot to refer to its property but produce above error. I have no idea.
  *  so should use like immutable way to access property (like get() or getIn())
  **************************************************************************/
-export const getWordListItem = (displayedWordList: StateType.IDisplayedWordList, selectedWordList: StateType.ISelectedWordList, entities: Record<StateType.IEntity>): List<IWordListItem> => {
+export const getWordListItem = (displayedWordList: StateType.IDisplayedWordList, selectedWordList: StateType.ISelectedWordList, entities: Record<StateType.IEntity>): OrderedSet<IWordListItem> => {
   return displayedWordList.map(( wordId: string ) => {
     return {
       id: wordId,
@@ -34,7 +34,7 @@ export const getWordListItem = (displayedWordList: StateType.IDisplayedWordList,
  * @return {List<IWord>} immutable List containing full word 
  **/
 
-export const getSelectedWordList = (selectedWordList: StateType.ISelectedWordList, entities: Record<StateType.IEntity>): List<IWord> => selectedWordList.map(( wordId: string ) => entities.getIn([ 'words', wordId ]));
+export const getSelectedWordList = (selectedWordList: StateType.ISelectedWordList, entities: Record<StateType.IEntity>): OrderedSet<IWord> => selectedWordList.map(( wordId: string ) => entities.getIn([ 'words', wordId ]));
 
 /**
  * get word list with its name for sorting purpose
@@ -43,7 +43,7 @@ export const getSelectedWordList = (selectedWordList: StateType.ISelectedWordLis
  * @param {StateType.IEntity} entities - entities state 
  * @return {List<IWordNameList>} immutable List with type IWordNameList
  **/
-export const getWordNameList = ( sortedWordList: StateType.ISortedWordList, entities: Record<StateType.IEntity> ): List<IWordNameList> => sortedWordList.map(( wordId: string ) => ({
+export const getWordNameList = ( sortedWordList: StateType.ISortedWordList, entities: Record<StateType.IEntity> ): OrderedSet<IWordNameList> => sortedWordList.map(( wordId: string ) => ({
   id: wordId,
   name: entities.get('words').getIn([ wordId, 'name' ]),
 }));
@@ -56,4 +56,4 @@ export const getWordNameList = ( sortedWordList: StateType.ISortedWordList, enti
  * @param {number[]} newFilter - new filter to compare 
  * @return {List<IWordDefsList>} immutable List with type IWordDefsList
  **/
-export const filter = ( displayedWordList: StateType.IDisplayedWordList, entities: Record<StateType.IEntity>, newFilter: number[] ): List<string> => displayedWordList.filter(( wordId: string ) => entities.get('words').getIn([ wordId, 'defs' ]).find(( def: IDef ) => newFilter.includes(def.pos)) !== undefined )  
+export const filter = ( displayedWordList: StateType.IDisplayedWordList, entities: Record<StateType.IEntity>, newFilter: number[] ): OrderedSet<string> => displayedWordList.filter(( wordId: string ) => entities.get('words').getIn([ wordId, 'defs' ]).find(( def: IDef ) => newFilter.includes(def.pos)) !== undefined )  

@@ -2,7 +2,6 @@ import { StateType } from '../state/type';
 import { IWord } from '../domains/word';
 import { ActionType } from './type';
 import { Action, AnyAction } from 'redux';
-import { List } from 'immutable';
 
 /****************************************************
  * Action type interface
@@ -65,7 +64,7 @@ export namespace IAction {
   }
 
   export interface ISelectAllSelectedWordListAction extends Action<string> {
-    nextSelectedWordList: List<string>;
+    nextSelectedWordList: StateType.ISelectedWordList; 
   }
 
   export type IEmptySelectedWordListAction = Action<string>; 
@@ -114,7 +113,7 @@ type IToggleWordFormErrorActionCreator = (wordFormError: boolean) =>  IAction.IT
 
 type IToggleSelectedWordListActionCreator = (wordId: string) =>  IAction.IToggleSelectedWordListAction;
 
-type ISelectAllSelectedWordListActionCreator = (nextSelectedWordList: List<string>) =>  IAction.ISelectAllSelectedWordListAction;
+type ISelectAllSelectedWordListActionCreator = (nextSelectedWordList: StateType.ISelectedWordList) =>  IAction.ISelectAllSelectedWordListAction;
 
 type IEmptySelectedWordListActionCreator = () =>  IAction.IEmptySelectedWordListAction;
 

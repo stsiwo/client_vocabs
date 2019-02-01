@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { StateType } from '../state/type';
 import { initialState } from '../state/index';
 import { IAction } from '../actions/index';
-import { List, Record, Set, fromJS } from 'immutable';
+import { OrderedSet, Record, Set, fromJS } from 'immutable';
 
 
 export namespace CaseReducer {
@@ -65,11 +65,8 @@ export namespace CaseReducer {
    *********************************************/
   // add word id to selectedWordList
   export const toggleSelectedWordListCaseReducer: CaseReducerType<StateType.ISelectedWordList, IAction.IToggleSelectedWordListAction | IAction.IRemoveWordAction> = (selectedWordList, action) => {
-    const targetIndex = selectedWordList.indexOf(action.wordId);
     // if action.selectedWordId exist in state, remove otherwise add it
-    // delete method takes O(N) so don't want to use that. is there any way to do this? 
-    // - is it possible to use map for this case, so easily identify element
-    return targetIndex > 0 ? selectedWordList.delete(targetIndex) : selectedWordList.push(action.wordId); 
+    return selectedWordList.includes(action.wordId) ? selectedWordList.delete(action.wordId) : selectedWordList.add(action.wordId); 
   };
   // empty selectedWordList (SelectAll controller item)
   export const emptySelectedWordListCaseReducer: CaseReducerType<StateType.ISelectedWordList, IAction.IEmptySelectedWordListAction> = (selectedWordList, action) => initialState.selectedWordList;
@@ -86,11 +83,8 @@ export namespace CaseReducer {
    *********************************************/
   export const toggleSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList, IAction.IRemoveWordAction> = (sortedWordList, action) => {
 
-    // if action.sortedWordList exist in state, remove otherwise add it
-    const targetIndex = sortedWordList.indexOf(action.wordId);
-    // delete method takes O(N) so don't want to use that. is there any way to do this? 
-    // - is it possible to use map for this case, so easily identify element
-    return targetIndex > 0 ? sortedWordList.delete(targetIndex) : sortedWordList.push(action.wordId); 
+    // if action.selectedWordId exist in state, remove otherwise add it
+    return sortedWordList.includes(action.wordId) ? sortedWordList.delete(action.wordId) : sortedWordList.add(action.wordId); 
   };
   
   // update ( replace ) the entire sortedWordList
@@ -103,14 +97,19 @@ export namespace CaseReducer {
    *********************************************/
   // add word id to selectedWordList
   export const toggleDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IRemoveWordAction> = (displayedWordList, action) => {
-    // if action.sortedWordList exist in state, remove otherwise add it
-    const targetIndex = displayedWordList.indexOf(action.wordId);
-    // delete method takes O(N) so don't want to use that. is there any way to do this? 
-    // - is it possible to use map for this case, so easily identify element
-    return targetIndex > 0 ? displayedWordList.delete(targetIndex) : displayedWordList.push(action.wordId); 
+    // if action.selectedWordId exist in state, remove otherwise add it
+    return displayedWordList.includes(action.wordId) ? displayedWordList.delete(action.wordId) : displayedWordList.add(action.wordId); 
   };
   // change DisplayedWordList to displayedWordList or searchedWordList (nextDisplayedWordList)
   export const changeDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IChangeDisplayedWordListAction> = (displayedWordList, action) => action.nextDisplayedWordList;
+
+  /**
+   * copy word id to displayedWordList if the id does not exits
+   **/
+  export const addDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IBulkUpdateWordAction> = (displayedWordList, action) => {
+    return displayedWordList.union(action.words.map(( word ) => word.id));
+  }
+ 
 
   export const resetDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IResetStateAction> = (displayedWordList, action) => initialState.displayedWordList; 
 
@@ -124,7 +123,7 @@ export const resetWordFormErrorCaseReducer: CaseReducerType<StateType.IWordFormE
   /*********************************************
    * searchedWordList CaseReducer
    *********************************************/
-export const changeSearchedWordListCaseReducer: CaseReducerType<StateType.ISearchedWordList, IAction.IChangeSearchKeyWordAction> = (searchedWordList, action) => List<string>(action.nextSearchedWordList);
+export const changeSearchedWordListCaseReducer: CaseReducerType<StateType.ISearchedWordList, IAction.IChangeSearchKeyWordAction> = (searchedWordList, action) => OrderedSet<string>(action.nextSearchedWordList);
 
 export const resetSearchedWordListCaseReducer: CaseReducerType<StateType.ISearchedWordList, IAction.IResetStateAction> = (searchedWordList, action) => initialState.searchedWordList; 
 
