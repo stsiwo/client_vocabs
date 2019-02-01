@@ -19,10 +19,7 @@ describe('WordListCont', function() {
   });
 
   it('should include IWordListItem[] and isInitialWordsFetching props ( MSTP function )', function() {
-    /**
-     * sortedWordList: [0,1,2,3,4,5,6,7,8,9,10],
-     * selectedWordList: [0,1,2,3],
-     **/
+
     const ContextHOC = ProviderAndThemeWrapperHOC(WordListCont, store);
     const wrapper = mount(
       <ContextHOC />

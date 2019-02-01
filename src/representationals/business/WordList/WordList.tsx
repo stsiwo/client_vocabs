@@ -53,6 +53,11 @@ const StyledWordList = styled(WordList)`
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 0;
+    // this is to center each word item and spread around both edge
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
       position: fixed;
@@ -65,7 +70,6 @@ const StyledWordList = styled(WordList)`
       box-sizing: border-box;
     }
   }
-
 `;
 
 

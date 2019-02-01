@@ -1,5 +1,9 @@
 import { ErrorType } from './error';
 
+/**
+ * maybe abstract async fetch request so it can be used every different context
+ *  - SHOULD ABSTRACT THIS ASYNC FETCH REQUEST 
+ **/
 const initialWordFetchAsync =  () => {
 
   return fetch('../../dist/smallInitialState.json')
