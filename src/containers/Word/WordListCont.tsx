@@ -7,6 +7,7 @@ import withJSProps from '../../Hoc/withJSProps';
 import { Record } from 'immutable';
 import { IWordListItem } from '../../domains/word';
 import { List } from 'immutable';
+import initialStateFetchMainThunk from '../../thunk/mains/initialStateFetch';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => {
   // get state (displayedWordList and selectedWordList)
@@ -18,20 +19,29 @@ const mapStateToProps = (state: Record<IState>, ownProps: {}) => {
   // send that IWordListItem[] as props
   return {
     wordListItem: wordListItem,
+    isInitialWordsFetching: state.get('asyncs').get('isInitialWordsFetching'),
   }
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  // N/A
-  // word item click dispatch is defined in WordListItemCont for make Component simple (esp, reduce # of props)
+  initialWordsFetch: () => { dispatch<any>( initialStateFetchMainThunk() )},
 });
 
 interface Props {
   className?: string;
   wordListItem: IWordListItem[];
+  initialWordsFetch: () => void;
+  isInitialWordsFetching: boolean;
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )( withJSProps<{ wordListItem: List<IWordListItem>; }, Props>( WordList ));
+interface ImmProps {
+  className?: string;
+  wordListItem: List<IWordListItem>;
+  initialWordsFetch: () => void;
+  isInitialWordsFetching: boolean;
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( withJSProps<ImmProps, Props>( WordList ));
 
 
 

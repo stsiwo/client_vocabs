@@ -17,12 +17,15 @@ import { List, Record } from 'immutable';
  *  Record (Immutablejs) can be supposed to use dot to refer to its property but produce above error. I have no idea.
  *  so should use like immutable way to access property (like get() or getIn())
  **************************************************************************/
-export const getWordListItem = (displayedWordList: StateType.IDisplayedWordList, selectedWordList: StateType.ISelectedWordList, entities: Record<StateType.IEntity>): List<IWordListItem> => displayedWordList.map(( wordId: string ) => ({
-  id: wordId,
-  name: entities.get('words').getIn([ wordId, 'name' ]),
-  isChecked: selectedWordList.includes(wordId),
-}));
-
+export const getWordListItem = (displayedWordList: StateType.IDisplayedWordList, selectedWordList: StateType.ISelectedWordList, entities: Record<StateType.IEntity>): List<IWordListItem> => {
+  return displayedWordList.map(( wordId: string ) => {
+    return {
+      id: wordId,
+      name: entities.get('words').getIn([ wordId, 'name' ]),
+      isChecked: selectedWordList.includes(wordId),
+    }
+  });
+}
 /**
  * get selected word list ( contains full definition ) 
  *

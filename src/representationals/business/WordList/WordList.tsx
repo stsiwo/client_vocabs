@@ -8,6 +8,8 @@ import { IWordListItem } from '../../../domains/word';
 interface Props {
   className?: string;
   wordListItem: IWordListItem[];
+  initialWordsFetch: () => void;
+  isInitialWordsFetching: boolean;
 }
 
 export class WordList extends React.Component<Props, {}> {
@@ -26,7 +28,12 @@ export class WordList extends React.Component<Props, {}> {
     );
   }
 
+  componentDidMount() {
+    this.props.initialWordsFetch();
+  }
+
   render() {
+    if ( this.props.isInitialWordsFetching ) return <div>Loading your words...</div>
     return (
       <div className={ this.props.className }>
         <ul>
