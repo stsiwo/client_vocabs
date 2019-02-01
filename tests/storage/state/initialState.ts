@@ -1,7 +1,7 @@
 import { IWord } from '../../../src/domains/word';
 import { IState, StateType } from '../../../src/state/type';
 import { PosEnum } from '../../../src/domains/pos';
-import { Record, List, fromJS, Set } from 'immutable';
+import { Record, OrderedSet, fromJS, Set } from 'immutable';
 
 export const initialWordList: IWord[] = [
   {
@@ -207,10 +207,10 @@ export const initialState: IState = {
     words: fromJS(initialWordList), 
   })(),
   currentSort: 1, 
-  sortedWordList: List<string>(),
-  searchedWordList: List<string>(),
-  selectedWordList: List<string>(["0","1","2","3","4"]),
-  displayedWordList: List<string>(["0","1","2","3","4","5","6","7","8","9","10"]), 
+  sortedWordList: OrderedSet<string>(),
+  searchedWordList: OrderedSet<string>(),
+  selectedWordList: OrderedSet<string>(["0","1","2","3","4"]),
+  displayedWordList: OrderedSet<string>(["0","1","2","3","4","5","6","7","8","9","10"]), 
   searchKeyWord: '',
   currentFilter: Set<number>([0,1,2,3,4,5,6,7,8,9]),
   wordFormError: false,

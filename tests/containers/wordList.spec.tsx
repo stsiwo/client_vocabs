@@ -2,7 +2,7 @@ import * as React from 'react';
 import { mount/*, shallow */ } from 'enzyme';
 import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC';
 import WordListCont from '../../src/containers/Word/WordListCont';
-import { wordListItemModel } from '../storage/containers/wordListCont';
+import { wordItemListOutputDataJS } from '../storage/domains/word';
 import configureMockStore from 'redux-mock-store';
 import { MockStoreEnhanced } from 'redux-mock-store';
 import { initialStateRecordFactory } from '../storage/state/initialState';
@@ -28,7 +28,7 @@ describe('WordListCont', function() {
       <ContextHOC />
     );
     // model date: storage/containers/wordListCont.ts
-    expect(wrapper.find("WordList").prop('wordListItem')).toEqual(wordListItemModel); 
+    expect(wrapper.find("WordList").prop('wordListItem')).toEqual(wordItemListOutputDataJS); 
   })
 
   // this mdtp is defined in "WordListItemCont" not "WordListCont" container component

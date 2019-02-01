@@ -92,6 +92,7 @@ export namespace ActionHandler {
    ****************************************/
   export const displayedWordListHandler: HandlerType<StateType.IDisplayedWordList> = {
     [ActionType.CHANGE_DISPLAYED_WORD_LIST]: CaseReducer.changeDisplayedWordListCaseReducer, // ok
+    [ActionType.BULK_UPDATE_WORD]: CaseReducer.addDisplayedWordListCaseReducer, // ok
     [ActionType.REMOVE_WORD]: CaseReducer.toggleDisplayedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetDisplayedWordListCaseReducer, // ok
   }
