@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { IState } from '../../state/type';
 import { withRouter } from 'react-router-dom';
 import { toggleWordFormErrorActionCreator } from '../../actions/index';
-import { Record, List } from 'immutable';
+import { Record, OrderedSet } from 'immutable';
 import withJSProps from '../../Hoc/withJSProps';
 import { getSelectedWordList } from '../../reducers/helper';
 import { IWord } from '../../domains/word';
@@ -33,11 +33,18 @@ interface Props extends RouteComponentProps<{}> {
   wordFormErrorCheck: (isError: boolean) => void;
 }
 
+interface ImmProps extends RouteComponentProps<{}> {
+  className?: string;
+  words: OrderedSet<IWord>; 
+  isDefineWarningModalOpen: boolean;
+  wordFormErrorCheck: (isError: boolean) => void;
+}
+
 export default compose(
   withRouter,
   connect( mapStateToProps, mapDispatchToProps )
 )
-( withJSProps<{ words: List<IWord>, isDefineWarningModalOpen: boolean }, Props>( WordDetail ));
+( withJSProps<ImmProps, Props>( WordDetail ));
 
 
 

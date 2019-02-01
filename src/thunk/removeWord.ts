@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { IState } from "../state/type"; 
 import { ThunkAction } from 'redux-thunk';
-import { removeWordActionCreator } from '../actions/index';
+import { removeWordActionCreator, toggleDeleteConfirmModalActionCreator } from '../actions/index';
 
 /**
  * this thunk for removing words and those corresponding defs (multiple words) 
@@ -15,6 +15,9 @@ const removeWordWrapperThunk: removeWordWrapperThunkType = (  ) => ( dispatch, g
   const { selectedWordList } = getState();
   // dispatch removeWordActionCreator for each in selectedWordList
   selectedWordList.forEach(( deleteWordId ) => dispatch(removeWordActionCreator(deleteWordId)));
+
+  // close delete modal 
+  dispatch(toggleDeleteConfirmModalActionCreator(false));
 }
 export default removeWordWrapperThunk;
 

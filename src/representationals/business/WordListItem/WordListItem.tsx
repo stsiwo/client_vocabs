@@ -10,10 +10,17 @@ interface Props {
   toggleSelectWordChange: toggleSelectWordDispatchType; 
 }
 
-class WordListItem extends React.PureComponent<Props, {}> {
+class WordListItem extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onCheckChange = this.onCheckChange.bind(this);
+  }
+
+  // since every item a user toggle word item, this component re-render (call render())
+  // even if using purecomponent and immutablejs; this is because wordlist is changed every time
+
+  shouldComponentUpdate(nProps: Props, nState: Props): boolean {
+    return ( nProps.word.isChecked !== this.props.word.isChecked ) 
   }
 
   onCheckChange(e: React.ChangeEvent<HTMLInputElement>) {

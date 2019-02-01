@@ -19,7 +19,7 @@ class ConfirmButton extends React.PureComponent<Props, {}> {
 
   render() {
     return (
-      <Button id="confirm" onClick={ this.handleClick }>Reset</Button>
+      <Button id="confirm" onClick={ this.handleClick }>Confirm</Button>
     );
   }
 }
