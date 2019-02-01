@@ -10,7 +10,7 @@ interface Props {
   toggleSelectWarningModalClick: toggleSelectWarningModalClickType; 
 }
 
-class SelectModal extends React.Component<Props, {}> {
+class SelectModal extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

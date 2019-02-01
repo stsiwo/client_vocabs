@@ -17,7 +17,7 @@ interface Props {
   changeSort: changeSortDispatchType; 
 }
 
-class Sort extends React.Component<Props, {}> {
+class Sort extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);

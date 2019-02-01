@@ -16,7 +16,7 @@ interface Props {
 }
 
 
-class File extends React.Component<Props, {}> {
+class File extends React.PureComponent<Props, {}> {
 
   private preview = React.createRef<HTMLImageElement>();
 

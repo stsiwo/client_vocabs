@@ -17,7 +17,7 @@ interface Props {
   value?: string;
 }
 
-class Search extends React.Component<Props, {}> {
+class Search extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

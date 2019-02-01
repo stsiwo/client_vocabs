@@ -5,7 +5,7 @@ interface Props {
   className?: string;
 }
 
-class Dictionary extends React.Component<Props, {}> {
+class Dictionary extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

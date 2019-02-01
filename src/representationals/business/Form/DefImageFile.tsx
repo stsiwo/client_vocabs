@@ -12,7 +12,7 @@ interface Props {
   defIndex: number;
 }
 
-class DefImageFile extends React.Component<Props, {}> {
+class DefImageFile extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleDefImageFileChange = this.handleDefImageFileChange.bind(this);

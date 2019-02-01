@@ -9,7 +9,7 @@ interface Props extends RouteComponentProps {
   backWordClick: () => void;
 }
 
-class BackControllerItem extends React.Component<Props, {}> {
+class BackControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onBackClick = this.onBackClick.bind(this);

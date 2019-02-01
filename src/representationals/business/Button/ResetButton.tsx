@@ -8,7 +8,7 @@ interface Props {
   resetSortFilterClick: resetSortFilterDispatchType; 
 }
 
-class ResetButton extends React.Component<Props, {}> {
+class ResetButton extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

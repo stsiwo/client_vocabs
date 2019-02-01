@@ -11,7 +11,7 @@ interface Props {
 }
 
 
-export class SearchWordControllerItem extends React.Component<Props, {}> {
+export class SearchWordControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onSearchClick = this.onSearchClick.bind(this);

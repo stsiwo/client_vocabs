@@ -12,7 +12,7 @@ interface Props {
   defId: string;
 }
 
-class SearchResults extends React.Component<Props, {} > {
+class SearchResults extends React.PureComponent<Props, {} > {
   constructor(props: Props) {
     super(props);
     //this.handleClick = this.handleClick.bind(this);

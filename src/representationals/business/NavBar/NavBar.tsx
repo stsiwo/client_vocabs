@@ -13,7 +13,7 @@ interface Props {
   wordFormError: boolean;
 }
 
-class NavBar extends React.Component<Props, {}> {
+class NavBar extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleLink = this.handleLink.bind(this);

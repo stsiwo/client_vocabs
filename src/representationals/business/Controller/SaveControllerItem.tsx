@@ -9,7 +9,7 @@ interface Props {
   formValues: FormValues;
 }
 
-class SaveControllerItem extends React.Component<Props, {}> {
+class SaveControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onSaveClick = this.onSaveClick.bind(this);

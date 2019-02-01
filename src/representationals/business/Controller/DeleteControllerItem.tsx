@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-export class DeleteControllerItem extends React.Component<Props, {}> {
+export class DeleteControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onDeleteClick = this.onDeleteClick.bind(this);

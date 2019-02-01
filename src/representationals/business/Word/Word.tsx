@@ -19,7 +19,7 @@ interface Props {
 }
 
 
-class Word extends React.Component<Props, {}> {
+class Word extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

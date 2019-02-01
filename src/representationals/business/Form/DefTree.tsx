@@ -19,7 +19,7 @@ interface State {
   isDefNodeOpen: boolean;
 }
 
-export class DefTree extends React.Component<Props, State> {
+export class DefTree extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

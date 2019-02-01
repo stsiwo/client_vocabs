@@ -5,7 +5,7 @@ interface Props {
   className?: string;
 }
 
-class Home extends React.Component<Props, {}> {
+class Home extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

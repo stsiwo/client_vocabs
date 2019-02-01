@@ -12,7 +12,7 @@ interface Props {
   deleteConfirmClick: () => void;
 }
 
-class DeleteModal extends React.Component<Props, {}> {
+class DeleteModal extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

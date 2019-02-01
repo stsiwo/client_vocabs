@@ -11,7 +11,7 @@ interface Props {
 }
 
 // when Search Icon in Controoler clicked, toggle this Component with animation from bottom to above controller
-class SearchWordModal extends React.Component<Props, {}> {
+class SearchWordModal extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.stopBubblingUpCloseEvent = this.stopBubblingUpCloseEvent.bind(this);

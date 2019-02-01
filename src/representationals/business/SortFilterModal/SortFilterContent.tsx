@@ -10,7 +10,7 @@ interface Props {
   onFilterContChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; 
 }
 
-class SortFilterCont extends React.Component<Props, {}> {
+class SortFilterCont extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     //this.handleClick = this.handleClick.bind(this);

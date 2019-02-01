@@ -7,7 +7,7 @@ interface Props {
   onConfirm: () => void;
 }
 
-class ConfirmButton extends React.Component<Props, {}> {
+class ConfirmButton extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

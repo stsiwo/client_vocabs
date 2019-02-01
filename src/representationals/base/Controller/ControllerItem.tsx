@@ -9,7 +9,7 @@ interface Props {
   svgSrc: string;
 }
 
-export class ControllerItem extends React.Component<Props, {}> {
+export class ControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

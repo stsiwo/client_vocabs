@@ -12,7 +12,7 @@ interface Props {
   wordIndex: number;
 }
 
-class WordForm extends React.Component<Props, {}> {
+class WordForm extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

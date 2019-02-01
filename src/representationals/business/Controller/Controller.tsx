@@ -13,7 +13,7 @@ interface Props {
 }
 
 
-class MobileController extends React.Component<Props, {}> {
+class MobileController extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

@@ -12,7 +12,7 @@ interface Props {
   formik: CustomFormikProps;
 }
 
-class DefText extends React.Component<Props, {}> {
+class DefText extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleDefTextChange = this.handleDefTextChange.bind(this);

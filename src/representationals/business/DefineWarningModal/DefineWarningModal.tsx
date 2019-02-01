@@ -10,7 +10,7 @@ interface Props {
   toggleDefineWarningModalClick: toggleClickType; 
 }
 
-class DefineWarningModal extends React.Component<Props, {}> {
+class DefineWarningModal extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

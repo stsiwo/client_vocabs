@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-class SelectAllControllerItem extends React.Component<Props, {}> {
+class SelectAllControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onSelectAllClick = this.onSelectAllClick.bind(this);

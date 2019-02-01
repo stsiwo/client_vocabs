@@ -12,7 +12,7 @@ interface Props extends RouteComponentProps<{}> {
 }
 
 
-class NewControllerItem extends React.Component<Props, {}> {
+class NewControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onNewClick = this.onNewClick.bind(this);

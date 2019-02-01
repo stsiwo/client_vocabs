@@ -12,7 +12,7 @@ interface Props {
   isInitialWordsFetching: boolean;
 }
 
-export class WordList extends React.Component<Props, {}> {
+export class WordList extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.renderWordItem = this.renderWordItem.bind(this);

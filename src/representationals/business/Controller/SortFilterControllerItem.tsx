@@ -15,7 +15,7 @@ interface Props /*extends RouteComponentProps<{}>*/ {
 }
 
 
-export class SortFilterControllerItem extends React.Component<Props, {}> {
+export class SortFilterControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onSortFilterClick = this.onSortFilterClick.bind(this);

@@ -15,7 +15,7 @@ interface Props {
   formik: CustomFormikProps;
 }
 
-class WordNameText extends React.Component<Props, {}> {
+class WordNameText extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleWordNameChange = this.handleWordNameChange.bind(this);

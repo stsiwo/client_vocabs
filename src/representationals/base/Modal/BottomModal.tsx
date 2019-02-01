@@ -9,7 +9,7 @@ interface Props {
   handleSearchImageToggleClick: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-class BottomModal extends React.Component<Props, {}> {
+class BottomModal extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

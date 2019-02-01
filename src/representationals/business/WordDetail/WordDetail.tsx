@@ -22,7 +22,7 @@ interface Props extends RouteComponentProps<{}> {
  * display selected word items' details 
  * - selected items are defined in redux store's currentSelectedWords 
  **/
-class WordDetail extends React.Component<InjectedFormikProps<Props, FormValues>, {}> {
+class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValues>, {}> {
   constructor(props: InjectedFormikProps<Props, FormValues>) {
     super(props);
     this.renderSelectedWords = this.renderSelectedWords.bind(this);

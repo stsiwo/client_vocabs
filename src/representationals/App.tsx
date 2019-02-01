@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-class App extends React.Component<Props, {}> {
+class App extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-class Content extends React.Component<Props, {}> {
+class Content extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

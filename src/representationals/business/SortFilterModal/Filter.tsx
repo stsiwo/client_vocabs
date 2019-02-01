@@ -11,7 +11,7 @@ interface Props {
   changeFilter: changeFilterDispatchType; 
 }
 
-class Filter extends React.Component<Props, {}> {
+class Filter extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);

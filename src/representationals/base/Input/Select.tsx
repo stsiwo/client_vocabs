@@ -17,7 +17,7 @@ interface State {
   pos: PosEnum;
 }
 
-class Select extends React.Component<Props, State> {
+class Select extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.renderOptions = this.renderOptions.bind(this);

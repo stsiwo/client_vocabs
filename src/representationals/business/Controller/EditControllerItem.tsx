@@ -11,7 +11,7 @@ interface Props extends RouteComponentProps<{}> {
   editWordClick: () => void;
 }
 
-class EditControllerItem extends React.Component<Props, {}> {
+class EditControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onEditClick = this.onEditClick.bind(this);

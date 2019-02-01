@@ -12,7 +12,7 @@ interface State {
    isNavBarOpen: boolean;
 }
 
-class Header extends React.Component<Props, State> {
+class Header extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

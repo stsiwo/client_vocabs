@@ -12,7 +12,7 @@ interface Props {
   value: string;
 }
 
-class Text extends React.Component<Props, {}> {
+class Text extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);

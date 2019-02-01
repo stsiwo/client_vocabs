@@ -11,7 +11,7 @@ interface Props {
   value?: any;
 }
 
-class CheckBox extends React.Component<Props, {}> {
+class CheckBox extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);

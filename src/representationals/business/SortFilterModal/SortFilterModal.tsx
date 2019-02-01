@@ -12,7 +12,7 @@ interface Props {
   toggleSortFilterModalClick: toggleClickType;
 }
 
-class SortFilterModal extends React.Component<Props, {}> {
+class SortFilterModal extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

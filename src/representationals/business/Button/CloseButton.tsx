@@ -11,7 +11,7 @@ interface Props {
 /**
  * not implement container component for this because each modal has different ui state so can't identify which one is clicked. instead use prop to send close click event 
  **/
-class CloseButton extends React.Component<Props, {}> {
+class CloseButton extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

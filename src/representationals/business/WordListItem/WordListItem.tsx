@@ -10,7 +10,7 @@ interface Props {
   toggleSelectWordChange: toggleSelectWordDispatchType; 
 }
 
-class WordListItem extends React.Component<Props, {}> {
+class WordListItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onCheckChange = this.onCheckChange.bind(this);
@@ -32,7 +32,6 @@ class WordListItem extends React.Component<Props, {}> {
 const StyledWordListItem = styled(WordListItem)`
   display: inline-block;
 `;
-
 
 export default StyledWordListItem;
 

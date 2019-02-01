@@ -14,7 +14,7 @@ interface Props extends RouteComponentProps<{}> {
 }
 
 
-class MobileWordController extends React.Component<Props, {}> {
+class MobileWordController extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

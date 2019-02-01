@@ -13,7 +13,7 @@ interface Props {
   value?: any;
 }
 
-class Input extends React.Component<Props, {}> {
+class Input extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);

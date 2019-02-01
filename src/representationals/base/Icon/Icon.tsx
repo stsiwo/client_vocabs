@@ -42,7 +42,7 @@ interface Props {
 }
   
 
-class WrapperIcon extends React.Component<Props, {}> {
+class WrapperIcon extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

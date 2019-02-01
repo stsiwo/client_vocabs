@@ -20,7 +20,7 @@ interface State {
 }
 
   // test : tests/ui/searchImageModalContent.spec.tsx
-class SearchImageModalContent extends React.Component<Props, State> {
+class SearchImageModalContent extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

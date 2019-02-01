@@ -1,6 +1,7 @@
 import { IWordListItem } from '../../../src/domains/word';
 import { List } from 'immutable';
 
+
 // this data is based on storage/state/initialState.ts
 export const wordItemListOutputDataImm = List<IWordListItem>([
   {

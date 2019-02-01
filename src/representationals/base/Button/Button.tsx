@@ -9,7 +9,7 @@ interface Props {
   id: string;
 }
 
-class Button extends React.Component<Props, {}> {
+class Button extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

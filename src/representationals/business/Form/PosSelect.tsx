@@ -13,7 +13,7 @@ interface Props {
   defIndex: number;
 }
 
-class PosSelect extends React.Component<Props, {}> {
+class PosSelect extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handlePosChange = this.handlePosChange.bind(this);

@@ -16,7 +16,7 @@
 //}
 
 
-//class Controller extends React.Component<Props, {}> {
+//class Controller extends React.PureComponent<Props, {}> {
   //constructor(props: Props) {
     //super(props);
     //this.onNewClick = this.onNewClick.bind(this);
