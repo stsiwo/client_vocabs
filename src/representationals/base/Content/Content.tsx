@@ -4,8 +4,10 @@ import { Route } from 'react-router-dom';
 import Home from '../../business/Home/Home';
 import WordCont from '../../../containers/WordCont';
 import Dictionary from '../../business/Dictionary/Dictionary';
+import { withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 
-interface Props {
+interface Props extends RouteComponentProps { 
   className?: string;
 }
 
@@ -31,7 +33,7 @@ const StyledContent = styled(Content)`
 `;
 
 
-export default StyledContent;
+export default withRouter(StyledContent);
 
 
 

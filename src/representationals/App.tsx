@@ -2,8 +2,10 @@ import * as React from 'react';
 import styled from './story/styledComponents';
 import Header from './base/Header/Header';
 import Content from './base/Content/Content';
+import { withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 
-interface Props {
+interface Props extends RouteComponentProps {
   className?: string;
 }
 
@@ -26,5 +28,5 @@ const StyledApp = styled(App)`
 `;
 
 
-export default StyledApp;
+export default withRouter(StyledApp);
 
