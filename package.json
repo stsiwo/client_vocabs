@@ -51,6 +51,7 @@
     "redux-immutable": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "styled-components": "^4.1.2",
     "uuid": "^3.3.2",
     "with-immutable-props-to-js": "^1.1.0",
