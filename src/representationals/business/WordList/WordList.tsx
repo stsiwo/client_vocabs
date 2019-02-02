@@ -29,6 +29,10 @@ export class WordList extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
+    /***********************************
+     * need to fix this, this initial fetch is called every time this component is mounted even if entitis has already those initial words
+     *  - solution1 is to use another state as flag like "isinitialFetchDone" to make sure initialFetch has done.
+     ***********************************/
     this.props.initialWordsFetch();
   }
 
