@@ -3,11 +3,10 @@ import styled from '../../story/styledComponents';
 import WordListItemCont from '../../../containers/Word/WordListItemCont';
 import MobileWordController from '../Controller/MobileWordController';
 import MediaQuery from 'react-responsive'
-import { IWordListItem } from '../../../domains/word';
 
 interface Props {
   className?: string;
-  wordListItem: IWordListItem[];
+  displayedWordList: string[];
   initialWordsFetch: () => void;
   isInitialWordsFetching: boolean;
 }
@@ -20,9 +19,9 @@ export class WordList extends React.PureComponent<Props, {}> {
 
   renderWordItem() {
     return (
-      this.props.wordListItem.map(( word: IWordListItem ) => { 
+      this.props.displayedWordList.map(( wordId: string ) => { 
         return (
-          <WordListItemCont key={ word.id } word={ word } />
+          <WordListItemCont key={ wordId } wordId={ wordId } />
         );
       })
     );

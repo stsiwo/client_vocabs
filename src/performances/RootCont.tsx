@@ -4,7 +4,7 @@ import Root from './Root';
 import initialStateFetchMainThunk from '../thunk/mains/initialStateFetch';
 import { IState } from '../state/type';
 import withJSProps from '../Hoc/withJSProps';
-import { IWord } from '../domains/word';
+import { IWord, IWordImm } from '../domains/word';
 import { List } from 'immutable';
 
 /***********************************************************
@@ -31,7 +31,7 @@ interface Props {
 
 interface ImmProps {
   isInitialWordsFetching: boolean;
-  words: List<IWord>;
+  words: List<IWordImm>;
   initialWordsFetch: () => void;
 }
 

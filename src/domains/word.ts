@@ -1,4 +1,5 @@
 import { IDef } from './def';
+import { Map } from 'immutable';
 
 export interface IWord {
   id: string;
@@ -7,6 +8,7 @@ export interface IWord {
   createDate: string;
 }
 
+export type IWordImm = Map<string, any>;
 
 /**
  * IWordListItem

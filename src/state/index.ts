@@ -1,4 +1,4 @@
-import { IWord } from '../domains/word';
+import { IWordImm } from '../domains/word';
 import { IState, StateType } from './type';
 import { Record, Map, OrderedSet, Set } from 'immutable';
 
@@ -8,7 +8,7 @@ import { Record, Map, OrderedSet, Set } from 'immutable';
  **/
 export const initialState: IState = {
   entities: Record<StateType.IEntity>({
-    words: Map<string, IWord>(), 
+    words: Map<string, IWordImm>(), 
   })(),
   currentSort: 1, 
   sortedWordList: OrderedSet<string>(),

@@ -1,12 +1,12 @@
 import { SORT_ORDER } from '../enums';
-import { IWord } from '../domains/word';
+import { IWordImm } from '../domains/word';
 import { PosEnum } from '../domains/pos';
 // immutablejs
 import { Map, OrderedSet, Record, Set } from 'immutable';
 
 export namespace StateType {
 
-  export type IEntityWord = Map<string, IWord>;
+  export type IEntityWord = Map<string, IWordImm>;
 
   // entities
   export interface IEntity {

@@ -1,7 +1,7 @@
-import { IWord } from '../../../src/domains/word';
+import { IWord, IWordImm } from '../../../src/domains/word';
 import { IState, StateType } from '../../../src/state/type';
 import { PosEnum } from '../../../src/domains/pos';
-import { Record, OrderedSet, fromJS, Set } from 'immutable';
+import { Record, OrderedSet, Map, fromJS, Set } from 'immutable';
 
 export const initialWordList: IWord[] = [
   {
@@ -202,9 +202,18 @@ export const initialWordList: IWord[] = [
   },
 ];
 
+export const initialWordListImm = fromJS(initialWordList);
+
+const initialEntityWord: StateType.IEntityWord = Map<string, IWordImm>();
+
+const initialEntityWordWithData = initialEntityWord.withMutations(( mutable ) => initialWordList.forEach(( word: IWord ) => {
+  mutable.set( word.id, fromJS( word ))
+})); 
+
+
 export const initialState: IState = {
   entities: Record<StateType.IEntity>({
-    words: fromJS(initialWordList), 
+    words: initialEntityWordWithData, 
   })(),
   currentSort: 1, 
   sortedWordList: OrderedSet<string>(),
