@@ -14,16 +14,13 @@ const initialStateFetchMainThunk: MainThunkType = ( ...args ) => async ( dispatc
     // start fetch request
     dispatch(startInitialWordsFetchRequestActionCreator());
     // fetch initial state (words) from remote and wait until it's completed
-    console.log("start asyncs (fetch");
     const initialStateData = await initialWordFetchAsync();
 
     // if successed and received, 
 
     // then call bulk word update action with those normalized data to assign those to entities (words and defs) in redux state
-    console.log("start dispatch add new Word action");
     dispatch<any>(bulkUpdateWordActionCreator(initialStateData));
     // finish fetch request
-    console.log("start dispatch finish request");
     dispatch(finishInitialWordsFetchRequestActionCreator());
 
   } catch ( reason ) {
