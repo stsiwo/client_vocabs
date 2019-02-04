@@ -34,16 +34,12 @@ describe('delete word', function() {
   // this mdtp is defined in "WordListItemCont" not "WordCont" container component
   it('should open select word modal since on item is selected and do nothing about remvoing', async function() {
 
-    //  use initial state data
-    
+    // mount component
     const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
     const wrapper = mount(
       <ContextHOC />
     );
-    /***************************************************************************************
-     * I still don't know how to handle async esp fetch in tesing with enzyme
-     * for now, skip this test
-     ***************************************************************************************/
+    // wait for async function complete
     await sleep(1000);
 
     // need to udpate wrapper: DON'T FORGET THIS!!!
@@ -63,11 +59,66 @@ describe('delete word', function() {
 
   })
 
-  it('should open select warning modal when no item is checked', function() {
-    
+  it('should remove selected word item', async function() {
+
+    // mount component
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+    // wait for async function complete
+    await sleep(1000);
+
+    // need to udpate wrapper: DON'T FORGET THIS!!!
+    wrapper.update(); 
+
+    // select word item (id=3,4,5)
+    wrapper.find("CheckBoxSelector").find('input[value="3"]').simulate('change');
+    wrapper.find("CheckBoxSelector").find('input[value="4"]').simulate('change');
+    wrapper.find("CheckBoxSelector").find('input[value="5"]').simulate('change');
+
+    // simulate delete controller item click
+    wrapper.find(DeleteControllerItem).find("ControllerItemSelector").simulate('click');
+
+    // expect select word modal is opened
+    expect(store.getState().get('ui').get('isDeleteConfirmModalOpen')).toEqual(true);
+
+    // simulate close button click in the modal
+    wrapper.find("DeleteModalSelector").find("ConfirmButtonSelector").simulate('click');
+
+    // expect sortedWordList does not have values in selectedWordList 
+    expect(wrapper.find("CheckBoxSelector").find('input[value="3"]').exists()).toEqual(false); 
+    expect(wrapper.find("CheckBoxSelector").find('input[value="4"]').exists()).toEqual(false); 
+    expect(wrapper.find("CheckBoxSelector").find('input[value="5"]').exists()).toEqual(false); 
   })
   
-  it('should cancel removing when delete confim modals cancel button is clicked', function() {
+  it('should cancel removing when delete confim modals cancel button is clicked', async function() {
+
+    // mount component
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+    // wait for async function complete
+    await sleep(1000);
+
+    // need to udpate wrapper: DON'T FORGET THIS!!!
+    wrapper.update(); 
+
+    // select word item (id=3)
+    wrapper.find("CheckBoxSelector").find('input[value="3"]').simulate('change');
+
+    // simulate delete controller item click
+    wrapper.find(DeleteControllerItem).find("ControllerItemSelector").simulate('click');
+
+    // expect select word modal is opened
+    expect(store.getState().get('ui').get('isDeleteConfirmModalOpen')).toEqual(true);
+
+    // simulate close button click in the modal
+    wrapper.find("DeleteModalSelector").find("CloseButtonSelector").simulate('click');
+
+    // expect nothing has changed 
+    expect(store.getState().getIn([ 'entities', 'words' ]).size).toEqual(Object.keys(testInitialStateJson).length); 
     
   })
 })

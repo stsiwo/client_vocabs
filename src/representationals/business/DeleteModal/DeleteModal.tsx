@@ -35,6 +35,7 @@ class DeleteModal extends React.PureComponent<Props, {}> {
 
 const StyledDeleteModal = styled(DeleteModal)`
 `;
+StyledDeleteModal.displayName = "DeleteModalSelector";
 
 
 export default StyledDeleteModal;

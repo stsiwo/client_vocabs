@@ -59,5 +59,6 @@ const StyledCheckBox = styled(CheckBox)`
     cursor: pointer;
   }
 `;
+StyledCheckBox.displayName = "CheckBoxSelector";
 
 export default StyledCheckBox;
