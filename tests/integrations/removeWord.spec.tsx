@@ -4,7 +4,26 @@ import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC
 import WordCont from '../../src/containers/WordCont';
 import { DeleteControllerItem } from '../../src/representationals/business/Controller/DeleteControllerItem';
 import store from '../../src/storeConfig';
+const testInitialStateJson = require('../../dist/testInitialState');
+/**
+ * since initialState is so big, use test data for integration test not real onw
+ **/
 jest.mock('../../src/thunk/asyncs/initialWordFetch');
+/**
+ * test data is from dist/testInitialState; NOT FROM storage/state/initialState!!!!!
+ **/
+
+/**
+ * this is for async function for fetch initial words to fill the entities state
+ * i've tried "setTimeout" way to wait async but all test was passed even though they shouldn't have so it did not work for me
+ * so use this way:
+ *  1. make test case async 
+ *  2. use await for completion of initial fetch async function
+ *  3. update wrapper 
+ *  4. do whatever to make sure your result
+ **/
+const sleep = (ms: number = 0) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
 describe('delete word', function() {
   //let store: MockStoreEnhanced;
@@ -13,7 +32,7 @@ describe('delete word', function() {
   });
 
   // this mdtp is defined in "WordListItemCont" not "WordCont" container component
-  it('should delete a word and its corresponding def (selectedWordList is not empty', function() {
+  it('should open select word modal since on item is selected and do nothing about remvoing', async function() {
 
     //  use initial state data
     
@@ -25,21 +44,23 @@ describe('delete word', function() {
      * I still don't know how to handle async esp fetch in tesing with enzyme
      * for now, skip this test
      ***************************************************************************************/
-      console.log(wrapper.debug());
-      
-      // simulate delete controller item click
-      wrapper.find(DeleteControllerItem).find("ControllerItemSelector").simulate('click');
+    await sleep(1000);
 
-      // check DeleteConfirm modal is opened
-      expect(store.getState().get('ui').get('isDeleteConfirmModalOpen')).toEqual(true);
+    // need to udpate wrapper: DON'T FORGET THIS!!!
+    wrapper.update(); 
 
-      // simulate confirm click
-      wrapper.find("ConfirmButtonSelector").simulate('click');
+    // simulate delete controller item click
+    wrapper.find(DeleteControllerItem).find("ControllerItemSelector").simulate('click');
 
-      // expect sortedWordList does not have values in selectedWordList 
-      expect(store.getState().get('displayedWordList')).not.toEqual(expect.arrayContaining(["0","1","2","3"])); 
-    
-    
+    // expect select word modal is opened
+    expect(store.getState().get('ui').get('isSelectWarningModalOpen')).toEqual(true);
+
+    // simulate close button click in the modal
+    wrapper.find("SelectModalSelector").find("CloseButtonSelector").simulate('click');
+
+    // expect sortedWordList does not have values in selectedWordList 
+    expect(store.getState().getIn([ 'entities', 'words' ]).size).toEqual(Object.keys(testInitialStateJson).length); 
+
   })
 
   it('should open select warning modal when no item is checked', function() {

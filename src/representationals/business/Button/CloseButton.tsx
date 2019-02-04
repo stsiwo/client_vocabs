@@ -30,6 +30,7 @@ class CloseButton extends React.PureComponent<Props, {}> {
 
 const StyledCloseButton = styled(CloseButton)`
 `;
+StyledCloseButton.displayName = "CloseButtonSelector";
 
 
 export default StyledCloseButton;

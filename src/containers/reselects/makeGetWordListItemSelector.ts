@@ -11,7 +11,6 @@ const makeGetWordListItemSelector = () => {
   return createSelector(
     [ getWordInputSelector, isWordIdContainInsideSelectedWordListInputSelector ],
     ( word: IWordImm, isWordIdContainInsideSelectedWordList: boolean ) => {
-      console.log('makeGetWordListItemSelector is called');
       return {
         id: word.get('id'),
         name: word.get('name'), 

@@ -1,4 +1,4 @@
-const testDataJson = require('../../../../dist/smallInitialState.json');
+const testDataJson = require('../../../../dist/testInitialState.json');
 
 export default function initialWordFetchAsync() {
   return new Promise((resolve, reject) => {

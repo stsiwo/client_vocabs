@@ -32,6 +32,7 @@ class SelectModal extends React.PureComponent<Props, {}> {
 
 const StyledSelectModal = styled(SelectModal)`
 `;
+StyledSelectModal.displayName = "SelectModalSelector";
 
 
 export default StyledSelectModal;

@@ -202,6 +202,8 @@ export const initialWordList: IWord[] = [
   },
 ];
 
+export const initialWordListJson = JSON.stringify(initialWordList);
+
 export const initialWordListImm = fromJS(initialWordList);
 
 const initialEntityWord: StateType.IEntityWord = Map<string, IWordImm>();
