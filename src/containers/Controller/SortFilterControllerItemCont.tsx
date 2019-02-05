@@ -2,8 +2,7 @@ import { connect } from 'react-redux'
 import { AnyAction, Dispatch/*, compose*/ } from 'redux';
 import SortFilterControllerItem from '../../representationals/business/Controller/SortFilterControllerItem';
 import { IState } from '../../state/type';
-import { toggleSortFilterModalActionCreator } from '../../actions/index';
-import openModalWrapperThunk from '../../thunk/openModal';
+import sortFilterControllerClickThunk from '../../thunk/sortFilterControllerClick';
 import { Record } from 'immutable';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
@@ -11,7 +10,7 @@ const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  toggleSortFilterModalClick: ( isOpen: boolean ) => { dispatch<any>( openModalWrapperThunk( toggleSortFilterModalActionCreator ))}, 
+  toggleSortFilterModalClick: ( isOpen: boolean ) => { dispatch<any>( sortFilterControllerClickThunk( true ))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( SortFilterControllerItem );

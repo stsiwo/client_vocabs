@@ -21,7 +21,7 @@ jest.mock('../../src/thunk/asyncs/initialWordFetch');
  *  - without the second arguments, NEVER route correctlly!!!!!
  *
  *  but, the new problem is how to make router works when using it outside Router (like inside action creator, or thunk
- *    - when checking in browser, it works, but when using enzyme, does update ( re-render ) component so I can't make sure this integration testing
+ *    - when checking in browser, it works, but when using enzyme, does not update ( re-render ) component so I can't make sure this integration testing
  **********************************************************************************/
 describe('edit controller item click', function() {
   //let store: MockStoreEnhanced;

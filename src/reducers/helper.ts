@@ -46,6 +46,7 @@ export const getSelectedWordList = (selectedWordList: StateType.ISelectedWordLis
 export const getWordNameList = ( sortedWordList: StateType.ISortedWordList, entities: Record<StateType.IEntity> ): OrderedSet<IWordNameList> => sortedWordList.map(( wordId: string ) => ({
   id: wordId,
   name: entities.get('words').getIn([ wordId, 'name' ]),
+  createDate: entities.get('words').getIn([ wordId, 'createDate' ]),
 }));
 
 /**

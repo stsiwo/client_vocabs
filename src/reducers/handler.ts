@@ -73,6 +73,7 @@ export namespace ActionHandler {
    * sortedWordList
    ****************************************/
   export const sortedWordListHandler: HandlerType<StateType.ISortedWordList> = {
+    [ActionType.BULK_UPDATE_WORD]: CaseReducer.addSortedWordListCaseReducer, // ok
     [ActionType.CHANGE_SORT]: CaseReducer.changeSortedWordListCaseReducer, // ok
     [ActionType.CHANGE_FILTER]: CaseReducer.changeSortedWordListCaseReducer, // ok
     [ActionType.REMOVE_WORD]: CaseReducer.toggleSortedWordListCaseReducer, // ok

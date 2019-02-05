@@ -3,7 +3,7 @@ import { AnyAction, Dispatch, compose } from 'redux';
 import Sort from '../representationals/business/SortFilterModal/Sort';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
-import { changeSortWrapperThunk } from '../reducers/thunk';
+import sortIconChangeThunk from '../thunk/sortIconChange';
 import { sort , ISort } from '../domains/sort';
 import { SORT_ORDER } from '../enums/index';
 
@@ -19,7 +19,7 @@ const mapStateToProps = (state: IState, ownProps: {}) => {
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   // when you send thunk function in dispach, you need "<any>"
-  changeSort: (nextSort: SORT_ORDER ) => { dispatch<any>(changeSortWrapperThunk(nextSort)) }, 
+  changeSort: (nextSort: SORT_ORDER ) => { dispatch<any>(sortIconChangeThunk(nextSort)) }, 
 });
 
 export default compose(

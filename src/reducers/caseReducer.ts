@@ -89,6 +89,12 @@ export namespace CaseReducer {
   
   // update ( replace ) the entire sortedWordList
   export const changeSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList, IAction.IChangeSortAction | IAction.IChangeFilterAction> = (sortedWordList, action) => action.currentSortedWordList;
+  /**
+   * copy word id to sortedWordList if the id does not exits
+   **/
+  export const addSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList, IAction.IBulkUpdateWordAction> = (sortedWordList, action) => {
+    return sortedWordList.union(action.words.map(( word ) => word.id));
+  }
 
   export const resetSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList, IAction.IResetStateAction> = (sortedWordList, action) => initialState.sortedWordList; 
 

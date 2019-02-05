@@ -28,6 +28,7 @@ export interface IWordListItem {
 export interface IWordNameList {
   id: string;
   name: string;
+  createDate: string;
 }
 
 /**
