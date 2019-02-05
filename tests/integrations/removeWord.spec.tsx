@@ -5,6 +5,7 @@ import WordCont from '../../src/containers/WordCont';
 import { DeleteControllerItem } from '../../src/representationals/business/Controller/DeleteControllerItem';
 import store from '../../src/storeConfig';
 const testInitialStateJson = require('../../dist/testInitialState');
+import sleep from '../helper/sleep';
 /**
  * since initialState is so big, use test data for integration test not real onw
  **/
@@ -22,8 +23,6 @@ jest.mock('../../src/thunk/asyncs/initialWordFetch');
  *  3. update wrapper 
  *  4. do whatever to make sure your result
  **/
-const sleep = (ms: number = 0) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
 
 describe('delete word', function() {
   //let store: MockStoreEnhanced;

@@ -9,8 +9,9 @@ import SelectModalCont from '../../../containers/SelectModalCont';
 import DeleteModalCont from '../../../containers/DeleteModalCont';
 import SortFilterModalCont from '../../../containers/SortFilterModalCont';
 import SearchWordModalCont from '../../../containers/SearchWordModalCont';
+import { RouteComponentProps } from 'react-router-dom';
 
-interface Props {
+interface Props extends RouteComponentProps {
   className?: string;
   isSelectWarningModalOpen: boolean;
   isDeleteConfirmModalOpen: boolean;
@@ -19,7 +20,7 @@ interface Props {
 }
 
 
-class Word extends React.PureComponent<Props, {}> {
+export class Word extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
@@ -51,6 +52,7 @@ class Word extends React.PureComponent<Props, {}> {
 
 const StyledWord = styled(Word)`
 `;
+StyledWord.displayName = "WordSelector";
 
 
 export default StyledWord;

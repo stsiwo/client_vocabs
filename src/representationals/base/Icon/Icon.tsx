@@ -12,6 +12,7 @@ interface IIconProps {
   width?: string, 
   height?: string, 
   rotate?: boolean
+  id?: string;
 }
 
 const Icon = styled("div")<IIconProps>`
@@ -39,6 +40,7 @@ interface Props {
   width?: string;
   height?: string;
   rotate?: boolean;
+  id?: string;
 }
   
 
@@ -54,8 +56,8 @@ class WrapperIcon extends React.PureComponent<Props, {}> {
 
   render() {
     return (
-      <div className={ this.props.className } onClick={ this.props.onClick }>
-        <Icon svgSrc={ this.props.svgSrc } unchecked={ this.props.unchecked } hoverEffect={ this.props.hoverEffect } hidden={ this.props.hidden } width={ this.props.width } height={ this.props.height } rotate={ this.props.rotate }/>
+      <div className={ this.props.className } onClick={ this.props.onClick } id={ this.props.id }>
+        <Icon svgSrc={ this.props.svgSrc } unchecked={ this.props.unchecked } hoverEffect={ this.props.hoverEffect } hidden={ this.props.hidden } width={ this.props.width } height={ this.props.height } rotate={ this.props.rotate } />
       </div>
    );
   }

@@ -21,6 +21,7 @@ class Dictionary extends React.PureComponent<Props, {}> {
 
 const StyledDictionary = styled(Dictionary)`
 `;
+StyledDictionary.displayName = "DictionarySelector";
 
 
 export default StyledDictionary;

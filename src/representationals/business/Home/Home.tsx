@@ -21,6 +21,7 @@ class Home extends React.PureComponent<Props, {}> {
 
 const StyledHome = styled(Home)`
 `;
+StyledHome.displayName = "HomeSelector";
 
 
 export default StyledHome;

@@ -86,10 +86,8 @@ const StyledNavBar = styled(NavBar)`
       margin: 0 5px;
     }
   }
-
-
-
 `;
+StyledNavBar.displayName = "NavBarSelector";
 
 
 export default StyledNavBar;
