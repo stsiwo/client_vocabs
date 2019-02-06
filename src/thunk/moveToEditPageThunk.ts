@@ -1,4 +1,5 @@
 import checkSelectedWordListThunkMiddleware from './middlewares/checkSelectedWordList';
+import checkSearchWordModalOpenThunkMiddleware from './middlewares/checkSearchWordModalOpen';
 import redirectMainThunk from './mains/redirect';
 import applyThunkMiddleware from './thunkComponent'; 
 
@@ -8,7 +9,8 @@ import applyThunkMiddleware from './thunkComponent';
 //  - 1.2 if false, redirect (/word/edit)
 // 2. main: redirect
 const moveToEditPageThunk = applyThunkMiddleware(
-  checkSelectedWordListThunkMiddleware
+  checkSelectedWordListThunkMiddleware,
+  checkSearchWordModalOpenThunkMiddleware
 )(redirectMainThunk);
 
 export default moveToEditPageThunk;

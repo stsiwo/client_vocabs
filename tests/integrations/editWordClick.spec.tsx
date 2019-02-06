@@ -49,6 +49,8 @@ describe('edit controller item click', function() {
     wrapper.find(EditControllerItem).find("ControllerItemSelector").simulate('click', { button: 0 });
 
     expect(wrapper.find("WordDetailSelector").exists()).toEqual(true);
+
+    expect(store.getState().getIn([ 'ui', 'isSearchWordModalOpen' ])).toEqual(true);
     
   })
 
