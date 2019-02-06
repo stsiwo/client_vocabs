@@ -3,14 +3,14 @@ import { AnyAction, Dispatch, compose } from 'redux';
 import SearchWordModal from '../representationals/business/SearchWordModal/SearchWordModal';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
-import { changeSearchKeyWordWrapperThunk } from '../reducers/thunk';
+import searchKeyWordChangeThunk from '../thunk/searchKeyWordChange'; 
 
 const mapStateToProps = (state: IState, ownProps: {}) => ({
   searchKeyWord: state.searchKeyWord,
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  changeSearchKeyWord: ( nextSearchKey: string ) => { dispatch<any>( changeSearchKeyWordWrapperThunk( nextSearchKey ))}, 
+  changeSearchKeyWord: ( nextSearchKey: string ) => { dispatch<any>( searchKeyWordChangeThunk( nextSearchKey ))}, 
 });
 
 export default compose(

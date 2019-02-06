@@ -102,7 +102,7 @@ describe('search word functionality', function() {
 
   })
 
-  it('should change state when search word txt is empty', async function() {
+  it('should change state when search word modal is closed', async function() {
 
     const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
     const wrapper = mount(
@@ -115,20 +115,11 @@ describe('search word functionality', function() {
     // update 
     wrapper.update();
 
-    // test input Dummy
-    const testEmptyInputDummy = "";
 
-    // find target event handler
-    wrapper.find("SearchSelector").find("InputSelector").simulate('change', { target: { value: testEmptyInputDummy}});
-
+    // close modal 
+    wrapper.find(SearchWordControllerItem).find("ControllerItemSelector").simulate('click');
     // expect searchKeyWord state change 
-    expect(store.getState().get('searchKeyWord')).toEqual(testEmptyInputDummy);
-    // react state (searchKeyWord) change check
-    expect(wrapper.find("SearchSelector").prop("value")).toEqual(testEmptyInputDummy);
-
-    // expect displayedWordList is sortedWordList
     expect(store.getState().get('displayedWordList')).toEqual(store.getState().get('sortedWordList'));
-
     // expect WordList ( zap : initialNormalizedState ) exits 
     expect(wrapper.find('input[id="meat"]').exists()).toEqual(true);
   })

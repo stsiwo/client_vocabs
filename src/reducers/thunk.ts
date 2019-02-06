@@ -1,11 +1,11 @@
-import { AnyAction } from 'redux';
-import { IState } from "../state/type"; 
-import { changeSearchKeyWordActionCreator, changeDisplayedWordListActionCreator } from "../actions";
-import { IWordListItem } from "../domains/word";
-import { ThunkAction } from 'redux-thunk';
-import { getWordListItem } from './helper';
-import * as fuzzysort from 'fuzzysort';
-import { OrderedSet } from 'immutable';
+//import { AnyAction } from 'redux';
+//import { IState } from "../state/type"; 
+//import { changeSearchKeyWordActionCreator, changeDisplayedWordListActionCreator } from "../actions";
+//import { IWordListItem } from "../domains/word";
+//import { ThunkAction } from 'redux-thunk';
+//import { getWordListItem } from './helper';
+//import * as fuzzysort from 'fuzzysort';
+//import { OrderedSet } from 'immutable';
 //const flatten = require('lodash/flatten');
 //: ThunkAction<void, IState, undefined, AnyAction> 
 // apply immutablejs for sorting
@@ -84,40 +84,40 @@ import { OrderedSet } from 'immutable';
   //dispatch(changeDisplayedWordListActionCreator(filteredWordList));
 //}
 
-type changeSearchKeyWordWrapperThunkType = (nextSearchKey: string) => ThunkAction<void, IState, undefined, AnyAction>;
+//type changeSearchKeyWordWrapperThunkType = (nextSearchKey: string) => ThunkAction<void, IState, undefined, AnyAction>;
 
-export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkType = ( nextSearchKey ) => ( dispatch, getState ) => {
-  // should i use sync or async? (async is better?)
-  // if nextSearchKey is empty, list default words (sortedWordList)
-  if (!nextSearchKey) {
-    // search key is empty =======================================
-    const { sortedWordList } = getState();
-    // change displayedWordList to sortedWordList
-    // empty  searchedWordList when search key is empty (called inside changeSearchKeyWordActionCreator)
-    dispatch(changeSearchKeyWordActionCreator(nextSearchKey, []));
-    dispatch(changeDisplayedWordListActionCreator(sortedWordList));
-    // search key is empty =======================================
-  } else {
-    // search key is not empty ===================================
-    // get sortedWordList 
-    const { displayedWordList ,selectedWordList, entities } = getState();
-    // convert into IWordListItem 
-    const wordListItem = getWordListItem(displayedWordList, selectedWordList, entities);
+//export const changeSearchKeyWordWrapperThunk: changeSearchKeyWordWrapperThunkType = ( nextSearchKey ) => ( dispatch, getState ) => {
+  //// should i use sync or async? (async is better?)
+  //// if nextSearchKey is empty, list default words (sortedWordList)
+  //if (!nextSearchKey) {
+    //// search key is empty =======================================
+    //const { sortedWordList } = getState();
+    //// change displayedWordList to sortedWordList
+    //// empty  searchedWordList when search key is empty (called inside changeSearchKeyWordActionCreator)
+    //dispatch(changeSearchKeyWordActionCreator(nextSearchKey, []));
+    //dispatch(changeDisplayedWordListActionCreator(sortedWordList));
+    //// search key is empty =======================================
+  //} else {
+    //// search key is not empty ===================================
+    //// get sortedWordList 
+    //const { displayedWordList ,selectedWordList, entities } = getState();
+    //// convert into IWordListItem 
+    //const wordListItem = getWordListItem(displayedWordList, selectedWordList, entities);
 
-    // for now, use toArray (expensive in Immutablejs) for fuzzy string: i don't have an idea how to achieve fuzzy string search using immutablejs
-    // need to fix this one (at least don't use expensive function in immutablejs like toJS, toArray, toObject)
-    const wordListItemArray: IWordListItem[] = wordListItem.toArray();
+    //// for now, use toArray (expensive in Immutablejs) for fuzzy string: i don't have an idea how to achieve fuzzy string search using immutablejs
+    //// need to fix this one (at least don't use expensive function in immutablejs like toJS, toArray, toObject)
+    //const wordListItemArray: IWordListItem[] = wordListItem.toArray();
 
-    // fuzzy string matching using newSearchKey and sortedWordList
-    const fuzzyResult = fuzzysort.go(nextSearchKey, wordListItemArray, { key: 'name' });
+    //// fuzzy string matching using newSearchKey and sortedWordList
+    //const fuzzyResult = fuzzysort.go(nextSearchKey, wordListItemArray, { key: 'name' });
 
-    // get result ( list of matching word name ) and put them into sortedWordList 
-    const nextSearchedWordList = fuzzyResult.map(( result ) => result.obj.id );
-    // dispatch follows:
-    dispatch(changeSearchKeyWordActionCreator(nextSearchKey, nextSearchedWordList));
-    dispatch(changeDisplayedWordListActionCreator(OrderedSet<string>(nextSearchedWordList)));
-    // search key is not empty ===================================
-  }
-}
+    //// get result ( list of matching word name ) and put them into sortedWordList 
+    //const nextSearchedWordList = fuzzyResult.map(( result ) => result.obj.id );
+    //// dispatch follows:
+    //dispatch(changeSearchKeyWordActionCreator(nextSearchKey, nextSearchedWordList));
+    //dispatch(changeDisplayedWordListActionCreator(OrderedSet<string>(nextSearchedWordList)));
+    //// search key is not empty ===================================
+  //}
+//}
 
 
