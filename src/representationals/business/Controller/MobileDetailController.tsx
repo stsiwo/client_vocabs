@@ -5,10 +5,12 @@ import BackControllerItemCont from '../../../containers/Controller/BackControlle
 import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
 import NewControllerItemCont from '../../../containers/Controller/NewControllerItemCont';
 import { FormValues } from '../../../Hoc/withForm';
+import { ArrayHelpers } from 'formik';
 
 interface Props {
   className?: string;
   formValues: FormValues;
+  arrayHelpers: ArrayHelpers;
 }
 
 class MobileController extends React.PureComponent<Props, {}> {
@@ -21,7 +23,7 @@ class MobileController extends React.PureComponent<Props, {}> {
       <div className={ this.props.className }>
         <BackControllerItemCont />
         <Vl />
-        <NewControllerItemCont />
+        <NewControllerItemCont arrayHelpers={ this.props.arrayHelpers }/>
         <Vl />
         <SaveControllerItemCont formValues={ this.props.formValues } />
       </div>

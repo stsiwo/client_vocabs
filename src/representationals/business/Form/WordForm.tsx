@@ -20,7 +20,7 @@ class WordForm extends React.PureComponent<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-        <WordNameText wordId={ this.props.word.id } name={ this.props.word.name } formik={ this.props.formik } wordIndex={ this.props.wordIndex }/>
+        <WordNameText wordId={ this.props.word.id } name={ this.props.word.name } formik={ this.props.formik } wordIndex={ this.props.wordIndex } />
         <DefTree defs={ this.props.word.defs } formik={ this.props.formik } wordIndex={ this.props.wordIndex }></DefTree>
       </div>
     );
@@ -30,6 +30,7 @@ class WordForm extends React.PureComponent<Props, {}> {
 const StyledWordForm = styled(WordForm)`
   padding: 10px;
 `;
+StyledWordForm.displayName = "WordFormSelector";
 
 export default StyledWordForm;
 

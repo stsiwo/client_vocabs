@@ -7,7 +7,7 @@ import MediaQuery from 'react-responsive';
 import MobileDetailController from '../Controller/MobileDetailController';
 import DefineWarningModalCont from '../../../containers/DefineWarningModalCont';
 import withForm, { FormValues, CustomFormikProps } from '../../../Hoc/withForm';
-import { InjectedFormikProps, FormikErrors } from 'formik';
+import { FieldArray, InjectedFormikProps, FormikErrors } from 'formik';
 const isEmpty = require('lodash/isEmpty');
 
 interface Props extends RouteComponentProps<{}> {
@@ -31,22 +31,13 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
 
   // check the formik errors is exists or not, then if so, assign wordFormError to true (redux state)
   // this is for knowing formik props outside form component to open defin word warning modal
-  componentWillReceiveProps(nextProps: InjectedFormikProps<Props, FormValues>) {
-    this.checkWordFormError(nextProps.errors);
-  }
+  // this might be done different way so comment out for now
+  // #REFACTOR
+  //componentWillReceiveProps(nextProps: InjectedFormikProps<Props, FormValues>) {
+    //this.checkWordFormError(nextProps.errors);
+  //}
 
   renderSelectedWords() {
-    // send values (from formik) instaed of words ( props )
-    const { values, errors, touched, handleChange, handleBlur } = this.props; 
-    // create object which holds above props except values
-    const customFormikProps: CustomFormikProps = {
-      errors: errors,
-      touched: touched,
-      handleChange: handleChange,
-      handleBlur: handleBlur,
-    }
-    
-    return values.words.map(( word, index ) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps } /> ) 
   }
 
   checkWordFormError(errors: FormikErrors<FormValues>) {
@@ -55,15 +46,33 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
   }
 
   render() {
+    // send values (from formik) instaed of words ( props )
+    const { errors, touched, handleChange, handleBlur } = this.props; 
+    // create object which holds above props except values
+    const customFormikProps: CustomFormikProps = {
+      errors: errors,
+      touched: touched,
+      handleChange: handleChange,
+      handleBlur: handleBlur,
+    }
     return (
       <div>
         <form className={ this.props.className }>
-        { this.renderSelectedWords() }
+          <FieldArray 
+            name="words" 
+            render={( arrayHelpers ) => {
+              return (
+                <div>
+                { this.props.values.words.map((word, index) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps }/>)}
+                <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
+                  <MobileDetailController formValues={ this.props.values } arrayHelpers={ arrayHelpers }/>
+                  { this.props.isDefineWarningModalOpen && <DefineWarningModalCont /> }
+                </MediaQuery>
+                </div>
+              );
+            }}
+         />
         </form>
-        <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
-          <MobileDetailController formValues={ this.props.values }/>
-          { this.props.isDefineWarningModalOpen && <DefineWarningModalCont /> }
-        </MediaQuery>
       </div>
     );
   }

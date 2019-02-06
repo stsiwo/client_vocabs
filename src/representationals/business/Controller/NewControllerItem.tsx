@@ -3,28 +3,26 @@ import * as React from 'react';
 import ControllerItem from '../../base/Controller/ControllerItem';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router-dom';
+import { ArrayHelpers } from 'formik';
 const newIcon = require('./assets/new.svg');
+
 
 
 interface Props extends RouteComponentProps<{}> {
   className?: string;
-  newIconClick: () => void;
+  arrayHelpers: ArrayHelpers;
+  newIconClick: ( callback: (obj: any) => void ) => void;
 }
 
 
-class NewControllerItem extends React.PureComponent<Props, {}> {
+export class NewControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onNewClick = this.onNewClick.bind(this);
   }
 
   onNewClick(e: React.MouseEvent<HTMLElement>) {
-    // hard coding now, need to fix later
-    // guide users to create new word page 
-    // should url be "word/detail" or "word/new"??
-    // in large screen, when users click "new" icon, append new wordform tree in bottom
-    this.props.newIconClick();
-    this.props.history.push('/word/detail');
+    this.props.newIconClick(this.props.arrayHelpers.push);
   }
 
   render() {

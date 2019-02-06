@@ -39,6 +39,7 @@ class WordListItem extends React.PureComponent<Props, {}> {
 const StyledWordListItem = styled(WordListItem)`
   display: inline-block;
 `;
+StyledWordListItem.displayName = "WordListItemSelector";
 
 export default StyledWordListItem;
 
