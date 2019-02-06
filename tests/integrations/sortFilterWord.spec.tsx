@@ -176,7 +176,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="noun"]').prop("checked")).toEqual(false);
 
     // make sure any noun word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="noun"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="meat"]').exists()).toEqual(false);
     
   })
 
@@ -203,7 +203,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="verb"]').prop("checked")).toEqual(false);
 
     // make sure any verb word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="verb"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="voyage"]').exists()).toEqual(false);
   })
 
   it('should change state and component when click filter adjuctive uncheck', async function() {
@@ -229,7 +229,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="adjuctive"]').prop("checked")).toEqual(false);
 
     // make sure any adjuctive word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="adjuctive"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="net"]').exists()).toEqual(false);
   })
 
   it('should change state and component when click filter adverb uncheck', async function() {
@@ -255,7 +255,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="adverb"]').prop("checked")).toEqual(false);
 
     // make sure any adverb word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="adverb"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="humor"]').exists()).toEqual(false);
   })
 
   it('should change state and component when click filter preposition uncheck', async function() {
@@ -281,7 +281,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="preposition"]').prop("checked")).toEqual(false);
 
     // make sure any preposition word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="preposition"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="bridge"]').exists()).toEqual(false);
   })
 
   it('should change state and component when click filter pronoun uncheck', async function() {
@@ -307,7 +307,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="pronoun"]').prop("checked")).toEqual(false);
 
     // make sure any pronoun word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="pronoun"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="distance"]').exists()).toEqual(false);
 
   })
 
@@ -334,7 +334,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="conjunction"]').prop("checked")).toEqual(false);
 
     // make sure any conjunction word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="conjunction"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="news"]').exists()).toEqual(false);
   })
 
   it('should change state and component when click filter interjection uncheck', async function() {
@@ -360,7 +360,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="interjection"]').prop("checked")).toEqual(false);
 
     // make sure any interjection word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="interjection"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="goose"]').exists()).toEqual(false);
   })
 
   it('should change state and component when click filter idiom uncheck', async function() {
@@ -386,7 +386,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="idiom"]').prop("checked")).toEqual(false);
 
     // make sure any idiom word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="idiom"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="muscle"]').exists()).toEqual(false);
   })
 
   it('should change state and component when click filter else uncheck', async function() {
@@ -413,7 +413,7 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="other"]').prop("checked")).toEqual(false);
 
     // make sure any other word does not exist in word list 
-    expect(wrapper.find("WordListSelector").find('input[id="other"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="scarecrow"]').exists()).toEqual(false);
   })
 
   it('should change state and component when click reset button', async function() {
@@ -443,12 +443,27 @@ describe('sort filter word functionality', function() {
     wrapper.find('input[id="interjection"]').simulate('change');
     wrapper.find('input[id="idiom"]').simulate('change');
     wrapper.find('input[id="other"]').simulate('change');
+    
+    // 
+    expect(wrapper.find("WordListSelector").find('input[id="meat"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="voyage"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="net"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="humor"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="bridge"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="distance"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="news"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="goose"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="muscle"]').exists()).toEqual(false);
+    expect(wrapper.find("WordListSelector").find('input[id="scarecrow"]').exists()).toEqual(false);
 
+    // simulate reset button click
     wrapper.find('button[id="reset"]').simulate('click');
 
+    // default state
     expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,3,4,5,6,7,8,9]));
     expect(store.getState().get('currentSort')).toEqual(1);
 
+    // default 
     expect(wrapper.find('input[id="alphAsc"]').prop("checked")).toEqual(true);
     expect(wrapper.find('input[id="noun"]').prop("checked")).toEqual(true);
     expect(wrapper.find('input[id="verb"]').prop("checked")).toEqual(true);
@@ -461,6 +476,17 @@ describe('sort filter word functionality', function() {
     expect(wrapper.find('input[id="idiom"]').prop("checked")).toEqual(true);
     expect(wrapper.find('input[id="other"]').prop("checked")).toEqual(true);
 
+    // make sure any other word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="meat"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="voyage"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="net"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="humor"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="bridge"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="distance"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="news"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="goose"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="muscle"]').exists()).toEqual(true);
+    expect(wrapper.find("WordListSelector").find('input[id="scarecrow"]').exists()).toEqual(true);
   })
 
   it('should change state and component when click close button', async function() {
