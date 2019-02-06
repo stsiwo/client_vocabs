@@ -26,7 +26,6 @@ describe('add new word', function() {
     // find target event handler
     wrapper.find(NewControllerItem).find("ControllerItemSelector").simulate('click');
 
-
     // representationals: expect new form is rendered 
     expect(wrapper.find('WordFormSelector').exists()).toEqual(true);
   })

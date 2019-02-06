@@ -33,9 +33,9 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
   // this is for knowing formik props outside form component to open defin word warning modal
   // this might be done different way so comment out for now
   // #REFACTOR
-  //componentWillReceiveProps(nextProps: InjectedFormikProps<Props, FormValues>) {
-    //this.checkWordFormError(nextProps.errors);
-  //}
+  componentWillUpdate(nextProps: InjectedFormikProps<Props, FormValues>) {
+    this.checkWordFormError(nextProps.errors);
+  }
 
   renderSelectedWords() {
   }
@@ -66,13 +66,13 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
                 { this.props.values.words.map((word, index) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps }/>)}
                 <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
                   <MobileDetailController formValues={ this.props.values } arrayHelpers={ arrayHelpers }/>
-                  { this.props.isDefineWarningModalOpen && <DefineWarningModalCont /> }
                 </MediaQuery>
                 </div>
               );
             }}
          />
         </form>
+      { this.props.isDefineWarningModalOpen && <DefineWarningModalCont /> }
       </div>
     );
   }
