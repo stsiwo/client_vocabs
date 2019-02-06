@@ -1,28 +1,28 @@
 import { AnyAction } from 'redux';
 import { IState } from "../state/type"; 
-import { selectAllSelectedWordListActionCreator } from '../actions/index';
+import { selectAllSelectedWordListActionCreator, emptySelectedWordListActionCreator } from '../actions/index';
 import { ThunkAction } from 'redux-thunk';
-import searchWordControllerClickThunk from '../thunk/searchWordControllerClick';
 import { Record } from 'immutable';
 
 /**
- * this thunk for toggle select all icon clicked. close search word modal if it is opened otherwise just dispatch select all action  
- * ( often need to invoke multiple actions so make this as thunk
+ * this thunk for toggle select all icon clicked. 
+ * 
+ *   
  **/
 export type selectAllIconClickWrapperThunkType = () => ThunkAction<void, Record<IState>, undefined, AnyAction>;
 
 const selectAllIconClickWrapperThunk: selectAllIconClickWrapperThunkType = (  ) => ( dispatch, getState ) => {
-  // get sortedWordList state to assign to displayedWordList
-  const sortedWordList = getState().get('sortedWordList');
-  const isSearchWordModalOpen = getState().get("ui").get('isSearchWordModalOpen');
+  // get necessary state
+  const selectedWordList = getState().get('selectedWordList');
+  const displayedWordList = getState().get('displayedWordList');
 
-  // if isSearchWordModalOpen is true, need to close it and also change displayed wordList to sortedWordList
-  if ( isSearchWordModalOpen ) {
-    // dispatch searchWordControllerClickThunk
-    dispatch(searchWordControllerClickThunk());
-  } 
-  // dispatch selectAllWordActionCreator with sortedWordList 
-  dispatch(selectAllSelectedWordListActionCreator(sortedWordList));
+  if (selectedWordList.size === 0) {
+    // if size = 0, means first time to click select all controller
+    dispatch(selectAllSelectedWordListActionCreator(displayedWordList));
+  } else {
+    // if size != 0, means second time to click select all controller
+    dispatch(emptySelectedWordListActionCreator());
+  }
 }
 export default selectAllIconClickWrapperThunk;
 

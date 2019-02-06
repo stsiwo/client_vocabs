@@ -65,8 +65,8 @@ describe('search word functionality', function() {
     // react state (searchKeyWord) change check
     expect(wrapper.find('input[id="meat"]').prop("checked")).toEqual(true);
 
-
   })
+
   it('should change state change when search word txt change ', async function() {
 
     const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);

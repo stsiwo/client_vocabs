@@ -1,33 +1,56 @@
 import * as React from 'react';
 import { mount/*, shallow */ } from 'enzyme';
 import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC';
-import SelectAllControllerItemCont from '../../src/containers/Controller/SelectAllControllerItemCont';
-//import * as sinon from 'sinon';
-//import { SinonSpy } from 'sinon';
+import SelectAllControllerItem from '../../src/representationals/business/Controller/SelectAllControllerItem';
+import WordCont from '../../src/containers/WordCont';
 import store from '../../src/storeConfig';
-import { selectAllWordDispatchType } from '../../src/containers/type';
+import sleep from '../helper/sleep';
+/**
+ * since initialState is so big, use test data for integration test not real onw
+ **/
+jest.mock('../../src/thunk/asyncs/initialWordFetch');
+/**
+ * test data is from dist/testInitialState; NOT FROM storage/state/initialState!!!!!
+ **/
 
 describe('add new word', function() {
-  //let store: MockStoreEnhanced;
 
-  beforeEach(() => {
-  });
+  it('should open s&f word modal ', async function() {
 
-  // this mdtp is defined in "WordListItemCont" not "SelectAllControllerItemCont" container component
-  it('should add new word and its correspnding def (only one) to entities.words and entities.defs', function() {
-
-    const ContextHOC = ProviderAndThemeWrapperHOC(SelectAllControllerItemCont, store);
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
     const wrapper = mount(
       <ContextHOC />
     );
-    
-    // find target event handler
-    const toggleSelectWordChange: selectAllWordDispatchType = wrapper.find("SelectAllControllerItem").first().prop('selectAllWordClick');
-    // programmarically call dispatch wrapper function. browser testing is in end-to-end  
-    toggleSelectWordChange();
 
-    // make sure selectedWordList == sortedWordList
-    expect(store.getState().selectedWordList).toEqual(store.getState().sortedWordList);
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // click select all controller 
+    wrapper.find(SelectAllControllerItem).find("ControllerItemSelector").simulate('click');
+
+    expect(store.getState().get('selectedWordList')).toEqual(store.getState().get('displayedWordList'));
+  })
+
+  it('should open s&f word modal ', async function() {
+
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // click select all controller (second time)
+    wrapper.find(SelectAllControllerItem).find("ControllerItemSelector").simulate('click');
+
+    expect(store.getState().get('selectedWordList').size).toEqual(0);
   })
 })
 
