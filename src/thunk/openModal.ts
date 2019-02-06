@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { IState } from "../state/type"; 
 import { ThunkAction } from 'redux-thunk';
-import toggleSearchWordModalWrapperThunk from './toggleSearchWordModal';
+import searchWordControllerClickThunk from './searchWordControllerClick';
 import { Record } from 'immutable';
 
 /**
@@ -16,7 +16,7 @@ const openModalWrapperThunk: openModalWrapperThunkType = ( modalActionCreator ) 
   // if open, close SearchWordModal and open the modal that users want to open
   // dispatch another thunk below inside this thunk. is that ok?
   if ( isSearchWordModalOpen ) {
-    dispatch(toggleSearchWordModalWrapperThunk());
+    dispatch(searchWordControllerClickThunk());
   }
   // if not, just open the modal  
   if (modalActionCreator) dispatch(modalActionCreator(true));

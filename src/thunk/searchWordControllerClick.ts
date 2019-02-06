@@ -9,9 +9,9 @@ import { Record } from 'immutable';
  * this thunk for toggle SearchWordModal and also change displayed wordList to sorted wordList (not searchedWordList) 
  * ( often need to invoke multiple actions so make this as thunk
  **/
-export type toggleSearchWordModalWrapperThunkType = () => ThunkAction<void, Record<IState>, undefined, AnyAction>;
+export type searchWordControllerClickThunkType = () => ThunkAction<void, Record<IState>, undefined, AnyAction>;
 
-const toggleSearchWordModalWrapperThunk: toggleSearchWordModalWrapperThunkType = (  ) => ( dispatch, getState ) => {
+const searchWordControllerClickThunk: searchWordControllerClickThunkType = (  ) => ( dispatch, getState ) => {
   // get sortedWordList state to assign to displayedWordList
   const sortedWordList = getState().get('sortedWordList');
   const isSearchWordModalOpen = getState().get('ui').get('isSearchWordModalOpen');
@@ -24,6 +24,6 @@ const toggleSearchWordModalWrapperThunk: toggleSearchWordModalWrapperThunkType =
   // dispatch toggleSearchWordModalActionCreator with false
   dispatch(toggleSearchWordModalActionCreator(!isSearchWordModalOpen));
 }
-export default toggleSearchWordModalWrapperThunk;
+export default searchWordControllerClickThunk;
 
 

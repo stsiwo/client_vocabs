@@ -2,7 +2,7 @@ import { AnyAction } from 'redux';
 import { IState } from "../state/type"; 
 import { selectAllSelectedWordListActionCreator } from '../actions/index';
 import { ThunkAction } from 'redux-thunk';
-import toggleSearchWordModalWrapperThunk from '../thunk/toggleSearchWordModal';
+import searchWordControllerClickThunk from '../thunk/searchWordControllerClick';
 import { Record } from 'immutable';
 
 /**
@@ -18,8 +18,8 @@ const selectAllIconClickWrapperThunk: selectAllIconClickWrapperThunkType = (  ) 
 
   // if isSearchWordModalOpen is true, need to close it and also change displayed wordList to sortedWordList
   if ( isSearchWordModalOpen ) {
-    // dispatch toggleSearchWordModalWrapperThunk
-    dispatch(toggleSearchWordModalWrapperThunk());
+    // dispatch searchWordControllerClickThunk
+    dispatch(searchWordControllerClickThunk());
   } 
   // dispatch selectAllWordActionCreator with sortedWordList 
   dispatch(selectAllSelectedWordListActionCreator(sortedWordList));
