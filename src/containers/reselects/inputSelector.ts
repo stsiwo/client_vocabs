@@ -30,3 +30,12 @@ export const getSelectedWordListInputSelector = ( state: Record<IState> ) => sta
  * @return { OrderedSet<string> } selectedWordList in state
  **/
 export const isWordIdContainInsideSelectedWordListInputSelector = ( state: Record<IState>, props: { wordId: string; } ) => state.get('selectedWordList').includes( props.wordId ); 
+
+/**
+ * input selector for currentFilter 
+ *
+ * @param { Record<IState> } state - state
+ * @param { (wordId: string) } props - props 
+ * @return { OrderedSet<string> } selectedWordList in state
+ **/
+export const getCurrentFilterInputSelector = ( state: Record<IState>, props: {} ) => state.get('currentFilter');

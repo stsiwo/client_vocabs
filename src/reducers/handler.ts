@@ -36,6 +36,7 @@ export namespace ActionHandler {
   export const currentSortHandler: HandlerType<StateType.ICurrentSort> = {
     [ActionType.CHANGE_SORT]: CaseReducer.changeCurrentSortCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetCurrentSortCaseReducer,
+    [ActionType.RESET_SORT_FILTER]: CaseReducer.resetCurrentSortCaseReducer,
   }
 
   /*****************************************
@@ -44,6 +45,7 @@ export namespace ActionHandler {
   export const currentFilterHandler: HandlerType<StateType.ICurrentFilter> = {
     [ActionType.CHANGE_FILTER]: CaseReducer.changeCurrentFilterCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetCurrentFilterCaseReducer,
+    [ActionType.RESET_SORT_FILTER]: CaseReducer.resetCurrentFilterCaseReducer,
   }
 
   /*****************************************
@@ -78,6 +80,7 @@ export namespace ActionHandler {
     [ActionType.CHANGE_FILTER]: CaseReducer.changeSortedWordListCaseReducer, // ok
     [ActionType.REMOVE_WORD]: CaseReducer.toggleSortedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetSortedWordListCaseReducer,
+    [ActionType.RESET_SORT_FILTER]: CaseReducer.changeSortedWordListCaseReducer, // ok
   }
 
   /*****************************************
@@ -96,6 +99,7 @@ export namespace ActionHandler {
     [ActionType.BULK_UPDATE_WORD]: CaseReducer.addDisplayedWordListCaseReducer, // ok
     [ActionType.REMOVE_WORD]: CaseReducer.toggleDisplayedWordListCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetDisplayedWordListCaseReducer, // ok
+    [ActionType.RESET_SORT_FILTER]: CaseReducer.changeDisplayedWordListCaseReducer, // ok
   }
 
   /*****************************************

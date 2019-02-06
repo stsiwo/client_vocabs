@@ -13,6 +13,7 @@ export interface IActionType {
   // sort & filter
   CHANGE_SORT: string, // ok
   CHANGE_FILTER: string, // ok
+  RESET_SORT_FILTER: string, 
 
   // ui
   TOGGLE_SELECT_WARNING_MODAL: string; // ok
@@ -61,6 +62,7 @@ export const ActionType: IActionType = {
 
   CHANGE_SORT: "CHANGE_SORT",
   CHANGE_FILTER: "CHANGE_FILTER",
+  RESET_SORT_FILTER: "RESET_SORT_FILTER",
 
   TOGGLE_SELECT_WARNING_MODAL: "TOGGLE_SELECT_WARNING_MODAL",
   TOGGLE_DELETE_CONFIRM_MODAL: "TOGGLE_DELETE_CONFIRM_MODAL",

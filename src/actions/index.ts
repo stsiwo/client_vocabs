@@ -18,12 +18,12 @@ export namespace IAction {
 
   export interface IChangeSortAction extends Action<string> {
     currentSort: StateType.ICurrentSort;
-    currentSortedWordList: StateType.ISortedWordList;
+    sortedWordList: StateType.ISortedWordList;
   }
 
   export interface IChangeFilterAction extends Action<string> {
-    currentFilter: number[]; 
-    currentSortedWordList: StateType.ISortedWordList;
+    currentFilter: number; 
+    sortedWordList: StateType.ISortedWordList;
   }
 
   export interface IChangeSearchKeyWordAction extends Action<string> {
@@ -32,7 +32,7 @@ export namespace IAction {
   }
 
   export interface IChangeDisplayedWordListAction extends Action<string> {
-    nextDisplayedWordList: StateType.IDisplayedWordList;
+    displayedWordList: StateType.IDisplayedWordList;
   }
 
   export interface IToggleSelectWarningModalAction extends Action<string> {
@@ -71,6 +71,11 @@ export namespace IAction {
 
   export type IResetStateAction = Action<string>; 
 
+  export interface IResetSortFilterAction extends Action<string> {
+    sortedWordList: StateType.ISortedWordList; 
+    displayedWordList: StateType.IDisplayedWordList;
+  }
+
   export interface IStartInitialWordsFetchRequestAction extends Action<string> {
     isInitialWordsFetching: boolean; 
   }
@@ -91,13 +96,13 @@ type IBulkUpdateWordActionCreator = (words: IWord[]) =>  IAction.IBulkUpdateWord
 
 type IRemoveWordActionCreator = (wordId: string) =>  IAction.IRemoveWordAction;
 
-type IChangeSortActionCreator = (currentSort: StateType.ICurrentSort, currentSortedWordList: StateType.ISortedWordList) =>  IAction.IChangeSortAction;
+type IChangeSortActionCreator = (currentSort: StateType.ICurrentSort, sortedWordList: StateType.ISortedWordList) =>  IAction.IChangeSortAction;
 
-type IChangeFilterActionCreator = ( currentFilter: number[], currentSortedWordList: StateType.ISortedWordList) =>  IAction.IChangeFilterAction;
+type IChangeFilterActionCreator = ( currentFilter: number, sortedWordList: StateType.ISortedWordList) =>  IAction.IChangeFilterAction;
 
 type IChangeSearchKeyWordActionCreator = (nextSearchKey: string, nextSearchedWordList: string[]) =>  IAction.IChangeSearchKeyWordAction;
 
-type IChangeDisplayedWordListActionCreator = (nextDisplayedWordList: StateType.IDisplayedWordList) =>  IAction.IChangeDisplayedWordListAction;
+type IChangeDisplayedWordListActionCreator = (displayedWordList: StateType.IDisplayedWordList) =>  IAction.IChangeDisplayedWordListAction;
 
 type IToggleSelectWarningModalActionCreator = (isSelectWarningModalOpen: boolean) =>  IAction.IToggleSelectWarningModalAction;
 
@@ -118,6 +123,8 @@ type ISelectAllSelectedWordListActionCreator = (nextSelectedWordList: StateType.
 type IEmptySelectedWordListActionCreator = () =>  IAction.IEmptySelectedWordListAction;
 
 type IResetStateActionCreator = () =>  IAction.IResetStateAction;
+
+type IResetSortFilterActionCreator = ( sortedWordList: StateType.ISortedWordList, displayedWordList: StateType.IDisplayedWordList ) =>  IAction.IResetSortFilterAction;
 
 type IStartInitialWordsFetchRequestActionCreator = () =>  IAction.IStartInitialWordsFetchRequestAction;
 
@@ -146,16 +153,16 @@ export const removeWordActionCreator: IRemoveWordActionCreator = (wordId) => {
   }
 };
 
-export const changeSortActionCreator: IChangeSortActionCreator = ( currentSort, currentSortedWordList) => ({
+export const changeSortActionCreator: IChangeSortActionCreator = ( currentSort, sortedWordList) => ({
   type: ActionType.CHANGE_SORT,
   currentSort: currentSort,
-  currentSortedWordList: currentSortedWordList,
+  sortedWordList: sortedWordList,
 });
 
-export const changeFilterActionCreator: IChangeFilterActionCreator = ( currentFilter, currentSortedWordList) => ({
+export const changeFilterActionCreator: IChangeFilterActionCreator = ( currentFilter, sortedWordList) => ({
   type: ActionType.CHANGE_FILTER,
   currentFilter: currentFilter,
-  currentSortedWordList: currentSortedWordList,
+  sortedWordList: sortedWordList,
 });
 
 export const changeSearchKeyWordActionCreator: IChangeSearchKeyWordActionCreator = (nextSearchKey, nextSearchedWordList) => ({
@@ -165,9 +172,9 @@ export const changeSearchKeyWordActionCreator: IChangeSearchKeyWordActionCreator
 });
 
 
-export const changeDisplayedWordListActionCreator: IChangeDisplayedWordListActionCreator = (nextDisplayedWordList) => ({
+export const changeDisplayedWordListActionCreator: IChangeDisplayedWordListActionCreator = (displayedWordList) => ({
   type: ActionType.CHANGE_DISPLAYED_WORD_LIST,
-  nextDisplayedWordList: nextDisplayedWordList,
+  displayedWordList: displayedWordList,
 })
 
 export const toggleSelectWarningModalActionCreator: IToggleSelectWarningModalActionCreator = (isSelectWarningModalOpen) => ({
@@ -217,6 +224,13 @@ export const emptySelectedWordListActionCreator: IEmptySelectedWordListActionCre
 export const resetStateActionCreator: IResetStateActionCreator = () => ({
   type: ActionType.RESET_STATE,
 });
+
+export const resetSortFilterActionCreator: IResetSortFilterActionCreator = ( sortedWordList, displayedWordList ) => ({
+  type: ActionType.RESET_SORT_FILTER,
+  sortedWordList: sortedWordList,
+  displayedWordList: displayedWordList,
+});
+
 
 /**
  * start initial words fetch request (ation creator) 

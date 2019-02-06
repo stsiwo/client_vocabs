@@ -7,7 +7,7 @@ export type toggleClickType = (isOpen: boolean) => void;
 
 export type changeSortDispatchType = (nextSort: SORT_ORDER) => void;
 
-export type changeFilterDispatchType = (nextFilter: PosEnum[]) => void;
+export type changeFilterDispatchType = (nextFilter: PosEnum) => void;
 
 export type toggleSelectWordDispatchType = (nextSelectedWordList: string) => void;
 

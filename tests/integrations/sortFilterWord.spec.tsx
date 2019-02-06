@@ -3,10 +3,10 @@ import { mount/*, shallow */ } from 'enzyme';
 import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC';
 import WordCont from '../../src/containers/WordCont';
 import { SortFilterControllerItem } from '../../src/representationals/business/Controller/SortFilterControllerItem';
-//import * as sinon from 'sinon';
-//import { SinonSpy } from 'sinon';
+import { resetStateActionCreator } from '../../src/actions/index';
 import store from '../../src/storeConfig';
 import sleep from '../helper/sleep';
+import { Set } from 'immutable';
 /**
  * since initialState is so big, use test data for integration test not real onw
  **/
@@ -16,6 +16,10 @@ jest.mock('../../src/thunk/asyncs/initialWordFetch');
  **/
 
 describe('sort filter word functionality', function() {
+
+  beforeEach(() => {
+    store.dispatch(resetStateActionCreator());
+  })
 
   it('should open s&f word modal ', async function() {
 
@@ -52,6 +56,9 @@ describe('sort filter word functionality', function() {
     // update 
     wrapper.update();
 
+    // find target event handler
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
     wrapper.find('input[id="alphDesc"]').simulate('change');
 
     expect(store.getState().get('currentSort')).toEqual(2);
@@ -75,6 +82,9 @@ describe('sort filter word functionality', function() {
 
     // update 
     wrapper.update();
+
+    // find target event handler
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
 
     wrapper.find('input[id="dateNewer"]').simulate('change');
 
@@ -100,6 +110,9 @@ describe('sort filter word functionality', function() {
     // update 
     wrapper.update();
 
+    // find target event handler
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
     wrapper.find('input[id="dateOlder"]').simulate('change');
 
     expect(store.getState().get('currentSort')).toEqual(4);
@@ -124,6 +137,9 @@ describe('sort filter word functionality', function() {
     // update 
     wrapper.update();
 
+    // find target event handler
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
     wrapper.find('input[id="alphAsc"]').simulate('change');
 
     expect(store.getState().get('currentSort')).toEqual(1);
@@ -135,144 +151,340 @@ describe('sort filter word functionality', function() {
 
   })
 
-  //it('should change state and component when click filter noun uncheck', function() {
-    //wrapper.find('input[id="noun"]').simulate('change');
+  it('should change state and component when click filter noun uncheck', async function() {
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([1,2,3,4,5,6,7,8,9]));
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
 
-    //expect(wrapper.find('input[id="noun"]').prop("checked")).toEqual(true);
+    // wait initial fetch word
+    await sleep(1000);
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="biblical"]').exists()).not.toEqual(true);
-  //})
+    // update 
+    wrapper.update();
 
-  //it('should change state and component when click filter verb uncheck', function() {
-    //wrapper.find('input[id="verb"]').simulate('change');
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,2,3,4,5,6,7,8,9]));
+    // simulate filter noun icon change
+    wrapper.find('input[id="noun"]').simulate('change');
 
-    //expect(wrapper.find('input[id="verb"]').prop("checked")).toEqual(true);
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="hypothesis"]').exists()).not.toEqual(true);
-  //})
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([ 1,2,3,4,5,6,7,8,9 ]));
 
-  //it('should change state and component when click filter adjuctive uncheck', function() {
-    //wrapper.find('input[id="adjuctive"]').simulate('change');
+    expect(wrapper.find('input[id="noun"]').prop("checked")).toEqual(false);
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,3,4,5,6,7,8,9]));
+    // make sure any noun word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="noun"]').exists()).toEqual(false);
+    
+  })
 
-    //expect(wrapper.find('input[id="adjuctive"]').prop("checked")).toEqual(true);
+  it('should change state and component when click filter verb uncheck', async function() {
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="address"]').exists()).not.toEqual(true);
-  //})
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
 
-  //it('should change state and component when click filter adverb uncheck', function() {
-    //wrapper.find('input[id="adverb"]').simulate('change');
+    // wait initial fetch word
+    await sleep(1000);
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,2,4,5,6,7,8,9]));
+    // update 
+    wrapper.update();
 
-    //expect(wrapper.find('input[id="adverb"]').prop("checked")).toEqual(true);
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="longevity"]').exists()).not.toEqual(true);
-  //})
+    wrapper.find('input[id="verb"]').simulate('change');
 
-  //it('should change state and component when click filter preposition uncheck', function() {
-    //wrapper.find('input[id="preposition"]').simulate('change');
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([ 0,2,3,4,5,6,7,8,9 ]));
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,2,3,5,6,7,8,9]));
+    expect(wrapper.find('input[id="verb"]').prop("checked")).toEqual(false);
 
-    //expect(wrapper.find('input[id="preposition"]').prop("checked")).toEqual(true);
+    // make sure any verb word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="verb"]').exists()).toEqual(false);
+  })
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="elaborate"]').exists()).not.toEqual(true);
-  //})
+  it('should change state and component when click filter adjuctive uncheck', async function() {
 
-  //it('should change state and component when click filter pronoun uncheck', function() {
-    //wrapper.find('input[id="pronoun"]').simulate('change');
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,2,3,4,6,7,8,9]));
+    // wait initial fetch word
+    await sleep(1000);
 
-    //expect(wrapper.find('input[id="pronoun"]').prop("checked")).toEqual(true);
+    // update 
+    wrapper.update();
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="curry"]').exists()).not.toEqual(true);
-  //})
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
 
-  //it('should change state and component when click filter conjunction uncheck', function() {
-    //wrapper.find('input[id="conjunction"]').simulate('change');
+    wrapper.find('input[id="adjuctive"]').simulate('change');
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,2,3,4,5,7,8,9]));
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,3,4,5,6,7,8,9]));
 
-    //expect(wrapper.find('input[id="conjunction"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="adjuctive"]').prop("checked")).toEqual(false);
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="zap"]').exists()).not.toEqual(true);
-  //})
+    // make sure any adjuctive word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="adjuctive"]').exists()).toEqual(false);
+  })
 
-  //it('should change state and component when click filter interjection uncheck', function() {
-    //wrapper.find('input[id="interjection"]').simulate('change');
+  it('should change state and component when click filter adverb uncheck', async function() {
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,2,3,4,5,6,8,9]));
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
 
-    //expect(wrapper.find('input[id="interjection"]').prop("checked")).toEqual(true);
+    // wait initial fetch word
+    await sleep(1000);
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="dictation"]').exists()).not.toEqual(true);
-  //})
+    // update 
+    wrapper.update();
 
-  //it('should change state and component when click filter idiom uncheck', function() {
-    //wrapper.find('input[id="idiom"]').simulate('change');
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,2,3,4,5,6,7,9]));
+    wrapper.find('input[id="adverb"]').simulate('change');
 
-    //expect(wrapper.find('input[id="idiom"]').prop("checked")).toEqual(true);
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,4,5,6,7,8,9]));
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="valt"]').exists()).not.toEqual(true);
-  //})
+    expect(wrapper.find('input[id="adverb"]').prop("checked")).toEqual(false);
 
-  //it('should change state and component when click filter else uncheck', function() {
-    //// id id other not else
-    //wrapper.find('input[id="other"]').simulate('change');
+    // make sure any adverb word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="adverb"]').exists()).toEqual(false);
+  })
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,2,3,4,5,6,7,8]));
+  it('should change state and component when click filter preposition uncheck', async function() {
 
-    //expect(wrapper.find('input[id="other"]').prop("checked")).toEqual(true);
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
 
-    //// wordlist first item should be 'sport' (check state/index)
-    //expect(wrapper.find('input[type="occupation"]').exists()).not.toEqual(true);
-  //})
+    // wait initial fetch word
+    await sleep(1000);
 
-  //it('should change state and component when click reset button', function() {
-    //wrapper.find('button[id="reset"]').simulate('click');
+    // update 
+    wrapper.update();
 
-    //expect(store.getState().currentFilter).toEqual(expect.arrayContaining([0,1,2,3,4,5,6,7,8,9]));
-    //expect(store.getState().currentSort).toEqual(1);
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
 
-    //expect(wrapper.find('input[id="alphAsc"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="noun"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="verb"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="adjuctive"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="adverb"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="preposition"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="pronoun"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="conjunction"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="interjection"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="idiom"]').prop("checked")).toEqual(true);
-    //expect(wrapper.find('input[id="other"]').prop("checked")).toEqual(true);
+    wrapper.find('input[id="preposition"]').simulate('change');
 
-  //})
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,3,5,6,7,8,9]));
 
-  //it('should change state and component when click close button', function() {
-    //wrapper.find('button[id="close"]').simulate('click');
+    expect(wrapper.find('input[id="preposition"]').prop("checked")).toEqual(false);
 
-    //expect(store.getState().ui.isSortFilterModalOpen).toEqual(false);
+    // make sure any preposition word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="preposition"]').exists()).toEqual(false);
+  })
 
-    //expect(wrapper.find("SortFilterModalSelector").exists()).not.toEqual(true);
-  //})
+  it('should change state and component when click filter pronoun uncheck', async function() {
+
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
+    wrapper.find('input[id="pronoun"]').simulate('change');
+
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,3,4,6,7,8,9]));
+
+    expect(wrapper.find('input[id="pronoun"]').prop("checked")).toEqual(false);
+
+    // make sure any pronoun word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="pronoun"]').exists()).toEqual(false);
+
+  })
+
+  it('should change state and component when click filter conjunction uncheck', async function() {
+
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
+    wrapper.find('input[id="conjunction"]').simulate('change');
+
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,3,4,5,7,8,9]));
+
+    expect(wrapper.find('input[id="conjunction"]').prop("checked")).toEqual(false);
+
+    // make sure any conjunction word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="conjunction"]').exists()).toEqual(false);
+  })
+
+  it('should change state and component when click filter interjection uncheck', async function() {
+
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
+    wrapper.find('input[id="interjection"]').simulate('change');
+
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,3,4,5,6,8,9]));
+
+    expect(wrapper.find('input[id="interjection"]').prop("checked")).toEqual(false);
+
+    // make sure any interjection word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="interjection"]').exists()).toEqual(false);
+  })
+
+  it('should change state and component when click filter idiom uncheck', async function() {
+
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
+    wrapper.find('input[id="idiom"]').simulate('change');
+
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,3,4,5,6,7,9]));
+
+    expect(wrapper.find('input[id="idiom"]').prop("checked")).toEqual(false);
+
+    // make sure any idiom word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="idiom"]').exists()).toEqual(false);
+  })
+
+  it('should change state and component when click filter else uncheck', async function() {
+
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
+    // id id other not else
+    wrapper.find('input[id="other"]').simulate('change');
+
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,3,4,5,6,7,8]));
+
+    expect(wrapper.find('input[id="other"]').prop("checked")).toEqual(false);
+
+    // make sure any other word does not exist in word list 
+    expect(wrapper.find("WordListSelector").find('input[id="other"]').exists()).toEqual(false);
+  })
+
+  it('should change state and component when click reset button', async function() {
+
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+    wrapper.find('input[id="dateNewer"]').simulate('change');
+
+    wrapper.find('input[id="noun"]').simulate('change');
+    wrapper.find('input[id="verb"]').simulate('change');
+    wrapper.find('input[id="adjuctive"]').simulate('change');
+    wrapper.find('input[id="adverb"]').simulate('change');
+    wrapper.find('input[id="preposition"]').simulate('change');
+    wrapper.find('input[id="pronoun"]').simulate('change');
+    wrapper.find('input[id="conjunction"]').simulate('change');
+    wrapper.find('input[id="interjection"]').simulate('change');
+    wrapper.find('input[id="idiom"]').simulate('change');
+    wrapper.find('input[id="other"]').simulate('change');
+
+    wrapper.find('button[id="reset"]').simulate('click');
+
+    expect(store.getState().get('currentFilter')).toEqual(Set<number>([0,1,2,3,4,5,6,7,8,9]));
+    expect(store.getState().get('currentSort')).toEqual(1);
+
+    expect(wrapper.find('input[id="alphAsc"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="noun"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="verb"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="adjuctive"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="adverb"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="preposition"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="pronoun"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="conjunction"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="interjection"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="idiom"]').prop("checked")).toEqual(true);
+    expect(wrapper.find('input[id="other"]').prop("checked")).toEqual(true);
+
+  })
+
+  it('should change state and component when click close button', async function() {
+
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordCont, store);
+    const wrapper = mount(
+      <ContextHOC />
+    );
+
+    // wait initial fetch word
+    await sleep(1000);
+
+    // update 
+    wrapper.update();
+
+    // simulate sort & filter controller icon click 
+    wrapper.find(SortFilterControllerItem).find("ControllerItemSelector").simulate('click');
+
+    wrapper.find('button[id="close"]').simulate('click');
+
+    expect(store.getState().get('ui').get('isSortFilterModalOpen')).toEqual(false);
+
+    expect(wrapper.find("SortFilterModalSelector").exists()).not.toEqual(true);
+  })
 })
 
 

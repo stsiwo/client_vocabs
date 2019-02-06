@@ -74,6 +74,7 @@ const StyledWordList = styled(WordList)`
     }
   }
 `;
+StyledWordList.displayName = "WordListSelector";
 
 
 export default StyledWordList;

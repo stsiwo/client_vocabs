@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { StateType } from '../state/type';
 import { initialState } from '../state/index';
 import { IAction } from '../actions/index';
-import { OrderedSet, Record, Set, fromJS } from 'immutable';
+import { OrderedSet, Record, fromJS } from 'immutable';
 
 
 export namespace CaseReducer {
@@ -54,7 +54,9 @@ export namespace CaseReducer {
   /*********************************************
    * currentFilter CaseReducer
    *********************************************/
-  export const changeCurrentFilterCaseReducer: CaseReducerType<StateType.ICurrentFilter, IAction.IChangeFilterAction> = (currentFilter, action) => Set<number>(action.currentFilter);
+  export const changeCurrentFilterCaseReducer: CaseReducerType<StateType.ICurrentFilter, IAction.IChangeFilterAction> = (currentFilter, action) => { 
+    return currentFilter.includes(action.currentFilter) ? currentFilter.delete(action.currentFilter) : currentFilter.add(action.currentFilter); 
+  }
 
   export const resetCurrentFilterCaseReducer: CaseReducerType<StateType.ICurrentFilter, IAction.IResetStateAction> = (currentFilter, action) => initialState.currentFilter;
 
@@ -88,7 +90,7 @@ export namespace CaseReducer {
   };
   
   // update ( replace ) the entire sortedWordList
-  export const changeSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList, IAction.IChangeSortAction | IAction.IChangeFilterAction> = (sortedWordList, action) => action.currentSortedWordList;
+  export const changeSortedWordListCaseReducer: CaseReducerType<StateType.ISortedWordList, IAction.IChangeSortAction | IAction.IChangeFilterAction | IAction.IResetSortFilterAction> = (sortedWordList, action) => action.sortedWordList;
   /**
    * copy word id to sortedWordList if the id does not exits
    **/
@@ -107,7 +109,7 @@ export namespace CaseReducer {
     return displayedWordList.includes(action.wordId) ? displayedWordList.delete(action.wordId) : displayedWordList.add(action.wordId); 
   };
   // change DisplayedWordList to displayedWordList or searchedWordList (nextDisplayedWordList)
-  export const changeDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IChangeDisplayedWordListAction> = (displayedWordList, action) => action.nextDisplayedWordList;
+  export const changeDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IChangeDisplayedWordListAction | IAction.IResetSortFilterAction > = (displayedWordList, action) => action.displayedWordList;
 
   /**
    * copy word id to displayedWordList if the id does not exits
