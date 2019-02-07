@@ -49,9 +49,11 @@ export class DefNode extends React.PureComponent<Props, State> {
             <Icon svgSrc={ arrowIcon } width="20px" height="20px" onClick={ this.handleToggleClick } rotate={ this.state.isDefContentOpen }></Icon>
             <h4>Definition</h4>
           </div>
+          { this.props.defIndex !== 0 && 
+            // render delete icon only def index is not 0 since a word must have at least one def 
           <div>
             <Icon svgSrc={ deleteIcon } onClick={ this.handleDeleteDefClick } width="20px" height="20px"></Icon>
-          </div>
+          </div> }
         </li>
         
         <DefContent 

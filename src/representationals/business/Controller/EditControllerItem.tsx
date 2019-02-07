@@ -8,7 +8,7 @@ const editIcon = require('./assets/edit.svg');
 
 interface Props extends RouteComponentProps<{}> {
   className?: string;
-  moveToEditPageClick: () => void;
+  moveToEditPageClick: (pushCallback: ( path: string ) => void ) => void;
 }
 
 class EditControllerItem extends React.PureComponent<Props, {}> {
@@ -18,7 +18,7 @@ class EditControllerItem extends React.PureComponent<Props, {}> {
   }
 
   onEditClick(e: React.MouseEvent<HTMLElement>) {
-    this.props.moveToEditPageClick();
+    this.props.moveToEditPageClick(this.props.history.push);
   }
 
   render() {

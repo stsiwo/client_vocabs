@@ -9,7 +9,7 @@ const mapStateToProps = (state: IState, ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  moveToEditPageClick: () => { dispatch<any>( moveToEditPageThunk('/word/detail') )}, 
+  moveToEditPageClick: (pushCallback: ( path: string ) => void ) => { dispatch<any>( moveToEditPageThunk(pushCallback, '/word/detail') )}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( EditControllerItem );

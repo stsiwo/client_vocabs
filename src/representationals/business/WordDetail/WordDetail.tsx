@@ -46,6 +46,7 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
   }
 
   render() {
+    //console.log(this.props.values);
     // send values (from formik) instaed of words ( props )
     const { errors, touched, handleChange, handleBlur } = this.props; 
     // create object which holds above props except values
@@ -63,7 +64,7 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
             render={( arrayHelpers ) => {
               return (
                 <div>
-                { this.props.values.words.map((word, index) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps }/>)}
+                { this.props.values.words.map((word, index) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps } arrayHelpers={ arrayHelpers }/>)}
                 <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
                   <MobileDetailController formValues={ this.props.values } arrayHelpers={ arrayHelpers }/>
                 </MediaQuery>

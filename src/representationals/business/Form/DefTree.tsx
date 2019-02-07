@@ -3,7 +3,9 @@ import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
 import DefNode from './DefNode';
 import { IDef } from '../../../domains/def';
+import { IWord } from '../../../domains/word';
 import { CustomFormikProps } from '../../../Hoc/withForm';
+import { ArrayHelpers } from 'formik';
 
 const arrowIcon = require('./assets/rightArrow.svg');
 const newIcon = require('./assets/new.svg');
@@ -13,6 +15,8 @@ interface Props {
   defs: IDef[]; 
   formik: CustomFormikProps;
   wordIndex: number;
+  addNewDefClick: (arrayHelpers: ArrayHelpers, wordIndex: number) => void;
+  arrayHelpers: ArrayHelpers;
 }
 
 interface State {
@@ -35,7 +39,8 @@ export class DefTree extends React.PureComponent<Props, State> {
   }
 
   handleNewDefClick(e: React.MouseEvent<HTMLElement>) {
-    // need to get word id of defs so pick any def's _wordId
+    console.log(this.props.arrayHelpers.pop<IWord>());
+    this.props.addNewDefClick(this.props.arrayHelpers, this.props.wordIndex);
   }
 
   renderDefNodes() {
@@ -60,7 +65,7 @@ export class DefTree extends React.PureComponent<Props, State> {
             <h3>definition list</h3>
           </div>
           <div>
-            <Icon svgSrc={ newIcon } onClick={ this.handleNewDefClick } width="20px" height="20px"></Icon>
+            <Icon id="addNewDefForm" svgSrc={ newIcon } onClick={ this.handleNewDefClick } width="20px" height="20px"></Icon>
           </div>
         </li>
         { this.renderDefNodes() }
@@ -96,11 +101,8 @@ const StyledDefTree = styled(DefTree)`
       }
     }
   }
-
-
-
-    
 `;
+StyledDefTree.displayName = "DefTreeSelector";
 
 export default StyledDefTree;
 

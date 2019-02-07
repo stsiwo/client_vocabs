@@ -21,7 +21,7 @@ interface State {
   isSearchImageModalOpen: boolean;
 }
 
-class DefContent extends React.PureComponent<Props, State> {
+export class DefContent extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

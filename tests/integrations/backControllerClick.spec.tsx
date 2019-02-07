@@ -11,7 +11,6 @@ import sleep from '../helper/sleep';
 import { Router } from 'react-router-dom';
 
 describe('add new word', function() {
-  //let store: MockStoreEnhanced;
 
   beforeEach(() => {
     store.dispatch(resetStateActionCreator());
