@@ -3,7 +3,6 @@ import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
 import DefNode from './DefNode';
 import { IDef } from '../../../domains/def';
-import { IWord } from '../../../domains/word';
 import { CustomFormikProps } from '../../../Hoc/withForm';
 import { ArrayHelpers } from 'formik';
 
@@ -39,7 +38,6 @@ export class DefTree extends React.PureComponent<Props, State> {
   }
 
   handleNewDefClick(e: React.MouseEvent<HTMLElement>) {
-    console.log(this.props.arrayHelpers.pop<IWord>());
     this.props.addNewDefClick(this.props.arrayHelpers, this.props.wordIndex);
   }
 

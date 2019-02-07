@@ -23,3 +23,50 @@ client side react SPA for Vocabs web application
 
  - be sure to commit to remote regularly 
 
+## dependencies
+
+  - node_modules/formik/dist/formik.esm.js
+
+    - modified this file due to the bug:
+
+      - modified code:
+
+        FieldArrayInner.prototype.remove = async function (index) {
+          var result;
+          await this.updateArrayField(function (array) {
+            var copy = array ? array.slice() : [];
+
+            if (!result) {
+              result = copy[index];
+            }
+
+            if (isFunction(copy.splice)) {
+              copy.splice(index, 1);
+            }
+
+            return copy;
+          }, true, true);
+          return result;
+        };
+
+      - original code:
+
+        FieldArrayInner.prototype.remove = function (index) {
+          var result;
+          this.updateArrayField(function (array) {
+            var copy = array ? array.slice() : [];
+
+            if (!result) {
+              result = copy[index];
+            }
+
+            if (isFunction(copy.splice)) {
+              copy.splice(index, 1);
+            }
+
+            return copy;
+          }, true, true);
+          return result;
+        };
+
+

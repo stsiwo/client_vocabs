@@ -10,9 +10,9 @@ import { IWord } from '../domains/word';
  **/
 export type addNewDefFormThunkType = ( arrayHelpers: ArrayHelpers, wordIndex: number ) => ThunkAction<void, IState, undefined, AnyAction>;
 
-const addNewDefFormThunk: addNewDefFormThunkType = ( arrayHelpers, wordIndex ) => ( dispatch, getState ) => {
+const addNewDefFormThunk: addNewDefFormThunkType = ( arrayHelpers, wordIndex ) => async ( dispatch, getState ) => {
   // extract target word
-  const targetWord: IWord = arrayHelpers.remove(wordIndex);
+  const targetWord: IWord = await arrayHelpers.remove<IWord>(wordIndex);
   console.log(targetWord);
 
   // create def template form
