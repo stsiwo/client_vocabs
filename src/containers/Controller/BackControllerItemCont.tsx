@@ -8,7 +8,7 @@ const mapStateToProps = (state: IState, ownProps: {}) => ({
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  backWordClick: () => { dispatch<any>(backToWordPageThunk('/word'))}, 
+  backWordClick: (pushCallback: ( path: string ) => void) => { dispatch<any>(backToWordPageThunk(pushCallback, '/word'))}, 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( BackControllerItem );

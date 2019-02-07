@@ -22,6 +22,12 @@ jest.mock('../../src/thunk/asyncs/initialWordFetch');
  *
  *  but, the new problem is how to make router works when using it outside Router (like inside action creator, or thunk
  *    - when checking in browser, it works, but when using enzyme, does not update ( re-render ) component so I can't make sure this integration testing
+ *
+ *  SOLVED!!!!
+ *    - finaly found out the solution. the reason why it did not work is that I was using different history object (this works in broswerHistory though. i don't know why) but in testing (using memoryHistory) therefore, even one of history update (push a path), it does not affect the other history object (like main one) 
+ *    -- see solution in integrations/backControllerClick test
+ *    -- yes!!!
+ *    -- when you want to use history object outside Router, just pass it as callback then call inside thunk or action creator whereever you want (you don't need to create custom history object from browserHistory and Router )
  **********************************************************************************/
 describe('edit controller item click', function() {
   //let store: MockStoreEnhanced;
