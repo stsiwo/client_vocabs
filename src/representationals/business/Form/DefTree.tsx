@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
-import DefNode from './DefNode';
+import DefNodeCont from '../../../containers/Def/DefNodeCont';
 import { IDef } from '../../../domains/def';
 import { CustomFormikProps } from '../../../Hoc/withForm';
 import { ArrayHelpers } from 'formik';
@@ -19,37 +19,38 @@ interface Props {
 }
 
 interface State {
-  isDefNodeOpen: boolean;
+  isDefNodeContOpen: boolean;
 }
 
 export class DefTree extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      isDefNodeOpen: true,
+      isDefNodeContOpen: true,
     }
     this.handleToggleClick = this.handleToggleClick.bind(this);
     this.handleNewDefClick = this.handleNewDefClick.bind(this);
   }
 
   handleToggleClick(e: React.MouseEvent<HTMLElement>) {
-    const currentToggleStatus = this.state.isDefNodeOpen;
-    this.setState({ isDefNodeOpen : !currentToggleStatus });  
+    const currentToggleStatus = this.state.isDefNodeContOpen;
+    this.setState({ isDefNodeContOpen : !currentToggleStatus });  
   }
 
   handleNewDefClick(e: React.MouseEvent<HTMLElement>) {
     this.props.addNewDefClick(this.props.arrayHelpers, this.props.wordIndex);
   }
 
-  renderDefNodes() {
+  renderDefNodeConts() {
     return this.props.defs.map(( eachDef, index ) => ( 
-      <DefNode 
+      <DefNodeCont 
         key={ eachDef.id } 
         def={ eachDef } 
-        isOpen={ this.state.isDefNodeOpen }
+        isOpen={ this.state.isDefNodeContOpen }
         formik={ this.props.formik }
         wordIndex={ this.props.wordIndex } 
         defIndex={ index }
+        arrayHelpers={ this.props.arrayHelpers } 
       />
     ));
   }
@@ -59,14 +60,14 @@ export class DefTree extends React.PureComponent<Props, State> {
       <ul className={ this.props.className }>
         <li>
           <div>
-            <Icon svgSrc={ arrowIcon } width="20px" height="20px" onClick={ this.handleToggleClick } rotate={ this.state.isDefNodeOpen }></Icon>
+            <Icon svgSrc={ arrowIcon } width="20px" height="20px" onClick={ this.handleToggleClick } rotate={ this.state.isDefNodeContOpen }></Icon>
             <h3>definition list</h3>
           </div>
           <div>
             <Icon id="addNewDefForm" svgSrc={ newIcon } onClick={ this.handleNewDefClick } width="20px" height="20px"></Icon>
           </div>
         </li>
-        { this.renderDefNodes() }
+        { this.renderDefNodeConts() }
       </ul>
     );
   }

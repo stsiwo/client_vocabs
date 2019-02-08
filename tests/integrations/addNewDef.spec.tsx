@@ -7,6 +7,12 @@ import { NewControllerItem } from '../../src/representationals/business/Controll
 import { DefContent } from '../../src/representationals/business/Form/DefContent';
 import sleep from '../helper/sleep';
 
+/**
+ * if this test is failed, check out formik package. it might be the reason.
+ *  - there is a bug in remove function FieldArray so modify the source code 
+ *  - modified content is also available in README so if you update the package you need to copy and past the change to source code
+ *  - the best way is that you can fork formik package and customise or modify the content and then you can import the formik package from your git not from node module!!!!
+ **/
 describe('add new def', function() {
 
   beforeEach(() => {

@@ -4,6 +4,7 @@ import Icon from '../../base/Icon/Icon';
 import { IDef } from '../../../domains/def';
 import DefContent from '../Form/DefContent';
 import { CustomFormikProps } from '../../../Hoc/withForm';
+import { ArrayHelpers } from 'formik';
 
 const arrowIcon = require('./assets/rightArrow.svg');
 const deleteIcon = require('./assets/delete.svg');
@@ -15,6 +16,8 @@ interface Props {
   formik: CustomFormikProps;
   wordIndex: number;
   defIndex: number;
+  arrayHelpers: ArrayHelpers;
+  removeDefClick: (arrayHelpers: ArrayHelpers, wordIndex: number, defIndex: number) => void;
 }
 
 interface State {
@@ -37,8 +40,7 @@ export class DefNode extends React.PureComponent<Props, State> {
   }
 
   handleDeleteDefClick(e: React.MouseEvent<HTMLElement>) {
-    // dispatch removeDefAction
-    //this.props.removeDefClick(this.props.def._wordId, [ this.props.def.id ]);
+    this.props.removeDefClick(this.props.arrayHelpers, this.props.wordIndex, this.props.defIndex);
   }
 
   render() {
@@ -51,8 +53,10 @@ export class DefNode extends React.PureComponent<Props, State> {
           </div>
           { this.props.defIndex !== 0 && 
             // render delete icon only def index is not 0 since a word must have at least one def 
+            // this might not be a good way to do this since user can't delete the first def. what if user want to delete it when the other defs are avaiable. 
+            // #REFACTOR
           <div>
-            <Icon svgSrc={ deleteIcon } onClick={ this.handleDeleteDefClick } width="20px" height="20px"></Icon>
+            <Icon id="removeDefForm" svgSrc={ deleteIcon } onClick={ this.handleDeleteDefClick } width="20px" height="20px"></Icon>
           </div> }
         </li>
         
@@ -93,8 +97,8 @@ const StyledDefNode = styled(DefNode)`
       justify-content: flex-end;
     }
   }
-
 `;
+StyledDefNode.displayName = "DefNodeSelector";
 
 export default StyledDefNode;
 
