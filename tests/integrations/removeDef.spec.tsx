@@ -1,43 +1,35 @@
 import * as React from 'react';
-import { formikDummy } from '../storage/Hoc/formik';
 import { mount/*, shallow */ } from 'enzyme';
 import { ProviderAndThemeWrapperHOC } from '../helper/ProviderAndThemeWrapperHOC';
-import DefNodeCont from '../../src/containers/Def/DefNodeCont';
-//import * as sinon from 'sinon';
-//import { SinonSpy } from 'sinon';
-import { defTestData } from '../storage/domains/def';
+import WordDetailCont from '../../src/containers/Word/WordDetailCont';
 import store from '../../src/storeConfig';
+import { NewControllerItem } from '../../src/representationals/business/Controller/NewControllerItem';
+import { DefContent } from '../../src/representationals/business/Form/DefContent';
 
-
-describe('remove def in a particular word', function() {
-  //let store: MockStoreEnhanced;
+describe('remove new def', function() {
 
   beforeEach(() => {
   });
 
-  // this mdtp is defined in "WordListItemCont" not "DefNodeCont" container component
-  it('should remove def from entities.defs and entities.words', function() {
+  it('should remove new def and its correspnding def (only one) to entities.defs and entities.defs', function() {
 
-    const testWordId = defTestData._wordId; 
-    const testDefId = defTestData.id; 
-    
-    const ContextHOC = ProviderAndThemeWrapperHOC(DefNodeCont, store);
+    const ContextHOC = ProviderAndThemeWrapperHOC(WordDetailCont, store, '/word/detail');
     const wrapper = mount(
-      <ContextHOC def={ defTestData } isOpen={ true } wordIndex={ 0 } defIndex={ 0 } formik={ formikDummy }/>
+      <ContextHOC  />
     );
     
+    // expect no form since there is no entities.defs
+    expect(wrapper.find('WordFormSelector').exists()).toEqual(false);
+
     // find target event handler
-    const removeDefClick: (wordId: string, defIds: string[]) => void = wrapper.find("DefNode").first().prop('removeDefClick');
+    wrapper.find(NewControllerItem).find("ControllerItemSelector").simulate('click');
 
-    // programmarically call dispatch wrapper function. browser testing is in end-to-end  
-    removeDefClick(testWordId, [ testDefId ]);
+    // representationals: expect new form is rendered 
+    expect(wrapper.find('WordFormSelector').exists()).toEqual(true);
 
-    // make sure the change of state 
-    // entities.words (id = wordId)'s defs should not have defId
-    expect(store.getState().entities.words[testWordId].defs).not.toEqual(expect.arrayContaining([ testDefId ]));
+    // add new def form
+    wrapper.find('div[id="removeNewDefForm"]').simulate('click');
 
-    // entities.defs (id = defId) should be removed 
-    expect(store.getState().entities.defs).not.toEqual(expect.objectContaining(defTestData));
   })
 })
 

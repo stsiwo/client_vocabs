@@ -12,8 +12,9 @@ export type addNewDefFormThunkType = ( arrayHelpers: ArrayHelpers, wordIndex: nu
 
 const addNewDefFormThunk: addNewDefFormThunkType = ( arrayHelpers, wordIndex ) => async ( dispatch, getState ) => {
   // extract target word
+  console.log(wordIndex);
   const targetWord: IWord = await arrayHelpers.remove<IWord>(wordIndex);
-  console.log(targetWord);
+  
 
   // create def template form
   const newDefForm = getNewDefForm(targetWord.id);
