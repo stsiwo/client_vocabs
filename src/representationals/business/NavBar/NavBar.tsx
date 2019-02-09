@@ -4,13 +4,15 @@ import Icon from '../../base/Icon/Icon';
 import { Hl } from '../../base/common/Line';
 import { ThemeInterface } from '../../story/theme'; 
 import { NavLink } from 'react-router-dom'; 
-import { Prompt } from 'react-router';
+//import { Prompt } from 'react-router';
 const settingIcon = require('./assets/setting.svg');
+import { RouteComponentProps } from 'react-router-dom';
 
-interface Props {
+interface Props extends RouteComponentProps {
   className?: string;
   isOpen?: boolean;
   wordFormError: boolean;
+  linkClick: (pushCallback: ( path: string ) => void) => void;
 }
 
 class NavBar extends React.PureComponent<Props, {}> {
@@ -20,24 +22,29 @@ class NavBar extends React.PureComponent<Props, {}> {
   }
 
   handleLink(e: React.MouseEvent<HTMLElement>) {
+    // disable built-in NavLink href redirect
+    e.preventDefault();
+    this.props.linkClick(this.props.history.push);
   }
 
   render() {
     return (
       <nav className={ this.props.className }>
-        <NavLink to="/word" >
+        <NavLink to="/word" onClick={ this.handleLink }>
           <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
           <h4>Word</h4>
         </NavLink>
         <Hl />
-        <NavLink to="/dictionary" >
+        <NavLink to="/dictionary" onClick={ this.handleLink }>
           <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
           <h4>Dictionary</h4>
         </NavLink>
+      {/*
         <Prompt
-          when={this.props.wordFormError}
-          message="Some of your word have not defined completely. Are you sure you want to leave?"
+        when={this.props.wordFormError}
+        message="Are you sure you want to leave? unsaved words will be lost."
         />
+        */}
       </nav>
    );
   }

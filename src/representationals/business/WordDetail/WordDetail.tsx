@@ -33,7 +33,7 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
   // this is for knowing formik props outside form component to open defin word warning modal
   // this might be done different way so comment out for now
   // #REFACTOR
-  componentWillUpdate(nextProps: InjectedFormikProps<Props, FormValues>) {
+  componentDidUpdate(nextProps: InjectedFormikProps<Props, FormValues>) {
     this.checkWordFormError(nextProps.errors);
   }
 
@@ -48,11 +48,9 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
   render() {
     //console.log(this.props.values);
     // send values (from formik) instaed of words ( props )
-    const { errors, touched, handleChange, handleBlur } = this.props; 
+    const { handleChange, handleBlur } = this.props; 
     // create object which holds above props except values
     const customFormikProps: CustomFormikProps = {
-      errors: errors,
-      touched: touched,
       handleChange: handleChange,
       handleBlur: handleBlur,
     }

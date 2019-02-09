@@ -2,18 +2,29 @@ import { connect } from 'react-redux'
 import { AnyAction, Dispatch } from 'redux';
 import NavBar from '../../representationals/business/NavBar/NavBar';
 import { IState } from '../../state/type';
+import { Record } from 'immutable';
+import { withRouter } from 'react-router-dom';
+import navLinkThunk from '../../thunk/navLink';
+import { RouteComponentProps } from 'react-router-dom';
 
-const mapStateToProps = (state: IState, ownProps: {}) => ({
-  wordFormError: state.wordFormError,
+const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
+  wordFormError: state.get('wordFormError'),
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
+  linkClick: (pushCallback: ( path: string ) => void ) => { dispatch<any>( navLinkThunk( pushCallback ))},
 });
 
-export default connect( mapStateToProps, mapDispatchToProps )( NavBar );
 
+/**
+ * when you have any props in parent component (in this case, <NavBarCont props={ ... } ... /> in Header
+ * you need to write like blow;
+ **/
+interface Props extends RouteComponentProps {
+  isOpen?: boolean;
+}
 
-
+export default withRouter<Props>(connect(mapStateToProps, mapDispatchToProps )( NavBar )); 
 
 
 

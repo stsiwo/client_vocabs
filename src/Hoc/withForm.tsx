@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withFormik, InjectedFormikProps, FormikErrors, FormikTouched } from 'formik';
+import { withFormik, InjectedFormikProps } from 'formik';
 import { IWord } from '../domains/word';
 import * as Yup from 'yup';
 
@@ -14,8 +14,6 @@ export interface FormValues {
 // e.g., <Child errors={ this.props.errors } touched={ this.props.touched } .... />
 // if need to other props from Formik props, add it accordingly and send as props to children component
 export interface CustomFormikProps {
-  errors: FormikErrors<FormValues>;
-  touched: FormikTouched<FormValues>;
   handleChange: (e: React.ChangeEvent<any>) => void;
   handleBlur: (e: React.FocusEvent<any>) => void;
 }
