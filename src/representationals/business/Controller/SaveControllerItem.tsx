@@ -2,21 +2,22 @@ import * as React from 'react';
 import ControllerItem from '../../base/Controller/ControllerItem';
 const saveIcon = require('./assets/save.svg');
 import { FormValues } from '../../../Hoc/withForm';
+import { IWord } from '../../../domains/word';
 
 interface Props {
   className?: string;
-  saveWordsClick: (formInput: FormValues) => void;
+  saveWordsClick: (wordForm: IWord[]) => void;
   formValues: FormValues;
 }
 
-class SaveControllerItem extends React.PureComponent<Props, {}> {
+export class SaveControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.onSaveClick = this.onSaveClick.bind(this);
   }
 
   onSaveClick(e: React.MouseEvent<HTMLElement>) {
-    this.props.saveWordsClick(this.props.formValues);
+    this.props.saveWordsClick(this.props.formValues.words);
   }
 
   render() {

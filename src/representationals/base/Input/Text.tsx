@@ -10,6 +10,7 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   value: string;
+  id?: string;
 }
 
 class Text extends React.PureComponent<Props, {}> {
@@ -36,7 +37,7 @@ class Text extends React.PureComponent<Props, {}> {
         <Input 
           type="text" 
           placeholder={ this.props.placeholder } 
-          id={ this.props.labelName } 
+          id={ this.props.labelName }
           name={ this.props.labelName } 
           onChange={ this.handleChange } 
           onBlur={ this.handleBlur } 

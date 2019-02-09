@@ -1,5 +1,4 @@
 import checkWordFormErrorThunkMiddleware from './middlewares/checkWordFormError';
-import saveWordsThunkMiddleware from './middlewares/saveWords';
 import updateWordsMainThunk from './mains/updateWords';
 import applyThunkMiddleware from './thunkComponent'; 
 
@@ -11,7 +10,6 @@ import applyThunkMiddleware from './thunkComponent';
 // 3. update words in redux state
 const updateWordsThunk = applyThunkMiddleware(
   checkWordFormErrorThunkMiddleware,
-  saveWordsThunkMiddleware, 
 )(updateWordsMainThunk);
 
 export default updateWordsThunk;
