@@ -1,6 +1,6 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
-import DeleteModal from '../representationals/business/DeleteModal/DeleteModal';
+import DeleteModal from '../representationals/business/ModalContent/DeleteModal';
 import { toggleDeleteConfirmModalActionCreator } from '../actions/index';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';

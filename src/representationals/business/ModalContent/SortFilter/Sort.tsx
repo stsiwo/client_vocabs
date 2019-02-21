@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styled from '../../story/styledComponents';
-import Input from '../../base/Input/Input';
-import Icon from '../../base/Icon/Icon';
-import { ISort } from '../../../domains/sort';
-import { SORT_ORDER } from '../../../enums/index';
-import { changeSortDispatchType } from '../../../containers/type';
+import styled from '../../../story/styledComponents';
+import Input from '../../../base/Input/Input';
+import Icon from '../../../base/Icon/Icon';
+import { ISort } from '../../../../domains/sort';
+import { SORT_ORDER } from '../../../../enums/index';
+import { changeSortDispatchType } from '../../../../containers/type';
 
 const alphaAscIcon = require('./assets/alphaAsc.svg');
 const alphaDescIcon = require('./assets/alphaDesc.svg');

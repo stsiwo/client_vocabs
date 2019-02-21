@@ -1,8 +1,8 @@
 import * as React from 'react';
-import styled from '../../story/styledComponents';
-import CheckBox from '../../base/Input/CheckBox';
-import { pos } from '../../../domains/pos';
-import { changeFilterDispatchType } from '../../../containers/type';
+import styled from '../../../story/styledComponents';
+import CheckBox from '../../../base/Input/CheckBox';
+import { pos } from '../../../../domains/pos';
+import { changeFilterDispatchType } from '../../../../containers/type';
 
 interface Props {
   className?: string;

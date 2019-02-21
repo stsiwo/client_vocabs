@@ -6,6 +6,7 @@ import { Record } from 'immutable';
 import { withRouter } from 'react-router-dom';
 import navLinkThunk from '../../thunk/navLink';
 import { RouteComponentProps } from 'react-router-dom';
+import { signUpFormModalActionCreator } from '../../actions/index';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
   wordFormError: state.get('wordFormError'),
@@ -13,6 +14,7 @@ const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   linkClick: (pushCallback: ( path: string ) => void ) => { dispatch<any>( navLinkThunk( pushCallback ))},
+  signupClick: () => { dispatch<any>( signUpFormModalActionCreator( true ))}
 });
 
 

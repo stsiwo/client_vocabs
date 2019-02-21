@@ -1,6 +1,6 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
-import Filter from '../representationals/business/SortFilterModal/Filter';
+import Filter from '../representationals/business/ModalContent/SortFilter/Filter';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import filterIconChangeThunk from '../thunk/filterIconChange';

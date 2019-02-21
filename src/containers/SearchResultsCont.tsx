@@ -1,6 +1,6 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
-import SearchResults from '../representationals/business/SearchImageModal/SearchResults';
+import SearchResults from '../representationals/business/ModalContent/SearchImage/SearchResults';
 import { IState } from '../state/type';
 import { Record } from 'immutable';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Search from '../../base/Input/Search';
+import Search from '../../../base/Input/Search';
 import SearchResults from './SearchResults';
 
 interface ImageIF {

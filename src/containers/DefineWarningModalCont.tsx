@@ -1,6 +1,6 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
-import DefineWarningModal from '../representationals/business/DefineWarningModal/DefineWarningModal';
+import DefineWarningModal from '../representationals/business/ModalContent/DefineWarningModal';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import { toggleDefineWarningModalActionCreator } from '../actions/index';

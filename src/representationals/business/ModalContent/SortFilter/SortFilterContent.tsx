@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styled from '../../story/styledComponents';
-import SortCont from '../../../containers/SortCont';
-import FilterCont from '../../../containers/FilterCont';
+import styled from '../../../story/styledComponents';
+import SortCont from '../../../../containers/SortCont';
+import FilterCont from '../../../../containers/FilterCont';
 
 
 interface Props {

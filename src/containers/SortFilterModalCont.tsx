@@ -1,6 +1,6 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
-import SortFilterModal from '../representationals/business/SortFilterModal/SortFilterModal';
+import SortFilterModal from '../representationals/business/ModalContent/SortFilter/SortFilterModal';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import { toggleSortFilterModalActionCreator } from '../actions/index';

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
-import SelectModal from '../representationals/business/SelectModal/SelectModal';
+import SelectModal from '../representationals/business/ModalContent/SelectModal';
 import { IState } from '../state/type';
 import { toggleSelectWarningModalActionCreator } from '../actions/index';
 import { Record } from 'immutable';

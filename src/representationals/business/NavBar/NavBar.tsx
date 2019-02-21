@@ -13,6 +13,7 @@ interface Props extends RouteComponentProps {
   isOpen?: boolean;
   wordFormError: boolean;
   linkClick: (pushCallback: ( path: string ) => void) => void;
+  signupClick: () => void;
 }
 
 class NavBar extends React.PureComponent<Props, {}> {
@@ -22,6 +23,12 @@ class NavBar extends React.PureComponent<Props, {}> {
   }
 
   handleLink(e: React.MouseEvent<HTMLElement>) {
+    // disable built-in NavLink href redirect
+    e.preventDefault();
+    this.props.linkClick(this.props.history.push);
+  }
+
+  displaySignUpForm(e: React.MouseEvent<HTMLElement>) {
     // disable built-in NavLink href redirect
     e.preventDefault();
     this.props.linkClick(this.props.history.push);
@@ -38,6 +45,11 @@ class NavBar extends React.PureComponent<Props, {}> {
         <NavLink to="/dictionary" onClick={ this.handleLink }>
           <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
           <h4>Dictionary</h4>
+        </NavLink>
+        <Hl />
+        <NavLink to="/signup" onClick={ this.handleLink }>
+          <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+          <h4>Sign Up</h4>
         </NavLink>
       {/*
         <Prompt
@@ -69,7 +81,7 @@ const StyledNavBar = styled(NavBar)`
          return 'width: 0; transition: width 0.5s;';
        }
     }}
-    & > a {
+    & > a, & > div {
       background-color: ${( props: IStyledProps ) => props.theme.secondaryColor };
       display: flex;
       align-items: center;
@@ -77,10 +89,11 @@ const StyledNavBar = styled(NavBar)`
       text-decoration: none;
       height: 50px;
       padding: 0 20px;
-    }
 
-    & > a > h4 {
-      visibility: ${( props: IStyledProps ) => props.isOpen ? 'visible' : 'hidden' };
+      & > h4 {
+        visibility: ${( props: IStyledProps ) => props.isOpen ? 'visible' : 'hidden' };
+        white-space: nowrap;
+      }
     }
   }
 

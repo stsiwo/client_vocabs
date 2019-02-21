@@ -1,6 +1,6 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch, compose } from 'redux';
-import SearchWordModal from '../representationals/business/SearchWordModal/SearchWordModal';
+import SearchWordModal from '../representationals/business/ModalContent/SearchWordModal';
 import { IState } from '../state/type';
 import { withRouter } from 'react-router-dom';
 import searchKeyWordChangeThunk from '../thunk/searchKeyWordChange'; 
