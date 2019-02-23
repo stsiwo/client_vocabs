@@ -1,7 +1,6 @@
 import { MainThunkType } from '../thunkComponent';
 import myFetch from '../asyncs/myFetch';
 import makeLoginFormRequest from '../requests/loginForm';
-import { ILoginUserForm } from '../../Hoc/withLoginForm';
 
 /**
  * main thunk: fetch initial state  
@@ -9,16 +8,25 @@ import { ILoginUserForm } from '../../Hoc/withLoginForm';
  * 
  *
  **/
+interface IRequestContent {
+    username: string, 
+    email: string,
+    password: string,
+    client_id: string,
+    grant_type: string
+}
 
 const loginFormSubmittionMainThunk: MainThunkType = ( ...args ) => async ( dispatch, getState ) => {
 
-  const testInput: ILoginUserForm = {
-    name: "satoshi",
+  const testInput: IRequestContent  = {
+    username: "sample_name1",
     email: "sts@gmail.com",
-    password: "password"
+    password: "sample_password1",
+    client_id: "sample_cid",
+    grant_type: "password"
   }
 
-  const request = makeLoginFormRequest<ILoginUserForm>(testInput);
+  const request = makeLoginFormRequest<IRequestContent>(testInput);
 
   const results = await myFetch(request);
 

@@ -1,7 +1,7 @@
 import * as qs from 'query-string';
 
 const makeLoginFormRequest: <I extends object>( input?: I ) => Request = ( input ) => {
-  return new Request("http://localhost:3000/user", {
+  return new Request("http://localhost:3000/oauth/token", {
     method: 'POST',
     body: qs.stringify(input), 
     credentials: 'include',
