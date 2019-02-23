@@ -158,6 +158,8 @@ export const resetSearchedWordListCaseReducer: CaseReducerType<StateType.ISearch
   export const toggleDefineWarningModalCaseReducer: CaseReducerType<Record<StateType.IUi>, IAction.IToggleDefineWarningModalAction> = (ui, action) => ui.set('isDefineWarningModalOpen', action.isDefineWarningModalOpen);
 
   export const toggleSignUpModalCaseReducer: CaseReducerType<Record<StateType.IUi>, IAction.IToggleSignUpModalAction> = (ui, action) => ui.set('isSignUpModalOpen', action.isSignUpModalOpen);
+
+  export const toggleLoginModalCaseReducer: CaseReducerType<Record<StateType.IUi>, IAction.IToggleLoginModalAction> = (ui, action) => ui.set('isLoginModalOpen', action.isLoginModalOpen);
   /*********************************************
    * asyncs CaseReducer
    *********************************************/

@@ -6,13 +6,13 @@ import ConfirmButton from '../Button/ConfirmButton';
 import { toggleClickType } from '../../../containers/type';
 import SignUpForm from './SignUpForm';
 import { InjectedFormikProps } from 'formik';
-import withSignUpForm, { SignUpFormValues, IUserForm } from '../../../Hoc/withSignUpForm';
+import withSignUpForm, { SignUpFormValues, ISignUpUserForm } from '../../../Hoc/withSignUpForm';
 
 interface Props {
   className?: string;
   isSignUpModalOpen: boolean;
   toggleSignUpModalClick: toggleClickType; 
-  submitSignUpFormClick: ( values: IUserForm ) => void;
+  submitSignUpFormClick: ( values: ISignUpUserForm ) => void;
 }
 
 class SignUpModal extends React.PureComponent<InjectedFormikProps<Props, SignUpFormValues>, {}> {

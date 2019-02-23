@@ -1,7 +1,7 @@
 import { MainThunkType } from '../thunkComponent';
 import myFetch from '../asyncs/myFetch';
 import makeSignUpFormRequest from '../requests/signUpForm';
-import { IUserForm } from '../../Hoc/withSignUpForm';
+import { ISignUpUserForm } from '../../Hoc/withSignUpForm';
 
 /**
  * main thunk: fetch initial state  
@@ -12,14 +12,14 @@ import { IUserForm } from '../../Hoc/withSignUpForm';
 
 const signUpFormSubmittionMainThunk: MainThunkType = ( ...args ) => async ( dispatch, getState ) => {
 
-  const testInput: IUserForm = {
+  const testInput: ISignUpUserForm = {
     name: "satoshi",
     email: "sts@gmail.com",
     password: "password",
     confirm: "password"
   }
 
-  const request = makeSignUpFormRequest<IUserForm>(testInput);
+  const request = makeSignUpFormRequest<ISignUpUserForm>(testInput);
 
   const results = await myFetch(request);
 

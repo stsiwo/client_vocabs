@@ -4,7 +4,7 @@ import SignUpModal from '../representationals/business/ModalContent/SignUpModal'
 import { IState } from '../state/type';
 import { toggleSignUpModalActionCreator } from '../actions/index';
 import { Record } from 'immutable';
-import { IUserForm } from '../Hoc/withSignUpForm';
+import { ISignUpUserForm } from '../Hoc/withSignUpForm';
 import signUpFormSubmittionMainThunk from '../thunk/mains/signUpFormSubmittion';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
@@ -13,7 +13,7 @@ const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   toggleSignUpModalClick: ( isOpen: boolean ) => { dispatch( toggleSignUpModalActionCreator( isOpen ))}, 
-  submitSignUpFormClick: ( values: IUserForm ) => { dispatch<any>( signUpFormSubmittionMainThunk( values ))} 
+  submitSignUpFormClick: ( values: ISignUpUserForm ) => { dispatch<any>( signUpFormSubmittionMainThunk( values ))} 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( SignUpModal );

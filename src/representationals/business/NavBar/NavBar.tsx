@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 const settingIcon = require('./assets/setting.svg');
 import { RouteComponentProps } from 'react-router-dom';
 import SignUpModalCont from '../../../containers/SignUpModalCont';
+import LoginModalCont from '../../../containers/LoginModalCont';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -14,7 +15,9 @@ interface Props extends RouteComponentProps {
   wordFormError: boolean;
   linkClick: (pushCallback: ( path: string ) => void) => void;
   signupClick: () => void;
+  loginClick: () => void;
   isSignUpModalOpen: boolean;
+  isLoginModalOpen: boolean;
 }
 
 class NavBar extends React.PureComponent<Props, {}> {
@@ -22,6 +25,7 @@ class NavBar extends React.PureComponent<Props, {}> {
     super(props);
     this.handleLink = this.handleLink.bind(this);
     this.displaySignUpForm = this.displaySignUpForm.bind(this);
+    this.displayLoginForm = this.displayLoginForm.bind(this);
   }
 
   handleLink(e: React.MouseEvent<HTMLElement>) {
@@ -34,6 +38,12 @@ class NavBar extends React.PureComponent<Props, {}> {
     // disable built-in NavLink href redirect
     e.preventDefault();
     this.props.signupClick();
+  }
+
+  displayLoginForm(e: React.MouseEvent<HTMLElement>) {
+    // disable built-in NavLink href redirect
+    e.preventDefault();
+    this.props.loginClick();
   }
 
   render() {
@@ -54,8 +64,13 @@ class NavBar extends React.PureComponent<Props, {}> {
             <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
             <h4>Sign Up</h4>
           </NavLink>
+          <NavLink to="/login" onClick={ this.displayLoginForm }>
+            <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+            <h4>Login</h4>
+          </NavLink>
         </nav>
         {( this.props.isSignUpModalOpen && <SignUpModalCont /> )}
+        {( this.props.isLoginModalOpen && <LoginModalCont /> )}
       </div>
    );
   }

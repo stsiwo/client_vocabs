@@ -20,6 +20,7 @@ export namespace StateType {
     isSearchWordModalOpen: boolean;
     isDefineWarningModalOpen: boolean;
     isSignUpModalOpen: boolean;
+    isLoginModalOpen: boolean;
   }
 
   export interface IAsyncs {

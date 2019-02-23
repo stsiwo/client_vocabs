@@ -3,19 +3,18 @@ import { withFormik, InjectedFormikProps } from 'formik';
 import * as Yup from 'yup';
 import { toggleClickType } from '../containers/type';
 
-export interface ISignUpUserForm {
+export interface ILoginUserForm {
   name: string;
   email: string;
   password: string;
-  confirm: string;
 }
 // shape of form values
-export interface SignUpFormValues {
-  user: ISignUpUserForm;
+export interface LoginFormValues {
+  user: ILoginUserForm;
 }
 
 // words validation schema
-const SignUpValidationSchema = Yup.object().shape({
+const LoginValidationSchema = Yup.object().shape({
   user: Yup.object().shape({
     name: Yup.string()
       .required("name is required"),
@@ -25,19 +24,16 @@ const SignUpValidationSchema = Yup.object().shape({
     password: Yup.string()
       .required("password is required")
       .min(8, 'password is at least 8 characters')
-      .matches(/[a-zA-Z0-9]/, 'password need to contains alphabets (lower or upper case character) or numbers'), 
-    confirm:  Yup.string()
-     .oneOf([Yup.ref('password'), null], "password does not match")
-     .required('Password confirm is required') 
+      .matches(/[a-zA-Z0-9]/, 'password need to contains alphabets (lower or upper case character) or numbers') 
   })
 })
 
-// this came from wrapped component which is "SignUpModal"
+// this came from wrapped component which is "LoginModal"
 interface FormComponentProps {
   className?: string;
-  isSignUpModalOpen: boolean;
-  toggleSignUpModalClick: toggleClickType; 
-  submitSignUpFormClick: ( values: ISignUpUserForm ) => void;
+  isLoginModalOpen: boolean;
+  toggleLoginModalClick: toggleClickType; 
+  submitLoginFormClick: ( values: ILoginUserForm ) => void;
 }
 
 /**************************************************************
@@ -46,8 +42,8 @@ interface FormComponentProps {
  * so props of the wrapped component must includes P
  * P is subset of Props ( of wrapped component )
  **************************************************************/
-const withSignUpForm = <P extends FormComponentProps>( FormComponent: React.ComponentType<InjectedFormikProps<P, SignUpFormValues>> ) => {
-  return withFormik<P, SignUpFormValues>({
+const withLoginForm = <P extends FormComponentProps>( FormComponent: React.ComponentType<InjectedFormikProps<P, LoginFormValues>> ) => {
+  return withFormik<P, LoginFormValues>({
     // change props of this wrapping component into form values: set initial form values here
     mapPropsToValues: props => {
       return {
@@ -55,7 +51,6 @@ const withSignUpForm = <P extends FormComponentProps>( FormComponent: React.Comp
           name: "",
           email: "",
           password: "",
-          confirm: ""
         }
       };
     },
@@ -63,24 +58,25 @@ const withSignUpForm = <P extends FormComponentProps>( FormComponent: React.Comp
     // better to use validation schema (like Yup)
     // can be synchronous or asynchronous
     // return FormikErrors or Promise
-    //validate: (values: SignUpFormValues) => {
-      //let errors: FormikErrors<SignUpFormValues> = {};
+    //validate: (values: LoginFormValues) => {
+      //let errors: FormikErrors<LoginFormValues> = {};
       //return errors;
     //},
 
     // handle submit with submitted form values and extra object called "FormikBag"
     // FormikBag: includes props passed to wrapped component and some useful functions (see doc)
-    handleSubmit: (values: SignUpFormValues, { props }) => {
+    handleSubmit: (values: LoginFormValues, { props }) => {
       // use thunk to submit async so do nothing here
       console.log(props);
       console.log("sumit form");
-      props.submitSignUpFormClick(values.user);
+      props.submitLoginFormClick(values.user);
     },
 
     // validation schema
-    validationSchema: () => SignUpValidationSchema,
+    validationSchema: () => LoginValidationSchema,
 
   })(FormComponent);
 };
-export default withSignUpForm;
+export default withLoginForm;
+
 
