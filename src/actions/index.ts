@@ -55,6 +55,10 @@ export namespace IAction {
     isDefineWarningModalOpen: boolean;
   }
 
+  export interface IToggleSignUpModalAction extends Action<string> {
+    isSignUpModalOpen: boolean;
+  }
+
   export interface IToggleWordFormErrorAction extends Action<string> {
     wordFormError: boolean;
   }
@@ -113,6 +117,8 @@ type IToggleSortFilterModalActionCreator = (isSortFilterModalOpen: boolean) =>  
 type IToggleSearchWordModalActionCreator = (isSearchWordModalOpen: boolean) =>  IAction.IToggleSearchWordModalAction;
 
 type IToggleDefineWarningModalActionCreator = (isDefineWarningModalOpen: boolean) =>  IAction.IToggleDefineWarningModalAction;
+
+type IToggleSignUpModalActionCreator = (isSignUpModalOpen: boolean) =>  IAction.IToggleSignUpModalAction;
 
 type IToggleWordFormErrorActionCreator = (wordFormError: boolean) =>  IAction.IToggleWordFormErrorAction;
 
@@ -200,6 +206,11 @@ export const toggleSearchWordModalActionCreator: IToggleSearchWordModalActionCre
 export const toggleDefineWarningModalActionCreator: IToggleDefineWarningModalActionCreator = (isDefineWarningModalOpen) => ({
   type: ActionType.TOGGLE_DEFINE_WARNING_MODAL,
   isDefineWarningModalOpen: isDefineWarningModalOpen,
+})
+
+export const toggleSignUpModalActionCreator: IToggleSignUpModalActionCreator = (isSignUpModalOpen) => ({
+  type: ActionType.TOGGLE_SIGNUP_MODAL,
+  isSignUpModalOpen: isSignUpModalOpen,
 })
 
 export const toggleWordFormErrorActionCreator: IToggleWordFormErrorActionCreator = (wordFormError) => ({

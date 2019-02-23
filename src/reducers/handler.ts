@@ -57,6 +57,7 @@ export namespace ActionHandler {
     [ActionType.TOGGLE_SORT_FILTER_MODAL]: CaseReducer.toggleSortFilterModalCaseReducer, // ok
     [ActionType.TOGGLE_SEARCH_WORD_MODAL]: CaseReducer.toggleSearchWordModalCaseReducer, // ok
     [ActionType.TOGGLE_DEFINE_WARNING_MODAL]: CaseReducer.toggleDefineWarningModalCaseReducer, // ok
+    [ActionType.TOGGLE_SIGNUP_MODAL]: CaseReducer.toggleSignUpModalCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetUiCaseReducer,
   }
 

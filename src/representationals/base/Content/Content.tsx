@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-import Home from '../../business/Home/Home';
+import HomeCont from '../../../containers/HomeCont';
 import WordCont from '../../../containers/WordCont';
 import Dictionary from '../../business/Dictionary/Dictionary';
 import { withRouter, Route } from 'react-router-dom';
@@ -23,7 +23,7 @@ class Content extends React.PureComponent<Props, {}> {
   render() {
     return (
       <div className={ this.props.className } >
-        <Route exact path="/" /*component={Home}*/ render={ () => <Home /> } /> 
+        <Route exact path="/" /*component={Home}*/ render={ () => <HomeCont /> } /> 
         <Route path="/word" /*component={WordCont}*/ render={ () => <WordCont /> } /> 
         <Route path="/dictionary" /*component={Dictionary}*/ render={ () => <Dictionary /> } /> 
       </div>

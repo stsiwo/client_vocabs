@@ -5,6 +5,7 @@ import Button from '../../base/Button/Button';
 interface Props {
   className?: string;
   onConfirm: () => void;
+  label?: string;
 }
 
 class ConfirmButton extends React.PureComponent<Props, {}> {
@@ -18,8 +19,9 @@ class ConfirmButton extends React.PureComponent<Props, {}> {
   }
 
   render() {
+    const label = this.props.label || "Confirm";
     return (
-      <Button id="confirm" onClick={ this.handleClick }>Confirm</Button>
+      <Button id="confirm" onClick={ this.handleClick }>{ label }</Button>
     );
   }
 }

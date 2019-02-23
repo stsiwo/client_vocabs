@@ -4,9 +4,9 @@ import Icon from '../../base/Icon/Icon';
 import { Hl } from '../../base/common/Line';
 import { ThemeInterface } from '../../story/theme'; 
 import { NavLink } from 'react-router-dom'; 
-//import { Prompt } from 'react-router';
 const settingIcon = require('./assets/setting.svg');
 import { RouteComponentProps } from 'react-router-dom';
+import SignUpModalCont from '../../../containers/SignUpModalCont';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -14,12 +14,14 @@ interface Props extends RouteComponentProps {
   wordFormError: boolean;
   linkClick: (pushCallback: ( path: string ) => void) => void;
   signupClick: () => void;
+  isSignUpModalOpen: boolean;
 }
 
 class NavBar extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleLink = this.handleLink.bind(this);
+    this.displaySignUpForm = this.displaySignUpForm.bind(this);
   }
 
   handleLink(e: React.MouseEvent<HTMLElement>) {
@@ -31,36 +33,34 @@ class NavBar extends React.PureComponent<Props, {}> {
   displaySignUpForm(e: React.MouseEvent<HTMLElement>) {
     // disable built-in NavLink href redirect
     e.preventDefault();
-    this.props.linkClick(this.props.history.push);
+    this.props.signupClick();
   }
 
   render() {
     return (
-      <nav className={ this.props.className }>
-        <NavLink to="/word" onClick={ this.handleLink }>
-          <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-          <h4>Word</h4>
-        </NavLink>
-        <Hl />
-        <NavLink to="/dictionary" onClick={ this.handleLink }>
-          <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-          <h4>Dictionary</h4>
-        </NavLink>
-        <Hl />
-        <NavLink to="/signup" onClick={ this.handleLink }>
-          <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-          <h4>Sign Up</h4>
-        </NavLink>
-      {/*
-        <Prompt
-        when={this.props.wordFormError}
-        message="Are you sure you want to leave? unsaved words will be lost."
-        />
-        */}
-      </nav>
+      <div>
+        <nav className={ this.props.className }>
+          <NavLink to="/word" onClick={ this.handleLink }>
+            <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+            <h4>Word</h4>
+          </NavLink>
+          <Hl />
+          <NavLink to="/dictionary" onClick={ this.handleLink }>
+            <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+            <h4>Dictionary</h4>
+          </NavLink>
+          <Hl />
+          <NavLink to="/signup" onClick={ this.displaySignUpForm }>
+            <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+            <h4>Sign Up</h4>
+          </NavLink>
+        </nav>
+        {( this.props.isSignUpModalOpen && <SignUpModalCont /> )}
+      </div>
    );
   }
 }
+
 interface IStyledProps extends Props {
   theme: ThemeInterface;
 }

@@ -3,6 +3,7 @@ import styled from '../../story/styledComponents';
 
 interface Props {
   className?: string;
+  testFetch: () => void;
 }
 
 class Home extends React.PureComponent<Props, {}> {
@@ -14,6 +15,7 @@ class Home extends React.PureComponent<Props, {}> {
     return (
       <div>
         here is home page
+        <button type="button" onClick={ this.props.testFetch }>Test Fetch</button>
       </div>
     );
   }
