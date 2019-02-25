@@ -21,9 +21,10 @@ const signUpFormSubmittionMainThunk: MainThunkType = ( ...args ) => async ( disp
 
   const request = makeSignUpFormRequest<ISignUpUserForm>(testInput);
 
-  const results = await myFetch(request);
+  const words = await myFetch(request);
 
-  console.log(results);
+  console.log(words);
+
   
   
 

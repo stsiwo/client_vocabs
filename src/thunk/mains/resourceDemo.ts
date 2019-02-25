@@ -1,6 +1,7 @@
 import { MainThunkType } from '../thunkComponent';
 import myFetch from '../asyncs/myFetch';
 import makeResourceRequest from '../requests/resourceRequest';
+import { bulkUpdateWordActionCreator, startInitialWordsFetchRequestActionCreator, finishInitialWordsFetchRequestActionCreator } from '../../actions/index';
 
 /**
  * main thunk: fetch initial state  
@@ -13,9 +14,15 @@ const resourceDemoMainThunk: MainThunkType = ( ...args ) => async ( dispatch, ge
 
   const request = makeResourceRequest();
 
-  const results = await myFetch(request);
+  const data = await myFetch(request);
 
-  console.log(results);
+  console.log(data);
+
+  dispatch(startInitialWordsFetchRequestActionCreator());
+
+  dispatch<any>(bulkUpdateWordActionCreator(data.words));
+
+  dispatch(finishInitialWordsFetchRequestActionCreator());
 
 }
 export default resourceDemoMainThunk;
