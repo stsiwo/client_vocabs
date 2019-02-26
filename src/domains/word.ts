@@ -5,7 +5,7 @@ export interface IWord {
   id: string;
   name: string;
   defs: IDef[]; 
-  createDate: string;
+  creationDate: string;
 }
 
 export type IWordImm = Map<string, any>;
@@ -28,7 +28,7 @@ export interface IWordListItem {
 export interface IWordNameList {
   id: string;
   name: string;
-  createDate: string;
+  creationDate: string;
 }
 
 /**

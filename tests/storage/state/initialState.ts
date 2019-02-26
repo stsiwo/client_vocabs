@@ -7,7 +7,7 @@ export const initialWordList: IWord[] = [
   {
     id: "2",
     name: "address",
-    createDate: "1997-12-17T03:24:00",
+    creationDate: "1997-12-17T03:24:00",
     defs: [
       {
         id: "8",
@@ -21,7 +21,7 @@ export const initialWordList: IWord[] = [
   {
     id: "10",
     name: "biblical",
-    createDate: "2005-12-17T03:24:00",
+    creationDate: "2005-12-17T03:24:00",
     defs: [
       {
         id: "110",
@@ -35,7 +35,7 @@ export const initialWordList: IWord[] = [
   {
     id: "4",
     name: "curry",
-    createDate: "1999-12-17T03:24:00",
+    creationDate: "1999-12-17T03:24:00",
     defs: [
       {
         id: "14",
@@ -49,7 +49,7 @@ export const initialWordList: IWord[] = [
   {
     id: "7",
     name: "dictation",
-    createDate: "2002-12-17T03:24:00",
+    creationDate: "2002-12-17T03:24:00",
     defs: [
       {
         id: "17",
@@ -63,7 +63,7 @@ export const initialWordList: IWord[] = [
   {
     id: "5",
     name: "elaborate",
-    createDate: "2000-12-17T03:24:00",
+    creationDate: "2000-12-17T03:24:00",
     defs: [
       {
         id: "15",
@@ -77,7 +77,7 @@ export const initialWordList: IWord[] = [
   {
     id: "1",
     name: "hypothesis",
-    createDate: "1996-12-17T03:24:00",
+    creationDate: "1996-12-17T03:24:00",
     defs: [
       {
         id: "4",
@@ -112,7 +112,7 @@ export const initialWordList: IWord[] = [
   {
     id: "3",
     name: "longevity",
-    createDate: "1998-12-17T03:24:00",
+    creationDate: "1998-12-17T03:24:00",
     defs: [
       {
         id: "13",
@@ -126,7 +126,7 @@ export const initialWordList: IWord[] = [
   {
     id: "8",
     name: "occupation",
-    createDate: "2003-12-17T03:24:00",
+    creationDate: "2003-12-17T03:24:00",
     defs: [
       {
         id: "18",
@@ -140,7 +140,7 @@ export const initialWordList: IWord[] = [
   {
     id: "0",
     name: "sport",
-    createDate: "1995-12-17T03:24:00",
+    creationDate: "1995-12-17T03:24:00",
     defs: [
       {
         id: "0",
@@ -175,7 +175,7 @@ export const initialWordList: IWord[] = [
   {
     id: "9",
     name: "valt",
-    createDate: "2004-12-17T03:24:00",
+    creationDate: "2004-12-17T03:24:00",
     defs: [
       {
         id: "19",
@@ -189,7 +189,7 @@ export const initialWordList: IWord[] = [
   {
     id: "6",
     name: "zap",
-    createDate: "2001-12-17T03:24:00",
+    creationDate: "2001-12-17T03:24:00",
     defs: [
       {
         id: "16",

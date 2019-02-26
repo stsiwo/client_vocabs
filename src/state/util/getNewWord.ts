@@ -9,7 +9,7 @@ const getNewWord: (id: string) => IWord = (id) => {
   return {
     id: id,
     name: "",
-    createDate: getCurrentTimeStamp(),
+    creationDate: getCurrentTimeStamp(),
     defs: [
       {
         id: uuidv4(),

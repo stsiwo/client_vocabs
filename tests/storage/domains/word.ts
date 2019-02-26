@@ -130,7 +130,7 @@ export const wordItemListOutputDataJS = [
   //{
     //id: "10",
     //name: "biblical",
-    //createDate: "2005-12-17T03:24:00",
+    //creationDate: "2005-12-17T03:24:00",
     //defs: [
       //{
         //id: "110",
@@ -144,7 +144,7 @@ export const wordItemListOutputDataJS = [
   //{
     //id: "22222",
     //name: "new word",
-    //createDate: "2005-12-17T03:24:00",
+    //creationDate: "2005-12-17T03:24:00",
     //defs: [
       //{
         //id: "110",

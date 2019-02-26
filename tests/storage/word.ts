@@ -4,7 +4,7 @@ import { initialWordList } from '../../src/state/index';
 export const newWord: IWord = {
   id: "100",
   name: "test-sample-word",
-  createDate: "2002-12-17T03:24:00",
+  creationDate: "2002-12-17T03:24:00",
   defs: [
     {
       id: "100",
@@ -50,7 +50,7 @@ export const normalizedNewWord = {
       '100': {
         id: "100",
         name: "test-sample-word",
-        createDate: "2002-12-17T03:24:00",
+        creationDate: "2002-12-17T03:24:00",
         defs: [ "100", "101", "102", "103", "104" ],
       },
     },

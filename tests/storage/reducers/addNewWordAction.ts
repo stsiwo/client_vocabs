@@ -5,7 +5,7 @@ export const addNewWordActionInputData: StateType.IEntityWord = {
   ["111"]: {
     id: "111",
     name: "test",
-    createDate: "1997-12-17T03:24:00",
+    creationDate: "1997-12-17T03:24:00",
     defs: [],
   }
 }

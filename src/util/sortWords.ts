@@ -52,10 +52,10 @@ const sortHandlers: ISortHandler = {
     return 0;
   },
   [SORT_ORDER.DATE_NEWER]: (first_word, second_word) => {
-    return +new Date(second_word.createDate) - +new Date(first_word.createDate);
+    return +new Date(second_word.creationDate) - +new Date(first_word.creationDate);
   },
   [SORT_ORDER.DATE_OLDER]: (first_word, second_word) => {
-    return +new Date(first_word.createDate) - +new Date(second_word.createDate);
+    return +new Date(first_word.creationDate) - +new Date(second_word.creationDate);
   },
 }
 

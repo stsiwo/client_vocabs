@@ -1,7 +1,7 @@
 export const getNewWordStubTestData = (id: string) => ({
   id: id,
   name: "",
-  createDate: "now",
+  creationDate: "now",
   defs: [
     {
       id: "defId",
