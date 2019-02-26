@@ -13,7 +13,7 @@ const getNewWord: (id: string) => IWord = (id) => {
     defs: [
       {
         id: uuidv4(),
-        pos: PosEnum.NOUN,
+        posId: PosEnum.NOUN,
         def: "",
         image: "",
         wordId: id,

@@ -40,7 +40,7 @@ export class DefContent extends React.PureComponent<Props, State> {
       <ul className={ this.props.className }>
         <li>
           <PosSelect 
-            pos={ this.props.def.pos } 
+            posId={ this.props.def.posId } 
             formik={ this.props.formik } 
             wordIndex={ this.props.wordIndex }
             defIndex={ this.props.defIndex }

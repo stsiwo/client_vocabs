@@ -57,4 +57,4 @@ export const getWordNameList = ( sortedWordList: StateType.ISortedWordList, enti
  * @param {number[]} newFilter - new filter to compare 
  * @return {List<IWordDefsList>} immutable List with type IWordDefsList
  **/
-export const filter = ( displayedWordList: StateType.IDisplayedWordList, entities: Record<StateType.IEntity>, newFilter: number[] ): OrderedSet<string> => displayedWordList.filter(( wordId: string ) => entities.get('words').getIn([ wordId, 'defs' ]).find(( def: IDef ) => newFilter.includes(def.pos)) !== undefined )  
+export const filter = ( displayedWordList: StateType.IDisplayedWordList, entities: Record<StateType.IEntity>, newFilter: number[] ): OrderedSet<string> => displayedWordList.filter(( wordId: string ) => entities.get('words').getIn([ wordId, 'defs' ]).find(( def: IDef ) => newFilter.includes(def.posId)) !== undefined )  

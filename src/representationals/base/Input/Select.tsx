@@ -7,14 +7,14 @@ import formElement from '../common/formElement';
 interface Props {
   className?: string;
   items: IPos[];
-  pos: PosEnum;
+  posId: PosEnum;
   labelName: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLSelectElement>) => void;
 }
 
 interface State {
-  pos: PosEnum;
+  posId: PosEnum;
 }
 
 class Select extends React.PureComponent<Props, State> {
@@ -42,7 +42,7 @@ class Select extends React.PureComponent<Props, State> {
 
   render() {
     return (
-      <select value={this.props.pos} name={this.props.labelName} className={ this.props.className } onChange={this.handleChange} onBlur={ this.handleBlur } >
+      <select value={this.props.posId} name={this.props.labelName} className={ this.props.className } onChange={this.handleChange} onBlur={ this.handleBlur } >
         { this.renderOptions() }
       </select>
     );
@@ -58,7 +58,7 @@ const StyledSelect = styled(Select)`
 interface WrapperProps {
   className?: string;
   items: IPos[];
-  pos: PosEnum;
+  posId: PosEnum;
   labelName: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   children: string;
@@ -71,7 +71,7 @@ const WrapperSelect: React.SFC<WrapperProps> = (props) => {
       <label htmlFor={ props.labelName }>
         { props.children }
       </label>
-      <StyledSelect items={ props.items } pos={ props.pos } labelName={ props.labelName } onChange={props.onChange} onBlur={ props.onBlur } />
+      <StyledSelect items={ props.items } posId={ props.posId } labelName={ props.labelName } onChange={props.onChange} onBlur={ props.onBlur } />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { ErrorMessage } from 'formik';
 
 interface Props {
   className?: string;
-  pos: PosEnum;
+  posId: PosEnum;
   //updateDefPosChange: ( id: string, nextPos: PosEnum ) => void;
   formik: CustomFormikProps;
   wordIndex: number;
@@ -37,12 +37,12 @@ class PosSelect extends React.PureComponent<Props, {}> {
           onChange={ this.handlePosChange } 
           onBlur={ this.handlePosBlur }
           items={ pos } 
-          pos={ this.props.pos } 
-          labelName={ `words.${ wordIndex }.defs.${ defIndex }.pos` } 
+          posId={ this.props.posId } 
+          labelName={ `words.${ wordIndex }.defs.${ defIndex }.posId` } 
         > 
           Pos
         </Select>
-        <ErrorMessage name={ `words.${ wordIndex }.defs.${ defIndex }.pos` } />
+        <ErrorMessage name={ `words.${ wordIndex }.defs.${ defIndex }.posId` } />
       </div>
     );
   }

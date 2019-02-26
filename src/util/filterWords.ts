@@ -19,7 +19,7 @@ const filterWords = ( entities: Record<StateType.IEntity>, newFilter: StateType.
        * should def.pos type is number but it's string,
        * should refactor this !!!!!!!!!!!!!!!!!!!!!!!!
        *********************************************/
-      return newFilter.includes(parseInt(def.get('pos')));
+      return newFilter.includes(parseInt(def.get('posId')));
     });
     
     return isWordContainNewFilterDef ? true : false;

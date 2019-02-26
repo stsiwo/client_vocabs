@@ -23,7 +23,7 @@ const WordsValidationSchema = Yup.object().shape({
   words: Yup.array().of(Yup.object().shape({
     name: Yup.string().required("required"),
     defs: Yup.array().of(Yup.object().shape({
-      pos: Yup.number().integer().lessThan(10, "pos errors"),
+      posId: Yup.number().integer().lessThan(10, "pos errors"),
       def: Yup.string().required("required"),
       image: Yup.string().notRequired(),
     }))

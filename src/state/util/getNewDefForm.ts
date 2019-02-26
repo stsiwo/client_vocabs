@@ -9,7 +9,7 @@ const getNewDefForm: (id: string) => IDef = (id) => {
   const defId = uuidv4();
   return {
     id: defId,
-    pos: PosEnum.NOUN,
+    posId: PosEnum.NOUN,
     def: "",
     image: "",
     wordId: id,
