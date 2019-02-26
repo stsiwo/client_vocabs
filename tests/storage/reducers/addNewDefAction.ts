@@ -7,7 +7,7 @@ export const addNewDefActionInputData: StateType.IEntityDef = {
     pos: 2,
     def: "test",
     image: "test",
-    _wordId: "4",
+    wordId: "4",
   }
 }
 

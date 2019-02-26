@@ -5,7 +5,7 @@ export interface IDef {
   pos: PosEnum;
   def: string;
   image: string;
-  _wordId: string;
+  wordId: string;
 }
 
 

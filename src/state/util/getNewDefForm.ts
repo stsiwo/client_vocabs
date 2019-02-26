@@ -12,7 +12,7 @@ const getNewDefForm: (id: string) => IDef = (id) => {
     pos: PosEnum.NOUN,
     def: "",
     image: "",
-    _wordId: id,
+    wordId: id,
   }
 }
 export default getNewDefForm;

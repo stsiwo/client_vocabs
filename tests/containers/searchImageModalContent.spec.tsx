@@ -29,7 +29,7 @@ describe('SearchImageModalContentCont', function() {
         //pos: PosEnum.NOUN, 
         //def: "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         //image: "image1",
-        //_wordId: "0",
+        //wordId: "0",
       //},
     const ContextHOC = ProviderAndThemeWrapperHOC(SearchImageModalContentCont, store);
     const wrapper = mount(

@@ -38,7 +38,7 @@ export namespace CaseReducer {
 
   /***************
    * TS2367: This condition will always return 'false' since the types 'IDef' and 'string' have no overlap.
-   *  - this is bug?? obviously comparing string of def._wordId and action.wordId
+   *  - this is bug?? obviously comparing string of def.wordId and action.wordId
    *  - it is definitely bug.
    *  - solved:  use string() function to make it string
    ***************/

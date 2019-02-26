@@ -9,7 +9,7 @@
         "pos": "0",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image1",
-        "_wordId": "1"
+        "wordId": "1"
       }
     ]
   },
@@ -23,7 +23,7 @@
         "pos": "1",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image2",
-        "_wordId": "2"
+        "wordId": "2"
       }
     ]
   },
@@ -37,7 +37,7 @@
         "pos": "2",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image3",
-        "_wordId": "3"
+        "wordId": "3"
       }
     ]
   },
@@ -51,7 +51,7 @@
         "pos": "3",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image4",
-        "_wordId": "4"
+        "wordId": "4"
       }
     ]
   },
@@ -65,7 +65,7 @@
         "pos": "4",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image5",
-        "_wordId": "5"
+        "wordId": "5"
       }
     ]
   },
@@ -79,7 +79,7 @@
         "pos": "5",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image6",
-        "_wordId": "6"
+        "wordId": "6"
       }
     ]
   },
@@ -93,7 +93,7 @@
         "pos": "6",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image7",
-        "_wordId": "7"
+        "wordId": "7"
       }
     ]
   },
@@ -107,7 +107,7 @@
         "pos": "7",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image8",
-        "_wordId": "8"
+        "wordId": "8"
       }
     ]
   },
@@ -121,7 +121,7 @@
         "pos": "8",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image9",
-        "_wordId": "9"
+        "wordId": "9"
       }
     ]
   },
@@ -135,7 +135,7 @@
         "pos": "9",  
         "def": "the number of the house, name of the road, and name of the town where a person lives or works, and where letters can be sent:",
         "image": "image10",
-        "_wordId": "10"
+        "wordId": "10"
       }
     ]
   }

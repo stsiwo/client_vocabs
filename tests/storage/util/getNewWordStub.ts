@@ -8,7 +8,7 @@ export const getNewWordStubTestData = (id: string) => ({
       pos: 1,
       def: "",
       image: "",
-      _wordId: id,
+      wordId: id,
     },
   ],
 });

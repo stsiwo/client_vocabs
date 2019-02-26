@@ -5,5 +5,5 @@ export const defTestData: IDef = {
   pos: 4,
   def: "test-def",
   image: "test-image",
-  _wordId: "0",
+  wordId: "0",
 }

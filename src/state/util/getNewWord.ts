@@ -16,7 +16,7 @@ const getNewWord: (id: string) => IWord = (id) => {
         pos: PosEnum.NOUN,
         def: "",
         image: "",
-        _wordId: id,
+        wordId: id,
       },
     ],
   }
