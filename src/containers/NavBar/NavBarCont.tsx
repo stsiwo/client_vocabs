@@ -5,19 +5,22 @@ import { IState } from '../../state/type';
 import { Record } from 'immutable';
 import { withRouter } from 'react-router-dom';
 import navLinkThunk from '../../thunk/navLink';
+import logoutMainThunk from '../../thunk/mains/logout';
 import { RouteComponentProps } from 'react-router-dom';
 import { toggleSignUpModalActionCreator, toggleLoginModalActionCreator } from '../../actions/index';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
   wordFormError: state.get('wordFormError'),
   isSignUpModalOpen: state.getIn([ 'ui', 'isSignUpModalOpen' ]),
-  isLoginModalOpen: state.getIn([ 'ui', 'isLoginModalOpen' ])
+  isLoginModalOpen: state.getIn([ 'ui', 'isLoginModalOpen' ]),
+  isLogin: state.get('login')
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   linkClick: (pushCallback: ( path: string ) => void ) => { dispatch<any>( navLinkThunk( pushCallback ))},
   signupClick: () => { dispatch<any>( toggleSignUpModalActionCreator( true ))},
-  loginClick: () => { dispatch<any>( toggleLoginModalActionCreator( true ))}
+  loginClick: () => { dispatch<any>( toggleLoginModalActionCreator( true ))},
+  logoutClick: () => { dispatch<any>( logoutMainThunk() ) }
 });
 
 

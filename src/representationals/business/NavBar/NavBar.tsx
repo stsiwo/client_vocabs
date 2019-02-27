@@ -12,12 +12,14 @@ import LoginModalCont from '../../../containers/LoginModalCont';
 interface Props extends RouteComponentProps {
   className?: string;
   isOpen?: boolean;
+  isLogin: boolean;
   wordFormError: boolean;
   linkClick: (pushCallback: ( path: string ) => void) => void;
   signupClick: () => void;
   loginClick: () => void;
   isSignUpModalOpen: boolean;
   isLoginModalOpen: boolean;
+  logoutClick: () => void;
 }
 
 class NavBar extends React.PureComponent<Props, {}> {
@@ -26,6 +28,7 @@ class NavBar extends React.PureComponent<Props, {}> {
     this.handleLink = this.handleLink.bind(this);
     this.displaySignUpForm = this.displaySignUpForm.bind(this);
     this.displayLoginForm = this.displayLoginForm.bind(this);
+    this.logoutClick = this.logoutClick.bind(this);
   }
 
   handleLink(e: React.MouseEvent<HTMLElement>) {
@@ -46,29 +49,45 @@ class NavBar extends React.PureComponent<Props, {}> {
     this.props.loginClick();
   }
 
+  logoutClick(e: React.MouseEvent<HTMLElement>) {
+    e.preventDefault();
+    this.props.logoutClick();
+  }
+
   render() {
     return (
       <div>
-        <nav className={ this.props.className }>
-          <NavLink to="/word" onClick={ this.handleLink }>
-            <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-            <h4>Word</h4>
-          </NavLink>
-          <Hl />
-          <NavLink to="/dictionary" onClick={ this.handleLink }>
-            <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-            <h4>Dictionary</h4>
-          </NavLink>
-          <Hl />
-          <NavLink to="/signup" onClick={ this.displaySignUpForm }>
-            <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-            <h4>Sign Up</h4>
-          </NavLink>
-          <NavLink to="/login" onClick={ this.displayLoginForm }>
-            <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
-            <h4>Login</h4>
-          </NavLink>
-        </nav>
+        {( this.props.isLogin && 
+          <nav className={ this.props.className }>
+            <NavLink to="/word" onClick={ this.handleLink }>
+              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <h4>Word</h4>
+            </NavLink>
+            <Hl />
+            <NavLink to="/dictionary" onClick={ this.handleLink }>
+              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <h4>Dictionary</h4>
+            </NavLink>
+            <Hl />
+            <NavLink to="/logout" onClick={ this.logoutClick }>
+              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <h4>Logout</h4>
+            </NavLink>
+          </nav>
+        )}
+        {( !this.props.isLogin && 
+          <nav className={ this.props.className }>
+            <NavLink to="/signup" onClick={ this.displaySignUpForm }>
+              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <h4>Sign Up</h4>
+            </NavLink>
+            <Hl />
+            <NavLink to="/login" onClick={ this.displayLoginForm }>
+              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <h4>Login</h4>
+            </NavLink>
+          </nav>
+        )}
         {( this.props.isSignUpModalOpen && <SignUpModalCont /> )}
         {( this.props.isLoginModalOpen && <LoginModalCont /> )}
       </div>

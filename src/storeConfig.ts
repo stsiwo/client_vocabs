@@ -19,6 +19,7 @@ const store = createStore(rootReducer, initialStateRecordFactory(), composeEnhan
 let acting = false;
 // listener registration
 store.subscribe(() => {
+  // this condition is to prevent infinit loop of dispatch action
   if (!acting) {
     acting = true;
     // list of listeners
