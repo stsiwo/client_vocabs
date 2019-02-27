@@ -1,7 +1,6 @@
 import { MainThunkType } from '../thunkComponent';
 import myFetch from '../asyncs/myFetch';
 import makeRevokeTokenRequest from '../requests/makeRevokeTokenRequest';
-import { toggleLoginActionCreator } from '../../actions/index';
 
 /**
  * main thunk: fetch initial state  
