@@ -2,7 +2,6 @@ import { MainThunkType } from '../thunkComponent';
 import myFetch from '../asyncs/myFetch';
 import makeGetWordsOfUserRequest from '../requests/makeGetWordsOfUserRequest';
 import { bulkUpdateWordActionCreator, startInitialWordsFetchRequestActionCreator, finishInitialWordsFetchRequestActionCreator } from '../../actions/index';
-
 /**
  * main thunk: fetch initial state  
  *
@@ -10,10 +9,12 @@ import { bulkUpdateWordActionCreator, startInitialWordsFetchRequestActionCreator
  *
  **/
 
-const resourceDemoMainThunk: MainThunkType = ( ...args ) => async ( dispatch, getState ) => {
+const initialWordsFetchMainThunk: MainThunkType = ( ...args ) => async ( dispatch, getWords ) => {
 
+  // make request for initial data
   const request = makeGetWordsOfUserRequest();
 
+  
   dispatch(startInitialWordsFetchRequestActionCreator());
 
   const data = await myFetch(request);
@@ -23,9 +24,7 @@ const resourceDemoMainThunk: MainThunkType = ( ...args ) => async ( dispatch, ge
   dispatch(finishInitialWordsFetchRequestActionCreator());
 
 }
-export default resourceDemoMainThunk;
-
-
+export default initialWordsFetchMainThunk;
 
 
 

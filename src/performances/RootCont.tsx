@@ -1,7 +1,7 @@
 import { connect } from 'react-redux' 
 import { AnyAction, Dispatch } from 'redux';
 import Root from './Root';
-import initialStateFetchMainThunk from '../thunk/mains/initialStateFetch';
+import initialWordsFetchMainThunk from '../thunk/mains/initialWordsFetch';
 import { IState } from '../state/type';
 import withJSProps from '../Hoc/withJSProps';
 import { IWord, IWordImm } from '../domains/word';
@@ -20,7 +20,7 @@ const mapStateToProps = (state: IState, ownProps: {}) => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  initialWordsFetch: () => { dispatch<any>( initialStateFetchMainThunk() )},
+  initialWordsFetch: () => { dispatch<any>( initialWordsFetchMainThunk() )},
 });
 
 interface Props {

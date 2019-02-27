@@ -5,7 +5,7 @@ import { IState } from '../../state/type';
 import withJSProps from '../../Hoc/withJSProps';
 import { Record } from 'immutable';
 import { OrderedSet } from 'immutable';
-import initialStateFetchMainThunk from '../../thunk/mains/initialStateFetch';
+import initialWordsFetchMainThunk from '../../thunk/mains/initialWordsFetch';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => {
   return {
@@ -15,7 +15,7 @@ const mapStateToProps = (state: Record<IState>, ownProps: {}) => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
-  initialWordsFetch: () => { dispatch<any>( initialStateFetchMainThunk() )},
+  initialWordsFetch: () => { dispatch<any>( initialWordsFetchMainThunk() )},
 });
 
 interface Props {

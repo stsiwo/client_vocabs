@@ -1,7 +1,7 @@
 const accessToken = sessionStorage.getItem('access_token');
 const username = sessionStorage.getItem('username');
 
-const makeResourceRequest: <I extends object = {}>( input?: I ) => Request = ( input ) => {
+const makeGetWordsOfUserRequest: <I extends object = {}>( input?: I ) => Request = ( input ) => {
   return new Request(`http://localhost:3000/user/${ username }/word`, {
     method: 'GET',
     credentials: 'include',
@@ -12,6 +12,6 @@ const makeResourceRequest: <I extends object = {}>( input?: I ) => Request = ( i
     }
   });
 }
-export default makeResourceRequest;
+export default makeGetWordsOfUserRequest;
 
 

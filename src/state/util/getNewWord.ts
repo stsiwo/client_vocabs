@@ -1,4 +1,3 @@
-import { getCurrentTimeStamp } from '../../util/getCurrentTimeStamp';
 const uuidv4 = require('uuid/v4'); 
 import { IWord } from '../../domains/word';
 import { PosEnum } from '../../domains/pos';
@@ -9,7 +8,7 @@ const getNewWord: (id: string) => IWord = (id) => {
   return {
     id: id,
     name: "",
-    creationDate: getCurrentTimeStamp(),
+    creationDate: new Date().toISOString(),
     defs: [
       {
         id: uuidv4(),

@@ -11,6 +11,8 @@ import myFetch from '../asyncs/myFetch';
 
 const updateWordsRemoteMainThunk: MainThunkType = ( ...args ) => async ( dispatch, getState ) => {
 
+  console.log(args[0]);
+
   const request = makeUpsertWordsRequest(args[0]);
 
   await myFetch(request); 
