@@ -1,14 +1,20 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+//const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+// 1. import default from the plugin module
+const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
+
+// 2. create a transformer;
+// the factory additionally accepts an options object which described below
+const styledComponentsTransformer = createStyledComponentsTransformer();
 
 module.exports = {
   entry: {
     app: './src/index.tsx'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    //new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'CSS Experiment',
       meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
@@ -29,16 +35,14 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-             plugins: [
-              '@babel/plugin-proposal-object-rest-spread',
-              '@babel/plugin-transform-regenerator',
-            ]
-          }
         }
       },
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+      { test: /\.tsx?$/, 
+        loader: "awesome-typescript-loader",
+        options: {
+          getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
+        }
+      },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.css$/,
@@ -65,6 +69,14 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          'file-loader'
+        ]
+      },
+      {
+        type: 'javascript/auto',
+        test: /\.json$/,
         include: path.resolve(__dirname, 'src'),
         use: [
           'file-loader'
