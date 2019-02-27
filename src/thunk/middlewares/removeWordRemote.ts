@@ -11,14 +11,13 @@ import makeDeleteWordRequest from '../requests/makeDeleteWordRequest';
 const removeWordThunkMiddleware: ThunkMiddlewareType = ( next ) => ( ...args ) => async ( dispatch, getState ) => {
 
   // get selected words to be deleted
-  const wordListToDelete = getState().get('selectedWordList');
+  const wordListToDelete = { id : getState().get('selectedWordList').toArray() };
 
   // make request
   const request = makeDeleteWordRequest(wordListToDelete);
 
   // async to fetch delete request 
   await myFetch(request); 
-
 
   // send next middleware or main thunk
   dispatch<any>(next(...args)); 

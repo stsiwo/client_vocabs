@@ -10,8 +10,8 @@ import applyThunkMiddleware from './thunkComponent';
  *  NOTE: any precondition are met in removeWordControllerClick thunk (see if you need)
  **/   
 const removeWordConfirmButtonClickThunk = applyThunkMiddleware(
-  removeWordThunkMiddleware,
-  removeWordRemoteThunkMiddleware
+  removeWordRemoteThunkMiddleware,
+  removeWordThunkMiddleware
 )(toggleDeleteConfirmModalActionCreator);
 
 export default removeWordConfirmButtonClickThunk;
