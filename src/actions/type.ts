@@ -11,9 +11,13 @@ export interface IActionType {
   REMOVE_WORD: string; // ok
 
   // sort & filter
-  CHANGE_SORT: string, // ok
-  CHANGE_FILTER: string, // ok
-  RESET_SORT_FILTER: string, 
+  CHANGE_SORT: string; // ok
+  CHANGE_FILTER: string; // ok
+  RESET_SORT_FILTER: string;
+
+  // isLogin
+  TOGGLE_LOGIN_STATE: string;
+
 
   // ui
   TOGGLE_SELECT_WARNING_MODAL: string; // ok
@@ -65,6 +69,8 @@ export const ActionType: IActionType = {
   CHANGE_SORT: "CHANGE_SORT",
   CHANGE_FILTER: "CHANGE_FILTER",
   RESET_SORT_FILTER: "RESET_SORT_FILTER",
+
+  TOGGLE_LOGIN_STATE: "TOGGLE_LOGIN_STATE",
 
   TOGGLE_SELECT_WARNING_MODAL: "TOGGLE_SELECT_WARNING_MODAL",
   TOGGLE_DELETE_CONFIRM_MODAL: "TOGGLE_DELETE_CONFIRM_MODAL",

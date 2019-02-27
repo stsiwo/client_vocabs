@@ -31,6 +31,13 @@ export namespace ActionHandler {
   }
 
   /*****************************************
+   * entities.login handler
+   ****************************************/
+  export const loginHandler: HandlerType<StateType.ILogin> = {
+    [ActionType.TOGGLE_LOGIN_STATE]: CaseReducer.toggleLoginCaseReducer, // ok
+  }
+
+  /*****************************************
    * currentSort
    ****************************************/
   export const currentSortHandler: HandlerType<StateType.ICurrentSort> = {

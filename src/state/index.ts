@@ -10,6 +10,7 @@ export const initialState: IState = {
   entities: Record<StateType.IEntity>({
     words: Map<string, IWordImm>(), 
   })(),
+  login: false,
   currentSort: 1, 
   sortedWordList: OrderedSet<string>(),
   searchedWordList: OrderedSet<string>(),

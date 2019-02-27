@@ -13,6 +13,8 @@ export namespace StateType {
     words: IEntityWord;
   }
 
+  export type ILogin = boolean;
+
   export interface IUi {
     isSelectWarningModalOpen: boolean;
     isDeleteConfirmModalOpen: boolean;
@@ -53,6 +55,7 @@ export namespace StateType {
 
 export interface IState { 
   entities: Record<StateType.IEntity>;
+  login: StateType.ILogin;
   sortedWordList: StateType.ISortedWordList;
   selectedWordList: StateType.ISortedWordList;
   searchedWordList: StateType.ISearchedWordList;

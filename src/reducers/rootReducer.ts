@@ -13,6 +13,7 @@ import { Record } from 'immutable';
 export const rootReducer = (state: Record<IState>, action: AnyAction ) => {
   return Record<IState>({
     entities: sliceReducer.entityReducer( state.get('entities'), action ),
+    login: sliceReducer.loginReducer( state.get('login'), action),
     sortedWordList: sliceReducer.sortedWordListReducer( state.get('sortedWordList'), action ),
     selectedWordList: sliceReducer.selectedWordListReducer( state.get('selectedWordList'), action ),
     searchedWordList: sliceReducer.searchedWordListReducer( state.get('searchedWordList'), action ),

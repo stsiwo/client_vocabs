@@ -35,6 +35,10 @@ export namespace CaseReducer {
 
   export const resetWordsCaseReducer: CaseReducerType<StateType.IEntityWord, IAction.IResetStateAction> = (words, action) => words.clear();
 
+  /*********************************************
+   * login CaseReducer
+   *********************************************/
+  export const toggleLoginCaseReducer: CaseReducerType<StateType.ILogin, IAction.IToggleLoginAction> = (login, action) => action.isLogin;
 
   /***************
    * TS2367: This condition will always return 'false' since the types 'IDef' and 'string' have no overlap.

@@ -16,6 +16,10 @@ export namespace IAction {
     wordId: string;
   }
 
+  export interface IToggleLoginAction extends Action<string> {
+    isLogin: boolean;
+  }
+
   export interface IChangeSortAction extends Action<string> {
     currentSort: StateType.ICurrentSort;
     sortedWordList: StateType.ISortedWordList;
@@ -104,6 +108,8 @@ type IBulkUpdateWordActionCreator = (words: IWord[]) =>  IAction.IBulkUpdateWord
 
 type IRemoveWordActionCreator = (wordId: string) =>  IAction.IRemoveWordAction;
 
+type IToggleLoginActionCreator = (isLogin: boolean) =>  IAction.IToggleLoginAction;
+
 type IChangeSortActionCreator = (currentSort: StateType.ICurrentSort, sortedWordList: StateType.ISortedWordList) =>  IAction.IChangeSortAction;
 
 type IChangeFilterActionCreator = ( currentFilter: number, sortedWordList: StateType.ISortedWordList) =>  IAction.IChangeFilterAction;
@@ -164,6 +170,11 @@ export const removeWordActionCreator: IRemoveWordActionCreator = (wordId) => {
     wordId,
   }
 };
+
+export const toggleLoginActionCreator: IToggleLoginActionCreator = (isLogin) => ({
+  type: ActionType.TOGGLE_LOGIN_STATE,
+  isLogin: isLogin,
+})
 
 export const changeSortActionCreator: IChangeSortActionCreator = ( currentSort, sortedWordList) => ({
   type: ActionType.CHANGE_SORT,

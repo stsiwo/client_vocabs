@@ -25,6 +25,8 @@ function createReducer<T>( initialState: T, handlers: ActionHandler.HandlerType<
  **/
 const wordsReducer = createReducer<StateType.IEntityWord>(initialState.entities.get('words'), ActionHandler.wordsHandler);
 
+export const loginReducer = createReducer<StateType.ILogin>(initialState.login, ActionHandler.loginHandler);
+
 export const currentSortReducer = createReducer<StateType.ICurrentSort>(initialState.currentSort, ActionHandler.currentSortHandler);
 
 export const sortedWordListReducer = createReducer<StateType.ISortedWordList>(initialState.sortedWordList, ActionHandler.sortedWordListHandler);
