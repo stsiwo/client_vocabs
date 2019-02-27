@@ -16,8 +16,9 @@ const logoutMainThunk: MainThunkType = ( ...args ) => async ( dispatch, getState
    
   await myFetch(request);
 
-  dispatch<any>(toggleLoginActionCreator(false));
-
+  sessionStorage.removeItem("access_token");
+  sessionStorage.removeItem("refresh_token");
+  sessionStorage.removeItem("username");
 }
 export default logoutMainThunk;
 
