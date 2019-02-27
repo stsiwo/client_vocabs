@@ -1,4 +1,5 @@
 import removeWordThunkMiddleware from './middlewares/removeWord';
+import removeWordRemoteThunkMiddleware from './middlewares/removeWordRemote';
 import { toggleDeleteConfirmModalActionCreator } from '../actions/index';
 import applyThunkMiddleware from './thunkComponent'; 
 
@@ -10,6 +11,7 @@ import applyThunkMiddleware from './thunkComponent';
  **/   
 const removeWordConfirmButtonClickThunk = applyThunkMiddleware(
   removeWordThunkMiddleware,
+  removeWordRemoteThunkMiddleware
 )(toggleDeleteConfirmModalActionCreator);
 
 export default removeWordConfirmButtonClickThunk;
