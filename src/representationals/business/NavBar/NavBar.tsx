@@ -5,16 +5,15 @@ import { Hl } from '../../base/common/Line';
 import { ThemeInterface } from '../../story/theme'; 
 import { NavLink } from 'react-router-dom'; 
 const settingIcon = require('./assets/setting.svg');
-import { RouteComponentProps } from 'react-router-dom';
 import SignUpModalCont from '../../../containers/SignUpModalCont';
 import LoginModalCont from '../../../containers/LoginModalCont';
 
-interface Props extends RouteComponentProps {
+interface Props {
   className?: string;
   isOpen?: boolean;
   isLogin: boolean;
   wordFormError: boolean;
-  linkClick: (pushCallback: ( path: string ) => void) => void;
+  linkClick: (path: string) => void;
   signupClick: () => void;
   loginClick: () => void;
   isSignUpModalOpen: boolean;
@@ -34,7 +33,12 @@ class NavBar extends React.PureComponent<Props, {}> {
   handleLink(e: React.MouseEvent<HTMLElement>) {
     // disable built-in NavLink href redirect
     e.preventDefault();
-    this.props.linkClick(this.props.history.push);
+     //get target <a>
+    const target = e.currentTarget as HTMLAnchorElement
+    // filter url; http://localhost:9000/word => /word
+    const path = target.href.substr(target.href.lastIndexOf('/'));
+     //pass to thunk
+    this.props.linkClick(path);
   }
 
   displaySignUpForm(e: React.MouseEvent<HTMLElement>) {

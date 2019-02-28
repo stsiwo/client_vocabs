@@ -4,8 +4,7 @@ import App from './representationals/App';
 import store from './storeConfig';
 import { Provider } from 'react-redux'
 // use custom Router and history rather than BroswerRouter for using history inside thunk
-import { Router } from 'react-router';
-import history from './routeHistory';
+import CustomBrowserRouter from './routeHistory';
 import { ThemeProvider } from './representationals/story/styledComponents'; 
 import { theme } from './representationals/story/theme';
 //import RootCont from './performances/RootCont';
@@ -13,12 +12,12 @@ import { theme } from './representationals/story/theme';
 ReactDOM.render(
   <Provider store={ store }>
     <ThemeProvider theme={ theme } >
-      <Router history={ history }>
+      <CustomBrowserRouter>
   {/*
     <RootCont />
     */}
     <App />
-      </Router>
+      </CustomBrowserRouter>
     </ThemeProvider>
   </Provider>
   ,document.getElementById('root')

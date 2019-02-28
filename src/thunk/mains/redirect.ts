@@ -1,17 +1,17 @@
 import { MainThunkType } from '../thunkComponent';
+import { history } from '../../routeHistory';
 
 /**
  * main thunk: redirect to another page 
  *
- * @param { history.push } args[0] - history.push function
- * @param { string } args[1] - path
+ * @param { string } args[0] - path 
  **/
 
 const redirectMainThunk: MainThunkType = ( ...args ) => ( dispatch, getState ) => {
-  const historyPush: ( path: string ) => void = args[0];
-  const path = args[1];
 
-  historyPush(path);
+  const nextPath = args[0];
+
+  history.push(nextPath);
 }
 export default redirectMainThunk;
 
