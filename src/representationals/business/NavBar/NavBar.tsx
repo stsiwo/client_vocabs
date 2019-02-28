@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 const settingIcon = require('./assets/setting.svg');
 import SignUpModalCont from '../../../containers/SignUpModalCont';
 import LoginModalCont from '../../../containers/LoginModalCont';
+import { Location } from 'history';
 
 interface Props {
   className?: string;
@@ -19,6 +20,7 @@ interface Props {
   isSignUpModalOpen: boolean;
   isLoginModalOpen: boolean;
   logoutClick: () => void;
+  location: Location; 
 }
 
 class NavBar extends React.PureComponent<Props, {}> {

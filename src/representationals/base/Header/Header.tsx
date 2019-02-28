@@ -2,9 +2,10 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../Icon/Icon';
 import NavBarCont from '../../../containers/NavBar/NavBarCont';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 const settingIcon = require('./assets/setting.svg');
 
-interface Props {
+interface Props extends RouteComponentProps {
   className?: string;
 }
 
@@ -26,11 +27,14 @@ class Header extends React.PureComponent<Props, State> {
     this.setState({ isNavBarOpen: !currentStatus });
   }
 
+  /**
+   * location props to avoid blocking-update problem wit purecomponent and react router 
+   **/
   render() {
     return (
       <header className={ this.props.className }>
         <Icon svgSrc={ settingIcon }></Icon>
-        <NavBarCont isOpen={ this.state.isNavBarOpen }/>
+        <NavBarCont isOpen={ this.state.isNavBarOpen } location={ this.props.location }/>
         <Icon id="navToggle" svgSrc={ settingIcon } onClick={ this.handleClick }></Icon>
       </header>
     );
@@ -71,5 +75,8 @@ const StyledHeader = styled(Header)`
 `;
 
 
-export default StyledHeader;
+/**
+ * withRouter is to avoid blocking-update problems with pureComponent and react-router-dom
+ **/
+export default withRouter(StyledHeader);
 
