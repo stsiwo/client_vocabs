@@ -24,10 +24,6 @@ const signUpFormSubmittionMainThunk: MainThunkType = ( ...args ) => async ( disp
   const words = await myFetch(request);
 
   console.log(words);
-
-  
-  
-
 }
 export default signUpFormSubmittionMainThunk;
 
