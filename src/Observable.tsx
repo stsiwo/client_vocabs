@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Subject, Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { Subject, Subscription, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, catchError, tap } from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
+
 
 interface ObservableState {
   input: string;
@@ -31,7 +33,19 @@ class Observable extends React.PureComponent<Props, ObservableState> {
   }
 
   componentDidMount() {
-    this.subscription = this.observable.pipe(debounceTime(1000)).subscribe(( input ) => this.setState({ result: input }));
+    this.subscription = this.observable
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap(( keyWord: string ) => ajax.getJSON(`http://localhost:3000/dictionary?keyWord=${ keyWord }`)),
+        tap(( wordList: { word: string }[] ) => console.log( wordList )),
+        catchError(( error: Error ) => of(`error: ${ error }`)), 
+
+      )
+      .subscribe(( wordList: { word: string }[]) => {
+        console.log(wordList);
+        //this.setState({ result: input })
+      });
   }
 
   componentWillUnmount() {
