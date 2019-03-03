@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { Subject, Subscription, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, catchError, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, catchError, tap, map, filter } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
+interface Suggestion {
+  id: number;
+  word: string;
+}
 
 interface ObservableState {
   input: string;
-  result: string;
+  result: Suggestion[];
   inputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -26,7 +30,7 @@ class Observable extends React.PureComponent<Props, ObservableState> {
     this.inputHandler = this.inputHandler.bind(this);
     this.state = {
       input: "default",
-      result: "no results",
+      result: [],
       inputHandler: this.inputHandler,
     }
     this.observable = new Subject<string>(); 
@@ -35,16 +39,16 @@ class Observable extends React.PureComponent<Props, ObservableState> {
   componentDidMount() {
     this.subscription = this.observable
       .pipe(
+        filter(( keyWord: string ) => keyWord !== ''),
         debounceTime(500),
         distinctUntilChanged(),
         switchMap(( keyWord: string ) => ajax.getJSON(`http://localhost:3000/dictionary?keyWord=${ keyWord }`)),
-        tap(( wordList: { word: string }[] ) => console.log( wordList )),
+        map(( response: { suggestionList: Suggestion[] }) => response.suggestionList ),
+        tap(( suggestionList: Suggestion[] ) => console.log( suggestionList )),
         catchError(( error: Error ) => of(`error: ${ error }`)), 
-
       )
-      .subscribe(( wordList: { word: string }[]) => {
-        console.log(wordList);
-        //this.setState({ result: input })
+      .subscribe(( suggestionList: Suggestion[]) => {
+        this.setState({ result: suggestionList })
       });
   }
 

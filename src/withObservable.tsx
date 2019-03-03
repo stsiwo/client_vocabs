@@ -1,9 +1,14 @@
 import * as React from 'react';
 import Observable from './Observable';
 
+interface Suggestion {
+  id: number;
+  word: string;
+}
+
 interface State {
   input: string;
-  result: string;
+  result: Suggestion[];
   inputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
