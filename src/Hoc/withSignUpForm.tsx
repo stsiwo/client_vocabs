@@ -2,6 +2,8 @@ import * as React from 'react';
 import { withFormik, InjectedFormikProps } from 'formik';
 import * as Yup from 'yup';
 import { toggleClickType } from '../containers/type';
+import makeUserNameUniqueCheckRequest from '../thunk/requests/makeUserNameUniqueCheckRequest';
+import myFetch from '../thunk/asyncs/myFetch';
 
 export interface ISignUpUserForm {
   name: string;
@@ -18,7 +20,12 @@ export interface SignUpFormValues {
 const SignUpValidationSchema = Yup.object().shape({
   user: Yup.object().shape({
     name: Yup.string()
-      .required("name is required"),
+      .required("name is required")
+      .test('isUnique', 'your input name has already taken by someone. please choose a different one', async function( name: string ) {
+        const request = makeUserNameUniqueCheckRequest(name);
+        const resObject: { isUnique: boolean } = await myFetch(request);
+        return resObject.isUnique; 
+      }),
     email: Yup.string()
       .email("invalid email format")
       .required("email is required"),
