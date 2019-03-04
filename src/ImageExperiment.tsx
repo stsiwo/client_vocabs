@@ -1,5 +1,7 @@
 import styled from './representationals/story/styledComponents';
 import * as React from 'react';
+import myFetch from './thunk/asyncs/myFetch';
+import makeImageRequest from './thunk/requests/makeImageRequest';
 
 interface Props {
   className?: string;
@@ -22,6 +24,7 @@ class ImageExperiment extends React.PureComponent<Props, State> {
     this.handleDragEnter = this.handleDragEnter.bind(this);  
     this.handleDragOver = this.handleDragOver.bind(this);  
     this.handleDrop = this.handleDrop.bind(this);  
+    this.submitImage = this.submitImage.bind(this);  
   }
 
   handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -57,12 +60,19 @@ class ImageExperiment extends React.PureComponent<Props, State> {
     this.setState({ image: image, imageUrl: URL.createObjectURL(image) });
   }
 
+  async submitImage() {
+    const request = makeImageRequest(this.state.image);
+    const res = await myFetch(request);
+    console.log(res);
+  }
+
   render() {
     return (
       <div className={ this.props.className }>
         <input type="file" accept="image/*" onChange={ this.handleImageChange } />
-        <img src={ this.state.imageUrl } width="200" height="200" onLoad={ this.releaseObjectURL }/>
         <div id="dropbox" onDragEnter={ this.handleDragEnter } onDragOver={ this.handleDragOver } onDrop={ this.handleDrop }></div>
+        <img src={ this.state.imageUrl } width="200" height="200" onLoad={ this.releaseObjectURL }/>
+        <button type="button" onClick={ this.submitImage }>Request</button>
       </div>
     );
   }
@@ -70,8 +80,9 @@ class ImageExperiment extends React.PureComponent<Props, State> {
 
 const StyledImageExperiment = styled(ImageExperiment)`
   & > #dropbox {
-    width: 300px;
-    height: 300px;
+    position: absolute;
+    width: 200px;
+    height: 200px;
     border: 1px solid black;
   }
 
