@@ -34,7 +34,7 @@ class Header extends React.PureComponent<Props, State> {
     return (
       <header className={ this.props.className }>
         <Icon svgSrc={ settingIcon }></Icon>
-        <NavBarCont isOpen={ this.state.isNavBarOpen } location={ this.props.location }/>
+        <NavBarCont isOpen={ this.state.isNavBarOpen } location={ this.props.location } onClose={ this.handleClick }/>
         <Icon id="navToggle" svgSrc={ settingIcon } onClick={ this.handleClick }></Icon>
       </header>
     );

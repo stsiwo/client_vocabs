@@ -21,6 +21,7 @@ interface Props {
   isLoginModalOpen: boolean;
   logoutClick: () => void;
   location: Location; 
+  onClose: () => void;
 }
 
 class NavBar extends React.PureComponent<Props, {}> {
@@ -30,6 +31,7 @@ class NavBar extends React.PureComponent<Props, {}> {
     this.displaySignUpForm = this.displaySignUpForm.bind(this);
     this.displayLoginForm = this.displayLoginForm.bind(this);
     this.logoutClick = this.logoutClick.bind(this);
+    this.handleCloseOutsideClick = this.handleCloseOutsideClick.bind(this);
   }
 
   handleLink(e: React.MouseEvent<HTMLElement>) {
@@ -60,11 +62,15 @@ class NavBar extends React.PureComponent<Props, {}> {
     this.props.logoutClick();
   }
 
+  handleCloseOutsideClick(e: React.MouseEvent<HTMLElement>) {
+    this.props.onClose()
+  }
+
   render() {
     return (
-      <div>
+      <div className={ this.props.className } onClick={ this.handleCloseOutsideClick }>
         {( this.props.isLogin && 
-          <nav className={ this.props.className }>
+          <nav >
             <NavLink to="/word" onClick={ this.handleLink }>
               <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
               <h4>Word</h4>
@@ -82,7 +88,7 @@ class NavBar extends React.PureComponent<Props, {}> {
           </nav>
         )}
         {( !this.props.isLogin && 
-          <nav className={ this.props.className }>
+          <nav >
             <NavLink to="/signup" onClick={ this.displaySignUpForm }>
               <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
               <h4>Sign Up</h4>
@@ -107,43 +113,62 @@ interface IStyledProps extends Props {
   
 
 const StyledNavBar = styled(NavBar)`
-  @media (max-width: ${( props ) => props.theme.sizes.mobileL }px) {
-    font-family: ${( props: IStyledProps ) => props.theme.primaryFontFamily };
-    display: inline-block;
-    background-color: rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: ${( props: IStyledProps ) => props.theme.headerHeight };
-    right: 0;
-    ${( props: IStyledProps ) => {
-       if (props.isOpen) {
-         return 'width: ' + props.theme.navBarWidth +'; transition: width 0.5s;';
-       } else {
-         return 'width: 0; transition: width 0.5s;';
-       }
-    }}
-    & > a, & > div {
-      background-color: ${( props: IStyledProps ) => props.theme.secondaryColor };
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      height: 50px;
-      padding: 0 20px;
+  // wrapper (overlay) for close nav when click outside
+  ${( props: IStyledProps ) => {
+    if ( props.isOpen ) {
+      return `
+        width: 100%;
+        height: 100%;
 
-      & > h4 {
-        visibility: ${( props: IStyledProps ) => props.isOpen ? 'visible' : 'hidden' };
-        white-space: nowrap;
+        position: fixed;
+        top: 0;
+        left: 0;`;
+    } else {
+      return `
+        width: 0;
+        height: 0;`
+    }
+  }}
+
+  & > nav {
+    @media (max-width: ${( props ) => props.theme.sizes.mobileL }px) {
+      font-family: ${( props: IStyledProps ) => props.theme.primaryFontFamily };
+      display: inline-block;
+      background-color: rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: ${( props: IStyledProps ) => props.theme.headerHeight };
+      right: 0;
+      ${( props: IStyledProps ) => {
+         if (props.isOpen) {
+           return 'width: ' + props.theme.navBarWidth +'; transition: width 0.5s;';
+         } else {
+           return 'width: 0; transition: width 0.5s;';
+         }
+      }}
+      & > a, & > div {
+        background-color: ${( props: IStyledProps ) => props.theme.secondaryColor };
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        height: 50px;
+        padding: 0 20px;
+
+        & > h4 {
+          visibility: ${( props: IStyledProps ) => props.isOpen ? 'visible' : 'hidden' };
+          white-space: nowrap;
+        }
       }
     }
-  }
 
-  @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
 
-    & > a {
-      margin: 0 5px;
+      & > a {
+        margin: 0 5px;
+      }
     }
   }
 `;
