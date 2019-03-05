@@ -1,6 +1,7 @@
 import * as qs from 'query-string';
+import { ISignUpUserForm } from '../../Hoc/withSignUpForm';
 
-const makeSignUpFormRequest: <I extends object>( input?: I ) => Request = ( input ) => {
+const makeSignUpFormRequest: ( input: ISignUpUserForm ) => Request = ( input ) => {
   return new Request("http://localhost:3000/user", {
     method: 'POST',
     body: qs.stringify(input), 

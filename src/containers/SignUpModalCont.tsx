@@ -5,7 +5,7 @@ import { IState } from '../state/type';
 import { toggleSignUpModalActionCreator } from '../actions/index';
 import { Record } from 'immutable';
 import { ISignUpUserForm } from '../Hoc/withSignUpForm';
-import signUpFormSubmittionMainThunk from '../thunk/mains/signUpFormSubmittion';
+import signUpClickThunk from '../thunk/signUpClickThunk';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
   isSignUpModalOpen: state.get('ui').get('isSignUpModalOpen'),
@@ -13,7 +13,7 @@ const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   toggleSignUpModalClick: ( isOpen: boolean ) => { dispatch( toggleSignUpModalActionCreator( isOpen ))}, 
-  submitSignUpFormClick: ( values: ISignUpUserForm ) => { dispatch<any>( signUpFormSubmittionMainThunk( values ))} 
+  submitSignUpFormClick: ( values: ISignUpUserForm ) => { dispatch<any>( signUpClickThunk( values ))} 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( SignUpModal );

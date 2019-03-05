@@ -100,8 +100,6 @@ const withSignUpForm = <P extends FormComponentProps>( FormComponent: React.Comp
     // FormikBag: includes props passed to wrapped component and some useful functions (see doc)
     handleSubmit: (values: SignUpFormValues, { props }) => {
       // use thunk to submit async so do nothing here
-      console.log(props);
-      console.log("sumit form");
       props.submitSignUpFormClick(values.user);
     },
 

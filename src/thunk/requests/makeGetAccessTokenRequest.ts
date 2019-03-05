@@ -1,6 +1,6 @@
 import * as qs from 'query-string';
 
-const makeLoginFormRequest: <I extends object>( input?: I ) => Request = ( input ) => {
+const makeGetAccessTokenRequest: ( input: object ) => Request = ( input ) => {
   return new Request("http://localhost:3000/oauth/token", {
     method: 'POST',
     body: qs.stringify(input), 
@@ -12,5 +12,5 @@ const makeLoginFormRequest: <I extends object>( input?: I ) => Request = ( input
     }
   });
 }
-export default makeLoginFormRequest;
+export default makeGetAccessTokenRequest;
 
