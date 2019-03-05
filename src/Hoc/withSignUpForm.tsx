@@ -3,6 +3,7 @@ import { withFormik, InjectedFormikProps } from 'formik';
 import * as Yup from 'yup';
 import { toggleClickType } from '../containers/type';
 import makeUserNameUniqueCheckRequest from '../thunk/requests/makeUserNameUniqueCheckRequest';
+import makeEmailAlreadyExistRequest from '../thunk/requests/makeEmailAlreadyExistRequest';
 import myFetch from '../thunk/asyncs/myFetch';
 
 export interface ISignUpUserForm {
@@ -21,6 +22,13 @@ const SignUpValidationSchema = Yup.object().shape({
   user: Yup.object().shape({
     name: Yup.string()
       .required("name is required")
+    /**
+     * should allow this async check only on blur but formik does not have any implementation for this
+     *  - formik validate every field when a value of a field is changed
+     *  - every key stroke cause also vaidation on every fields
+     *    => this is way inefficient, should be reconsider the implementation (like not use formik) or something
+     *    #REFACTOR
+     **/
       .test('isUnique', 'your input name has already taken by someone. please choose a different one', async function( name: string ) {
         const request = makeUserNameUniqueCheckRequest(name);
         const resObject: { isUnique: boolean } = await myFetch(request);
@@ -28,7 +36,20 @@ const SignUpValidationSchema = Yup.object().shape({
       }),
     email: Yup.string()
       .email("invalid email format")
-      .required("email is required"),
+      .required("email is required")
+    /**
+     * should allow this async check only on blur but formik does not have any implementation for this
+     *  - formik validate every field when a value of a field is changed
+     *  - every key stroke cause also vaidation on every fields
+     *    => this is way inefficient, should be reconsider the implementation (like not use formik) or something
+     *    #REFACTOR
+     **/
+      .test('alwaysExists', 'your input email has already existed. if you have your account, please go to login page', async function( email: string ) {
+        const request = makeEmailAlreadyExistRequest(email);
+        const resObject: { isAlreadyExists: boolean } = await myFetch(request);
+        // must return false if you want treat this as error
+        return !resObject.isAlreadyExists; 
+      }),
     password: Yup.string()
       .required("password is required")
       .min(8, 'password is at least 8 characters')
