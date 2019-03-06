@@ -16,6 +16,7 @@ interface Props {
   wordIndex: number;
   addNewDefClick: (arrayHelpers: ArrayHelpers, wordIndex: number) => void;
   arrayHelpers: ArrayHelpers;
+  setFieldValue: (field: string, value: any) => void;
 }
 
 interface State {
@@ -51,6 +52,7 @@ export class DefTree extends React.PureComponent<Props, State> {
         wordIndex={ this.props.wordIndex } 
         defIndex={ index }
         arrayHelpers={ this.props.arrayHelpers } 
+        setFieldValue={ this.props.setFieldValue }
       />
     ));
   }

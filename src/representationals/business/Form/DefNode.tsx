@@ -18,6 +18,7 @@ interface Props {
   defIndex: number;
   arrayHelpers: ArrayHelpers;
   removeDefClick: (arrayHelpers: ArrayHelpers, wordIndex: number, defIndex: number) => void;
+  setFieldValue: (field: string, value: any) => void;
 }
 
 interface State {
@@ -48,7 +49,13 @@ export class DefNode extends React.PureComponent<Props, State> {
       <ul className={ this.props.className }>
         <li>
           <div>
-            <Icon svgSrc={ arrowIcon } width="20px" height="20px" onClick={ this.handleToggleClick } rotate={ this.state.isDefContentOpen.toString() }></Icon>
+            <Icon 
+              svgSrc={ arrowIcon } 
+              width="20px" 
+              height="20px" 
+              onClick={ this.handleToggleClick } 
+              rotate={ this.state.isDefContentOpen.toString() } 
+            />
             <h4>Definition</h4>
           </div>
           { this.props.defIndex !== 0 && 
@@ -56,7 +63,13 @@ export class DefNode extends React.PureComponent<Props, State> {
             // this might not be a good way to do this since user can't delete the first def. what if user want to delete it when the other defs are avaiable. 
             // #REFACTOR
           <div>
-            <Icon id="removeDefForm" svgSrc={ deleteIcon } onClick={ this.handleDeleteDefClick } width="20px" height="20px"></Icon>
+            <Icon 
+              id="removeDefForm" 
+              svgSrc={ deleteIcon } 
+              onClick={ this.handleDeleteDefClick } 
+              width="20px" 
+              height="20px" 
+            />
           </div> }
         </li>
         
@@ -66,6 +79,7 @@ export class DefNode extends React.PureComponent<Props, State> {
           formik={ this.props.formik } 
           wordIndex={ this.props.wordIndex }
           defIndex={ this.props.defIndex }
+          setFieldValue={ this.props.setFieldValue }  
         />
       </ul>
     );

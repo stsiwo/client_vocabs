@@ -15,6 +15,7 @@ interface Props {
   formik: CustomFormikProps;
   wordIndex: number;
   defIndex: number;
+  setFieldValue: (field: string, value: any) => void;
 }
 
 interface State {
@@ -61,6 +62,7 @@ export class DefContent extends React.PureComponent<Props, State> {
             formik={ this.props.formik }
             wordIndex={ this.props.wordIndex }
             defIndex={ this.props.defIndex }
+            setFieldValue={ this.props.setFieldValue }
           /> 
         </li>
         <BottomModal isOpen={ this.state.isSearchImageModalOpen } handleSearchImageToggleClick={ this.handleSearchImageToggleClick }>

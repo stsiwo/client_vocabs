@@ -12,6 +12,7 @@ interface Props {
   formik: CustomFormikProps;
   wordIndex: number;
   arrayHelpers: ArrayHelpers;
+  setFieldValue: (field: string, value: any) => void;
 }
 
 class WordForm extends React.PureComponent<Props, {}> {
@@ -22,8 +23,19 @@ class WordForm extends React.PureComponent<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-        <WordNameText wordId={ this.props.word.id } name={ this.props.word.name } formik={ this.props.formik } wordIndex={ this.props.wordIndex } />
-        <DefTreeCont defs={ this.props.word.defs } formik={ this.props.formik } wordIndex={ this.props.wordIndex } arrayHelpers={ this.props.arrayHelpers }></DefTreeCont>
+        <WordNameText 
+          wordId={ this.props.word.id } 
+          name={ this.props.word.name } 
+          formik={ this.props.formik } 
+          wordIndex={ this.props.wordIndex } 
+        />
+        <DefTreeCont 
+          defs={ this.props.word.defs } 
+          formik={ this.props.formik } 
+          wordIndex={ this.props.wordIndex } 
+          arrayHelpers={ this.props.arrayHelpers } 
+          setFieldValue={ this.props.setFieldValue }
+        />
       </div>
     );
   }

@@ -63,7 +63,7 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
             render={( arrayHelpers ) => {
               return (
                 <div>
-                { this.props.values.words.map((word, index) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps } arrayHelpers={ arrayHelpers }/>)}
+                { this.props.values.words.map((word, index) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps } arrayHelpers={ arrayHelpers } setFieldValue={ this.props.setFieldValue }/>)}
                 <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
                   <MobileDetailController formValues={ this.props.values } arrayHelpers={ arrayHelpers }/>
                 </MediaQuery>
