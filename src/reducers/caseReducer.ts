@@ -121,7 +121,6 @@ export namespace CaseReducer {
   export const addDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IBulkUpdateWordAction> = (displayedWordList, action) => {
     return displayedWordList.union(action.words.map(( word ) => word.id));
   }
- 
 
   export const resetDisplayedWordListCaseReducer: CaseReducerType<StateType.IDisplayedWordList, IAction.IResetStateAction> = (displayedWordList, action) => initialState.displayedWordList; 
 
@@ -164,6 +163,8 @@ export const resetSearchedWordListCaseReducer: CaseReducerType<StateType.ISearch
   export const toggleSignUpModalCaseReducer: CaseReducerType<Record<StateType.IUi>, IAction.IToggleSignUpModalAction> = (ui, action) => ui.set('isSignUpModalOpen', action.isSignUpModalOpen);
 
   export const toggleLoginModalCaseReducer: CaseReducerType<Record<StateType.IUi>, IAction.IToggleLoginModalAction> = (ui, action) => ui.set('isLoginModalOpen', action.isLoginModalOpen);
+
+  export const toggleErrorFlashMessageCaseReducer: CaseReducerType<Record<StateType.IUi>, IAction.IToggleErrorFlashMessageAction> = (ui, action) => ui.set('isErrorFlashMessageOpen', action.isErrorFlashMessageOpen);
   /*********************************************
    * asyncs CaseReducer
    *********************************************/

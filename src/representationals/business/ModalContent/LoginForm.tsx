@@ -2,12 +2,15 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import { ErrorMessage } from 'formik';
 import { LoginFormValues } from '../../../Hoc/withLoginForm';
+import FlashMessage from '../../base/FlashMessage/FlashMessage';
 
 interface Props {
   className?: string;
   handleChange: (e: React.ChangeEvent<any>) => void;
   handleBlur: (e: React.FocusEvent<any>) => void;
   values: LoginFormValues; 
+  isErrorFlashMessageOpen: boolean;
+  toggleErrorFlashMessageClick: (isOpen: boolean) => void;
 }
 
 /**
@@ -16,14 +19,20 @@ interface Props {
  *  - with mail server
  **/
 
-class LoginForm extends React.PureComponent<Props> {
+class LoginForm extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
+    this.toggleErrorFlashMessageClick = this.toggleErrorFlashMessageClick.bind(this);
+  }
+
+  toggleErrorFlashMessageClick(e: React.MouseEvent<HTMLElement>) {
+    this.props.toggleErrorFlashMessageClick(!this.props.isErrorFlashMessageOpen);
   }
 
   render() {
     return (
       <div>
+        {( this.props.isErrorFlashMessageOpen && <FlashMessage type="error" message="your account does not exist, please refer to Sign Up page" onClose={ this.toggleErrorFlashMessageClick } />)}
         <div>
           <label htmlFor="user.name">
             Name:

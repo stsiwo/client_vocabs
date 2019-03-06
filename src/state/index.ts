@@ -26,7 +26,8 @@ export const initialState: IState = {
     isSearchWordModalOpen: false,
     isDefineWarningModalOpen: false,
     isSignUpModalOpen: false,
-    isLoginModalOpen: false
+    isLoginModalOpen: false,
+    isErrorFlashMessageOpen: false
   })(),
   asyncs: Record<StateType.IAsyncs>({
     isInitialWordsFetching: false,

@@ -23,6 +23,8 @@ export namespace StateType {
     isDefineWarningModalOpen: boolean;
     isSignUpModalOpen: boolean;
     isLoginModalOpen: boolean;
+
+    isErrorFlashMessageOpen: boolean;
   }
 
   export interface IAsyncs {

@@ -5,7 +5,7 @@ const closeNoWrapIcon = require('./assets/closeNoWrap.svg');
 
 interface Props { 
   className?: string;
-  onClose: () => void;
+  onClose: (e: React.MouseEvent<HTMLElement>) => void;
   message: string;
   type: string;
 }

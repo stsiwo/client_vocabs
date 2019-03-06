@@ -1,6 +1,7 @@
 import { ThunkMiddlewareType } from '../thunkComponent';
 import makeGetAccessTokenRequest from '../requests/makeGetAccessTokenRequest';
 import myFetch from '../asyncs/myFetch';
+import { toggleErrorFlashMessageActionCreator } from '../../actions/index';
 
 interface IAccessTokenRequestContent {
     username: string, 
@@ -45,11 +46,7 @@ const getAccessTokenThunkMiddleware: ThunkMiddlewareType = ( next ) => ( ...args
     // call next thunk
     dispatch<any>(next(...args)); 
   } else {
-    // if fail; user does not exists
-    // should display error message as flash message
-    // like something wrong, please try later or something...
-    //   - need to create FlashMessage Component 
-    //   #NEED_IMPLEMENT
+    dispatch(toggleErrorFlashMessageActionCreator(true));
   }
 }
 export default getAccessTokenThunkMiddleware;

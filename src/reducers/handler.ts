@@ -66,6 +66,7 @@ export namespace ActionHandler {
     [ActionType.TOGGLE_DEFINE_WARNING_MODAL]: CaseReducer.toggleDefineWarningModalCaseReducer, // ok
     [ActionType.TOGGLE_SIGNUP_MODAL]: CaseReducer.toggleSignUpModalCaseReducer, // ok
     [ActionType.TOGGLE_LOGIN_MODAL]: CaseReducer.toggleLoginModalCaseReducer, // ok
+    [ActionType.TOGGLE_ERROR_FLASHMESSAGE]: CaseReducer.toggleErrorFlashMessageCaseReducer, // ok
     [ActionType.RESET_STATE]: CaseReducer.resetUiCaseReducer,
   }
 

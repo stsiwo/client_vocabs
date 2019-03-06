@@ -4,7 +4,7 @@ import Modal from '../../base/Modal/Modal';
 import CloseButton from '../Button/CloseButton';
 import ConfirmButton from '../Button/ConfirmButton';
 import { toggleClickType } from '../../../containers/type';
-import LoginForm from './LoginForm';
+import LoginFormCont from '../../../containers/LoginFormCont';
 import { InjectedFormikProps } from 'formik';
 import withLoginForm, { LoginFormValues, ILoginUserForm } from '../../../Hoc/withLoginForm';
 
@@ -32,7 +32,7 @@ class LoginModal extends React.PureComponent<InjectedFormikProps<Props, LoginFor
           onClose={ this.props.toggleLoginModalClick } 
           isOpen={ this.props.isLoginModalOpen }
         >
-          <LoginForm 
+          <LoginFormCont 
             values={ this.props.values } 
             handleChange={ this.props.handleChange }
             handleBlur={ this.props.handleBlur }

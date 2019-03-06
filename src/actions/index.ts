@@ -67,6 +67,10 @@ export namespace IAction {
     isLoginModalOpen: boolean;
   }
 
+  export interface IToggleErrorFlashMessageAction extends Action<string> {
+    isErrorFlashMessageOpen: boolean;
+  }
+
   export interface IToggleWordFormErrorAction extends Action<string> {
     wordFormError: boolean;
   }
@@ -131,6 +135,8 @@ type IToggleDefineWarningModalActionCreator = (isDefineWarningModalOpen: boolean
 type IToggleSignUpModalActionCreator = (isSignUpModalOpen: boolean) =>  IAction.IToggleSignUpModalAction;
 
 type IToggleLoginModalActionCreator = (isLoginModalOpen: boolean) =>  IAction.IToggleLoginModalAction;
+
+type IToggleErrorFlashMessageActionCreator = (isErrorFlashMessageOpen: boolean) =>  IAction.IToggleErrorFlashMessageAction;
 
 type IToggleWordFormErrorActionCreator = (wordFormError: boolean) =>  IAction.IToggleWordFormErrorAction;
 
@@ -233,6 +239,11 @@ export const toggleSignUpModalActionCreator: IToggleSignUpModalActionCreator = (
 export const toggleLoginModalActionCreator: IToggleLoginModalActionCreator = (isLoginModalOpen) => ({
   type: ActionType.TOGGLE_LOGIN_MODAL,
   isLoginModalOpen: isLoginModalOpen,
+})
+
+export const toggleErrorFlashMessageActionCreator: IToggleErrorFlashMessageActionCreator = (isErrorFlashMessageOpen) => ({
+  type: ActionType.TOGGLE_ERROR_FLASHMESSAGE,
+  isErrorFlashMessageOpen: isErrorFlashMessageOpen,
 })
 
 export const toggleWordFormErrorActionCreator: IToggleWordFormErrorActionCreator = (wordFormError) => ({
