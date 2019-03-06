@@ -9,7 +9,6 @@ const makeGetWordsOfUserRequest: <I extends object = {}>( input?: I ) => Request
 
   return new Request(`http://localhost:3000/user/${ username }/word`, {
     method: 'GET',
-    credentials: 'include',
     mode: "cors",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',

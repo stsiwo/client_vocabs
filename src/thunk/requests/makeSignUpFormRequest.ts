@@ -5,7 +5,6 @@ const makeSignUpFormRequest: ( input: ISignUpUserForm ) => Request = ( input ) =
   return new Request("http://localhost:3000/user", {
     method: 'POST',
     body: qs.stringify(input), 
-    credentials: 'include',
     mode: "cors",
     cache: 'no-store',
     headers: {

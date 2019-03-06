@@ -8,7 +8,6 @@ const makeImageRequest: <I extends Blob = Blob>( input?: I ) => Request = ( inpu
 
   return new Request(`http://localhost:3000/word/image`, {
     method: 'POST',
-    credentials: 'include',
     body: formData, 
     mode: "cors",
     headers: {
