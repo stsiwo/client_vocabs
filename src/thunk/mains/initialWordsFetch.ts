@@ -19,7 +19,16 @@ const initialWordsFetchMainThunk: MainThunkType = ( ...args ) => async ( dispatc
 
   const data = await myFetch(request);
 
-  dispatch<any>(bulkUpdateWordActionCreator(data.words));
+  if (data.isOk) {
+    dispatch<any>(bulkUpdateWordActionCreator(data.words));
+  } else {
+    console.log("initial fetch failed");
+    // should display error message as flash message
+    // like something wrong, please try later or something...
+    //   - need to create FlashMessage Component 
+    //   #NEED_IMPLEMENT
+  }
+
 
   dispatch(finishInitialWordsFetchRequestActionCreator());
 

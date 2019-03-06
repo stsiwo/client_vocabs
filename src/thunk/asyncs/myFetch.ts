@@ -1,7 +1,8 @@
 const myFetch = async ( request: Request ) => {
   return fetch( request )
     .then(( response: Response ) => {
-      return response.json();
+      if (response.ok) return response.json();
+      return Promise.reject("5xx error");
     })
   // isOk is to clarify success or error of response
     .then(( json ) => {
