@@ -25,7 +25,7 @@ ReactDOM.render(
         <ImageExperiment />
         <ObservableExperiment extra="extra props"/>
     */}
-    <App />
+       <App />
       </CustomBrowserRouter>
     </ThemeProvider>
   </Provider>

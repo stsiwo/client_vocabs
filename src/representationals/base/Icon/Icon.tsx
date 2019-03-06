@@ -17,6 +17,9 @@ interface IIconProps {
 
 const Icon = styled("div")<IIconProps>`
   background-image: url(${ (props: IIconProps) => props.svgSrc });
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: ${( props: IIconProps ) => props.height ? props.height : '30px' } ${ ( props: IIconProps ) => props.width ? props.width : '30px' };
   height: ${( props: IIconProps ) => props.height ? props.height : '30px' };
   width: ${ ( props: IIconProps ) => props.width ? props.width : '30px' };
   opacity: ${( props: IIconProps ) => (props.unchecked) ? '0.5' : '1'};

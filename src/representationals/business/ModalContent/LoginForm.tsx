@@ -10,6 +10,12 @@ interface Props {
   values: LoginFormValues; 
 }
 
+/**
+ * forgot password functionality
+ *  - #NEED_IMPLEMENT
+ *  - with mail server
+ **/
+
 class LoginForm extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);

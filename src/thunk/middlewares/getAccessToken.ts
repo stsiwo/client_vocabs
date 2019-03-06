@@ -28,13 +28,14 @@ const getAccessTokenThunkMiddleware: ThunkMiddlewareType = ( next ) => ( ...args
     grant_type: "password"
   };
 
-  sessionStorage.setItem("username", accessTokenForm.username);
 
   const request = makeGetAccessTokenRequest(accessTokenForm);
 
   const tokens = await myFetch(request);
 
   if (tokens.isOk) {
+    // if success
+    sessionStorage.setItem("username", accessTokenForm.username);
     sessionStorage.setItem("access_token", tokens.access_token);
     sessionStorage.setItem("refresh_token", tokens.refresh_token);
 
@@ -44,6 +45,7 @@ const getAccessTokenThunkMiddleware: ThunkMiddlewareType = ( next ) => ( ...args
     // call next thunk
     dispatch<any>(next(...args)); 
   } else {
+    // if fail; user does not exists
     // should display error message as flash message
     // like something wrong, please try later or something...
     //   - need to create FlashMessage Component 

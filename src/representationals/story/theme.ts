@@ -18,6 +18,16 @@ const ScreenSize: IScreenSizeType = {
   fourk: 2560,
 }
 
+interface IFlashMessageType {
+  success: string;
+  error: string;
+}
+
+const FlashMessageType: IFlashMessageType = {
+  success: "#7CE383",
+  error: "#f6b6d1"
+}
+
 // theme.ts
 export interface ThemeInterface {
   primaryColor: string;
@@ -39,6 +49,8 @@ export interface ThemeInterface {
   bottomBarHeightMargin: string;
 
   primaryOverlayColor: string;
+
+  flashMessageType: IFlashMessageType;
 }
 
 export const theme: ThemeInterface = {
@@ -60,4 +72,6 @@ export const theme: ThemeInterface = {
   bottomBarHeightMargin: '10px',
 
   primaryOverlayColor: 'rgba(89, 233, 22, 0.4)',
+
+  flashMessageType: FlashMessageType,
 }
