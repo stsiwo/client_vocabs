@@ -5,6 +5,7 @@ import { IState } from '../state/type';
 import { toggleLoginModalActionCreator } from '../actions/index';
 import { Record } from 'immutable';
 import { ILoginUserForm } from '../Hoc/withLoginForm';
+import loginClickThunk from '../thunk/loginClickThunk';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
   isLoginModalOpen: state.get('ui').get('isLoginModalOpen'),
@@ -12,7 +13,7 @@ const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({
   toggleLoginModalClick: ( isOpen: boolean ) => { dispatch( toggleLoginModalActionCreator( isOpen ))}, 
-  submitLoginFormClick: ( values: ILoginUserForm ) => { /*dispatch<any>( loginFormSubmittionMainThunk( values )) */} 
+  submitLoginFormClick: ( values: ILoginUserForm ) => { dispatch<any>( loginClickThunk( values ))} 
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( LoginModal );
