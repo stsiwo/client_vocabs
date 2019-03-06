@@ -11,10 +11,7 @@ const closeErrorFlashMessageThunkMiddleware: ThunkMiddlewareType = ( next ) => (
 
   if (getState().getIn([ 'ui', 'isErrorFlashMessageOpen' ])) {
     dispatch(toggleErrorFlashMessageActionCreator(false));
-  } else {
-    dispatch<any>(next(...args)); 
-  }
-
+  } 
   // send next middleware or main thunk
   dispatch<any>(next(...args)); 
 
