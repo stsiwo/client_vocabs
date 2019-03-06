@@ -60,7 +60,7 @@ export class DefTree extends React.PureComponent<Props, State> {
       <ul className={ this.props.className }>
         <li>
           <div>
-            <Icon svgSrc={ arrowIcon } width="20px" height="20px" onClick={ this.handleToggleClick } rotate={ this.state.isDefNodeContOpen }></Icon>
+            <Icon svgSrc={ arrowIcon } width="20px" height="20px" onClick={ this.handleToggleClick } rotate={ this.state.isDefNodeContOpen.toString() }></Icon>
             <h3>definition list</h3>
           </div>
           <div>

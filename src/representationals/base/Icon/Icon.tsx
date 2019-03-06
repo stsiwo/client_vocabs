@@ -11,7 +11,7 @@ interface IIconProps {
   hidden?: boolean, 
   width?: string, 
   height?: string, 
-  rotate?: boolean
+  rotate?: string,
   id?: string;
 }
 
@@ -42,7 +42,7 @@ interface Props {
   svgSrc: string;
   width?: string;
   height?: string;
-  rotate?: boolean;
+  rotate?: string;
   id?: string;
 }
   
