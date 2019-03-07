@@ -46,7 +46,6 @@ class DefImageFile extends React.PureComponent<Props, State> {
   private assignImageFile(image: File) {
     const { wordIndex, defIndex } = this.props; 
     const imageURL = URL.createObjectURL(image);
-    console.log("inside");
     this.props.setFieldValue(`words.${ wordIndex }.defs.${ defIndex }.image`, image); 
     this.setState({ imageURL: imageURL });
   }

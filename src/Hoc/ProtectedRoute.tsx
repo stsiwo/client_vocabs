@@ -27,7 +27,6 @@ export default class ProtectedRoute extends React.PureComponent<Props, {}> {
   render() {
     const { component, ...rest } = this.props;
     const Component: React.ComponentType = component;
-    console.log(rest);
     return (
        <Route
          { ...rest } 
