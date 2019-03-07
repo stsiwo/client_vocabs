@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Text from '../../base/Input/Text';
+import TextArea from '../../base/Input/TextArea';
 import { CustomFormikProps } from '../../../Hoc/withForm';
 import { ErrorMessage } from 'formik';
 
@@ -8,46 +8,48 @@ interface Props {
   defText: string;
   wordIndex: number;
   defIndex: number;
-  //updateDefTextChange: ( id: string, nextDefText: string ) => void;
+  //updateDefTextAreaChange: ( id: string, nextDefTextArea: string ) => void;
   formik: CustomFormikProps;
 }
 
-class DefText extends React.PureComponent<Props, {}> {
+class DefTextArea extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.handleDefTextChange = this.handleDefTextChange.bind(this);
-    this.handleDefTextBlur = this.handleDefTextBlur.bind(this);
+    this.handleDefTextAreaChange = this.handleDefTextAreaChange.bind(this);
+    this.handleDefTextAreaBlur = this.handleDefTextAreaBlur.bind(this);
   }
 
-  handleDefTextBlur(e: React.FocusEvent<HTMLInputElement>) {
+  handleDefTextAreaBlur(e: React.FocusEvent<HTMLTextAreaElement>) {
     this.props.formik.handleBlur(e);
   }
 
-  handleDefTextChange(e: React.ChangeEvent<HTMLInputElement>) {
+  handleDefTextAreaChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     this.props.formik.handleChange(e);
-    //this.props.updateDefTextChange(this.props.defIndex, e.target.value);
+    //this.props.updateDefTextAreaChange(this.props.defIndex, e.target.value);
   }
 
   render() {
     const { wordIndex, defIndex } = this.props; 
     return (
       <div>
-        <Text 
-          onChange={ this.handleDefTextChange } 
+        <TextArea 
+          onChange={ this.handleDefTextAreaChange } 
           placeholder="enter your definition here..." 
           labelName={ `words.${ wordIndex }.defs.${ defIndex }.def` } 
           value={ this.props.defText }
-          onBlur={ this.handleDefTextBlur } 
+          onBlur={ this.handleDefTextAreaBlur } 
+          rows={ 3 }
+          cols={ 30 }
         >
           Def
-        </Text>
+        </TextArea>
         <ErrorMessage name={ `words.${ wordIndex }.defs.${ defIndex }.def` } />
       </div>
     );
   }
 }
 
-export default DefText;
+export default DefTextArea;
 
 
 
