@@ -3,6 +3,10 @@ import { Route, Redirect } from 'react-router-dom';
 import { authenticateSession } from '../util/sessionStorage';
 import { Location } from 'history';
 
+/**
+ * need location props becasue of use of PureComponent
+ * otherwise, won't run render function of this ProtectedRoute
+ **/
 interface Props {
   component: React.ComponentType<{}>;
   path?: string; 
