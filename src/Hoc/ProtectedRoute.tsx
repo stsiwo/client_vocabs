@@ -14,14 +14,15 @@ export default class ProtectedRoute extends React.PureComponent<Props, {}> {
   }
 
   authenticate(): boolean {
-    return ( sessionStorage.getItem("username") 
-      && sessionStorage.getItem("refresh_token")
-      && sessionStorage.getItem("access_token")
+    return ( sessionStorage.getItem("username") !== null 
+      && sessionStorage.getItem("refresh_token") !== null
+      && sessionStorage.getItem("access_token") !== null
     )
   } 
 
   render() {
-    const { Component, ...rest } = this.porps;
+    const { component, ...rest } = this.props;
+    const Component: React.ComponentType = component;
     return (
        <Route
          { ...rest } 

@@ -10,6 +10,7 @@ import DeleteModalCont from '../../../containers/DeleteModalCont';
 import SortFilterModalCont from '../../../containers/SortFilterModalCont';
 import SearchWordModalCont from '../../../containers/SearchWordModalCont';
 import { RouteComponentProps } from 'react-router-dom';
+import ProtectedRoute from '../../../Hoc/ProtectedRoute';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -32,7 +33,7 @@ export class Word extends React.PureComponent<Props, {}> {
         values props are for testing purpose 
         */}
         <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
-          <Route exact path="/word" component={ WordListCont } />
+          <ProtectedRoute exact path="/word" component={ WordListCont } />
           <Route path="/word/detail" component={ WordDetailCont } />
         </MediaQuery>
         <MediaQuery minWidth={ 426 }>
