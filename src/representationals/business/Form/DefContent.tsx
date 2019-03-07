@@ -65,6 +65,10 @@ export class DefContent extends React.PureComponent<Props, State> {
             setFieldValue={ this.props.setFieldValue }
           /> 
         </li>
+      {/*
+        imag search functionality need to actual url not localhost so implment when dev server
+        #NEED_IMPLEMENT
+        */}
         <BottomModal isOpen={ this.state.isSearchImageModalOpen } handleSearchImageToggleClick={ this.handleSearchImageToggleClick }>
           <SearchImageModalContentCont wordId={ this.props.def.wordId } defId={ this.props.def.id }/>
         </BottomModal>
