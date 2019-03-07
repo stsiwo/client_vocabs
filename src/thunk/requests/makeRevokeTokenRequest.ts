@@ -1,8 +1,8 @@
 import * as qs from 'query-string';
-
-const refreshToken = sessionStorage.getItem('refresh_token');
+import { getRefreshTokenSession } from '../../util/sessionStorage';
 
 const makeRevokeTokenRequest: <I extends object = {}>( input?: I ) => Request = ( input ) => {
+  const refreshToken = getRefreshTokenSession(); 
   return new Request(`http://localhost:3000/oauth/revoke`, {
     method: 'POST',
     mode: "cors",

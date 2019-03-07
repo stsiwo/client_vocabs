@@ -2,6 +2,7 @@ import { IState } from '../state/type';
 import { Record } from 'immutable';
 import { Dispatch } from 'redux';
 import { toggleLoginActionCreator } from '../actions/index';
+import { getAccessTokenSession } from '../util/sessionStorage';
 
 /**
  *  change listener: every time a state change , this listener is called
@@ -9,7 +10,7 @@ import { toggleLoginActionCreator } from '../actions/index';
  **/
 const loginChangeListener = (state: Record<IState>, dispatch: Dispatch) => {
 
-  const isLogin = sessionStorage.getItem('access_token') ? true : false;
+  const isLogin = getAccessTokenSession() ? true : false;
 
   if (state.get('login') !== isLogin) dispatch(toggleLoginActionCreator(isLogin));
 };

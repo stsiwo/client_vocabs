@@ -2,6 +2,7 @@ import { ThunkMiddlewareType } from '../thunkComponent';
 import makeGetAccessTokenRequest from '../requests/makeGetAccessTokenRequest';
 import myFetch from '../asyncs/myFetch';
 import { toggleErrorFlashMessageActionCreator } from '../../actions/index';
+import { createSession } from '../../util/sessionStorage';
 
 interface IAccessTokenRequestContent {
     username: string, 
@@ -36,9 +37,7 @@ const getAccessTokenThunkMiddleware: ThunkMiddlewareType = ( next ) => ( ...args
 
   if (tokens.isOk) {
     // if success
-    sessionStorage.setItem("username", accessTokenForm.username);
-    sessionStorage.setItem("access_token", tokens.access_token);
-    sessionStorage.setItem("refresh_token", tokens.refresh_token);
+    createSession(accessTokenForm.username, tokens.access_token, tokens.refresh_token);
 
     // assign path to args[0]; this is for next "redirect" thunk
     args[0] = '/word'

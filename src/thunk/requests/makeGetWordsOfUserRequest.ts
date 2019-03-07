@@ -1,11 +1,12 @@
+import { getAccessTokenSession, getUserNameSession } from '../../util/sessionStorage';
 /**
  * don't put declaration of accessToken and username variables outside function. 
  *  - it sometimes returns null even though you define sessionStorage
  **/
 const makeGetWordsOfUserRequest: <I extends object = {}>( input?: I ) => Request = ( input ) => {
 
-  const accessToken = sessionStorage.getItem('access_token');
-  const username = sessionStorage.getItem('username');
+  const accessToken = getAccessTokenSession();
+  const username = getUserNameSession(); 
 
   return new Request(`http://localhost:3000/user/${ username }/word`, {
     method: 'GET',

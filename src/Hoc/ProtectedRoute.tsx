@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { authenticateSession } from '../util/sessionStorage';
 
 interface Props {
   component: React.ComponentType<{}>;
@@ -14,10 +15,7 @@ export default class ProtectedRoute extends React.PureComponent<Props, {}> {
   }
 
   authenticate(): boolean {
-    return ( sessionStorage.getItem("username") !== null 
-      && sessionStorage.getItem("refresh_token") !== null
-      && sessionStorage.getItem("access_token") !== null
-    )
+    return authenticateSession();
   } 
 
   render() {
