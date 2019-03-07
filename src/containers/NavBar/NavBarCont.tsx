@@ -6,12 +6,13 @@ import { Record } from 'immutable';
 import navLinkThunk from '../../thunk/navLink';
 import logoutMainThunk from '../../thunk/mains/logout';
 import { toggleSignUpModalActionCreator, toggleLoginModalActionCreator } from '../../actions/index';
+import { authenticateSession } from '../../util/sessionStorage';
 
 const mapStateToProps = (state: Record<IState>, ownProps: {}) => ({
   wordFormError: state.get('wordFormError'),
   isSignUpModalOpen: state.getIn([ 'ui', 'isSignUpModalOpen' ]),
   isLoginModalOpen: state.getIn([ 'ui', 'isLoginModalOpen' ]),
-  isLogin: state.get('login')
+  isLogin: authenticateSession()
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

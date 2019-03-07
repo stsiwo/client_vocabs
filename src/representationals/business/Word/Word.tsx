@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import WordListCont from '../../../containers/Word/WordListCont';
 import MediaQuery from 'react-responsive';
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import WordDetailCont from '../../../containers/Word/WordDetailCont';
 import Controller from '../Controller/Controller';
 import SelectModalCont from '../../../containers/SelectModalCont';
@@ -33,12 +33,12 @@ export class Word extends React.PureComponent<Props, {}> {
         values props are for testing purpose 
         */}
         <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
-          <ProtectedRoute exact path="/word" component={ WordListCont } />
-          <Route path="/word/detail" component={ WordDetailCont } />
+          <ProtectedRoute exact path="/word" component={ WordListCont } location={ this.props.location }/>
+          <ProtectedRoute path="/word/detail" component={ WordDetailCont } location={ this.props.location }/>
         </MediaQuery>
         <MediaQuery minWidth={ 426 }>
-          <Route path="/word" component={ WordListCont } /> 
-          <Route path="/word/detail" component={ WordDetailCont } />
+          <ProtectedRoute path="/word" component={ WordListCont } location={ this.props.location }/> 
+          <ProtectedRoute path="/word/detail" component={ WordDetailCont } location={ this.props.location }/>
           <Redirect from="/word" to="/word/detail" />
           <Controller />
         </MediaQuery>

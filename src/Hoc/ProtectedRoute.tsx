@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { authenticateSession } from '../util/sessionStorage';
+import { Location } from 'history';
 
 interface Props {
   component: React.ComponentType<{}>;
   path?: string; 
   exact?: boolean;
+  location: Location; 
 }
 
 export default class ProtectedRoute extends React.PureComponent<Props, {}> {
@@ -21,6 +23,7 @@ export default class ProtectedRoute extends React.PureComponent<Props, {}> {
   render() {
     const { component, ...rest } = this.props;
     const Component: React.ComponentType = component;
+    console.log(rest);
     return (
        <Route
          { ...rest } 
