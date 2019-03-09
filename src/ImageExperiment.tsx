@@ -1,7 +1,6 @@
 import styled from './representationals/story/styledComponents';
 import * as React from 'react';
-import myFetch from './thunk/asyncs/myFetch';
-import makeImageRequest from './thunk/requests/makeImageRequest';
+import upload from './cloudinary'; 
 
 interface Props {
   className?: string;
@@ -60,10 +59,15 @@ class ImageExperiment extends React.PureComponent<Props, State> {
     this.setState({ image: image, imageUrl: URL.createObjectURL(image) });
   }
 
+  // this is for post request to server ( not cloudinary image server )
+  //async submitImage() {
+    //const request = makeImageRequest(this.state.image);
+    //const res = await myFetch(request);
+    //console.log(res);
+  //}
+
   async submitImage() {
-    const request = makeImageRequest(this.state.image);
-    const res = await myFetch(request);
-    console.log(res);
+    upload(this.state.image);
   }
 
   render() {
