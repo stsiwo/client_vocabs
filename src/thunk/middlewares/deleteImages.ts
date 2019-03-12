@@ -24,11 +24,14 @@ const deleteImagesThunkMiddleware: ThunkMiddlewareType = ( next ) => ( ...args )
   // get list of image to be uploaded
   const targetDestroyImages = extractDestroyImages(selectedWordListState, wordsForm); 
 
-  // make request
-  const request = makeDestroyImagesRequest(targetDestroyImages);
+  if (targetDestroyImages.length !== 0) {
 
-  // request 
-  axios(request).catch(( error ) => console.log(error));
+    // make request
+    const request = makeDestroyImagesRequest(targetDestroyImages);
+
+    // request 
+    axios(request).catch(( error ) => console.log(error));
+  }
 
   // call next thunk with result  
   dispatch<any>(next(...args)); 

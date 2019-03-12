@@ -8,10 +8,13 @@ const makeDestroyImagesRequest: ( input: IWord[] ) => any = ( input ) => {
   const accessToken = getAccessTokenSession(); 
   const username = getUserNameSession(); 
 
+  console.log(input);
+
   return {
     url: `http://localhost:3000/user/${ username }/image`, 
     method: 'DELETE',
-    body: JSON.stringify(input), 
+    // be sure property is "data" not "body"
+    data: JSON.stringify(input), 
     mode: "cors",
     headers: {
       'Content-Type': 'application/json',

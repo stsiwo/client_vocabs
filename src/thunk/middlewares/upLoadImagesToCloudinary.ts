@@ -32,42 +32,45 @@ const upLoadImagesToCloudinaryThunkMiddleware: ThunkMiddlewareType = ( next ) =>
   // get list of image to be uploaded
   const targetUploadImages = extractUploadImages(selectedWordListState, wordsForm); 
 
-  console.log(targetUploadImages);
-
-  // make axios post to save the images in form
-  const uploadsRequest = targetUploadImages.map(( image: IDef ) => {
-    return new Promise(( res, rej ) => {
-      const request = makePostImageCloudinaryRequest(image);
-      axios(request)
-        .then(( response: any ) => {
-          const userData = response.data.public_id.split("/");
-          res({
-            wordId: userData[1],
-            defId: userData[2],
-            imageURL: response.data.secure_url,
+  if (targetUploadImages.length !== 0) {
+    // make axios post to save the images in form
+    const uploadsRequest = targetUploadImages.map(( image: IDef ) => {
+      return new Promise(( res, rej ) => {
+        const request = makePostImageCloudinaryRequest(image);
+        axios(request)
+          .then(( response: any ) => {
+            const userData = response.data.public_id.split("/");
+            res({
+              wordId: userData[1],
+              defId: userData[2],
+              imageURL: response.data.secure_url,
+            })
           })
-        })
-        .catch(( error ) => rej(error));
-    });
-  });
-
-  Promise.all(uploadsRequest).then(( responses : any[] ) => {
-    // assign response's data url to words in form
-    responses.forEach(( res ) => {
-      const targetWordIndex = findIndex(wordsForm, ['id', res.wordId]); 
-      const targetDefIndex = findIndex(wordsForm[targetWordIndex].defs, ['id', res.defId]);
-
-      wordsForm[targetWordIndex].defs[targetDefIndex].image = res.imageURL;
-      delete wordsForm[targetWordIndex].defs[targetDefIndex].imageURL;
-
+          .catch(( error ) => rej(error));
+      });
     });
 
-    // assign it to args[0]
-    args[0] = wordsForm;
+    Promise.all(uploadsRequest).then(( responses : any[] ) => {
+      // assign response's data url to words in form
+      responses.forEach(( res ) => {
+        const targetWordIndex = findIndex(wordsForm, ['id', res.wordId]); 
+        const targetDefIndex = findIndex(wordsForm[targetWordIndex].defs, ['id', res.defId]);
 
+        wordsForm[targetWordIndex].defs[targetDefIndex].image = res.imageURL;
+        delete wordsForm[targetWordIndex].defs[targetDefIndex].imageURL;
+
+      });
+
+      // assign it to args[0]
+      args[0] = wordsForm;
+
+      // call next thunk with result  
+      dispatch<any>(next(...args)); 
+    });
+  } else {
     // call next thunk with result  
     dispatch<any>(next(...args)); 
-  });
+  }
 }
 export default upLoadImagesToCloudinaryThunkMiddleware;
 
