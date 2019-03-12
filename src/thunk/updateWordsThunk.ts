@@ -3,6 +3,7 @@ import updateWordsRemoteMainThunk from './mains/updateWordsRemote';
 import applyThunkMiddleware from './thunkComponent'; 
 import updateWordsThunkMiddleware from './middlewares/updateWords';
 import upLoadImagesToCloudinaryThunkMiddleware from './middlewares/upLoadImagesToCloudinary'; 
+import deleteImagesThunkMiddleware from './middlewares/deleteImages'; 
 
 // thunk with middleware
 // 1. check word form error state 
@@ -11,6 +12,7 @@ import upLoadImagesToCloudinaryThunkMiddleware from './middlewares/upLoadImagesT
 // 3. (aysnc) save words in remote
 const updateWordsThunk = applyThunkMiddleware(
   checkWordFormErrorThunkMiddleware,
+  deleteImagesThunkMiddleware,
   upLoadImagesToCloudinaryThunkMiddleware,
   updateWordsThunkMiddleware
 )(updateWordsRemoteMainThunk);
