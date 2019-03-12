@@ -3,6 +3,7 @@ import { IActionCreatorBaseType } from '../actions/index';
 import { AnyAction, compose } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { Record } from 'immutable';
+import noMainThunk from './mains/noMainThunk';
 
 /*****************************************************************************
  * thunk middleware 
@@ -50,7 +51,7 @@ type applyThunkMiddlewareType = ( ...tcw: ThunkMiddlewareType[] ) => ( mainThunk
  *  // this function receive args like anotherFunction( args[0], args[1], args[2], ...)
  * }
  *******************************************************************************/
-const applyThunkMiddleware: applyThunkMiddlewareType = ( ...tcw  ) => ( mainThunkComponent ) => {
+const applyThunkMiddleware: applyThunkMiddlewareType = ( ...tcw  ) => ( mainThunkComponent = noMainThunk ) => {
   return compose.apply(void 0, tcw )( mainThunkComponent ); 
 }
 

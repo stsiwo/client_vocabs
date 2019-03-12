@@ -11,6 +11,7 @@ const redirectMainThunk: MainThunkType = ( ...args ) => ( dispatch, getState ) =
 
   const nextPath = args[0];
 
+  console.log(nextPath);
   history.push(nextPath);
 }
 export default redirectMainThunk;

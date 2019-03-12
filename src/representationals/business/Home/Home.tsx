@@ -31,7 +31,6 @@ class Home extends React.PureComponent<Props, State> {
 
       {( this.state.isFMOpen && <FlashMessage message="test flash message" type="success" onClose={ this.onClose }/> )}
         <button type="button" onClick={ this.onClose }>Open</button>
-        <img src="http://res.cloudinary.com/dre4nikvb/image/upload/sample.jpg" />
       </div>
     );
   }

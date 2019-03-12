@@ -6,6 +6,7 @@ export interface IDef {
   def: string;
   image: string; // path of image 
   wordId: string;
+  imageFile?: File;
 }
 
 
