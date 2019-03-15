@@ -9,7 +9,6 @@ interface Suggestion {
 }
 
 interface ObservableState {
-  input: string;
   result: Suggestion[];
   inputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -29,7 +28,6 @@ class Observable extends React.PureComponent<Props, ObservableState> {
     super(props);
     this.inputHandler = this.inputHandler.bind(this);
     this.state = {
-      input: "default",
       result: [],
       inputHandler: this.inputHandler,
     }
@@ -59,7 +57,6 @@ class Observable extends React.PureComponent<Props, ObservableState> {
   inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const target = e.target as HTMLInputElement;
     this.observable.next(target.value);
-    this.setState({ input: target.value })
   }
 
   render() {

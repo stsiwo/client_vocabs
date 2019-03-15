@@ -48,9 +48,9 @@ const withLoginForm = <P extends FormComponentProps>( FormComponent: React.Compo
     mapPropsToValues: props => {
       return {
         user: {
-          name: "",
-          email: "",
-          password: "",
+          name: "sample_name1",
+          email: "sample@sample_email1.com",
+          password: "sample_password1",
         }
       };
     },

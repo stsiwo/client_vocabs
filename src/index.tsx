@@ -7,15 +7,9 @@ import { Provider } from 'react-redux'
 import CustomBrowserRouter from './routeHistory';
 import { ThemeProvider } from './representationals/story/styledComponents'; 
 import { theme } from './representationals/story/theme';
+//import RefParent from './RefExperiment/RefParent';
 //import ImageExperiment from './ImageExperiment';
-//import Experiment from './Experiment';
-//import withObservable from './withObservable';
-
-//interface ExProps {
-  //extra: string;
-//}
-
-//const ObservableExperiment = withObservable<ExProps>(Experiment);
+//import ParentExperiment from './ParentExperiment';
 
 ReactDOM.render(
   <Provider store={ store }>
@@ -23,7 +17,8 @@ ReactDOM.render(
       <CustomBrowserRouter>
   {/*
         <ImageExperiment />
-        <ObservableExperiment extra="extra props"/>
+       <ParentExperiment />
+      <RefParent />
     */}
        <App />
       </CustomBrowserRouter>

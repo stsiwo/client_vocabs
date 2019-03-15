@@ -11,6 +11,7 @@ interface Props {
   type?: string;
   checked?: boolean;
   value?: any;
+  forwardedRef: React.Ref<HTMLInputElement>;
 }
 
 class Input extends React.PureComponent<Props, {}> {
@@ -33,6 +34,7 @@ class Input extends React.PureComponent<Props, {}> {
   render() {
     return (
       <input
+        ref={ this.props.forwardedRef }
         className={ this.props.className }
         type={ this.props.type }
         id={ this.props.id }
@@ -42,12 +44,19 @@ class Input extends React.PureComponent<Props, {}> {
         onBlur={ this.handleBlur } 
         checked={ this.props.checked }
         value={ this.props.value }
+        autoComplete="new-password"
       />
     );
   }
 }
 
-const StyledInput = styled(Input)`
+type InputHTMLProps = React.ComponentPropsWithoutRef<'input'>; 
+
+const RefInput = React.forwardRef<HTMLInputElement, InputHTMLProps>(( props, ref ) => (
+  <Input { ...props } forwardedRef={ ref } />
+));
+
+const StyledInput = styled(RefInput)`
   height: 20px;
   background-color: transparent;
   border: none;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import withObservable from './withObservable';
 
 /**
  * Producer: input text
@@ -16,31 +17,41 @@ interface ObservableProps {
 }
 
 interface Props {
-  observable: ObservableProps;
   extra: string; // from withObservable props...
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-class Experiment extends React.PureComponent<Props, {}> {
-  constructor(props: Props) {
+interface PropsWithObservable extends Props {
+  observable: ObservableProps;
+}
+
+class Experiment extends React.PureComponent<PropsWithObservable, {}> {
+  constructor(props: PropsWithObservable) {
     super(props);
     this.renderAutoComplete = this.renderAutoComplete.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   renderAutoComplete() {
     return this.props.observable.result.map(( suggestion: Suggestion ) => <div key={ suggestion.id }>{ suggestion.word }</div>);
   }
 
+  handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    this.props.onChange(e);
+    this.props.observable.inputHandler(e);
+  }
+
   render() {
     return (
       <div>
-        <input type="text" placeholder="input here" value={ this.props.observable.input } onChange={ this.props.observable.inputHandler }/>
-        { this.props.observable.input && <div>{ this.renderAutoComplete() }</div> }
+        <input type="text" placeholder="input here" value={ this.props.observable.input } onChange={ this.handleChange }/>
+        <div>{ this.renderAutoComplete() }</div>
         <div>{ this.props.extra }</div>
       </div>
     );
   }
 }
 
-export default Experiment; 
+export default withObservable<Props>(Experiment); 
 
 

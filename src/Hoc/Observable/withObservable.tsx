@@ -1,18 +1,9 @@
 import * as React from 'react';
 import Observable from './Observable';
-
-interface Suggestion {
-  id: number;
-  word: string;
-}
-
-interface State {
-  result: Suggestion[];
-  inputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { ObservableBags } from './type';
 
 interface ObservableProps {
-  observable: State;
+  observable: ObservableBags;
 }
 
 export default function withObservable<P extends {}>( WrappedComponent: React.ComponentType<P & ObservableProps> ) {
@@ -23,7 +14,7 @@ export default function withObservable<P extends {}>( WrappedComponent: React.Co
       this.renderWrappedComponent = this.renderWrappedComponent.bind(this);
     }
 
-    renderWrappedComponent( observable: State ) {
+    renderWrappedComponent( observable: ObservableBags ) {
       return <WrappedComponent { ...this.props } observable={ observable } />
     }
 
@@ -34,3 +25,4 @@ export default function withObservable<P extends {}>( WrappedComponent: React.Co
     }
   }
 }
+

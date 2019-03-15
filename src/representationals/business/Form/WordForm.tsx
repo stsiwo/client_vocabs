@@ -28,6 +28,7 @@ class WordForm extends React.PureComponent<Props, {}> {
           name={ this.props.word.name } 
           formik={ this.props.formik } 
           wordIndex={ this.props.wordIndex } 
+          setFieldValue={ this.props.setFieldValue }
         />
         <DefTreeCont 
           defs={ this.props.word.defs } 

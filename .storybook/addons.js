@@ -1,3 +1,3 @@
-import '@storybook/addon-actions/register';
-import '@storybook/addon-links/register';
-import '@storybook/addon-notes/register';
+// keep @stroybook/addon-knobs version ^4.xxxx 
+// if you upgrade, it cause error "Object(..) is not a function ..."
+import '@storybook/addon-knobs/register';

@@ -1,7 +1,5 @@
 import { configure, addDecorator } from '@storybook/react';
-import { withNotes } from '@storybook/addon-notes';
 
-addDecorator(withNotes);
 
 const req = require.context('../src/', true, /\.story\.tsx?$/);
 

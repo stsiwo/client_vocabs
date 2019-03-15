@@ -13,26 +13,36 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   id?: string;
+  inputRef: React.RefObject<HTMLInputElement>;
 }
 
-const TextWithIcon: React.SFC<Props> = ( props ) => {
-  return (
-    <div className={ props.className }>
-      <label htmlFor={ props.labelName }>
-        <Icon svgSrc={ props.svgSrc }/>
-      </label>
-      <Input 
-        type="text" 
-        placeholder={ props.placeholder } 
-        name={ props.labelName } 
-        value={ props.value } 
-        onChange={ props.onChange } 
-        onBlur={ props.onBlur } 
-        id={ props.labelName }
-      />
-    </div>
-  );
+class TextWithIcon extends React.Component<Props, {}> {
+
+  constructor(props: Props) {
+    super(props);
+  }
+  
+  render() {
+    return (
+      <div className={ this.props.className }>
+        <label htmlFor={ this.props.labelName }>
+          <Icon svgSrc={ this.props.svgSrc }/>
+        </label>
+        <Input 
+          ref={ this.props.inputRef }
+          type="text" 
+          placeholder={ this.props.placeholder } 
+          name={ this.props.labelName } 
+          value={ this.props.value } 
+          onChange={ this.props.onChange } 
+          onBlur={ this.props.onBlur } 
+          id={ this.props.labelName }
+        />
+      </div>
+    );
+  }
 }
+
 
 const StyledTextWithIcon = styled(TextWithIcon)`
   ${ formElement }
