@@ -38,6 +38,15 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
     //this.checkWordFormError(nextProps.errors);
   //}
 
+  /**
+   * #REFACTOR
+   *  - issue with refresh at /word/detail/
+   *  - since thunk store is deleted when refresh, the state that hold info about selectedWordList is also gone.
+   *  - solution: 
+   *    - when user tries to move another page like click refresh, nav, home, ask to current infor is unsaved so make sure to click save button
+   *    - after saving, should redirect user to /word
+   **/
+
   renderSelectedWords() {
   }
 

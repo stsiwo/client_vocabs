@@ -1,12 +1,17 @@
 import * as React from 'react';
 import AutoComplete from './AutoComplete';
 import { AutoCompleteBags } from './type';
+import { ObservableBags } from '../Observable/type';
 
 interface AutoCompleteProps {
   autoComplete: AutoCompleteBags;
 }
 
-export default function withAutoComplete<P extends {}>( WrappedComponent: React.ComponentType<P & AutoCompleteProps> ) {
+interface ObservableProps {
+  observable: ObservableBags;
+}
+
+export default function withAutoComplete<P extends object & ObservableProps>( WrappedComponent: React.ComponentType<P & ObservableProps & AutoCompleteProps> ) {
   return class extends React.PureComponent<P, {}> {
 
     constructor(props: P) {
@@ -20,7 +25,7 @@ export default function withAutoComplete<P extends {}>( WrappedComponent: React.
 
     render() {
       return (
-        <AutoComplete render={ this.renderWrappedComponent }/>
+        <AutoComplete observable={ this.props.observable } render={ this.renderWrappedComponent }/>
       );
     }
   }

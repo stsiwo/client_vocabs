@@ -3,7 +3,6 @@ import { Subject, Subscription, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, catchError, tap, map, filter } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 import { ObservableBags, Result } from './type';
-import AutoComplete from '../../representationals/base/AutoComplete/AutoComplete';
 
 interface Props {
   render: ( state: ObservableBags ) => React.ReactNode;
@@ -23,10 +22,14 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
   constructor(props: Props) {
     super(props);
     this.inputHandler = this.inputHandler.bind(this);
+    this.isInputEmpty = this.isInputEmpty.bind(this);
+    this.emptyInput = this.emptyInput.bind(this);
     this.state = {
       input: "", // create producer indenpendent from formik actual state
       result: [],
       inputHandler: this.inputHandler,
+      emptyInput: this.emptyInput,
+      isInputEmpty: this.isInputEmpty,
     }
     this.observable = new Subject<string>(); 
   }
@@ -55,6 +58,16 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
     const target = e.target as HTMLInputElement;
     this.observable.next(target.value);
     this.setState({ input: target.value })
+  }
+
+  // this is for close autocomplete
+  emptyInput() {
+    this.setState({ input: "" });
+  }
+
+  // this is for checking autocomplete should be closed
+  isInputEmpty() {
+    return this.state.input === '';
   }
 
   render() {

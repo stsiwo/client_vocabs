@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../representationals/story/styledComponents';
 import { AutoCompleteBags } from './type';
+import { ObservableBags } from '../Observable/type';
 
 //interface Props { 
   //className?: string;
@@ -11,25 +12,33 @@ import { AutoCompleteBags } from './type';
 //}
 
 interface Props {
+  className?: string;
   render: ( state: AutoCompleteBags ) => React.ReactNode;
-  items: any[];
 }
 
-class AutoComplete extends React.PureComponent<Props, AutoCompleteBags> {
+interface PropsWithObservable extends Props {
+  observable: ObservableBags;
+}
 
-  constructor(props: Props) {
+class AutoComplete extends React.PureComponent<PropsWithObservable, AutoCompleteBags> {
+
+  private divRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>(); 
+
+  // constructor is called only when mounting not updating
+  constructor(props: PropsWithObservable) {
     super(props);
     this.state = {
       selectedResult: '',
-      isAutoCompleteOpen: this.props.items.length !== 0
     }
     this.renderAutoCompleteItem = this.renderAutoCompleteItem.bind(this);
     this.handleAutoCompleteItemClick = this.handleAutoCompleteItemClick.bind(this);
     this.handleCloseAutoComplete = this.handleCloseAutoComplete.bind(this);
+    this.setAutoCompleteClose = this.setAutoCompleteClose.bind(this);
+    this.isAutoCompleteOpen = this.isAutoCompleteOpen.bind(this);
   }
 
   renderAutoCompleteItem() {
-    return this.props.items.map(( item ) => <li key={ item.id } value={ item.word } onClick={ this.handleAutoCompleteItemClick }>{ item.word }</li>);
+    return this.props.observable.result.map(( item ) => <li key={ item.id } value={ item.word } onClick={ this.handleAutoCompleteItemClick }>{ item.word }</li>);
   }
 
   handleAutoCompleteItemClick(e: React.MouseEvent<HTMLLIElement>) {
@@ -45,16 +54,26 @@ class AutoComplete extends React.PureComponent<Props, AutoCompleteBags> {
     document.removeEventListener('mousedown', this.handleCloseAutoComplete);
   }
 
-  handleCloseAutoComplete(e: React.MouseEvent<HTMLElement>) {
-    if (!this.node.contains(e.target)) 
-      this.setState({ isAutoCompleteOpen: false });
+  handleCloseAutoComplete(e: Event/* this might need to be fixed */) {
+    if (!this.divRef.current.contains(e.target as HTMLElement)) 
+      this.setAutoCompleteClose();
+  }
+
+  setAutoCompleteClose() {
+    this.props.observable.emptyInput();
+  }
+
+  isAutoCompleteOpen() {
+    // empty input means autocomplete close
+    return !this.props.observable.isInputEmpty();
   }
 
   render() {
+    console.log(this.props.observable.result);
     return (
-      <div ref={( node ) => this.node = node }>
+      <div ref={ this.divRef }>
         { this.props.render( this.state ) }
-        {( this.state.isAutoCompleteOpen && 
+        {( this.isAutoCompleteOpen() && 
           <ul className={ this.props.className } >
             { this.renderAutoCompleteItem() } 
           </ul>
@@ -77,30 +96,10 @@ class AutoComplete extends React.PureComponent<Props, AutoCompleteBags> {
  *
  **/
 
-type UlProps = React.ComponentPropsWithoutRef<'ul'> 
 
-const RefAutoComplete = React.forwardRef<HTMLUListElement, UlProps>(( props, ref ) => (
-  <AutoComplete { ...props } forwardedRef={ ref } />
-));
-
-const StyledAutoComplete = styled(RefAutoComplete)`
+const StyledAutoComplete = styled(AutoComplete)`
   list-style-type: none;
   transform-origin: top;
-
-  ${( props ) => {
-    if ( props.isOpen ) {
-      return `
-        //transform: scaley(1);
-        //transition: transform 0.5s;
-      `;
-    }
-    else {
-      return `
-        //transform: scaley(0);
-        //transition: transform 0.5s;
-      `;
-    }
-  }}
 
   & > li {
     // common
