@@ -46,6 +46,8 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   handleAutoCompleteItemClick(e: React.MouseEvent<HTMLLIElement>) {
     const target = e.target as HTMLLIElement;
     this.setState({ selectedResult: target.getAttribute('value') });
+    this.setAutoCompleteClose();
+
   }
 
   componentWillMount() {
@@ -102,6 +104,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
 const StyledAutoComplete = styled(AutoComplete)`
   list-style-type: none;
   transform-origin: top;
+  padding-inline-start: 0; 
 
   & > li {
     // common
@@ -111,7 +114,13 @@ const StyledAutoComplete = styled(AutoComplete)`
     cursor: pointer;
     margin: 5px;
     padding: 5px;
+
+    &:focus {
+      background-color: ${( props ) => props.theme.thirdColor};
+    }
   }
+
+  
   
   
 `;
