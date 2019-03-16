@@ -22,14 +22,16 @@ interface PropsWithObservable extends Props {
 
 class AutoComplete extends React.PureComponent<PropsWithObservable, AutoCompleteBags> {
 
-  private divRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>(); 
+  // those refs are for close autocomplete when user click outside of autocomplete
+  private liRefs: Node[]; 
 
   // constructor is called only when mounting not updating
   constructor(props: PropsWithObservable) {
     super(props);
     this.state = {
       selectedResult: '',
-    }
+    };
+    this.liRefs = new Array<Node>(5);
     this.renderAutoCompleteItem = this.renderAutoCompleteItem.bind(this);
     this.handleAutoCompleteItemClick = this.handleAutoCompleteItemClick.bind(this);
     this.handleCloseAutoComplete = this.handleCloseAutoComplete.bind(this);
@@ -38,7 +40,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   renderAutoCompleteItem() {
-    return this.props.observable.result.map(( item ) => <li key={ item.id } value={ item.word } onClick={ this.handleAutoCompleteItemClick }>{ item.word }</li>);
+    return this.props.observable.result.map(( item, index ) => <li key={ item.id } value={ item.word } onClick={ this.handleAutoCompleteItemClick } ref={( node: Node ) => this.liRefs[index] = node }>{ item.word }</li>);
   }
 
   handleAutoCompleteItemClick(e: React.MouseEvent<HTMLLIElement>) {
@@ -55,7 +57,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   handleCloseAutoComplete(e: Event/* this might need to be fixed */) {
-    if (!this.divRef.current.contains(e.target as HTMLElement)) 
+    if (!this.liRefs.includes(e.target as HTMLElement)) 
       this.setAutoCompleteClose();
   }
 
@@ -71,7 +73,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   render() {
     console.log(this.props.observable.result);
     return (
-      <div ref={ this.divRef }>
+      <div >
         { this.props.render( this.state ) }
         {( this.isAutoCompleteOpen() && 
           <ul className={ this.props.className } >
