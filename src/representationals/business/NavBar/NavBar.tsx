@@ -113,24 +113,14 @@ interface IStyledProps extends Props {
   
 
 const StyledNavBar = styled(NavBar)`
-  // wrapper (overlay) for close nav when click outside
-  ${( props: IStyledProps ) => {
-    if ( props.isOpen ) {
-      return `
-        width: 100%;
-        height: 100%;
 
-        position: fixed;
-        top: 0;
-        left: 0;`;
-    } else {
-      return `
-        width: 0;
-        height: 0;`
-    }
-  }}
+  display: inline-flex; // might be flex
+  align-items: center;
+  justify-content: space-around;
 
   & > nav {
+
+    // when screen size is for mobile
     @media (max-width: ${( props ) => props.theme.sizes.mobileL }px) {
       font-family: ${( props: IStyledProps ) => props.theme.primaryFontFamily };
       display: inline-block;
@@ -145,7 +135,8 @@ const StyledNavBar = styled(NavBar)`
            return 'width: 0; transition: width 0.5s;';
          }
       }}
-      & > a, & > div {
+      // NavLink
+      & > a {
         background-color: ${( props: IStyledProps ) => props.theme.secondaryColor };
         display: flex;
         align-items: center;
@@ -154,6 +145,7 @@ const StyledNavBar = styled(NavBar)`
         height: 50px;
         padding: 0 20px;
 
+        // text in each NavLink
         & > h4 {
           visibility: ${( props: IStyledProps ) => props.isOpen ? 'visible' : 'hidden' };
           white-space: nowrap;
@@ -161,14 +153,23 @@ const StyledNavBar = styled(NavBar)`
       }
     }
 
+    // when screen size for more than or equal tablet
     @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
       display: flex;
       align-items: center;
       justify-content: space-around;
-
+      
+      // NavLink
       & > a {
         margin: 0 5px;
+
+        // IconWrapper
+        & > div {
+          display: none;
+        }
       }
+
+      
     }
   }
 `;

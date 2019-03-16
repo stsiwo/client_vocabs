@@ -16,10 +16,10 @@ class App extends React.PureComponent<Props, {}> {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <HeaderCont />
         <Content />
-      </div>
+      </React.Fragment>
     );
   }
 }
