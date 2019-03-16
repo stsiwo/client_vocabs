@@ -40,7 +40,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   renderAutoCompleteItem() {
-    return this.props.observable.result.map(( item, index ) => <li key={ item.id } value={ item.word } onClick={ this.handleAutoCompleteItemClick } ref={( node: Node ) => this.liRefs[index] = node }>{ item.word }</li>);
+    return this.props.observable.result.map(( item, index ) => <li key={ item.id } value={ item.word } onClick={ this.handleAutoCompleteItemClick } ref={( node: Node ) => this.liRefs[index] = node } tabIndex={ 0 }>{ item.word }</li>);
   }
 
   handleAutoCompleteItemClick(e: React.MouseEvent<HTMLLIElement>) {
