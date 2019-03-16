@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from './story/styledComponents';
-import Header from './base/Header/Header';
+import HeaderCont from '../containers/HeaderCont';
 import Content from './base/Content/Content';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router-dom';
@@ -17,7 +17,7 @@ class App extends React.PureComponent<Props, {}> {
   render() {
     return (
       <div>
-        <Header />
+        <HeaderCont />
         <Content />
       </div>
     );

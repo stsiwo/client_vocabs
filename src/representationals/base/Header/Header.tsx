@@ -2,11 +2,13 @@ import * as React from 'react';
 import styled from '../../story/styledComponents';
 import Icon from '../Icon/Icon';
 import NavBarCont from '../../../containers/NavBar/NavBarCont';
+import { NavLink } from 'react-router-dom'; 
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 const settingIcon = require('./assets/setting.svg');
 
 interface Props extends RouteComponentProps {
   className?: string;
+  linkClick: ( path: string ) => void;
 }
 
 interface State {
@@ -20,6 +22,7 @@ class Header extends React.PureComponent<Props, State> {
       isNavBarOpen: false,
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleLink = this.handleLink.bind(this);
   }
 
   handleClick(): void {
@@ -27,13 +30,25 @@ class Header extends React.PureComponent<Props, State> {
     this.setState({ isNavBarOpen: !currentStatus });
   }
 
+  handleLink(e: React.MouseEvent<HTMLElement>) {
+    // disable built-in NavLink href redirect
+    e.preventDefault();
+     //get target <a>
+    const target = e.currentTarget as HTMLAnchorElement
+    // filter url; http://localhost:9000/word => /word
+    const path = target.href.substr(target.href.lastIndexOf('/'));
+     //pass to thunk
+    this.props.linkClick(path);
+  }
   /**
    * location props to avoid blocking-update problem wit purecomponent and react router 
    **/
   render() {
     return (
       <header className={ this.props.className }>
-        <Icon svgSrc={ settingIcon }></Icon>
+        <NavLink to="/" onClick={ this.handleLink }>
+          <Icon svgSrc={ settingIcon }></Icon>
+        </NavLink>
         <NavBarCont isOpen={ this.state.isNavBarOpen } location={ this.props.location } onClose={ this.handleClick }/>
         <Icon id="navToggle" svgSrc={ settingIcon } onClick={ this.handleClick }></Icon>
       </header>
