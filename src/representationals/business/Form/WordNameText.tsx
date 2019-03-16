@@ -5,6 +5,8 @@ import { CustomFormikProps } from '../../../Hoc/withForm';
 import { ErrorMessage } from 'formik';
 import withObservable from '../../../Hoc/Observable/withObservable';
 import { ObservableBags } from '../../../Hoc/Observable/type';
+import { AutoCompleteBags } from '../../../Hoc/AutoComplete/type';
+import withAutoComplete from '../../../Hoc/AutoComplete/withAutoComplete';
 
 const wordIcon = require('./assets/word.svg');
 
@@ -23,15 +25,20 @@ interface PropsWithObservable extends Props {
   observable: ObservableBags;
 }
 
-class WordNameText extends React.PureComponent<PropsWithObservable, {}> {
+interface PropsWithObservableAndAutoComplete extends PropsWithObservable {
+  autoComplete: AutoCompleteBags;
+}
+
+
+
+class WordNameText extends React.PureComponent<PropsWithObservableAndAutoComplete, {}> {
 
   private wordNameRef: React.RefObject<HTMLInputElement>;
 
-  constructor(props: PropsWithObservable) {
+  constructor(props: PropsWithObservableAndAutoComplete) {
     super(props);
     this.handleWordNameChange = this.handleWordNameChange.bind(this);
     this.handleWordNameBlur = this.handleWordNameBlur.bind(this);
-    this.handleAutoCompleteClick = this.handleAutoCompleteClick.bind(this);
     this.wordNameRef = React.createRef<HTMLInputElement>();
   }
 
@@ -44,17 +51,14 @@ class WordNameText extends React.PureComponent<PropsWithObservable, {}> {
     this.props.formik.handleBlur(e);
   }
 
-  handleAutoCompleteClick(e: React.MouseEvent<HTMLLIElement>) {
-    const { wordIndex } = this.props;
-    const target = e.target as HTMLLIElement;
-    // update formik values
-    this.props.setFieldValue(`words.${ wordIndex }.name`, target.getAttribute('value')); 
+  componentDidUpdate(prevProps: PropsWithObservableAndAutoComplete) {
+    if (prevProps.autoComplete.selectedResult !== this.props.autoComplete.selectedResult) {
+      // update formik values
+      this.props.setFieldValue(`words.${ this.props.wordIndex }.name`, this.props.autoComplete.selectedResult);
 
-    // update word name input by react ref
-    this.wordNameRef.current.value = target.getAttribute('value');
-
-    // close AutoComplete
-    this.props.observable.closeAutoComplete();
+      // update word name input by react ref
+      this.wordNameRef.current.value = this.props.autoComplete.selectedResult; 
+    }
   }
 
   render() {
@@ -71,7 +75,6 @@ class WordNameText extends React.PureComponent<PropsWithObservable, {}> {
           value={ this.props.name }
         />
         <ErrorMessage name={ `words.${ wordIndex }.name` } />
-        { this.props.observable.isAutoCompleteActive() && this.props.observable.renderAutoComplete( this.handleAutoCompleteClick ) }
       </div>
     );
   }
@@ -84,4 +87,6 @@ const StyledWordNameText = styled(WordNameText)`
  }
 `;
 
-export default withObservable<Props>(StyledWordNameText);
+export default withObservable<Props>(
+  withAutoComplete<PropsWithObservable>(StyledWordNameText)
+);

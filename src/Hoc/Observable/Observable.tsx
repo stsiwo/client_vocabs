@@ -20,23 +20,13 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
 
   subscription: Subscription;
 
-  private autoCompleteRef: React.RefObject<HTMLUListElement>;
-
   constructor(props: Props) {
     super(props);
     this.inputHandler = this.inputHandler.bind(this);
-    this.renderAutoComplete = this.renderAutoComplete.bind(this);
-    this.isAutoCompleteActive = this.isAutoCompleteActive.bind(this);
-    this.closeAutoComplete = this.closeAutoComplete.bind(this);
-    this.autoCompleteRef = React.createRef<HTMLUListElement>();
     this.state = {
       input: "", // create producer indenpendent from formik actual state
       result: [],
       inputHandler: this.inputHandler,
-      renderAutoComplete: this.renderAutoComplete,
-      isAutoCompleteActive: this.isAutoCompleteActive,
-      closeAutoComplete: this.closeAutoComplete,
-      autoCompleteRef: this.autoCompleteRef
     }
     this.observable = new Subject<string>(); 
   }
@@ -67,23 +57,11 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
     this.setState({ input: target.value })
   }
 
-  renderAutoComplete( onClickHandler: (e: React.MouseEvent<HTMLLIElement> ) => void ) {
-    return <AutoComplete items={ this.state.result } onClickHandler={ onClickHandler } isOpen={ this.isAutoCompleteActive() } ref={ this.autoCompleteRef } /> 
-  }
-
-  isAutoCompleteActive() {
-    return this.state.input.length !== 0;
-  }
-
-  closeAutoComplete() {
-    this.setState({ input: "" });
-  }
-
   render() {
     return (
-      <div>
+      <React.Fragment>
         { this.props.render( this.state )}
-      </div>
+      </React.Fragment>
     );
   }
 
