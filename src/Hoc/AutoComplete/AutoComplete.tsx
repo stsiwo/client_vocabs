@@ -37,6 +37,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
     this.liRefs = new Array<Node>(5);
     this.renderAutoCompleteItem = this.renderAutoCompleteItem.bind(this);
     this.handleAutoCompleteItemClick = this.handleAutoCompleteItemClick.bind(this);
+    this.handleAutoCompleteItemKeyPress = this.handleAutoCompleteItemKeyPress.bind(this);
     this.handleCloseAutoCompleteFocusIn = this.handleCloseAutoCompleteFocusIn.bind(this);
     this.handleCloseAutoCompleteClick = this.handleCloseAutoCompleteClick.bind(this);
     this.setAutoCompleteClose = this.setAutoCompleteClose.bind(this);
@@ -44,14 +45,44 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   renderAutoCompleteItem() {
-    return this.props.observable.result.map(( item, index ) => <li key={ item.id } value={ item.word } onClick={ this.handleAutoCompleteItemClick } ref={( node: Node ) => this.liRefs[index] = node } tabIndex={ 0 }>{ item.word }</li>);
+    return this.props.observable.result.map(( item, index ) => (
+      <li 
+        key={ item.id } 
+        value={ item.word } 
+        onClick={ this.handleAutoCompleteItemClick } 
+        onKeyDown={ this.handleAutoCompleteItemKeyPress }
+        ref={( node: Node ) => this.liRefs[index] = node } 
+        tabIndex={ 0 }>
+          { item.word }
+      </li>
+    ));
   }
 
   handleAutoCompleteItemClick(e: React.MouseEvent<HTMLLIElement>) {
     const target = e.target as HTMLLIElement;
     this.setState({ selectedResult: target.getAttribute('value') });
     this.setAutoCompleteClose();
+  }
 
+  /**
+   * the error caused by using key event on non-input element
+   *  - detail: Assertion failed: Input argument is not an HTMLInputElement
+          getFormProfile @ onloadwff.js:71
+          setFieldValue @ onloadwff.js:71
+          formKeydownListener @ onloadwff.js:71
+          onloadwff.js:71 Uncaught TypeError: Cannot read property 'type' of undefined
+        at e.setFieldValue (onloadwff.js:71)
+        at HTMLFormElement.formKeydownListener (onloadwff.js:71)
+      - this is because of LastPass (chrome extension)
+      - solution: I don't know how to fix this
+        #REFACTOR
+   **/
+  handleAutoCompleteItemKeyPress(e: React.KeyboardEvent<HTMLLIElement>) {
+    if (e.key === 'Enter') {
+      const target = e.target as HTMLLIElement;
+      this.setState({ selectedResult: target.getAttribute('value') });
+      this.setAutoCompleteClose();
+    }
   }
 
   componentWillMount() {
