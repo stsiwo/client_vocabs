@@ -25,6 +25,9 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   // those refs are for close autocomplete when user click outside of autocomplete
   private liRefs: Node[]; 
 
+  // this ref for close autocomplete when focus out from word name input and its autocomplete
+  private divRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>(); 
+
   // constructor is called only when mounting not updating
   constructor(props: PropsWithObservable) {
     super(props);
@@ -34,7 +37,8 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
     this.liRefs = new Array<Node>(5);
     this.renderAutoCompleteItem = this.renderAutoCompleteItem.bind(this);
     this.handleAutoCompleteItemClick = this.handleAutoCompleteItemClick.bind(this);
-    this.handleCloseAutoComplete = this.handleCloseAutoComplete.bind(this);
+    this.handleCloseAutoCompleteFocusIn = this.handleCloseAutoCompleteFocusIn.bind(this);
+    this.handleCloseAutoCompleteClick = this.handleCloseAutoCompleteClick.bind(this);
     this.setAutoCompleteClose = this.setAutoCompleteClose.bind(this);
     this.isAutoCompleteOpen = this.isAutoCompleteOpen.bind(this);
   }
@@ -51,15 +55,24 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   componentWillMount() {
-    document.addEventListener('mousedown', this.handleCloseAutoComplete);
+    document.addEventListener('mousedown', this.handleCloseAutoCompleteClick);
+    document.addEventListener('focusin', this.handleCloseAutoCompleteFocusIn);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleCloseAutoComplete);
+    document.removeEventListener('mousedown', this.handleCloseAutoCompleteClick);
+    document.removeEventListener('focusin', this.handleCloseAutoCompleteFocusIn);
   }
 
-  handleCloseAutoComplete(e: Event/* this might need to be fixed */) {
-    if (!this.liRefs.includes(e.target as HTMLElement)) 
+  handleCloseAutoCompleteClick(e: Event/* this might need to be fixed */) {
+    const target = e.target as HTMLElement 
+    if (!this.liRefs.includes(target)) 
+      this.setAutoCompleteClose();
+  }
+
+  handleCloseAutoCompleteFocusIn(e: Event/* this might need to be fixed */) {
+    const target = e.target as HTMLElement 
+    if (!this.divRef.current.contains(target)) 
       this.setAutoCompleteClose();
   }
 
@@ -75,7 +88,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   render() {
     console.log(this.props.observable.result);
     return (
-      <div >
+      <div ref={ this.divRef }>
         { this.props.render( this.state ) }
         {( this.isAutoCompleteOpen() && 
           <ul className={ this.props.className } >
