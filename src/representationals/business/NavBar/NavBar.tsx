@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom'; 
 import styled from '../../story/styledComponents';
 import Icon from '../../base/Icon/Icon';
 import { Hl } from '../../base/common/Line';
@@ -27,8 +28,11 @@ interface Props {
 
 class NavBar extends React.PureComponent<Props, {}> {
 
-  // this ref for closing navbar when outside is clicked
-  private divRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>(); 
+  /**
+   * this ref for closing navbar when outside is clicked
+   *  - need to fix styled-components, typescript, and ref component issue
+   **/
+  private IconRef: React.RefObject<any> = React.createRef<any>(); 
 
   constructor(props: Props) {
     super(props);
@@ -57,9 +61,6 @@ class NavBar extends React.PureComponent<Props, {}> {
      //pass to thunk
     this.props.linkClick(path);
 
-    // close nav
-    this.props.onClose();
-    
   }
 
   displaySignUpForm(e: React.MouseEvent<HTMLElement>) {
@@ -81,13 +82,14 @@ class NavBar extends React.PureComponent<Props, {}> {
 
   handleCloseOutsideClick(e: Event) {
     const target = e.target as HTMLElement 
-    if (!this.divRef.current.contains(target)) 
+    const IconRootDom = ReactDOM.findDOMNode(this.IconRef.current);
+    if (!IconRootDom.contains(target)) 
       this.props.onClose()
   }
 
   render() {
     return (
-      <div className={ this.props.className } ref={ this.divRef }>
+      <div className={ this.props.className } >
         <nav>
         {( this.props.isLogin && 
           <React.Fragment>
@@ -121,7 +123,13 @@ class NavBar extends React.PureComponent<Props, {}> {
           </React.Fragment>
         )}
         </nav>
-        <Icon id="navToggle" className="nav-toggle-icon" svgSrc={ dropdownIcon } onClick={ this.props.onToggle }></Icon>
+        <Icon 
+          id="navToggle" 
+          className="nav-toggle-icon" 
+          svgSrc={ dropdownIcon } 
+          onClick={ this.props.onToggle }
+          ref={ this.IconRef }
+        />
         {( this.props.isSignUpModalOpen && <SignUpModalCont /> )}
         {( this.props.isLoginModalOpen && <LoginModalCont /> )}
       </div>
