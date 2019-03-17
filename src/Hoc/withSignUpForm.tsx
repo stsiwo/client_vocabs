@@ -27,7 +27,7 @@ const SignUpValidationSchema = Yup.object().shape({
      *  - formik validate every field when a value of a field is changed
      *  - every key stroke cause also vaidation on every fields
      *    => this is way inefficient, should be reconsider the implementation (like not use formik) or something
-     *    #REFACTOR
+     *    #REFACTOR (ticket#3)
      **/
       .test('isUnique', 'your input name has already taken by someone. please choose a different one', async function( name: string ) {
         const request = makeUserNameUniqueCheckRequest(name);
@@ -42,7 +42,7 @@ const SignUpValidationSchema = Yup.object().shape({
      *  - formik validate every field when a value of a field is changed
      *  - every key stroke cause also vaidation on every fields
      *    => this is way inefficient, should be reconsider the implementation (like not use formik) or something
-     *    #REFACTOR
+     *    #REFACTOR (ticket#3)
      **/
       .test('alwaysExists', 'your input email has already existed. if you have your account, please go to login page', async function( email: string ) {
         const request = makeEmailAlreadyExistRequest(email);

@@ -61,7 +61,7 @@ export class DefNode extends React.PureComponent<Props, State> {
           { this.props.defIndex !== 0 && 
             // render delete icon only def index is not 0 since a word must have at least one def 
             // this might not be a good way to do this since user can't delete the first def. what if user want to delete it when the other defs are avaiable. 
-            // #REFACTOR
+            // #REFACTOR (ticket#5)
           <div>
             <Icon 
               id="removeDefForm" 

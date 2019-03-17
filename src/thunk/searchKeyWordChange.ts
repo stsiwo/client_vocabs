@@ -9,7 +9,7 @@ import { OrderedSet, Record } from 'immutable';
 
 /**
  * should display no result message when there is no result...
- * #REFACTOR.
+ * #REFACTOR. (ticket#7)
  **/
 type searchKeyWordChangeThunkType = (nextSearchKey: string) => ThunkAction<void, Record<IState>, undefined, AnyAction>;
 

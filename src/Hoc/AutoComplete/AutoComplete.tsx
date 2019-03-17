@@ -75,7 +75,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
         at HTMLFormElement.formKeydownListener (onloadwff.js:71)
       - this is because of LastPass (chrome extension)
       - solution: I don't know how to fix this
-        #REFACTOR
+        #REFACTOR (ticket#2)
    **/
   handleAutoCompleteItemKeyPress(e: React.KeyboardEvent<HTMLLIElement>) {
     if (e.key === 'Enter') {

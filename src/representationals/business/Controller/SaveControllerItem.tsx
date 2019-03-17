@@ -18,7 +18,7 @@ export class SaveControllerItem extends React.PureComponent<Props, {}> {
 
   /**
    * it might better to redirect user to /word page but later
-   * #REFACTOR
+   * #REFACTOR (ticket#4)
    **/
   onSaveClick(e: React.MouseEvent<HTMLElement>) {
     this.props.saveWordsClick(this.props.formValues.words);

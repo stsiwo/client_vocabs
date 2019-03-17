@@ -32,14 +32,14 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
   // check the formik errors is exists or not, then if so, assign wordFormError to true (redux state)
   // this is for knowing formik props outside form component to open defin word warning modal
   // this might be done different way so comment out for now
-  // #REFACTOR
+  // #REFACTOR (ticket#6)
   // this might not be a good idea to dispatch action inside component lifecycle function
   //componentDidUpdate(nextProps: InjectedFormikProps<Props, FormValues>) {
     //this.checkWordFormError(nextProps.errors);
   //}
 
   /**
-   * #REFACTOR
+   * #REFACTOR (ticket#6)
    *  - issue with refresh at /word/detail/
    *  - since thunk store is deleted when refresh, the state that hold info about selectedWordList is also gone.
    *  - solution: 
