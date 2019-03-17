@@ -2,8 +2,14 @@
 client side react SPA for Vocabs web application
 
 ## Refactoring Note
- - use "render props" and HOC to encapsulate to cross-cutting concern like modal feature (separate content of modal and modal itself)
-
+ - ticket#1: implement automate refresh token request when access token is expired. but how? need some timer to send request before expires?
+ - ticket#2: LastPass chrom extension error when implementing key press event handler. i don't know how to fix.
+ - ticket#3: implement formik async validation rather than sync to avoid lag every time put input
+ - ticket#4: redirect user to /word after saving at /word/detail
+ - ticket#5: allow user to delete the first definition of a word at /word/detail. add trash icon at the first definition.
+ - ticket#6: figure out the place of dispatch an action for form error exist
+ - ticket#7: implement "no search result" message or flash card when search word
+ 
 ### some of local commits were lost due to power down of this computer
 
  - those commits are following: 
