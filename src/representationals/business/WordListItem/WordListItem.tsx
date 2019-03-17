@@ -3,6 +3,7 @@ import styled from '../../story/styledComponents';
 import CheckBox from '../../base/Input/CheckBox';
 import { toggleSelectWordDispatchType } from '../../../containers/type';
 import { IWordListItem } from '../../../domains/word';
+import truncateString from '../../../util/truncateString';
 
 interface Props {
   className?: string;
@@ -30,7 +31,7 @@ class WordListItem extends React.PureComponent<Props, {}> {
   render() {
     return (
       <li className={ this.props.className }>
-        <CheckBox labelName={this.props.word.name} checked={ this.props.word.isChecked } onChange={ this.onCheckChange } value={ this.props.word.id } >{ this.props.word.name }</CheckBox>
+        <CheckBox labelName={this.props.word.name} checked={ this.props.word.isChecked } onChange={ this.onCheckChange } value={ this.props.word.id }>{ truncateString(this.props.word.name)}</CheckBox>
       </li>
     );
   }
