@@ -4,7 +4,7 @@ import Icon from '../Icon/Icon';
 import NavBarCont from '../../../containers/NavBar/NavBarCont';
 import { NavLink } from 'react-router-dom'; 
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-const settingIcon = require('./assets/setting.svg');
+const dropdownIcon = require('./assets/dropdown.svg');
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -23,11 +23,17 @@ class Header extends React.PureComponent<Props, State> {
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleLink = this.handleLink.bind(this);
+    this.handleCloseNavBar = this.handleCloseNavBar.bind(this);
   }
 
-  handleClick(): void {
+  handleClick(e: React.MouseEvent<HTMLDivElement>): void {
     const currentStatus = this.state.isNavBarOpen;
     this.setState({ isNavBarOpen: !currentStatus });
+  }
+
+  handleCloseNavBar() {
+    console.log("outside click");
+    this.setState({ isNavBarOpen: false });
   }
 
   handleLink(e: React.MouseEvent<HTMLElement>) {
@@ -47,10 +53,9 @@ class Header extends React.PureComponent<Props, State> {
     return (
       <header className={ this.props.className }>
         <NavLink to="/" onClick={ this.handleLink }>
-          <Icon svgSrc={ settingIcon }></Icon>
+          <Icon svgSrc={ dropdownIcon }></Icon>
         </NavLink>
-        <NavBarCont isOpen={ this.state.isNavBarOpen } location={ this.props.location } onClose={ this.handleClick }/>
-        <Icon id="navToggle" svgSrc={ settingIcon } onClick={ this.handleClick }></Icon>
+        <NavBarCont isOpen={ this.state.isNavBarOpen } location={ this.props.location } onClose={ this.handleCloseNavBar } onToggle={ this.handleClick }/>
       </header>
     );
   }
@@ -75,18 +80,6 @@ const StyledHeader = styled(Header)`
     flex-basis: 50px;
   }
 
-  & > div:last-child {
-    flex-basis: 50px;
-
-    @media (max-width: ${( props ) => props.theme.sizes.mobileL}px) {
-      display: block;
-    }
-
-    @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
-      display: none;
-    }
-
-  }
 `;
 
 

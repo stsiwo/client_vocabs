@@ -51,27 +51,29 @@ export class WordList extends React.PureComponent<Props, {}> {
 }
 
 const StyledWordList = styled(WordList)`
+  // this is to center each word item and spread around both edge
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  // when screen size is more than and equal tablet
+  @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+    position: fixed;
+    left: 0;
+    top: ${( props ) => props.theme.headerHeight };
+    width: ${( props ) => props.theme.sideBarWidth };
+    bottom: 0;
+    overflow-y: scroll;
+    border-right: 2px solid ${( props ) => props.theme.secondaryColor };
+    box-sizing: border-box;
+  }
+
   & > ul {
     list-style-type: none; 
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 0;
-    // this is to center each word item and spread around both edge
-    display: flex;
-    text-align: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
-      position: fixed;
-      left: 0;
-      top: ${( props ) => props.theme.headerHeight };
-      width: ${( props ) => props.theme.sideBarWidth };
-      bottom: 0;
-      overflow-y: scroll;
-      border-right: 2px solid ${( props ) => props.theme.secondaryColor };
-      box-sizing: border-box;
-    }
   }
 `;
 StyledWordList.displayName = "WordListSelector";

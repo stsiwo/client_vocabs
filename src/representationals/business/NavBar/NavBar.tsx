@@ -4,7 +4,7 @@ import Icon from '../../base/Icon/Icon';
 import { Hl } from '../../base/common/Line';
 import { ThemeInterface } from '../../story/theme'; 
 import { NavLink } from 'react-router-dom'; 
-const settingIcon = require('./assets/setting.svg');
+const dropdownIcon = require('./assets/dropdown.svg');
 import SignUpModalCont from '../../../containers/SignUpModalCont';
 import LoginModalCont from '../../../containers/LoginModalCont';
 import { Location } from 'history';
@@ -22,9 +22,14 @@ interface Props {
   logoutClick: () => void;
   location: Location; 
   onClose: () => void;
+  onToggle: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 class NavBar extends React.PureComponent<Props, {}> {
+
+  // this ref for closing navbar when outside is clicked
+  private divRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>(); 
+
   constructor(props: Props) {
     super(props);
     this.handleLink = this.handleLink.bind(this);
@@ -32,6 +37,14 @@ class NavBar extends React.PureComponent<Props, {}> {
     this.displayLoginForm = this.displayLoginForm.bind(this);
     this.logoutClick = this.logoutClick.bind(this);
     this.handleCloseOutsideClick = this.handleCloseOutsideClick.bind(this);
+  }
+
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleCloseOutsideClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleCloseOutsideClick);
   }
 
   handleLink(e: React.MouseEvent<HTMLElement>) {
@@ -43,6 +56,10 @@ class NavBar extends React.PureComponent<Props, {}> {
     const path = target.href.substr(target.href.lastIndexOf('/'));
      //pass to thunk
     this.props.linkClick(path);
+
+    // close nav
+    this.props.onClose();
+    
   }
 
   displaySignUpForm(e: React.MouseEvent<HTMLElement>) {
@@ -62,44 +79,49 @@ class NavBar extends React.PureComponent<Props, {}> {
     this.props.logoutClick();
   }
 
-  handleCloseOutsideClick(e: React.MouseEvent<HTMLElement>) {
-    this.props.onClose()
+  handleCloseOutsideClick(e: Event) {
+    const target = e.target as HTMLElement 
+    if (!this.divRef.current.contains(target)) 
+      this.props.onClose()
   }
 
   render() {
     return (
-      <div className={ this.props.className } onClick={ this.handleCloseOutsideClick }>
+      <div className={ this.props.className } ref={ this.divRef }>
+        <nav>
         {( this.props.isLogin && 
-          <nav >
+          <React.Fragment>
             <NavLink to="/word" onClick={ this.handleLink }>
-              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <Icon svgSrc={ dropdownIcon } hidden={ !this.props.isOpen }/>
               <h4>Word</h4>
             </NavLink>
             <Hl />
             <NavLink to="/dictionary" onClick={ this.handleLink }>
-              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <Icon svgSrc={ dropdownIcon } hidden={ !this.props.isOpen }/>
               <h4>Dictionary</h4>
             </NavLink>
             <Hl />
             <NavLink to="/logout" onClick={ this.logoutClick }>
-              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <Icon svgSrc={ dropdownIcon } hidden={ !this.props.isOpen }/>
               <h4>Logout</h4>
             </NavLink>
-          </nav>
+          </React.Fragment>
         )}
         {( !this.props.isLogin && 
-          <nav >
+          <React.Fragment>
             <NavLink to="/signup" onClick={ this.displaySignUpForm }>
-              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <Icon svgSrc={ dropdownIcon } hidden={ !this.props.isOpen }/>
               <h4>Sign Up</h4>
             </NavLink>
             <Hl />
             <NavLink to="/login" onClick={ this.displayLoginForm }>
-              <Icon svgSrc={ settingIcon } hidden={ !this.props.isOpen }/>
+              <Icon svgSrc={ dropdownIcon } hidden={ !this.props.isOpen }/>
               <h4>Login</h4>
             </NavLink>
-          </nav>
+          </React.Fragment>
         )}
+        </nav>
+        <Icon id="navToggle" svgSrc={ dropdownIcon } onClick={ this.props.onToggle }></Icon>
         {( this.props.isSignUpModalOpen && <SignUpModalCont /> )}
         {( this.props.isLoginModalOpen && <LoginModalCont /> )}
       </div>
@@ -171,6 +193,19 @@ const StyledNavBar = styled(NavBar)`
 
       
     }
+  }
+
+  & > div:last-child {
+    flex-basis: 50px;
+
+    @media (max-width: ${( props ) => props.theme.sizes.mobileL}px) {
+      display: block;
+    }
+
+    @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+      display: none;
+    }
+
   }
 `;
 StyledNavBar.displayName = "NavBarSelector";

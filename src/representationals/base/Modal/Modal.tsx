@@ -16,6 +16,7 @@ interface Props {
 }
 
 class Modal extends React.PureComponent<Props, {}> {
+
   constructor(props: Props) {
     super(props);
     this.stopEventBubblingUp = this.stopEventBubblingUp.bind(this);
