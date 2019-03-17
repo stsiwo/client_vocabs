@@ -40,10 +40,15 @@ const withForm = <P extends FormValues>( FormComponent: React.ComponentType<Inje
   return withFormik<P, FormValues>({
     // change props of this wrapping component into form values: set initial form values here
     mapPropsToValues: props => {
+      console.log("inside mappropstovalues");
+      console.log(props.words);
       return {
         words: props.words,
       };
     },
+
+    // enable assign the value from mapPropsToValues to values object after initial setup
+    enableReinitialize: true,
 
     // better to use validation schema (like Yup)
     // can be synchronous or asynchronous

@@ -65,6 +65,7 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
       handleBlur: handleBlur,
     }
 
+    console.log(this.props.words);
     console.log(this.props.values);
     return (
       <div className={ this.props.className }>
@@ -92,9 +93,7 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
 
 const StyledWordDetail = styled(withForm<Props>(WordDetail))`
 
-  // when screen size is more than or equeal tablet 
-  @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
-  }
+  width: 100%;
 
 `;
 StyledWordDetail.displayName = "WordDetailSelector";
