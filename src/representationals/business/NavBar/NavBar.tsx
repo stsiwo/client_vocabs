@@ -121,7 +121,7 @@ class NavBar extends React.PureComponent<Props, {}> {
           </React.Fragment>
         )}
         </nav>
-        <Icon id="navToggle" svgSrc={ dropdownIcon } onClick={ this.props.onToggle }></Icon>
+        <Icon id="navToggle" className="nav-toggle-icon" svgSrc={ dropdownIcon } onClick={ this.props.onToggle }></Icon>
         {( this.props.isSignUpModalOpen && <SignUpModalCont /> )}
         {( this.props.isLoginModalOpen && <LoginModalCont /> )}
       </div>
@@ -195,7 +195,7 @@ const StyledNavBar = styled(NavBar)`
     }
   }
 
-  & > div:last-child {
+  & > .nav-toggle-icon {
     flex-basis: 50px;
 
     @media (max-width: ${( props ) => props.theme.sizes.mobileL}px) {
