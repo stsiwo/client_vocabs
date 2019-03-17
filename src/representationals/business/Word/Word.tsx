@@ -52,6 +52,22 @@ export class Word extends React.PureComponent<Props, {}> {
 }
 
 const StyledWord = styled(Word)`
+
+  
+  // >= tablet
+  @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+    // height is for get screen size height (see WordList component css)
+    height: 100%;
+    // flex is to display wordlist and word detail horizontally (like sidebar and content)
+    display: flex;
+  }
+
+  // >= laptop
+  @media (min-width: ${( props ) => props.theme.sizes.tablet + 1 }px) {
+    margin: 0 50px;
+  }
+
+  
 `;
 StyledWord.displayName = "WordSelector";
 

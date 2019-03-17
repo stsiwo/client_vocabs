@@ -45,6 +45,7 @@ export interface ThemeInterface {
   headerHeight: string;
   navBarWidth: string;
   sideBarWidth: string;
+  contentWidth: string;
   bottomBarHeight: string;
   bottomBarHeightMargin: string;
 
@@ -67,7 +68,10 @@ export const theme: ThemeInterface = {
 
   headerHeight: '50px',
   navBarWidth: '100px',
-  sideBarWidth: '100px',
+  // wordlist when screen size >= mobileL
+  sideBarWidth: '120px',
+  // worddetail when screen size >= mobileL
+  contentWidth: '300px', 
   bottomBarHeight: '50px',
   bottomBarHeightMargin: '10px',
 

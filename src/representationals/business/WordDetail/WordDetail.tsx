@@ -67,8 +67,9 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
 
     console.log(this.props.values);
     return (
-      <div>
-        <form className={ this.props.className } autoComplete="new-password">
+      <div className={ this.props.className }>
+        <div>here is worddetail page</div>
+        <form autoComplete="new-password">
           <FieldArray 
             name="words" 
             render={( arrayHelpers ) => {
@@ -90,8 +91,9 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
 }
 
 const StyledWordDetail = styled(withForm<Props>(WordDetail))`
+
+  // when screen size is more than or equeal tablet 
   @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
-    margin-left: ${( props ) => props.theme.sideBarWidth };
   }
 
 `;

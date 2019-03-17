@@ -58,16 +58,12 @@ const StyledWordList = styled(WordList)`
   flex-wrap: wrap;
   justify-content: space-between;
 
-  // when screen size is more than and equal tablet
+  // >= tablet 
   @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
-    position: fixed;
-    left: 0;
-    top: ${( props ) => props.theme.headerHeight };
-    width: ${( props ) => props.theme.sideBarWidth };
-    bottom: 0;
-    overflow-y: scroll;
-    border-right: 2px solid ${( props ) => props.theme.secondaryColor };
-    box-sizing: border-box;
+    flex-basis: ${( props ) => props.theme.sideBarWidth };
+    height: 100%;
+    overflow-y: auto;
+    
   }
 
   & > ul {

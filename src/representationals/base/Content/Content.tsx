@@ -34,6 +34,8 @@ class Content extends React.PureComponent<Props, {}> {
 const StyledContent = styled(Content)`
   position: relative;
   top: ${( props ) => props.theme.headerHeight };
+  // height is for get screen size height (see WordList component css)
+  height: 100%;
 `;
 
 
