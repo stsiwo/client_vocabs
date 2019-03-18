@@ -117,7 +117,6 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   render() {
-    console.log(this.props.observable.result);
     return (
       <div ref={ this.divRef }>
         { this.props.render( this.state ) }

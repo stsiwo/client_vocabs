@@ -32,7 +32,6 @@ class Header extends React.PureComponent<Props, State> {
   }
 
   handleCloseNavBar() {
-    console.log("outside click");
     this.setState({ isNavBarOpen: false });
   }
 

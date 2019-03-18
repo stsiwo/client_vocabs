@@ -8,6 +8,7 @@ import MobileDetailController from '../Controller/MobileDetailController';
 import DefineWarningModalCont from '../../../containers/DefineWarningModalCont';
 import withForm, { FormValues, CustomFormikProps } from '../../../Hoc/withForm';
 import { FieldArray, InjectedFormikProps, FormikErrors } from 'formik';
+import Controller from '../Controller/Controller';
 const isEmpty = require('lodash/isEmpty');
 
 interface Props extends RouteComponentProps<{}> {
@@ -65,8 +66,6 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
       handleBlur: handleBlur,
     }
 
-    console.log(this.props.words);
-    console.log(this.props.values);
     return (
       <div className={ this.props.className }>
         <form autoComplete="new-password">
@@ -75,10 +74,13 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
             render={( arrayHelpers ) => {
               return (
                 <div>
-                { this.props.values.words.map((word, index) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps } arrayHelpers={ arrayHelpers } setFieldValue={ this.props.setFieldValue }/>)}
-                <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
-                  <MobileDetailController formValues={ this.props.values } arrayHelpers={ arrayHelpers }/>
-                </MediaQuery>
+                  { this.props.values.words.map((word, index) => <WordForm key={ word.id } word={ word } wordIndex={ index } formik={ customFormikProps } arrayHelpers={ arrayHelpers } setFieldValue={ this.props.setFieldValue }/>)}
+                  <MediaQuery maxWidth={ 425 } values={{ width: 300 }}>
+                    <MobileDetailController formValues={ this.props.values } arrayHelpers={ arrayHelpers }/>
+                  </MediaQuery>
+                  <MediaQuery minWidth={ 426 }>
+                    <Controller formValues={ this.props.values } arrayHelpers={ arrayHelpers }/>
+                  </MediaQuery>
                 </div>
               );
             }}

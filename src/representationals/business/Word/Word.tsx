@@ -4,7 +4,6 @@ import WordListCont from '../../../containers/Word/WordListCont';
 import MediaQuery from 'react-responsive';
 import { Redirect } from 'react-router-dom';
 import WordDetailCont from '../../../containers/Word/WordDetailCont';
-import Controller from '../Controller/Controller';
 import SelectModalCont from '../../../containers/SelectModalCont';
 import DeleteModalCont from '../../../containers/DeleteModalCont';
 import SortFilterModalCont from '../../../containers/SortFilterModalCont';
@@ -40,7 +39,6 @@ export class Word extends React.PureComponent<Props, {}> {
           <ProtectedRoute path="/word" component={ WordListCont } location={ this.props.location }/> 
           <ProtectedRoute path="/word/detail" component={ WordDetailCont } location={ this.props.location }/>
           <Redirect from="/word" to="/word/detail" />
-          <Controller />
         </MediaQuery>
         { this.props.isSelectWarningModalOpen && <SelectModalCont /> }
         { this.props.isDeleteConfirmModalOpen && <DeleteModalCont /> }

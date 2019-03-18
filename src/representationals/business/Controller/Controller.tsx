@@ -1,19 +1,23 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import { Vl } from '../../base/common/Line';
-//import NewControllerItemCont from '../../../containers/Controller/NewControllerItemCont';
+import NewControllerItemCont from '../../../containers/Controller/NewControllerItemCont';
 import DeleteControllerItemCont from '../../../containers/Controller/DeleteControllerItemCont';
 import SortFilterControllerItemCont from '../../../containers/Controller/SortFilterControllerItemCont';
 import SearchWordControllerItemCont from '../../../containers/Controller/SearchWordControllerItemCont';
 import SelectAllControllerItemCont from '../../../containers/Controller/SelectAllControllerItemCont';
-//import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
+import SaveControllerItemCont from '../../../containers/Controller/SaveControllerItemCont';
+import { FormValues } from '../../../Hoc/withForm';
+import { ArrayHelpers } from 'formik';
 
 interface Props {
   className?: string;
+  formValues: FormValues;
+  arrayHelpers: ArrayHelpers;
 }
 
 
-class MobileController extends React.PureComponent<Props, {}> {
+class Controller extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
@@ -21,10 +25,8 @@ class MobileController extends React.PureComponent<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-      {/*
-        <NewControllerItemCont />
+        <NewControllerItemCont arrayHelpers={ this.props.arrayHelpers }/>
         <Vl />
-        */}
         <DeleteControllerItemCont />
         <Vl />
         <SortFilterControllerItemCont />
@@ -32,16 +34,14 @@ class MobileController extends React.PureComponent<Props, {}> {
         <SearchWordControllerItemCont />
         <Vl />
         <SelectAllControllerItemCont />
-      {/*
         <Vl />
-        <SaveControllerItemCont />
-        */}
+        <SaveControllerItemCont formValues={ this.props.formValues } />
       </div>
     );
   }
 }
 
-const StyleMobileController = styled(MobileController)`
+const StyleController = styled(Controller)`
   position: fixed;
   bottom: ${( props ) => props.theme.bottomBarHeightMargin };
   left: 50%;
@@ -58,7 +58,7 @@ const StyleMobileController = styled(MobileController)`
   height: ${( props ) => props.theme.bottomBarHeight };
 `;
 
-export default StyleMobileController;
+export default StyleController;
 
 
 
