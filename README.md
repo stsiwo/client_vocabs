@@ -10,7 +10,7 @@ client side react SPA for Vocabs web application
  - ticket#6: figure out the place of dispatch an action for form error exist
  - ticket#7: implement "no search result" message or flash card when search word
  - ticket#8: fix fetch initial word every time WordList is mounted. don't need to fetch every time because data is also stored in redux state
- 
+ - ticket#9: consistent crud operation of controller. see detail at "DeleteControllerItem" component 
 ## dependencies
 
   - node_modules/formik/dist/formik.esm.js
