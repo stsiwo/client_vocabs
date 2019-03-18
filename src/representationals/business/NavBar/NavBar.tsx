@@ -60,7 +60,6 @@ class NavBar extends React.PureComponent<Props, {}> {
     const path = target.href.substr(target.href.lastIndexOf('/'));
      //pass to thunk
     this.props.linkClick(path);
-
   }
 
   displaySignUpForm(e: React.MouseEvent<HTMLElement>) {

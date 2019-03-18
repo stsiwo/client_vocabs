@@ -11,7 +11,6 @@ import { CustomFormikProps } from '../../../Hoc/withForm';
 interface Props {
   className?: string;
   def: IDef;
-  isOpen: boolean;
   formik: CustomFormikProps;
   wordIndex: number;
   defIndex: number;
@@ -78,8 +77,12 @@ export class DefContent extends React.PureComponent<Props, State> {
 }
 
 const StyledDefContent = styled(DefContent)`
-  display: ${( props ) => props.isOpen ? '' : 'none' }; 
   list-style-type: none;
+  padding-inline-start: 20px;
+
+  & > li {
+    margin: 5px 0;
+  }
 `;
 
 export default StyledDefContent;

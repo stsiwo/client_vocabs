@@ -95,6 +95,13 @@ const StyledWordDetail = styled(withForm<Props>(WordDetail))`
 
   width: 100%;
 
+  // tablet screen size
+  @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+    height: 100%;
+    overflow-y: auto;
+    //margin: 0 10px;
+  }
+
 `;
 StyledWordDetail.displayName = "WordDetailSelector";
 

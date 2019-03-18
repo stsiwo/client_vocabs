@@ -1,6 +1,9 @@
 import { css } from '../../story/styledComponents';
 /**
  * css for form elements 
+ *  - list only common property. 
+ *  - if you need to specify specific property for specific input
+ *  - list on each input component rather than here
  **/
 const formElement = css`
   background-color: ${( props ) => props.theme.thirdColor };  

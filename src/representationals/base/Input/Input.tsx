@@ -60,6 +60,7 @@ const StyledInput = styled(RefInput)`
   height: 20px;
   background-color: transparent;
   border: none;
+  width: 100%;
   color: ${( props ) => props.theme.primaryFontColor };
 `;
 // testing purpose

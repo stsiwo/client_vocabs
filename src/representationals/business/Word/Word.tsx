@@ -64,7 +64,7 @@ const StyledWord = styled(Word)`
 
   // >= laptop
   @media (min-width: ${( props ) => props.theme.sizes.tablet + 1 }px) {
-    margin: 0 50px;
+    //margin: 0 50px;
   }
 
   

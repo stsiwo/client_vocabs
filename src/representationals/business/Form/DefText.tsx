@@ -39,7 +39,7 @@ class DefTextArea extends React.PureComponent<Props, {}> {
           value={ this.props.defText }
           onBlur={ this.handleDefTextAreaBlur } 
           rows={ 3 }
-          cols={ 30 }
+          cols={ 35 }
         >
           Def
         </TextArea>

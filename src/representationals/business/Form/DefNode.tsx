@@ -6,7 +6,7 @@ import DefContent from '../Form/DefContent';
 import { CustomFormikProps } from '../../../Hoc/withForm';
 import { ArrayHelpers } from 'formik';
 
-const arrowIcon = require('./assets/rightArrow.svg');
+const defIcon = require('./assets/def.svg'); 
 const deleteIcon = require('./assets/delete.svg');
 
 interface Props {
@@ -19,29 +19,22 @@ interface Props {
   arrayHelpers: ArrayHelpers;
   removeDefClick: (arrayHelpers: ArrayHelpers, wordIndex: number, defIndex: number) => void;
   setFieldValue: (field: string, value: any) => void;
+  defLength: number;
 }
 
-interface State {
-  isDefContentOpen: boolean;
-}
-
-export class DefNode extends React.PureComponent<Props, State> {
+export class DefNode extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      isDefContentOpen: true,
-    }
-    this.handleToggleClick = this.handleToggleClick.bind(this);
     this.handleDeleteDefClick = this.handleDeleteDefClick.bind(this);
-  }
-
-  handleToggleClick(e: React.MouseEvent<HTMLElement>) {
-    const currentToggleStatus = this.state.isDefContentOpen;
-    this.setState({ isDefContentOpen : !currentToggleStatus });  
+    this.isDefMoreThanOne = this.isDefMoreThanOne.bind(this);
   }
 
   handleDeleteDefClick(e: React.MouseEvent<HTMLElement>) {
     this.props.removeDefClick(this.props.arrayHelpers, this.props.wordIndex, this.props.defIndex);
+  }
+
+  isDefMoreThanOne() {
+    return this.props.defLength > 1; 
   }
 
   render() {
@@ -50,18 +43,13 @@ export class DefNode extends React.PureComponent<Props, State> {
         <li>
           <div>
             <Icon 
-              svgSrc={ arrowIcon } 
+              svgSrc={ defIcon } 
               width="20px" 
               height="20px" 
-              onClick={ this.handleToggleClick } 
-              rotate={ this.state.isDefContentOpen.toString() } 
             />
             <h4>Definition</h4>
           </div>
-          { this.props.defIndex !== 0 && 
-            // render delete icon only def index is not 0 since a word must have at least one def 
-            // this might not be a good way to do this since user can't delete the first def. what if user want to delete it when the other defs are avaiable. 
-            // #REFACTOR (ticket#5)
+          { this.isDefMoreThanOne() && 
           <div>
             <Icon 
               id="removeDefForm" 
@@ -75,7 +63,6 @@ export class DefNode extends React.PureComponent<Props, State> {
         
         <DefContent 
           def={ this.props.def } 
-          isOpen={this.state.isDefContentOpen } 
           formik={ this.props.formik } 
           wordIndex={ this.props.wordIndex }
           defIndex={ this.props.defIndex }
@@ -89,6 +76,7 @@ export class DefNode extends React.PureComponent<Props, State> {
 const StyledDefNode = styled(DefNode)`
 
   display: ${( props ) => props.isOpen ? '' : 'none' }; 
+  padding-inline-start: 20px;
 
   & > li:first-child {
     display: flex;

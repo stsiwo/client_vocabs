@@ -53,46 +53,40 @@ export class DefTree extends React.PureComponent<Props, State> {
         defIndex={ index }
         arrayHelpers={ this.props.arrayHelpers } 
         setFieldValue={ this.props.setFieldValue }
+        defLength={ this.props.defs.length }
       />
     ));
   }
 
   render() {
     return (
-      <ul className={ this.props.className }>
-        <li>
-          <div>
+      <div className={ this.props.className }>
+        <div className="def-header">
+          <div className="def-title">
             <Icon svgSrc={ arrowIcon } width="20px" height="20px" onClick={ this.handleToggleClick } rotate={ this.state.isDefNodeContOpen.toString() }></Icon>
             <h3>definition list</h3>
           </div>
-          <div>
+          <div className="def-add-icon">
             <Icon id="addNewDefForm" svgSrc={ newIcon } onClick={ this.handleNewDefClick } width="20px" height="20px"></Icon>
           </div>
-        </li>
-        { this.renderDefNodeConts() }
-      </ul>
+        </div>
+        <div className="def-list">
+          { this.renderDefNodeConts() }
+        </div>
+      </div>
     );
   }
 }
 
 const StyledDefTree = styled(DefTree)`
 
-  padding-inline-start: 0;
-
-  & ul {
-    padding-inline-start: 20px;
-  }
-
-  & li {
+  & > .def-header {
     margin: 5px 0;
-  }
-
-  & > li:first-child {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; 
 
-    & > div:first-child {
+    & > .def-title {
       display: inline-flex;
       align-items: center;
       justify-content: flex-start;
@@ -101,6 +95,21 @@ const StyledDefTree = styled(DefTree)`
         margin: 0;
       }
     }
+
+    & > .def-add-icon {
+      margin: 0 10px;
+    }
+
+  }
+
+  & > .def-list {
+    padding-inline-start: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+
+    
   }
 `;
 StyledDefTree.displayName = "DefTreeSelector";

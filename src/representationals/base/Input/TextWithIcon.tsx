@@ -46,5 +46,17 @@ class TextWithIcon extends React.Component<Props, {}> {
 
 const StyledTextWithIcon = styled(TextWithIcon)`
   ${ formElement }
+
+  // <= mobileL
+  @media (max-width: ${( props ) => props.theme.sizes.mobileL }px) {
+  }
+
+
+  // >= tablet 
+  @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
+    width: 70%;
+  }
+
+  
 `
 export default StyledTextWithIcon;
