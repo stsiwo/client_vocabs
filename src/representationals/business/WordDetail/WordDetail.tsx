@@ -69,7 +69,6 @@ class WordDetail extends React.PureComponent<InjectedFormikProps<Props, FormValu
     console.log(this.props.values);
     return (
       <div className={ this.props.className }>
-        <div>here is worddetail page</div>
         <form autoComplete="new-password">
           <FieldArray 
             name="words" 

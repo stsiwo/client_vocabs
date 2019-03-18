@@ -77,11 +77,12 @@ const StyledDefNode = styled(DefNode)`
 
   display: ${( props ) => props.isOpen ? '' : 'none' }; 
   padding-inline-start: 20px;
+  flex: 2 2 auto;
 
   & > li:first-child {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     & > div:first-child {
       display: inline-flex;
