@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import CustomBrowserRouter from './routeHistory';
 import { ThemeProvider } from './representationals/story/styledComponents'; 
 import { theme } from './representationals/story/theme';
+//import FlexExperiment from './FlexExperiment';
 //import RefParent from './RefExperiment/RefParent';
 //import ImageExperiment from './ImageExperiment';
 //import ParentExperiment from './ParentExperiment';
@@ -19,6 +20,7 @@ ReactDOM.render(
         <ImageExperiment />
        <ParentExperiment />
       <RefParent />
+        <FlexExperiment />
     */}
        <App />
       </CustomBrowserRouter>

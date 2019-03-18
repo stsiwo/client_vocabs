@@ -99,7 +99,7 @@ const StyledWordDetail = styled(withForm<Props>(WordDetail))`
   @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
     height: 100%;
     overflow-y: auto;
-    //margin: 0 10px;
+    flex-basis: 80%;
   }
 
 `;

@@ -60,11 +60,12 @@ const StyledWord = styled(Word)`
     height: 100%;
     // flex is to display wordlist and word detail horizontally (like sidebar and content)
     display: flex;
+    justify-content: space-evenly;
   }
 
   // >= laptop
   @media (min-width: ${( props ) => props.theme.sizes.tablet + 1 }px) {
-    //margin: 0 50px;
+    margin: 0 auto;
   }
 
   
