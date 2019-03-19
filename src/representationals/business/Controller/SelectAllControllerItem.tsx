@@ -9,7 +9,11 @@ interface Props {
   selectAllWordClick: selectAllWordDispatchType; 
 }
 
-
+/**
+ * #REFACTOR: 
+ *
+ *  - fucking slow when the number of words is huge
+ **/ 
 export class SelectAllControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
