@@ -49,7 +49,7 @@ const StyledSearchWordModal = styled(SearchWordModal)`
   // >= tablet 
   @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
     background-color: transparent;
-    width: 50%;
+    width: ${( props ) => props.theme.sizes.mobileS + 'px' };
     // this is because controller in >=tablet size is added margin (bottomBarHeightMargin) so this search modal bottom height should be controller itself size + the margin size
     bottom: ${( props ) => props.theme.bottomBarHeight + props.theme.bottomBarHeightMargin + 'px' };
   }

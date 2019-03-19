@@ -54,8 +54,8 @@ const StyleController = styled(Controller)`
   padding: 3px 15px;
   background-color: ${( props ) => props.theme.secondaryColor };
 
-  width: ${ (props) => props.theme.sizes.mobileS };
-  height: ${( props ) => props.theme.bottomBarHeight };
+  width: ${ (props) => props.theme.sizes.mobileS + 'px' };
+  height: ${( props ) => props.theme.bottomBarHeight + 'px' };
 `;
 
 export default StyleController;
