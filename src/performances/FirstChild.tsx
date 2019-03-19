@@ -5,7 +5,7 @@ interface Props {
   name: string;
 }
 
-class FirstChild extends React.PureComponent<Props, {}> {
+class FirstChild extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

@@ -1,33 +1,39 @@
 import * as React from 'react';
-//import FirstChild from './FirstChild';
-//import SecondChild from './SecondChild';
-//import ThirdChild from './ThirdChild';
+import FirstChild from './FirstChild';
+import SecondChild from './SecondChild';
+import ThirdChild from './ThirdChild';
 //import ListItem from './ListItem';
-import { IWord } from '../domains/word';
+//import { IWord } from '../domains/word';
 
-interface Props {
-  isInitialWordsFetching: boolean;
-  words: IWord[];
-  initialWordsFetch: () => void;
+//interface Props {
+  //isInitialWordsFetching: boolean;
+  //words: IWord[];
+  //initialWordsFetch: () => void;
+//}
+
+interface State {
+  first: string;
+  second: string;
+  third: string;
 }
 
-class Root extends React.PureComponent<Props, {}> {
-  constructor(props: Props) {
+class Root extends React.Component<{}, State> {
+  constructor(props: {}) {
     super(props);
-    //this.props = {
+    this.state = {
       //changeRoot: true,
       //name: "before",
       //order: ["1","2","3"],
-      //first: "default",
-      //second: "default",
-      //third: "default",
-    //}
+      first: "default",
+      second: "default",
+      third: "default",
+    }
     //this.handleClick = this.handleClick.bind(this);
     //this.renderFirstChild = this.renderFirstChild.bind(this);
-    //this.handleFirst = this.handleFirst.bind(this);
-    //this.handleSecond = this.handleSecond.bind(this);
-    //this.handleThird = this.handleThird.bind(this);
-    this.renderWords = this.renderWords.bind(this);
+    this.handleFirst = this.handleFirst.bind(this);
+    this.handleSecond = this.handleSecond.bind(this);
+    this.handleThird = this.handleThird.bind(this);
+    //this.renderWords = this.renderWords.bind(this);
   }
 
   componentWillUpdate() {
@@ -47,7 +53,7 @@ class Root extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
-    this.props.initialWordsFetch();
+    //this.props.initialWordsFetch();
   }
 
   //handleClick() {
@@ -56,34 +62,34 @@ class Root extends React.PureComponent<Props, {}> {
     ////this.setState({ name: name });
   //}
 
-  //handleFirst() {
-    //this.setState({ first: "changed" });
-  //}
+  handleFirst() {
+    this.setState({ first: "changed" });
+  }
 
-  //handleSecond() {
-    //this.setState({ second: "changed" });
-  //}
+  handleSecond() {
+    this.setState({ second: "changed" });
+  }
 
-  //handleThird() {
-    //this.setState({ third: "changed" });
-  //}
+  handleThird() {
+    this.setState({ third: "changed" });
+  }
 
   //renderFirstChild() {
     //return this.props.order.map(( item ) => <ListItem name={ item } />)
   //}
-  renderWords() {
-    return this.props.words.map(( word: IWord ) => <div>{ `word id: ${ word.id } and word name ${ word.name }` }</div>);
-  }
+  //renderWords() {
+    //return this.props.words.map(( word: IWord ) => <div>{ `word id: ${ word.id } and word name ${ word.name }` }</div>);
+  //}
 
-  render() {
-    if (this.props.words && this.props.isInitialWordsFetching) return <div>loading</div>;
+  //render() {
+    //if (this.props.words && this.props.isInitialWordsFetching) return <div>loading</div>;
 
-    return (
-      <div>
-        { this.props.words && this.renderWords() } 
-      </div>
-    );
-  }
+    //return (
+      //<div>
+        //{ this.props.words && this.renderWords() } 
+      //</div>
+    //);
+  //}
 
 
 
@@ -102,34 +108,18 @@ class Root extends React.PureComponent<Props, {}> {
     //);
   //}
 
-  //render() {
-    //console.log("Root is being rendered");
-    //if (this.props.changeRoot) {
-      //return (
-        //<div className="before">
-          //<FirstChild name={ this.props.first }/>
-          //<SecondChild name={ this.props.second }/>
-          //<ThirdChild name={ this.props.third }/>
-          //<button type="button" onClick={ this.handleClick } >click</button>
-          //<button type="button" onClick={ this.handleFirst } >first</button>
-          //<button type="button" onClick={ this.handleSecond } >second</button>
-          //<button type="button" onClick={ this.handleThird } >third</button>
-        //</div>
-      //);
-    //} else {
-      //return (
-        //<div className="after">
-          //<FirstChild name={ this.props.first }/>
-          //<SecondChild name={ this.props.second }/>
-          //<ThirdChild name={ this.props.third }/>
-          //<button type="button" onClick={ this.handleClick } >click</button>
-          //<button type="button" onClick={ this.handleFirst } >click</button>
-          //<button type="button" onClick={ this.handleSecond } >click</button>
-          //<button type="button" onClick={ this.handleThird } >click</button>
-        //</div>
-      //);
-    //}
-  //}
+  render() {
+    return (
+      <div className="before">
+        <FirstChild name={ this.state.first }/>
+        <SecondChild name={ this.state.second }/>
+        <ThirdChild name={ this.state.third }/>
+        <button type="button" onClick={ this.handleFirst } >first</button>
+        <button type="button" onClick={ this.handleSecond } >second</button>
+        <button type="button" onClick={ this.handleThird } >third</button>
+      </div>
+    );
+  }
 }
 
 export default Root;

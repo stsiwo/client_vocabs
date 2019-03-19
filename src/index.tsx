@@ -11,6 +11,7 @@ import { theme } from './representationals/story/theme';
 //import RefParent from './RefExperiment/RefParent';
 //import ImageExperiment from './ImageExperiment';
 //import ParentExperiment from './ParentExperiment';
+//import Root from './performances/Root';
 
 ReactDOM.render(
   <Provider store={ store }>
@@ -21,6 +22,7 @@ ReactDOM.render(
        <ParentExperiment />
       <RefParent />
         <FlexExperiment />
+        <Root />
     */}
        <App />
       </CustomBrowserRouter>
