@@ -14,6 +14,12 @@ interface Props extends RouteComponentProps<{}> {
   newIconClick: ( callback: (obj: any) => void ) => void;
 }
 
+/**
+ * #REFACTOR
+ *  - cobmination of "new" and select item on word list (left side bar) when larger screen does not work.
+ *    - causes newly created word deleted 
+ *    - this is because newly created word is not saved in any storage
+ **/
 
 export class NewControllerItem extends React.PureComponent<Props, {}> {
   constructor(props: Props) {

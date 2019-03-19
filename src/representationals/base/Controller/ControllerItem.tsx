@@ -42,10 +42,6 @@ const StyleControllerItem = styled(ControllerItem)`
     margin: 0;
   }
 
-  &:hover {
-    opacity: 0.5;
-    transition: opacity 0.5s;
-  }
 `;
 StyleControllerItem.displayName = "ControllerItemSelector"
 // default export is styled with styled-component
