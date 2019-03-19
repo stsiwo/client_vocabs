@@ -44,6 +44,8 @@ const StyleMobileWordController = styled(MobileWordController)`
   align-items: center;
   justify-content: space-around;
 
+  background-color: #FFFFFF;
+
   width: ${ (props) => props.theme.sizes.mobileS };
   height: ${( props ) => props.theme.bottomBarHeight };
 
