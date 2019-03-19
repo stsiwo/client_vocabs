@@ -15,6 +15,7 @@ interface Props {
   // text input change to display text change
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 class Search extends React.PureComponent<Props, {}> {
@@ -25,9 +26,20 @@ class Search extends React.PureComponent<Props, {}> {
   render() {
     return (
       <div className={ this.props.className }>
-        <Input type="search" id={ this.props.labelName } name={ this.props.labelName } placeholder={ this.props.placeholder } value={ this.props.value } onChange={ this.props.onChange }></Input>
+        <Input 
+          type="search" id={ this.props.labelName } 
+          name={ this.props.labelName } 
+          placeholder={ this.props.placeholder } 
+          value={ this.props.value } 
+          onChange={ this.props.onChange } 
+          ref={ this.props.inputRef }
+        />
         <label htmlFor={ this.props.labelName }>
-          <Icon svgSrc={ searchIcon } hoverEffect={ true } onClick={ this.props.onClick } />
+          <Icon 
+            svgSrc={ searchIcon } 
+            hoverEffect={ true } 
+            onClick={ this.props.onClick } 
+          />
         </label>
       </div>
     );

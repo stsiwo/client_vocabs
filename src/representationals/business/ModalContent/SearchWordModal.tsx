@@ -12,6 +12,9 @@ interface Props {
 
 // when Search Icon in Controoler clicked, toggle this Component with animation from bottom to above controller
 class SearchWordModal extends React.PureComponent<Props, {}> {
+
+  private ref: React.RefObject<HTMLInputElement> = React.createRef<HTMLInputElement>(); 
+
   constructor(props: Props) {
     super(props);
     this.stopBubblingUpCloseEvent = this.stopBubblingUpCloseEvent.bind(this);
@@ -26,10 +29,14 @@ class SearchWordModal extends React.PureComponent<Props, {}> {
     this.props.changeSearchKeyWord(e.target.value);
   }
 
+  componentDidMount() {
+    this.ref.current.focus();
+  }
+
   render() {
     return (
       <div className={ this.props.className } >
-        <Search labelName="word-name-search" placeholder="search your word here..." value={ this.props.searchKeyWord } onChange={ this.handleChangeSearchKeyWord }/>
+        <Search labelName="word-name-search" placeholder="search your word here..." value={ this.props.searchKeyWord } onChange={ this.handleChangeSearchKeyWord } inputRef={ this.ref }/>
       </div>
     );
   }
