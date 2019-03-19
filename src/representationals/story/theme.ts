@@ -42,12 +42,11 @@ export interface ThemeInterface {
 
   sizes: IScreenSizeType;
 
-  headerHeight: string;
-  navBarWidth: string;
-  sideBarWidth: string;
-  contentWidth: string;
-  bottomBarHeight: string;
-  bottomBarHeightMargin: string;
+  headerHeight: number;
+  navBarWidth: number;
+  sideBarWidth: number;
+  bottomBarHeight: number;
+  bottomBarHeightMargin: number;
 
   primaryOverlayColor: string;
 
@@ -66,14 +65,13 @@ export const theme: ThemeInterface = {
 
   sizes: ScreenSize,  
 
-  headerHeight: '50px',
-  navBarWidth: '100px',
+  headerHeight: 50,
+  navBarWidth: 100,
   // wordlist when screen size >= mobileL
-  sideBarWidth: '120px',
+  sideBarWidth: 120,
   // worddetail when screen size >= mobileL
-  contentWidth: '300px', 
-  bottomBarHeight: '50px',
-  bottomBarHeightMargin: '10px',
+  bottomBarHeight: 50,
+  bottomBarHeightMargin: 10,
 
   primaryOverlayColor: 'rgba(89, 233, 22, 0.4)',
 

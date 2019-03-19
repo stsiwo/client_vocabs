@@ -33,10 +33,10 @@ class Content extends React.PureComponent<Props, {}> {
 
 const StyledContent = styled(Content)`
   position: relative;
-  top: ${( props ) => props.theme.headerHeight };
+  top: ${( props ) => props.theme.headerHeight + 'px' };
   // height is for get screen size height (see WordList component css)
   // to get full screen height MINUS header, use calc
-  height: calc(100% - ${( props ) => props.theme.headerHeight });
+  height: calc(100% - ${( props ) => props.theme.headerHeight + 'px' });
 `;
 
 

@@ -43,7 +43,7 @@ class Controller extends React.PureComponent<Props, {}> {
 
 const StyleController = styled(Controller)`
   position: fixed;
-  bottom: ${( props ) => props.theme.bottomBarHeightMargin };
+  bottom: ${( props ) => props.theme.bottomBarHeightMargin + 'px' };
   left: 50%;
   transform: translateX(-50%);
   display: flex;

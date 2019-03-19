@@ -41,7 +41,7 @@ class SearchWordModal extends React.PureComponent<Props, {}> {
 
 const StyledSearchWordModal = styled(SearchWordModal)`
   position: fixed;
-  bottom: ${( props ) => props.theme.bottomBarHeight };
+  bottom: ${( props ) => props.theme.bottomBarHeight + 'px' };
   width: 100%;
 
   background-color: #FFFFFF; 
@@ -51,7 +51,7 @@ const StyledSearchWordModal = styled(SearchWordModal)`
     background-color: transparent;
     width: 50%;
     // this is because controller in >=tablet size is added margin (bottomBarHeightMargin) so this search modal bottom height should be controller itself size + the margin size
-    bottom: ${( props ) => props.theme.bottomBarHeight + props.theme.bottomBarHeightMargin };
+    bottom: ${( props ) => props.theme.bottomBarHeight + props.theme.bottomBarHeightMargin + 'px' };
   }
 
 `;

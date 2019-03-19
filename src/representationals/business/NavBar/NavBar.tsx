@@ -155,11 +155,11 @@ const StyledNavBar = styled(NavBar)`
       display: inline-block;
       background-color: rgba(0, 0, 0, 0.1);
       position: fixed;
-      top: ${( props: IStyledProps ) => props.theme.headerHeight };
+      top: ${( props: IStyledProps ) => props.theme.headerHeight + 'px'};
       right: 0;
       ${( props: IStyledProps ) => {
          if (props.isOpen) {
-           return 'width: ' + props.theme.navBarWidth +'; transition: width 0.5s;';
+           return 'width: ' + props.theme.navBarWidth + 'px' + '; transition: width 0.5s;';
          } else {
            return 'width: 0; transition: width 0.5s;';
          }

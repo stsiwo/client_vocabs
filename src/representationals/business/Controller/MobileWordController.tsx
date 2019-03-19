@@ -47,7 +47,7 @@ const StyleMobileWordController = styled(MobileWordController)`
   background-color: #FFFFFF;
 
   width: ${ (props) => props.theme.sizes.mobileS };
-  height: ${( props ) => props.theme.bottomBarHeight };
+  height: ${( props ) => props.theme.bottomBarHeight + 'px' };
 
 `;
 

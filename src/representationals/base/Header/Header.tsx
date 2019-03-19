@@ -68,7 +68,7 @@ const StyledHeader = styled(Header)`
   justify-content: space-between;
   z-index: 4;
 
-  height: ${( props ) => props.theme.headerHeight };
+  height: ${( props ) => props.theme.headerHeight + 'px'};
   width: 100%;
 
   position: fixed;

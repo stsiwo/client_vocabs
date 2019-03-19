@@ -60,7 +60,7 @@ const StyledWordList = styled(WordList)`
 
   // >= tablet 
   @media (min-width: ${( props ) => props.theme.sizes.mobileL + 1 }px) {
-    flex-basis: ${( props ) => props.theme.sideBarWidth };
+    flex-basis: ${( props ) => props.theme.sideBarWidth + 'px'};
     height: 100%;
     overflow-y: auto;
     

@@ -33,7 +33,7 @@ class MobileController extends React.PureComponent<Props, {}> {
 
 const StyleMobileController = styled(MobileController)`
   position: fixed;
-  bottom: ${( props ) => props.theme.bottomBarHeightMargin };
+  bottom: ${( props ) => props.theme.bottomBarHeightMargin + 'px' };
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -45,7 +45,7 @@ const StyleMobileController = styled(MobileController)`
   background-color: ${( props ) => props.theme.secondaryColor };
 
   width: ${ (props) => props.theme.sizes.mobileS };
-  height: ${( props ) => props.theme.bottomBarHeight };
+  height: ${( props ) => props.theme.bottomBarHeight + 'px' };
 `;
 
 export default StyleMobileController;
