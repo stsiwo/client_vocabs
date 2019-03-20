@@ -1,0 +1,15 @@
+import { StateType } from '../state/type';
+import { AnyAction } from 'redux';
+import { Record } from 'immutable';
+export declare const loginReducer: (state: boolean, action: AnyAction) => any;
+export declare const currentSortReducer: (state: SORT_ORDER, action: AnyAction) => any;
+export declare const sortedWordListReducer: (state: import("immutable").OrderedSet<string>, action: AnyAction) => any;
+export declare const searchedWordListReducer: (state: import("immutable").OrderedSet<string>, action: AnyAction) => any;
+export declare const displayedWordListReducer: (state: import("immutable").OrderedSet<string>, action: AnyAction) => any;
+export declare const selectedWordListReducer: (state: import("immutable").OrderedSet<string>, action: AnyAction) => any;
+export declare const currentFilterReducer: (state: import("immutable").Set<PosEnum>, action: AnyAction) => any;
+export declare const wordFormErrorReducer: (state: boolean, action: AnyAction) => any;
+export declare const searchKeyWordReducer: (state: string, action: AnyAction) => any;
+export declare const uiReducer: (state: Record<StateType.IUi>, action: AnyAction) => any;
+export declare const asyncsReducer: (state: Record<StateType.IAsyncs>, action: AnyAction) => any;
+export declare const entityReducer: (state: Record<StateType.IEntity>, action: AnyAction) => Record<StateType.IEntity> & Readonly<StateType.IEntity>;
