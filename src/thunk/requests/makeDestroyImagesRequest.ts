@@ -1,3 +1,4 @@
+import '../../env';
 import { getAccessTokenSession, getUserNameSession } from '../../util/sessionStorage';
 import { IWord } from '../../domains/word';
 //import makeWordsUpsertFormData from './formdata/makeWordsUpsertFormData'; 
@@ -11,7 +12,7 @@ const makeDestroyImagesRequest: ( input: IWord[] ) => any = ( input ) => {
   console.log(input);
 
   return {
-    url: `http://localhost:3000/user/${ username }/image`, 
+    url: `${ process.env.VOCAB_API_URL }/user/${ username }/image`, 
     method: 'DELETE',
     // be sure property is "data" not "body"
     data: JSON.stringify(input), 

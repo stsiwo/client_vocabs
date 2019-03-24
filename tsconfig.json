@@ -21,7 +21,7 @@
        "allowSyntheticDefaultImports": true,
        "experimentalDecorators": true,
        "emitDecoratorMetadata": true,
-       "downlevelIteration": true, // enable object reset spread
+       "downlevelIteration": true 
     },
     "include": [
         "./src/**/*"

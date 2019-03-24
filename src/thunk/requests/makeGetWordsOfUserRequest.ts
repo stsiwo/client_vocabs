@@ -1,4 +1,5 @@
 import { getAccessTokenSession, getUserNameSession } from '../../util/sessionStorage';
+import '../../env';
 /**
  * don't put declaration of accessToken and username variables outside function. 
  *  - it sometimes returns null even though you define sessionStorage
@@ -8,7 +9,7 @@ const makeGetWordsOfUserRequest: <I extends object = {}>( input?: I ) => Request
   const accessToken = getAccessTokenSession();
   const username = getUserNameSession(); 
 
-  return new Request(`http://localhost:3000/user/${ username }/word`, {
+  return new Request(`${ process.env.VOCAB_API_URL }/user/${ username }/word`, {
     method: 'GET',
     mode: "cors",
     headers: {
