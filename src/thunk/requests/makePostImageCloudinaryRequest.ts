@@ -15,7 +15,7 @@ const makePostImageCloudinaryRequest: ( input: IDef ) => object = ( input ) => {
 
 
   return {
-    url: `https://api.cloudinary.com/v1_1/dre4nikvb/image/upload`,
+    url: `${ process.env.CLOUDINARY_API_URL }/image/upload`,
     method: 'POST',
     data: formData, 
     headers: {

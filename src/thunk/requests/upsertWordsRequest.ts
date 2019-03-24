@@ -10,7 +10,7 @@ const makeUpsertWordsRequest: ( input: any ) => Request = ( input ) => {
   // form data
   //const formData: FormData = makeWordsUpsertFormData(input);
 
-  return new Request(`http://localhost:3000/user/${ username }/word`, {
+  return new Request(`${ process.env.VOCAB_API_URL }/user/${ username }/word`, {
     method: 'POST',
     body: JSON.stringify(input), 
     mode: "cors",

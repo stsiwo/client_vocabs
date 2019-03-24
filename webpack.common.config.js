@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 // 1. import default from the plugin module
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
+const envKeys = require('./env.config');
 
 // 2. create a transformer;
 // the factory additionally accepts an options object which described below
@@ -21,6 +22,7 @@ module.exports = {
       template: 'src/index.html',
       inject: true
     }),
+    new webpack.DefinePlugin(envKeys)
   ],
   resolve: {
     mainFiles: ['index'],
