@@ -1,4 +1,3 @@
-import '../../env';
 import * as qs from 'query-string';
 import { getAccessTokenSession } from '../../util/sessionStorage';
 

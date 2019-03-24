@@ -1,5 +1,4 @@
 import { getAccessTokenSession, getUserNameSession } from '../../util/sessionStorage';
-import '../../env';
 //import makeWordsUpsertFormData from './formdata/makeWordsUpsertFormData'; 
 
 const makeUpsertWordsRequest: ( input: any ) => Request = ( input ) => {

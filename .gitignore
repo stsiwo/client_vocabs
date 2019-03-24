@@ -1,4 +1,13 @@
+# node modules
 node_modules/
+
+# swp or swo files
 *.swp
 *.swo
+
+# env file
 *.env
+
+# compiled src files and type definition files
+dist/
+types/

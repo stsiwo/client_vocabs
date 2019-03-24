@@ -1,6 +1,5 @@
 import { getUserNameSession } from '../../util/sessionStorage';
 import { IDef } from '../../domains/def';
-import '../../env';
 /**
  * when i use 'fetch' to upload image to cloudinary, it cause error i don't know why
  *  - however, if i use 'axios', it works

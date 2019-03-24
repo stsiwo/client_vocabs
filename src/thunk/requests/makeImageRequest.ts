@@ -1,4 +1,3 @@
-import '../../env';
 
 const makeImageRequest: <I extends Blob = Blob>( input?: I ) => Request = ( input ) => {
 

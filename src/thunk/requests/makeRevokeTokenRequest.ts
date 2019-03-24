@@ -1,6 +1,5 @@
 import * as qs from 'query-string';
 import { getRefreshTokenSession } from '../../util/sessionStorage';
-import '../../env';
 
 const makeRevokeTokenRequest: <I extends object = {}>( input?: I ) => Request = ( input ) => {
   const refreshToken = getRefreshTokenSession(); 

@@ -1,4 +1,3 @@
-import '../../env';
 import { getAccessTokenSession, getUserNameSession } from '../../util/sessionStorage';
 import { IWord } from '../../domains/word';
 //import makeWordsUpsertFormData from './formdata/makeWordsUpsertFormData'; 

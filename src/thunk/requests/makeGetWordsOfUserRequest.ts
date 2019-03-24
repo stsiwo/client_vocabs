@@ -1,5 +1,4 @@
 import { getAccessTokenSession, getUserNameSession } from '../../util/sessionStorage';
-import '../../env';
 /**
  * don't put declaration of accessToken and username variables outside function. 
  *  - it sometimes returns null even though you define sessionStorage
