@@ -11,6 +11,11 @@ client side react SPA for Vocabs web application
  - ticket#7: implement "no search result" message or flash card when search word
  - ticket#8: fix fetch initial word every time WordList is mounted. don't need to fetch every time because data is also stored in redux state
  - ticket#9: consistent crud operation of controller. see detail at "DeleteControllerItem" component 
+## production
+ - typescript compilation time takes forever with ubuntu 16.04 (my server)
+  - some "import" statement seem cause this issue but i don't know why
+  - current work around is to use options such as "useCache: true" and "transpileOnly: true" in "awesome-typescript-loader". this improves a lot of time :)
+
 ## dependencies
 
   - node_modules/formik/dist/formik.esm.js
