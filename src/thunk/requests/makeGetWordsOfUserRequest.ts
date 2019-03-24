@@ -8,7 +8,7 @@ const makeGetWordsOfUserRequest: <I extends object = {}>( input?: I ) => Request
   const accessToken = getAccessTokenSession();
   const username = getUserNameSession(); 
 
-  return new Request(`${ process.env.VOCAB_API_URL }/${ username }/word`, {
+  return new Request(`${ process.env.VOCAB_API_URL }/user/${ username }/word`, {
     method: 'GET',
     mode: "cors",
     headers: {
