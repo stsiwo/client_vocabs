@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-       "outDir": "types/",
+       "outDir": "dist",
        "module": "commonjs",
        "target": "es6",
        "lib": ["es5", "es6", "es7", "es2017", "dom"],
@@ -8,8 +8,8 @@
        "allowJs": false,
        "jsx": "react",
        "moduleResolution": "node",
-       "rootDirs": ["src", "stories"],
-       "baseUrl": "src",
+       "rootDir": "./src",
+       "baseUrl": ".",
        "forceConsistentCasingInFileNames": true,
        "noImplicitReturns": true,
        "noImplicitThis": true,
@@ -17,17 +17,17 @@
        "strictNullChecks": false,
        "suppressImplicitAnyIndexErrors": true,
        "noUnusedLocals": true,
-       "declaration": true,
        "allowSyntheticDefaultImports": true,
        "experimentalDecorators": true,
        "emitDecoratorMetadata": true,
-       "downlevelIteration": true 
+       "downlevelIteration": true
     },
-    "include": [
-        "./src/**/*"
+    "files": [
+      "src/representationals/business/Form/WordForm.tsx"
     ],
     "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
+      "node_modules",
+      "tests",
+      "types"
     ]
 }

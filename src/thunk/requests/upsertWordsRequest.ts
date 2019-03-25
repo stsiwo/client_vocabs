@@ -1,16 +1,17 @@
 import { getAccessTokenSession, getUserNameSession } from '../../util/sessionStorage';
-//import makeWordsUpsertFormData from './formdata/makeWordsUpsertFormData'; 
+import getVocabsApiUrl from '../../util/getVocabsApiUrl';
 
 const makeUpsertWordsRequest: ( input: any ) => Request = ( input ) => {
 
   // login info
   const accessToken = getAccessTokenSession(); 
   const username = getUserNameSession(); 
+  const api_url = getVocabsApiUrl();
 
   // form data
   //const formData: FormData = makeWordsUpsertFormData(input);
 
-  return new Request(`${ process.env.VOCAB_API_URL }/user/${ username }/word`, {
+  return new Request(`${ api_url }/user/${ username }/word`, {
     method: 'POST',
     body: JSON.stringify(input), 
     mode: "cors",

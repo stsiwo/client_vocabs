@@ -10,7 +10,8 @@
     "start": "webpack-dev-server --open --config webpack.dev.config.js",
     "sb": "start-storybook -p 9001 -c .storybook",
     "sb-build": "build-storybook -c .storybook -o .out",
-    "build": "webpack --config webpack.prod.config.js"
+    "build:prod": "webpack --config webpack.prod.config.js",
+    "build:dev": "webpack --config webpack.dev.config.js"
   },
   "repository": {
     "type": "git",

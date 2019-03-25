@@ -1,7 +1,11 @@
 import * as qs from 'query-string';
+import getVocabsApiUrl from '../../util/getVocabsApiUrl';
 
 const makeGetAccessTokenRequest: ( input: object ) => Request = ( input ) => {
-  return new Request(`${ process.env.VOCAB_API_URL }/oauth/token`, {
+
+  const api_url = getVocabsApiUrl();
+
+  return new Request(`${ api_url }/oauth/token`, {
     method: 'POST',
     body: qs.stringify(input), 
     mode: "cors",

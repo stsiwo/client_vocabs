@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
 import WordNameText from './WordNameText';
-import DefTreeCont from '../../../containers/Def/DefTreeCont';
 import { IWord } from '../../../domains/word';
 import { CustomFormikProps } from '../../../Hoc/withForm';
 import { ArrayHelpers } from 'formik';
+// this import statement seem cause issue of stopping tsc compiling
+import DefTreeCont from '../../../containers/Def/DefTreeCont';
 
 interface Props {
   className?: string;
@@ -38,11 +39,11 @@ class WordForm extends React.PureComponent<Props, {}> {
           setFieldValue={ this.props.setFieldValue }
         />
         <DefTreeCont 
-          defs={ this.props.word.defs } 
-          formik={ this.props.formik } 
-          wordIndex={ this.props.wordIndex } 
-          arrayHelpers={ this.props.arrayHelpers } 
-          setFieldValue={ this.props.setFieldValue }
+        defs={ this.props.word.defs } 
+        formik={ this.props.formik } 
+        wordIndex={ this.props.wordIndex } 
+        arrayHelpers={ this.props.arrayHelpers } 
+        setFieldValue={ this.props.setFieldValue }
         />
       </div>
     );

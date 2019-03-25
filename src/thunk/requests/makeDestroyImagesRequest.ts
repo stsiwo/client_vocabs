@@ -1,17 +1,16 @@
 import { getAccessTokenSession, getUserNameSession } from '../../util/sessionStorage';
 import { IWord } from '../../domains/word';
-//import makeWordsUpsertFormData from './formdata/makeWordsUpsertFormData'; 
+import getVocabsApiUrl from '../../util/getVocabsApiUrl';
 
 const makeDestroyImagesRequest: ( input: IWord[] ) => any = ( input ) => {
 
   // login info
   const accessToken = getAccessTokenSession(); 
   const username = getUserNameSession(); 
-
-  console.log(input);
+  const api_url = getVocabsApiUrl();
 
   return {
-    url: `${ process.env.VOCAB_API_URL }/user/${ username }/image`, 
+    url: `${ api_url }/user/${ username }/image`, 
     method: 'DELETE',
     // be sure property is "data" not "body"
     data: JSON.stringify(input), 

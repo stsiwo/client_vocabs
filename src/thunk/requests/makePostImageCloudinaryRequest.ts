@@ -13,7 +13,6 @@ const makePostImageCloudinaryRequest: ( input: IDef ) => object = ( input ) => {
   formData.append('upload_preset', process.env.CLOUDINARY_PRESET);
   formData.append('folder', `${ userName }/${ input.wordId }/${ input.id }/`);
 
-
   return {
     url: `${ process.env.CLOUDINARY_API_URL }/image/upload`,
     method: 'POST',

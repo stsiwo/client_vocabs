@@ -42,6 +42,8 @@ module.exports = {
       { test: /\.tsx?$/, 
         loader: "awesome-typescript-loader",
         options: {
+          useCache: true,
+          transpileOnly: true,
           getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
         }
       },

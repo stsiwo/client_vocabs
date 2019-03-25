@@ -1,12 +1,12 @@
+import getVocabsApiUrl from '../../util/getVocabsApiUrl';
 
 const makeImageRequest: <I extends Blob = Blob>( input?: I ) => Request = ( input ) => {
 
   const formData = new FormData();
   formData.append('myFile', input);
+  const api_url = getVocabsApiUrl();
 
-  //console.log(formData.get('form'));
-
-  return new Request(`${ process.env.VOCAB_API_URL }/word/image`, {
+  return new Request(`${ api_url }/word/image`, {
     method: 'POST',
     body: formData, 
     mode: "cors",
