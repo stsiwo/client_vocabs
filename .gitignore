@@ -11,3 +11,6 @@ node_modules/
 # compiled src files and type definition files
 dist/
 types/
+
+# awesome-typescript-loader's cache
+.awcache/
