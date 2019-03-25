@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.config.js');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -10,7 +11,8 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, 'dist_prod')
   },
   plugins: [
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new CleanWebpackPlugin(['dist_prod'])
   ],
   optimization: {
     runtimeChunk: 'single',

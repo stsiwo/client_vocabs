@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 // 1. import default from the plugin module
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
@@ -15,7 +14,6 @@ module.exports = {
     app: './src/index.tsx'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'vocabs',
       meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},

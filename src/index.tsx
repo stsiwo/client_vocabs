@@ -12,7 +12,11 @@ import { theme } from './representationals/story/theme';
 //import ImageExperiment from './ImageExperiment';
 //import ParentExperiment from './ParentExperiment';
 //import Root from './performances/Root';
+import getVocabsApiUrl from './util/getVocabsApiUrl';
 
+console.log(getVocabsApiUrl());
+
+console.log(
 ReactDOM.render(
   <Provider store={ store }>
     <ThemeProvider theme={ theme } >
