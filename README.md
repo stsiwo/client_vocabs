@@ -15,6 +15,8 @@ client side react SPA for Vocabs web application
  - typescript compilation time takes forever with ubuntu 16.04 (my server)
    - some "import" statement seem cause this issue but i don't know why
    - current work around is to use options such as "useCache: true" and "transpileOnly: true" in "awesome-typescript-loader". this improves a lot of time :)
+   - this might cause because of lack of CPU. when using cpu for other process and run tsc to compile my project, it hangs even if i set above option (usecache and transpileOnly). however, if kill the other process, tsc command works as expected.
+     - so when use tsc command, kill other unnecessary process in order for tsc to work expected
 
 ## dependencies
 
