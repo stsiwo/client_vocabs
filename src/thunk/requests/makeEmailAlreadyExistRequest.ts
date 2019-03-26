@@ -2,7 +2,7 @@ import getVocabsApiUrl from '../../util/getVocabsApiUrl';
 
 /**
  * is that safe to fetch user sensitive info without authentication and GET method
- * #REFACTOR
+ *  - it is ok because server side set 'Access-Control-Allow-Origin' to allow only this client can interact with the back end api 
  **/
 const makeEmailAlreadyExistRequest: ( input: string ) => Request = ( input ) => {
 

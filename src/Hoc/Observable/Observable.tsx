@@ -3,6 +3,7 @@ import { Subject, Subscription, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, catchError, tap, map, filter } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 import { ObservableBags, Result } from './type';
+import getVocabsApiUrl from '../../util/getVocabsApiUrl'; 
 
 interface Props {
   render: ( state: ObservableBags ) => React.ReactNode;
@@ -35,12 +36,15 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
   }
 
   componentDidMount() {
+    
+    const apiUrl = getVocabsApiUrl();
+
     this.subscription = this.observable
       .pipe(
         filter(( keyWord: string ) => keyWord !== ''),
         debounceTime(500),
         distinctUntilChanged(),
-        switchMap(( keyWord: string ) => ajax.getJSON(`http://localhost:3000/dictionary?keyWord=${ keyWord }`)),
+        switchMap(( keyWord: string ) => ajax.getJSON(`${ apiUrl }/dictionary?keyWord=${ keyWord }`)),
         map(( response: { suggestionList: Result[] }) => response.suggestionList ),
         tap(( suggestionList: Result[] ) => console.log( suggestionList )),
         catchError(( error: Error ) => of(`error: ${ error }`)), 
