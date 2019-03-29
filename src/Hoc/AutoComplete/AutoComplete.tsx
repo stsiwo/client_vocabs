@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../representationals/story/styledComponents';
 import { AutoCompleteBags } from './type';
 import { ObservableBags } from '../Observable/type';
+import { Result } from '../Observable/type';
 
 //interface Props { 
   //className?: string;
@@ -45,7 +46,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   renderAutoCompleteItem() {
-    return this.props.observable.result.map(( item, index ) => (
+    return this.props.observable.result.map(( item: Result, index: number ) => (
       <li 
         key={ item.id } 
         value={ item.word } 

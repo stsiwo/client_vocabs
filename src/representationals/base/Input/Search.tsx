@@ -27,7 +27,8 @@ class Search extends React.PureComponent<Props, {}> {
     return (
       <div className={ this.props.className }>
         <Input 
-          type="search" id={ this.props.labelName } 
+          type="search" 
+          id={ this.props.labelName } 
           name={ this.props.labelName } 
           placeholder={ this.props.placeholder } 
           value={ this.props.value } 

@@ -6,7 +6,7 @@ import { IState } from '../state/type';
 import { Record } from 'immutable';
 
 const mapStateToProps = (state: Record<IState>, ownProps: { wordId: string, defId: string }) => ({
-   wordName: state.get('entities').getIn([ 'words', ownProps.wordId, name ]),
+   wordName: state.get('entities').getIn([ 'words', ownProps.wordId, "name" ]),
 });
 
 const mapDispatchToProps = ( dispatch: Dispatch<AnyAction>, ownProps: {} ) => ({

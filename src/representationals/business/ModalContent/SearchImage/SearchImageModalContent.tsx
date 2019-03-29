@@ -1,11 +1,8 @@
 import * as React from 'react';
 import Search from '../../../base/Input/Search';
 import SearchResults from './SearchResults';
-
-interface ImageIF {
-  name: string;
-  src: string;
-}
+import withObservable from '../../../../Hoc/Observable/withObservable';
+import { ObservableBags, ObservableImpls } from '../../../../Hoc/Observable/type';
 
 interface Props {
   wordName: string;
@@ -13,56 +10,51 @@ interface Props {
   wordId: string;
 }
 
+interface PropsWithObservable extends Props {
+  observable: ObservableBags;
+}
+
 interface State {
-  items: ImageIF[]; 
-  searchInput: string;
+  input: string;
 }
 
   // test : tests/ui/searchImageModalContent.spec.tsx
-class SearchImageModalContent extends React.PureComponent<Props, State> {
-  constructor(props: Props) {
+class SearchImageModalContent extends React.PureComponent<PropsWithObservable, State> {
+  constructor(props: PropsWithObservable) {
     super(props);
     this.state = {
-      items: [], 
-      searchInput: this.props.wordName,
+      input: this.props.wordName
     }
-    this.handleSearchBtnClick = this.handleSearchBtnClick.bind(this);
-    this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleSearchBtnClick(e: React.MouseEvent<HTMLElement>) {
-    // fetch image 
-    //  - need to create container components then define mdtp to wrap dispach thunk to fetch image
-    // change state to items
-    //  - temporary test data
-    this.setState({ items: 
-      [
-        {
-          name: 'test-image-name',
-          src: 'test-imge-src',
-        }
-      ] 
-    });
+  componentDidMount() {
+    this.props.observable.setInput(this.props.wordName);
   }
 
-  handleSearchInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ searchInput: e.target.value });
+  handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const target = e.target as HTMLInputElement;
+    this.props.observable.inputHandler(e);
+    this.setState({ input : target.value }); 
   }
 
   render() {
     return (
       <React.Fragment>
-        <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } onChange={ this.handleSearchInputChange } value={ this.state.searchInput }/>
-        <SearchResults items={ this.state.items } defId={ this.props.defId } />
+        <Search placeholder="search images for your definition here..."  onChange={ this.handleInputChange } value={ this.state.input }/>
+        <SearchResults items={ this.props.observable.result } defId={ this.props.defId } />
       </React.Fragment>
     );
   }
 }
 
 /**
- * css style is defined outer component (BottomModal)
+ * css style is defined in outer component (BottomModal)
  **/
-export default SearchImageModalContent;
+export default withObservable<Props>(
+  SearchImageModalContent,
+  ObservableImpls.SearchImageObservable
+);
 
 
 

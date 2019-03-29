@@ -1,14 +1,11 @@
 import * as React from 'react';
 import styled from '../../../story/styledComponents';
+import { ImageResult } from '../../../../Hoc/Observable/type';
 
-interface ImageIF {
-  name: string;
-  src: string;
-}
 
 interface Props {
   className?: string;
-  items: ImageIF[]; 
+  items: ImageResult[]; 
   defId: string;
 }
 
@@ -26,7 +23,7 @@ class SearchResults extends React.PureComponent<Props, {} > {
   }
 
   renderImageElement() {
-    return this.props.items.map(( img ) => <img src={ img.src } alt={ img.name } onClick={ this.handleDefImageClick } key={ img.src }/> );
+    return this.props.items.map(( img ) => <img src={ img.path } alt={ img.alt } onClick={ this.handleDefImageClick } key={ img.path }/> );
   }
 
   render() {

@@ -1,5 +1,4 @@
 import { Subject, Subscription } from 'rxjs';
-import { Result } from './type';
 
 abstract class AbstractObservable {
 
@@ -9,7 +8,7 @@ abstract class AbstractObservable {
     this.observable = new Subject<string>(); 
   }
 
-  abstract getSubscription(callback: (nextResult: Result[]) => void): Subscription; 
+  abstract getSubscription(callback: any): Subscription; 
 
   next( nextStream: string ) {
     this.observable.next( nextStream );
