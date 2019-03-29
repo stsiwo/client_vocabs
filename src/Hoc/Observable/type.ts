@@ -13,3 +13,16 @@ export interface Result {
   word: string;
 }
 
+type ValueOf<T> = T[keyof T];
+
+interface ObservableImplType {
+  SearchImageObservable: string;
+  WordNameInputObservable: string;
+}
+
+export const ObservableImpls: ObservableImplType = {
+  SearchImageObservable: "SearchImageObservable", 
+  WordNameInputObservable: "WordNameInputObservable" 
+}
+
+export type ValueOfObservableImplType = ValueOf<ObservableImplType>;

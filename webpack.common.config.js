@@ -1,13 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-// 1. import default from the plugin module
-const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
 const envKeys = require('./env.config');
-
-// 2. create a transformer;
-// the factory additionally accepts an options object which described below
-const styledComponentsTransformer = createStyledComponentsTransformer();
 
 module.exports = {
   entry: {
@@ -35,14 +29,6 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         use: {
           loader: 'babel-loader',
-        }
-      },
-      { test: /\.tsx?$/, 
-        loader: "awesome-typescript-loader",
-        options: {
-          useCache: true,
-          transpileOnly: true,
-          getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
         }
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },

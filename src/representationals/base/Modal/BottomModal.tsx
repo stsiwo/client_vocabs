@@ -22,11 +22,8 @@ class BottomModal extends React.PureComponent<Props, {}> {
   render() {
     return (
       <div className={ this.props.className } onClick={ this.props.handleSearchImageToggleClick }>
-        <div onClick={ this.handleClick }>
-          
-          <div>
-            { this.props.children }
-          </div>
+        <div className="bottom-modal-content" onClick={ this.handleClick }>
+          { this.props.children }
         </div>
       </div>
     );
@@ -47,17 +44,18 @@ const StyledBottomModal = styled(BottomModal)`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
 
   display: ${( props: IStyledProps ) => props.isOpen ? 'flex' : 'none' };
   align-items: center;
   justify-content: center;
 
   // modal content 
-  & > div {
+  & > .bottom-modal-content {
     position: fixed;
     bottom: 0;
-    background-color: #FFFFFF;
     width: 100%;
+
   // to display scroll bar
   // calculated value:
   // modal content (this): 150px = 50px (search input + margin) + 100px (SearchResults)

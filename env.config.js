@@ -7,7 +7,8 @@ const dotenv = require('dotenv');
 
 const env = dotenv.config().parsed;
 
-env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : "development" ;
+// get NODE_ENV from OS env var
+env.NODE_ENV = process.env.NODE_ENV; 
 
 const envKeys = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next]);

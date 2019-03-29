@@ -51,7 +51,7 @@ const StyledSearch = styled(Search)`
   background-color: ${( props ) => props.theme.thirdColor };
   border-radius: 15px;
   height: 30px;
-  width: 80%;
+  width: ${( props ) => props.theme.sizes.mobileS }px;
   margin: 10px auto;
 
   display: flex;

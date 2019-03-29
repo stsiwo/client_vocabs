@@ -17,13 +17,14 @@
        "strictNullChecks": false,
        "suppressImplicitAnyIndexErrors": true,
        "noUnusedLocals": true,
+       "noUnusedPrameters": true,
        "allowSyntheticDefaultImports": true,
        "experimentalDecorators": true,
        "emitDecoratorMetadata": true,
        "downlevelIteration": true
     },
     "files": [
-      "src/representationals/business/Form/WordForm.tsx"
+      "src/**/*"
     ],
     "exclude": [
       "node_modules",

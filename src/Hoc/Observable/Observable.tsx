@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { Subject, Subscription, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, catchError, tap, map, filter } from 'rxjs/operators';
-import { ajax } from 'rxjs/ajax';
+import { Subscription } from 'rxjs';
 import { ObservableBags, Result } from './type';
-import getVocabsApiUrl from '../../util/getVocabsApiUrl'; 
+import AbstractObservable from './AbstractObservable';
 
 interface Props {
   render: ( state: ObservableBags ) => React.ReactNode;
+  observableImpl: AbstractObservable;
 }
 
 /**
@@ -15,8 +14,6 @@ interface Props {
  **/
 
 class Observable extends React.PureComponent<Props, ObservableBags> {
-
-  observable: Subject<string>; 
 
   subscription: Subscription;
 
@@ -32,26 +29,15 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
       emptyInput: this.emptyInput,
       isInputEmpty: this.isInputEmpty,
     }
-    this.observable = new Subject<string>(); 
+    this.handleResultState = this.handleResultState.bind(this);
+  }
+
+  handleResultState(nextResult: Result[]) {
+    this.setState({ result: nextResult })
   }
 
   componentDidMount() {
-    
-    const apiUrl = getVocabsApiUrl();
-
-    this.subscription = this.observable
-      .pipe(
-        filter(( keyWord: string ) => keyWord !== ''),
-        debounceTime(500),
-        distinctUntilChanged(),
-        switchMap(( keyWord: string ) => ajax.getJSON(`${ apiUrl }/dictionary?keyWord=${ keyWord }`)),
-        map(( response: { suggestionList: Result[] }) => response.suggestionList ),
-        tap(( suggestionList: Result[] ) => console.log( suggestionList )),
-        catchError(( error: Error ) => of(`error: ${ error }`)), 
-      )
-      .subscribe(( suggestionList: Result[]) => {
-        this.setState({ result: suggestionList })
-      });
+    this.subscription = this.props.observableImpl.getSubscription(this.handleResultState);
   }
 
   componentWillUnmount() {
@@ -60,7 +46,7 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
 
   inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const target = e.target as HTMLInputElement;
-    this.observable.next(target.value);
+    this.props.observableImpl.next( target.value );
     this.setState({ input: target.value })
   }
 

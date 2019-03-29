@@ -8,7 +8,6 @@ interface ImageIF {
 }
 
 interface Props {
-  className?: string;
   wordName: string;
   defId: string;
   wordId: string;
@@ -52,14 +51,17 @@ class SearchImageModalContent extends React.PureComponent<Props, State> {
 
   render() {
     return (
-      <div className={ this.props.className }>
+      <React.Fragment>
         <Search placeholder="search images for your definition here..." onClick={ this.handleSearchBtnClick } onChange={ this.handleSearchInputChange } value={ this.state.searchInput }/>
         <SearchResults items={ this.state.items } defId={ this.props.defId } />
-      </div>
+      </React.Fragment>
     );
   }
 }
 
+/**
+ * css style is defined outer component (BottomModal)
+ **/
 export default SearchImageModalContent;
 
 

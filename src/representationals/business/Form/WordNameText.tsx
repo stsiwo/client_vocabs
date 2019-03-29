@@ -7,6 +7,7 @@ import withObservable from '../../../Hoc/Observable/withObservable';
 import { ObservableBags } from '../../../Hoc/Observable/type';
 import { AutoCompleteBags } from '../../../Hoc/AutoComplete/type';
 import withAutoComplete from '../../../Hoc/AutoComplete/withAutoComplete';
+import { ObservableImpls } from '../../../Hoc/Observable/type'; 
 
 const wordIcon = require('./assets/word.svg');
 
@@ -88,5 +89,6 @@ const StyledWordNameText = styled(WordNameText)`
 `;
 
 export default withObservable<Props>(
-  withAutoComplete<PropsWithObservable>(StyledWordNameText)
+  withAutoComplete<PropsWithObservable>(StyledWordNameText),
+  ObservableImpls.WordNameInputObservable
 );

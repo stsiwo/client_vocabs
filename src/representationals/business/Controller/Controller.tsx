@@ -45,6 +45,7 @@ const StyleController = styled(Controller)`
   position: fixed;
   bottom: ${( props ) => props.theme.bottomBarHeightMargin + 'px' };
   left: 50%;
+  z-index: 0;
   transform: translateX(-50%);
   display: flex;
   align-items: center;

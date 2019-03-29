@@ -48,10 +48,15 @@ const StyledSearchResults = styled(SearchResults)`
   grid-auto-rows: 50px; 
   gap: 3px;
   overflow: auto;
+  position: relative;
+  // also need to define this if bottom modal content's background is transparent
+  z-index: 2;
   // to display scroll bar
   // calculated value:
   // modal content: 150px = 50px (search input + margin) + 100px (this)
   height: 100px;
+
+  background-color: #FFFFFF;
 
   & > img {
     width: 85px;
