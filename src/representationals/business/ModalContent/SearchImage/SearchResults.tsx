@@ -1,12 +1,16 @@
 import * as React from 'react';
 import styled from '../../../story/styledComponents';
 import { ImageResult } from '../../../../Hoc/Observable/type';
+import axios from 'axios';
+const debug = require('debug')(__filename);
 
 
 interface Props {
   className?: string;
   items: ImageResult[]; 
-  defId: string;
+  defId: number;
+  wordId: number;
+  setFieldValue: (field: string, value: any) => void;
 }
 
 class SearchResults extends React.PureComponent<Props, {} > {
@@ -17,9 +21,29 @@ class SearchResults extends React.PureComponent<Props, {} > {
     this.handleDefImageClick = this.handleDefImageClick.bind(this);
   }
 
-  handleDefImageClick(e: React.MouseEvent<HTMLElement>) {
-    // need to get value of src of img tag and convert to string
-    //this.props.updateDefImageClick(this.props.defId, "image test");
+  handleDefImageClick(e: React.MouseEvent<HTMLImageElement>) {
+    const target = e.target as HTMLImageElement;
+    const imageSrc = target.src;
+
+    // 1. download blob from clicked img src
+    axios.get( imageSrc , {
+      responseType: 'arraybuffer',
+      headers: {
+        'Accept': 'image/*'
+      }
+    }).then(response => {
+      debug(response);
+      // response.data is an empty object
+      const blob = new Blob([response.data], {
+        type: 'image/*',
+      });
+      debug(blob);
+
+      // 2. assign to blob and src to formik state
+      const { wordId, defId } = this.props; 
+      this.props.setFieldValue(`words.${ wordId }.defs.${ defId }.image`, imageSrc); 
+      this.props.setFieldValue(`words.${ wordId }.defs.${ defId }.imageFile`, blob); 
+    });
   }
 
   renderImageElement() {

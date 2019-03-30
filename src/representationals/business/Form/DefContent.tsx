@@ -65,7 +65,11 @@ export class DefContent extends React.PureComponent<Props, State> {
           /> 
         </li>
         <BottomModal isOpen={ this.state.isSearchImageModalOpen } handleSearchImageToggleClick={ this.handleSearchImageToggleClick }>
-          <SearchImageModalContentCont wordId={ this.props.def.wordId } defId={ this.props.def.id }/>
+          <SearchImageModalContentCont 
+            wordId={ this.props.def.wordId } 
+            defId={ this.props.def.id }
+            setFieldValue={ this.props.setFieldValue }
+          />
         </BottomModal>
       </ul>
     );

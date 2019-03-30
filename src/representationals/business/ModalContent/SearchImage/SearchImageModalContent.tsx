@@ -6,8 +6,9 @@ import { ObservableBags, ObservableImpls } from '../../../../Hoc/Observable/type
 
 interface Props {
   wordName: string;
-  defId: string;
-  wordId: string;
+  defId: number;
+  wordId: number;
+  setFieldValue: (field: string, value: any) => void;
 }
 
 interface PropsWithObservable extends Props {
@@ -42,7 +43,7 @@ class SearchImageModalContent extends React.PureComponent<PropsWithObservable, S
     return (
       <React.Fragment>
         <Search placeholder="search images for your definition here..."  onChange={ this.handleInputChange } value={ this.state.input }/>
-        <SearchResults items={ this.props.observable.result } defId={ this.props.defId } />
+        <SearchResults items={ this.props.observable.result } wordId={ this.props.wordId } defId={ this.props.defId } setFieldValue={ this.props.setFieldValue }/>
       </React.Fragment>
     );
   }
