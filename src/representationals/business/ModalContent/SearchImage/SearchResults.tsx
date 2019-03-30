@@ -8,9 +8,10 @@ const debug = require('debug')(__filename);
 interface Props {
   className?: string;
   items: ImageResult[]; 
-  defId: number;
-  wordId: number;
+  defIndex: number;
+  wordIndex: number;
   setFieldValue: (field: string, value: any) => void;
+  handleImageUrlChange: ( nextImageUrl: string ) => void;
 }
 
 class SearchResults extends React.PureComponent<Props, {} > {
@@ -40,9 +41,11 @@ class SearchResults extends React.PureComponent<Props, {} > {
       debug(blob);
 
       // 2. assign to blob and src to formik state
-      const { wordId, defId } = this.props; 
-      this.props.setFieldValue(`words.${ wordId }.defs.${ defId }.image`, imageSrc); 
-      this.props.setFieldValue(`words.${ wordId }.defs.${ defId }.imageFile`, blob); 
+      const { wordIndex, defIndex } = this.props; 
+      this.props.setFieldValue(`words.${ wordIndex }.defs.${ defIndex }.image`, imageSrc); 
+      this.props.setFieldValue(`words.${ wordIndex }.defs.${ defIndex }.imageFile`, blob); 
+      this.props.handleImageUrlChange(imageSrc);
+      debug(`${ wordIndex } and ${ defIndex } and ${ imageSrc }`);
     });
   }
 

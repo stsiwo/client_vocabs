@@ -7,22 +7,16 @@ interface Props {
   image: string;
   //updateDefImageClick: ( id: string, nextFile: string ) => void;
   handleSearchImageToggleClick: (e: React.MouseEvent<HTMLElement>) => void; 
+  handleImageUrlChange: ( nextImageUrl: string ) => void;
   formik: CustomFormikProps;
   wordIndex: number;
   defIndex: number;
   setFieldValue: (field: string, value: any) => void;
 }
 
-interface State {
-  imageURL: string;
-}
-
-class DefImageFile extends React.PureComponent<Props, State> {
+class DefImageFile extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = { 
-      imageURL: this.props.image
-    };
     this.handleDefImageFileChange = this.handleDefImageFileChange.bind(this);
     this.handleDefImageFileDrop = this.handleDefImageFileDrop.bind(this);
     this.assignImageFile = this.assignImageFile.bind(this);
@@ -48,7 +42,7 @@ class DefImageFile extends React.PureComponent<Props, State> {
     const imageURL = URL.createObjectURL(image);
     this.props.setFieldValue(`words.${ wordIndex }.defs.${ defIndex }.image`, imageURL); 
     this.props.setFieldValue(`words.${ wordIndex }.defs.${ defIndex }.imageFile`, image); 
-    this.setState({ imageURL: imageURL });
+    this.props.handleImageUrlChange(imageURL);
   }
 
   render() {
@@ -58,7 +52,7 @@ class DefImageFile extends React.PureComponent<Props, State> {
         labelName={ `words.${ wordIndex }.defs.${ defIndex }.image` } 
         handleSearchImageToggleClick={ this.props.handleSearchImageToggleClick } 
         onChange={ this.handleDefImageFileChange }
-        file={ this.state.imageURL }
+        file={ this.props.image }
         formik={ this.props.formik }
         onDrop={ this.handleDefImageFileDrop }
       /> 

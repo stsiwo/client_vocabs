@@ -19,6 +19,7 @@ interface Props {
 
 interface State {
   isSearchImageModalOpen: boolean;
+  imageURL: string;
 }
 
 export class DefContent extends React.PureComponent<Props, State> {
@@ -26,13 +27,19 @@ export class DefContent extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       isSearchImageModalOpen: false,
+      imageURL:  this.props.def.image
     }
     this.handleSearchImageToggleClick = this.handleSearchImageToggleClick.bind(this);
+    this.handleImageUrlChange = this.handleImageUrlChange.bind(this);
   }
 
   handleSearchImageToggleClick(e: React.MouseEvent<HTMLElement>) {
     const currentStatus = this.state.isSearchImageModalOpen;
     this.setState({ isSearchImageModalOpen: !currentStatus });
+  }
+
+  handleImageUrlChange( nextImageUrl: string ) {
+    this.setState({ imageURL: nextImageUrl });
   }
 
   render() {
@@ -56,8 +63,9 @@ export class DefContent extends React.PureComponent<Props, State> {
         </li>
         <li>
           <DefImageFile 
-            image={ this.props.def.image } 
+            image={ this.state.imageURL } 
             handleSearchImageToggleClick={ this.handleSearchImageToggleClick } 
+            handleImageUrlChange={ this.handleImageUrlChange }
             formik={ this.props.formik }
             wordIndex={ this.props.wordIndex }
             defIndex={ this.props.defIndex }
@@ -66,9 +74,11 @@ export class DefContent extends React.PureComponent<Props, State> {
         </li>
         <BottomModal isOpen={ this.state.isSearchImageModalOpen } handleSearchImageToggleClick={ this.handleSearchImageToggleClick }>
           <SearchImageModalContentCont 
-            wordId={ this.props.def.wordId } 
-            defId={ this.props.def.id }
             setFieldValue={ this.props.setFieldValue }
+            wordIndex={ this.props.wordIndex }
+            wordId={ this.props.def.wordId }
+            defIndex={ this.props.defIndex }
+            handleImageUrlChange={ this.handleImageUrlChange }
           />
         </BottomModal>
       </ul>

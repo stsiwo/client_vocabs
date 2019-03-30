@@ -5,7 +5,7 @@ import { IState } from '../state/type';
 //import { updateDefActionCreator } from '../actions/index';
 import { Record } from 'immutable';
 
-const mapStateToProps = (state: Record<IState>, ownProps: { wordId: string, defId: string }) => ({
+const mapStateToProps = (state: Record<IState>, ownProps: { wordId: number }) => ({
    wordName: state.get('entities').getIn([ 'words', ownProps.wordId, "name" ]),
 });
 
