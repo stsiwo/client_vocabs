@@ -46,6 +46,13 @@ class SearchResults extends React.PureComponent<Props, {} > {
       this.props.setFieldValue(`words.${ wordIndex }.defs.${ defIndex }.imageFile`, blob); 
       this.props.handleImageUrlChange(imageSrc);
       debug(`${ wordIndex } and ${ defIndex } and ${ imageSrc }`);
+      /**
+       * #REFACTOR:
+       *  - some of images src does not implement cors so we can get those blob when request
+       *  - is this implmentation is ok, if there is a shortcut to access blob from <img>, i don't need to make a request in the first place.
+       *  - SOLUTION: restrict search for only website having cors 
+       *      - switch off "search entire web" and set individually to include website which sets cors 
+       **/
     });
   }
 
