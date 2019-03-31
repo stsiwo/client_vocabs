@@ -30,22 +30,20 @@ interface PropsWithObservableAndAutoComplete extends PropsWithObservable {
   autoComplete: AutoCompleteBags;
 }
 
-
-
 class WordNameText extends React.PureComponent<PropsWithObservableAndAutoComplete, {}> {
 
-  private wordNameRef: React.RefObject<HTMLInputElement>;
+  private wordNameRef: Node; 
 
   constructor(props: PropsWithObservableAndAutoComplete) {
     super(props);
+    this.wordNameRef = null;
     this.handleWordNameChange = this.handleWordNameChange.bind(this);
     this.handleWordNameBlur = this.handleWordNameBlur.bind(this);
-    this.wordNameRef = React.createRef<HTMLInputElement>();
   }
 
   handleWordNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+    
     this.props.formik.handleChange(e);
-    this.props.observable.inputHandler(e);
   }
 
   handleWordNameBlur(e: React.FocusEvent<HTMLInputElement>) {
@@ -57,8 +55,9 @@ class WordNameText extends React.PureComponent<PropsWithObservableAndAutoComplet
       // update formik values
       this.props.setFieldValue(`words.${ this.props.wordIndex }.name`, this.props.autoComplete.selectedResult);
 
+      
       // update word name input by react ref
-      this.wordNameRef.current.value = this.props.autoComplete.selectedResult; 
+      ( this.wordNameRef as HTMLInputElement).value = this.props.autoComplete.selectedResult; 
     }
   }
 
@@ -67,7 +66,7 @@ class WordNameText extends React.PureComponent<PropsWithObservableAndAutoComplet
     return (
       <div className={ this.props.className }>
         <TextWithIcon 
-          inputRef={ this.wordNameRef }
+          inputRef={[ this.wordNameRef, this.props.observable.targetRef ]}
           placeholder="enter a new word here..." 
           svgSrc={ wordIcon } 
           labelName={ `words.${ wordIndex }.name` } 

@@ -1,19 +1,16 @@
-import { Subject, Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 abstract class AbstractObservable {
 
-  protected observable: Subject<string>;
+  protected observable: Observable<Event>;
 
-  constructor() {
-    this.observable = new Subject<string>(); 
+  protected targetRef: Node; 
+
+  constructor( targetRef: Node ) { 
+    this.targetRef = targetRef;
   }
 
   abstract getSubscription(callback: any): Subscription; 
-
-  next( nextStream: string ) {
-    this.observable.next( nextStream );
-  }
-
 }
 
 export default AbstractObservable;

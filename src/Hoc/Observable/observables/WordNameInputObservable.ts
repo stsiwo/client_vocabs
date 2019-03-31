@@ -3,26 +3,36 @@ import getVocabsApiUrl from '../../../util/getVocabsApiUrl';
 import { debounceTime, distinctUntilChanged, switchMap, catchError, tap, map, filter } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 import { Result } from '../type';
-import { of } from 'rxjs';
+import { of, fromEvent } from 'rxjs';
+const debug = require('debug')('WordNameInputObservable');
 
-class WordNameInputObservable extends AbstractObservable {
+class WordNameInputObservable extends AbstractObservable { 
 
   private apiUrl: string;
 
-  constructor() {
-    super();
+  constructor( targetRef: Node ) {
+    super( targetRef );
+    this.observable = fromEvent( targetRef, 'change' );
     this.apiUrl = getVocabsApiUrl();
   }
 
   getSubscription( callback: ( nextResult: Result[] ) => void ) {
     return this.observable  
       .pipe(
-        filter(( keyWord: string ) => keyWord !== ''),
+        filter(( event: Event ) => { 
+          const target = event.target as HTMLInputElement;
+          debug(target.value);
+          return target.value !== "";
+        }),
         debounceTime(500),
         distinctUntilChanged(),
-        switchMap(( keyWord: string ) => ajax.getJSON(`${ this.apiUrl }/dictionary?keyWord=${ keyWord }`)),
+        switchMap(( event: Event ) => {
+          const target = event.target as HTMLInputElement;
+          const keyWord: string = target.value as string;
+          return ajax.getJSON(`${ this.apiUrl }/dictionary?keyWord=${ keyWord }`)
+        }),
         map(( response: { suggestionList: Result[] }) => response.suggestionList ),
-        tap(( suggestionList: Result[] ) => console.log( suggestionList )),
+        tap(( suggestionList: Result[] ) => debug( suggestionList )),
         catchError(( error: Error ) => of(`error: ${ error }`)), 
       )
       .subscribe(( suggestionList: Result[]) => {

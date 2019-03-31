@@ -11,7 +11,8 @@ interface Props {
   type?: string;
   checked?: boolean;
   value?: any;
-  forwardedRef: React.Ref<HTMLInputElement>;
+  // ref
+  inputRef?: Node[]; 
 }
 
 class Input extends React.PureComponent<Props, {}> {
@@ -34,7 +35,10 @@ class Input extends React.PureComponent<Props, {}> {
   render() {
     return (
       <input
-        ref={ this.props.forwardedRef }
+        ref={( node: Node ) => { 
+          if ( this.props.inputRef )
+            this.props.inputRef.forEach(( ref ) => ref = node )
+        }}
         className={ this.props.className }
         type={ this.props.type }
         id={ this.props.id }
@@ -50,13 +54,7 @@ class Input extends React.PureComponent<Props, {}> {
   }
 }
 
-type InputHTMLProps = React.ComponentPropsWithoutRef<'input'>; 
-
-const RefInput = React.forwardRef<HTMLInputElement, InputHTMLProps>(( props, ref ) => (
-  <Input { ...props } forwardedRef={ ref } />
-));
-
-const StyledInput = styled(RefInput)`
+const StyledInput = styled(Input)`
   height: 20px;
   background-color: transparent;
   border: none;

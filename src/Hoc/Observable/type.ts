@@ -1,12 +1,8 @@
-import * as React from 'react';
-
 export interface ObservableBags {
-  input: string;
   result: any; 
-  inputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  emptyInput: () => void;
-  isInputEmpty: () => boolean;
-  setInput: ( nextInput: string ) => void;
+  targetRef: Node;
+  emptyResult: () => void;
+  isResultEmpty: () => boolean;
 }
 
 export interface Result {

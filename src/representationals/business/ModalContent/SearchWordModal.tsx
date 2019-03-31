@@ -13,7 +13,7 @@ interface Props {
 // when Search Icon in Controoler clicked, toggle this Component with animation from bottom to above controller
 class SearchWordModal extends React.PureComponent<Props, {}> {
 
-  private ref: React.RefObject<HTMLInputElement> = React.createRef<HTMLInputElement>(); 
+  private ref: Node = null; 
 
   constructor(props: Props) {
     super(props);
@@ -30,7 +30,7 @@ class SearchWordModal extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
-    this.ref.current.focus();
+    ( this.ref as HTMLInputElement ).focus();
   }
 
   render() {

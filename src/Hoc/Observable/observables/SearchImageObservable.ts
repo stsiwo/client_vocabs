@@ -1,25 +1,32 @@
 import AbstractObservable from '../AbstractObservable';
 import getImageSearchApiUrl from '../../../util/getImageSearchApiUrl'; 
-import { of } from 'rxjs';
+import { of, fromEvent } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { debounceTime, distinctUntilChanged, switchMap, catchError, tap, map, filter } from 'rxjs/operators';
 import { ImageResult } from '../type';
-const debug = require('debug')(__filename);
+const debug = require('debug')("SearchImageObservable");
 
 
 class SearchImageObservable extends AbstractObservable {
 
-  constructor() {
-    super();
+  constructor( targetRef: Node) {
+    super(targetRef);
+    this.observable = fromEvent( targetRef, 'click' );
   }
 
   getSubscription( callback: ( nextResult: ImageResult[] ) => void ) {
-    return this.observable  
+    return this.observable
       .pipe(
-        filter(( keyWord: string ) => keyWord !== ''),
+        filter(( event: Event) => {
+          const target = event.target as HTMLInputElement;
+          debug('inside filter of obsrvable');
+          return target.value !== "";
+        }),
         debounceTime( 500 ),
         distinctUntilChanged(),
-        switchMap(( keyWord: string ) => { 
+        switchMap(( event: Event ) => { 
+          const target = event.target as HTMLInputElement;
+          const keyWord: string = target.value as string;
           const apiUrl = getImageSearchApiUrl( keyWord );
           return ajax.getJSON( apiUrl )
         }),

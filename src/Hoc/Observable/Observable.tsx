@@ -2,34 +2,30 @@ import * as React from 'react';
 import { Subscription } from 'rxjs';
 import { ObservableBags, Result } from './type';
 import AbstractObservable from './AbstractObservable';
+import ObservableImplFactory from './ObservableImplFactory';
 
 interface Props {
   render: ( state: ObservableBags ) => React.ReactNode;
-  observableImpl: AbstractObservable;
+  observableImplType: string;
 }
-
-/**
- * using formik form props as Producer cause input lag
- *  - I don't know why but better to create state in Observable then use it as Producer so you can avoid lag problem
- **/
 
 class Observable extends React.PureComponent<Props, ObservableBags> {
 
-  subscription: Subscription;
+  private subscription: Subscription;
+
+  private observableImpl: AbstractObservable;
+
+  private targetRef: Node = null; 
 
   constructor(props: Props) {
     super(props);
-    this.inputHandler = this.inputHandler.bind(this);
-    this.isInputEmpty = this.isInputEmpty.bind(this);
-    this.emptyInput = this.emptyInput.bind(this);
-    this.setInput = this.setInput.bind(this);
+    this.isResultEmpty = this.isResultEmpty.bind(this);
+    this.emptyResult = this.emptyResult.bind(this);
     this.state = {
-      input: "", // create producer indenpendent from formik actual state
       result: [],
-      inputHandler: this.inputHandler,
-      emptyInput: this.emptyInput,
-      isInputEmpty: this.isInputEmpty,
-      setInput: this.setInput,
+      targetRef: this.targetRef, 
+      isResultEmpty: this.isResultEmpty,
+      emptyResult: this.emptyResult
     }
     this.handleResultState = this.handleResultState.bind(this);
   }
@@ -39,32 +35,22 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
   }
 
   componentDidMount() {
-    this.subscription = this.props.observableImpl.getSubscription(this.handleResultState);
+    this.observableImpl = ObservableImplFactory(this.props.observableImplType, this.targetRef);
+    this.subscription = this.observableImpl.getSubscription(this.handleResultState);
   }
 
   componentWillUnmount() {
     this.subscription.unsubscribe();
   }
 
-  inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    const target = e.target as HTMLInputElement;
-    this.props.observableImpl.next( target.value );
-    this.setState({ input: target.value })
-  }
-
-  setInput( nextInput: string ) {
-    this.props.observableImpl.next( nextInput );
-    this.setState({ input: nextInput })
-  }
-
   // this is for close autocomplete
-  emptyInput() {
-    this.setState({ input: "" });
+  emptyResult() {
+    this.setState({ result: [] });
   }
 
   // this is for checking autocomplete should be closed
-  isInputEmpty() {
-    return this.state.input === '';
+  isResultEmpty() {
+    return this.state.result.length === 0;
   }
 
   render() {
@@ -78,5 +64,6 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
 }
 
 export default Observable;
+
 
 

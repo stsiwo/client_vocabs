@@ -32,19 +32,22 @@ class SearchImageModalContent extends React.PureComponent<PropsWithObservable, S
   }
 
   componentDidMount() {
-    this.props.observable.setInput(this.props.wordName);
   }
 
   handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const target = e.target as HTMLInputElement;
-    this.props.observable.inputHandler(e);
     this.setState({ input : target.value }); 
   }
 
   render() {
     return (
       <React.Fragment>
-        <Search placeholder="search images for your definition here..."  onChange={ this.handleInputChange } value={ this.state.input }/>
+        <Search 
+          placeholder="search images for your definition here..."  
+          onChange={ this.handleInputChange } 
+          value={ this.state.input }
+          inputRef={ this.props.observable.targetRef }
+        />
         <SearchResults 
           items={ this.props.observable.result } 
           wordIndex={ this.props.wordIndex } 

@@ -13,7 +13,7 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   id?: string;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef?: Node[]; 
 }
 
 class TextWithIcon extends React.Component<Props, {}> {
@@ -21,7 +21,18 @@ class TextWithIcon extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
-  
+
+  /**
+   * RefObject and Node:
+   *  - RefObject has "current" property which hold node
+   *  - so if you want to use RefObject inside ref callback
+   *  - you must do like below
+   **/
+
+  /**
+   * it is possible to assign multiple refs to a dom element
+   *  - implement like below
+   **/
   render() {
     return (
       <div className={ this.props.className }>
@@ -29,7 +40,7 @@ class TextWithIcon extends React.Component<Props, {}> {
           <Icon svgSrc={ this.props.svgSrc }/>
         </label>
         <Input 
-          ref={ this.props.inputRef }
+          inputRef={ this.props.inputRef } 
           type="text" 
           placeholder={ this.props.placeholder } 
           name={ this.props.labelName } 

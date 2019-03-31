@@ -109,12 +109,12 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   setAutoCompleteClose() {
-    this.props.observable.emptyInput();
+    this.props.observable.emptyResult();
   }
 
   isAutoCompleteOpen() {
     // empty input means autocomplete close
-    return !this.props.observable.isInputEmpty();
+    return !this.props.observable.isResultEmpty();
   }
 
   render() {
