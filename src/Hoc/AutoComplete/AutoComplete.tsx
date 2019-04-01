@@ -3,14 +3,8 @@ import styled from '../../representationals/story/styledComponents';
 import { AutoCompleteBags } from './type';
 import { ObservableBags } from '../Observable/type';
 import { Result } from '../Observable/type';
+const debug = require('debug')('AutoComplete');
 
-//interface Props { 
-  //className?: string;
-  //items: any[];
-  //onClickHandler: (e: React.MouseEvent<HTMLLIElement>) => void;
-  //isOpen: boolean;
-  //forwardedRef: React.Ref<HTMLUListElement>;
-//}
 
 interface Props {
   className?: string;
@@ -118,6 +112,7 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   }
 
   render() {
+    debug(this.props.observable);
     return (
       <div ref={ this.divRef }>
         { this.props.render( this.state ) }

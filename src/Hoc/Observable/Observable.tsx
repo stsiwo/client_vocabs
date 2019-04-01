@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { ObservableBags, Result } from './type';
 import AbstractObservable from './AbstractObservable';
 import ObservableImplFactory from './ObservableImplFactory';
+const debug = require('debug')('Observable');
+import CustomRef from '../../CustomRef';
 
 interface Props {
   render: ( state: ObservableBags ) => React.ReactNode;
@@ -15,7 +17,7 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
 
   private observableImpl: AbstractObservable;
 
-  private targetRef: Node = null; 
+  private targetRef: CustomRef = { node: null }; 
 
   constructor(props: Props) {
     super(props);
@@ -35,6 +37,7 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
   }
 
   componentDidMount() {
+    debug(this.targetRef);
     this.observableImpl = ObservableImplFactory(this.props.observableImplType, this.targetRef);
     this.subscription = this.observableImpl.getSubscription(this.handleResultState);
   }

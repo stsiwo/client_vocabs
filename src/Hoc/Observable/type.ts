@@ -1,6 +1,7 @@
+import CustomRef from '../../CustomRef';
 export interface ObservableBags {
   result: any; 
-  targetRef: Node;
+  targetRef: CustomRef;
   emptyResult: () => void;
   isResultEmpty: () => boolean;
 }

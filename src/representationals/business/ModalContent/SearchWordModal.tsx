@@ -3,6 +3,7 @@ import styled from '../../story/styledComponents';
 //import { ThemeInterface } from '../../story/theme'; 
 import Search from '../../base/Input/Search';
 import { changeSearchKeyWordDispatchType } from '../../../containers/type';
+import CustomRef from '../../../CustomRef';
 
 interface Props {
   className?: string;
@@ -13,7 +14,7 @@ interface Props {
 // when Search Icon in Controoler clicked, toggle this Component with animation from bottom to above controller
 class SearchWordModal extends React.PureComponent<Props, {}> {
 
-  private ref: Node = null; 
+  private ref: CustomRef = null; 
 
   constructor(props: Props) {
     super(props);
@@ -30,7 +31,7 @@ class SearchWordModal extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
-    ( this.ref as HTMLInputElement ).focus();
+    ( this.ref.node as HTMLInputElement ).focus();
   }
 
   render() {

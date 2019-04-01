@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
+const debug = require('debug')('Input');
+import CustomRef from '../../../CustomRef';
 
 interface Props {
   className?: string;
@@ -12,7 +14,7 @@ interface Props {
   checked?: boolean;
   value?: any;
   // ref
-  inputRef?: Node[]; 
+  inputRef?: CustomRef[]; 
 }
 
 class Input extends React.PureComponent<Props, {}> {
@@ -36,8 +38,10 @@ class Input extends React.PureComponent<Props, {}> {
     return (
       <input
         ref={( node: Node ) => { 
-          if ( this.props.inputRef )
-            this.props.inputRef.forEach(( ref ) => ref = node )
+          if ( this.props.inputRef ) { 
+            debug(this.props.inputRef);
+            this.props.inputRef.forEach(( ref ) => ref.node = node )
+          }
         }}
         className={ this.props.className }
         type={ this.props.type }

@@ -3,6 +3,7 @@ import styled from '../../story/styledComponents';
 import Input from './Input';
 import Icon from '../Icon/Icon';
 import formElement from '../common/formElement';
+import CustomRef from '../../../CustomRef';
 
 interface Props {
   className?: string;
@@ -13,7 +14,7 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   id?: string;
-  inputRef?: Node[]; 
+  inputRef?: CustomRef[]; 
 }
 
 class TextWithIcon extends React.Component<Props, {}> {
@@ -23,7 +24,7 @@ class TextWithIcon extends React.Component<Props, {}> {
   }
 
   /**
-   * RefObject and Node:
+   * RefObject and CustomRef:
    *  - RefObject has "current" property which hold node
    *  - so if you want to use RefObject inside ref callback
    *  - you must do like below

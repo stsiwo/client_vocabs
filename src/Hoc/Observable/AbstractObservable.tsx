@@ -1,12 +1,13 @@
 import { Subscription, Observable } from 'rxjs';
+import CustomRef from '../../CustomRef';
 
 abstract class AbstractObservable {
 
   protected observable: Observable<Event>;
 
-  protected targetRef: Node; 
+  protected targetRef: CustomRef; 
 
-  constructor( targetRef: Node ) { 
+  constructor( targetRef: CustomRef ) { 
     this.targetRef = targetRef;
   }
 

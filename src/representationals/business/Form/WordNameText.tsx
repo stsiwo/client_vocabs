@@ -8,6 +8,7 @@ import { ObservableBags } from '../../../Hoc/Observable/type';
 import { AutoCompleteBags } from '../../../Hoc/AutoComplete/type';
 import withAutoComplete from '../../../Hoc/AutoComplete/withAutoComplete';
 import { ObservableImpls } from '../../../Hoc/Observable/type'; 
+import CustomRef from '../../../CustomRef';
 
 const wordIcon = require('./assets/word.svg');
 
@@ -32,17 +33,15 @@ interface PropsWithObservableAndAutoComplete extends PropsWithObservable {
 
 class WordNameText extends React.PureComponent<PropsWithObservableAndAutoComplete, {}> {
 
-  private wordNameRef: Node; 
+  private wordNameRef: CustomRef = { node: null }; 
 
   constructor(props: PropsWithObservableAndAutoComplete) {
     super(props);
-    this.wordNameRef = null;
     this.handleWordNameChange = this.handleWordNameChange.bind(this);
     this.handleWordNameBlur = this.handleWordNameBlur.bind(this);
   }
 
   handleWordNameChange(e: React.ChangeEvent<HTMLInputElement>) {
-    
     this.props.formik.handleChange(e);
   }
 
@@ -57,7 +56,7 @@ class WordNameText extends React.PureComponent<PropsWithObservableAndAutoComplet
 
       
       // update word name input by react ref
-      ( this.wordNameRef as HTMLInputElement).value = this.props.autoComplete.selectedResult; 
+      ( this.wordNameRef.node as HTMLInputElement).value = this.props.autoComplete.selectedResult; 
     }
   }
 

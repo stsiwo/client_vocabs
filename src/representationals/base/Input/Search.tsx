@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../story/styledComponents';
-
+import CustomRef from '../../../CustomRef';
 import Input from './Input';
 import Icon from '../Icon/Icon';
 
@@ -15,7 +15,7 @@ interface Props {
   // text input change to display text change
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
-  inputRef?: Node 
+  inputRef?: CustomRef 
 }
 
 class Search extends React.PureComponent<Props, {}> {
@@ -45,7 +45,6 @@ class Search extends React.PureComponent<Props, {}> {
       </div>
     );
   }
-
 }
 
 const StyledSearch = styled(Search)`

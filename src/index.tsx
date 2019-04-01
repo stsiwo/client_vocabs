@@ -12,6 +12,7 @@ import { theme } from './representationals/story/theme';
 //import ImageExperiment from './ImageExperiment';
 //import ParentExperiment from './ParentExperiment';
 //import Root from './performances/Root';
+//import Root from './lifeCycleExperiment/Root';
 const debug = require('debug')('index');
 
 debug("start project");
@@ -26,9 +27,9 @@ ReactDOM.render(
        <ParentExperiment />
       <RefParent />
         <FlexExperiment />
-        <Root />
+        <Root name={ "satoshi" } />
     */}
-       <App />
+        <App />
       </CustomBrowserRouter>
     </ThemeProvider>
   </Provider>
