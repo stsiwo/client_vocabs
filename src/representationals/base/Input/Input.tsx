@@ -39,7 +39,7 @@ class Input extends React.PureComponent<Props, {}> {
       <input
         ref={( node: Node ) => { 
           if ( this.props.inputRef ) { 
-            debug(this.props.inputRef);
+            debug(this.props.inputRef)
             this.props.inputRef.forEach(( ref ) => ref.node = node )
           }
         }}

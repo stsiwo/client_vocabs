@@ -13,7 +13,7 @@ class WordNameInputObservable extends AbstractObservable {
 
   constructor( targetRef: CustomRef ) {
     super( targetRef );
-    this.observable = fromEvent( targetRef.node, 'change' );
+    this.observable = fromEvent( targetRef.node, 'input' );
     this.apiUrl = getVocabsApiUrl();
   }
 

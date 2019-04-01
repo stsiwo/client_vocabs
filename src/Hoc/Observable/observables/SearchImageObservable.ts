@@ -12,7 +12,7 @@ class SearchImageObservable extends AbstractObservable {
 
   constructor( targetRef: CustomRef) {
     super(targetRef);
-    this.observable = fromEvent( targetRef.node, 'click' );
+    this.observable = fromEvent( targetRef.node, 'input' );
   }
 
   getSubscription( callback: ( nextResult: ImageResult[] ) => void ) {
@@ -21,10 +21,9 @@ class SearchImageObservable extends AbstractObservable {
         filter(( event: Event ) => {
           debug(event);
           const target = event.target as HTMLInputElement;
-          debug('inside filter of obsrvable');
           return target.value !== "";
         }),
-        debounceTime( 500 ),
+        debounceTime( 800 ),
         distinctUntilChanged(),
         switchMap(( event: Event ) => { 
           const target = event.target as HTMLInputElement;
@@ -32,11 +31,14 @@ class SearchImageObservable extends AbstractObservable {
           const apiUrl = getImageSearchApiUrl( keyWord );
           return ajax.getJSON( apiUrl )
             .pipe(
-              // this is for ajax error if getJson fails
-              catchError(( error: Error ) => of(`error: ${ error }`)) 
-            )
+              catchError(( error: Error ) => {
+                debug(error);
+                return of(`error: ${ error }`)
+              }) 
+            );
         }),
         map(( response: any ) => { 
+          if ( response.searchInformation.totalResults === "0" ) return false;
           debug(response);
           return response.items.map(( item: any ) => ({
             image: null,
@@ -44,9 +46,13 @@ class SearchImageObservable extends AbstractObservable {
             alt: item.title
           } as ImageResult));
         }),
-        tap(( imageResult: ImageResult[] ) => debug( imageResult )),
+        tap(( imageResult: ImageResult[] | boolean ) => debug( imageResult )),
+        catchError(( error: Error ) => {
+          debug(error);
+          return of(`error: ${ error }`)
+        }) 
       )
-      .subscribe(( imageResult: ImageResult[]) => {
+      .subscribe(( imageResult: ImageResult[] ) => {
         callback(imageResult);
       });
   }

@@ -19,6 +19,7 @@ class SearchResults extends React.PureComponent<Props, {} > {
     super(props);
     //this.handleClick = this.handleClick.bind(this);
     this.renderImageElement = this.renderImageElement.bind(this);
+    this.renderNoResultMessage = this.renderNoResultMessage.bind(this);
     this.handleDefImageClick = this.handleDefImageClick.bind(this);
   }
 
@@ -60,10 +61,15 @@ class SearchResults extends React.PureComponent<Props, {} > {
     return this.props.items.map(( img ) => <img src={ img.path } alt={ img.alt } onClick={ this.handleDefImageClick } key={ img.path }/> );
   }
 
+  renderNoResultMessage() {
+    return (<div>no search result</div>);
+  }
+
   render() {
     return (
       <div className={ this.props.className }>
-        { this.renderImageElement() }
+        { this.props.items && this.renderImageElement() }
+        { !this.props.items && this.renderNoResultMessage() }
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { css } from '../../story/styledComponents';
+import CustomRef from '../../../CustomRef';
 
 /**
  * need wrapper element like div>Icon for ease of style
@@ -44,6 +45,7 @@ interface Props {
   height?: string;
   rotate?: string;
   id?: string;
+  iconRef?: CustomRef;
 }
   
 
@@ -59,7 +61,14 @@ class WrapperIcon extends React.PureComponent<Props, {}> {
 
   render() {
     return (
-      <div className={ this.props.className } onClick={ this.props.onClick } id={ this.props.id }>
+      <div 
+        className={ this.props.className } 
+        onClick={ this.props.onClick } 
+        id={ this.props.id } 
+        ref={( node: Node ) => {
+          if (this.props.iconRef ) return this.props.iconRef.node = node 
+          else return null;
+        }}>
         <Icon svgSrc={ this.props.svgSrc } unchecked={ this.props.unchecked } hoverEffect={ this.props.hoverEffect } hidden={ this.props.hidden } width={ this.props.width } height={ this.props.height } rotate={ this.props.rotate } />
       </div>
    );
