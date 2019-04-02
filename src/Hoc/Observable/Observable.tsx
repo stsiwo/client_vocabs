@@ -9,6 +9,7 @@ import CustomRef from '../../CustomRef';
 interface Props {
   render: ( state: ObservableBags ) => React.ReactNode;
   observableImplType: string;
+  input: string;
 }
 
 class Observable extends React.PureComponent<Props, ObservableBags> {
@@ -24,6 +25,7 @@ class Observable extends React.PureComponent<Props, ObservableBags> {
     this.isResultEmpty = this.isResultEmpty.bind(this);
     this.emptyResult = this.emptyResult.bind(this);
     this.state = {
+      input: this.props.input, 
       result: [],
       targetRef: this.targetRef, 
       isResultEmpty: this.isResultEmpty,

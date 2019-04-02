@@ -20,17 +20,19 @@ class WordNameInputObservable extends AbstractObservable {
   getSubscription( callback: ( nextResult: Result[] ) => void ) {
     return this.observable  
       .pipe(
-        filter(( event: Event ) => { 
-          debug(event);
+        debounceTime(500),
+        map(( event: Event ) => {
           const target = event.target as HTMLInputElement;
           debug(target.value);
-          return target.value !== "";
+          return target.value; 
         }),
-        debounceTime(500),
+        filter(( input: string ) => { 
+          debug(input);
+          return input !== "";
+        }),
         distinctUntilChanged(),
-        switchMap(( event: Event ) => {
-          const target = event.target as HTMLInputElement;
-          const keyWord: string = target.value as string;
+        switchMap(( keyWord: string ) => {
+          debug(keyWord);
           return ajax.getJSON(`${ this.apiUrl }/dictionary?keyWord=${ keyWord }`)
             .pipe(
               // this is for ajax error if getJson fails

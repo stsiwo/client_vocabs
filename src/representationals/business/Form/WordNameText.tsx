@@ -53,7 +53,6 @@ class WordNameText extends React.PureComponent<PropsWithObservableAndAutoComplet
     if (prevProps.autoComplete.selectedResult !== this.props.autoComplete.selectedResult) {
       // update formik values
       this.props.setFieldValue(`words.${ this.props.wordIndex }.name`, this.props.autoComplete.selectedResult);
-
       
       // update word name input by react ref
       ( this.wordNameRef.node as HTMLInputElement).value = this.props.autoComplete.selectedResult; 

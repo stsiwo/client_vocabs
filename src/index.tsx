@@ -13,6 +13,7 @@ import { theme } from './representationals/story/theme';
 //import ParentExperiment from './ParentExperiment';
 //import Root from './performances/Root';
 //import Root from './lifeCycleExperiment/Root';
+//import WordName from './RxjsExperiment/WordName';
 const debug = require('debug')('index');
 
 debug("start project");
@@ -28,6 +29,7 @@ ReactDOM.render(
       <RefParent />
         <FlexExperiment />
         <Root name={ "satoshi" } />
+        <WordName />
     */}
         <App />
       </CustomBrowserRouter>

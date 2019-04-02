@@ -1,5 +1,7 @@
 import CustomRef from '../../CustomRef';
 export interface ObservableBags {
+  // this is for update "Observable" purecompoenent
+  input: string;
   result: any; 
   targetRef: CustomRef;
   emptyResult: () => void;

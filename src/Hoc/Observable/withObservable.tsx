@@ -6,7 +6,7 @@ interface ObservableProps {
   observable: ObservableBags;
 }
 
-export default function withObservable<P extends {}>( WrappedComponent: React.ComponentType<P & ObservableProps>, observableImplType: ValueOfObservableImplType ) {
+export default function withObservable<P extends any>( WrappedComponent: React.ComponentType<P & ObservableProps>, observableImplType: ValueOfObservableImplType ) {
   return class extends React.PureComponent<P, {}> {
 
     constructor(props: P) {
@@ -20,7 +20,7 @@ export default function withObservable<P extends {}>( WrappedComponent: React.Co
 
     render() {
       return (
-        <Observable render={ this.renderWrappedComponent } observableImplType={ observableImplType }/>
+        <Observable render={ this.renderWrappedComponent } observableImplType={ observableImplType } input={ this.props.name }/>
       );
     }
   }

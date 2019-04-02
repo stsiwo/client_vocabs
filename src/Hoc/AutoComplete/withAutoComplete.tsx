@@ -11,7 +11,7 @@ interface ObservableProps {
   observable: ObservableBags;
 }
 
-export default function withAutoComplete<P extends object & ObservableProps>( WrappedComponent: React.ComponentType<P & ObservableProps & AutoCompleteProps> ) {
+export default function withAutoComplete<P extends any & ObservableProps>( WrappedComponent: React.ComponentType<P & ObservableProps & AutoCompleteProps> ) {
   return class extends React.PureComponent<P, {}> {
 
     constructor(props: P) {
@@ -25,7 +25,7 @@ export default function withAutoComplete<P extends object & ObservableProps>( Wr
 
     render() {
       return (
-        <AutoComplete observable={ this.props.observable } render={ this.renderWrappedComponent }/>
+        <AutoComplete observable={ this.props.observable } render={ this.renderWrappedComponent } input={ this.props.name }/>
       );
     }
   }

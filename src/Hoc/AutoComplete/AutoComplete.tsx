@@ -9,6 +9,7 @@ const debug = require('debug')('AutoComplete');
 interface Props {
   className?: string;
   render: ( state: AutoCompleteBags ) => React.ReactNode;
+  input: string;
 }
 
 interface PropsWithObservable extends Props {
@@ -27,6 +28,8 @@ class AutoComplete extends React.PureComponent<PropsWithObservable, AutoComplete
   constructor(props: PropsWithObservable) {
     super(props);
     this.state = {
+      // this is for update "Autocomplete" purecomponent
+      input: this.props.input, 
       selectedResult: '',
     };
     this.liRefs = new Array<Node>(5);
